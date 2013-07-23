@@ -1,0 +1,4 @@
+name = Main Menu widget
+description = Main menu content pane
+version = 7.x-1.0
+core = 7.x
