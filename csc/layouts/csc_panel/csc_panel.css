@@ -1,0 +1,18 @@
+.csc-panel-container{
+  float: left;
+  width: 100%;
+  display: table;
+}
+
+.csc-panel-wrapper{
+  display: table-row;
+}
+
+.csc-panel-col-left{
+  width: 150px;
+  display: table-cell;
+}
+
+.csc-panel-col-right{
+  display: table-cell;
+}

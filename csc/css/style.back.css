@@ -85,8 +85,6 @@ img {
   border: 0;
 }
 
-.hide-me{ display: none; }
-
 /**
  * The generic monospace font family is listed before Courier new to avoid a
  * a bug in font-size rendering:
@@ -627,6 +625,10 @@ h1#site-name {
 }
 
 /* ----------------- Content ------------------ */
+
+.content {
+  margin-top: 10px;
+}
 h1#page-title {
   font-size: 2em;
   line-height: 1;
@@ -1038,6 +1040,7 @@ ul.links.inline li a {
 
 .tabs {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  margin-bottom: 20px;
 }
 .tabs ul.primary {
   padding: 0 3px;
@@ -1847,26 +1850,14 @@ a#menu-toggle:after {
  *CSC Styles
  */
 .bryant-sidebar{
-  width: 150px;
+  width: 130px;
 }
 
 .bryant-content{
   float: none;
   width: 100%;
-  margin-left: 150px;
-}
-
-.csc-panel-col-left { vertical-align: top; background: #e8e7e5; position: relative; }
-.csc-panel-col-right { background: #252525; }
-
-.csc-panel-col-left .csc-panel-inside { background: #ffffff; }
-
-.pane-main-menu { padding-left: 15px; }
-.pane-csc-isotope h2 { text-align: center; }
-.pane-csc-isotope .pane-content { background: #e8e7e5 url(../images/filter_bg.gif) top center no-repeat; padding: 25px 0 40px 0; }
-#filters { margin: 0; padding: 0; }
-
-#page-title { display: none; } 
+  margin-left: 130px;
+} 
  
 header{
   float: left;
@@ -1876,9 +1867,7 @@ header{
 }
 
 #header-logo{ float: left; width: 40%; padding-top: 5px; }
-#header-logo img { margin-left: 15px; }
 #header-icons { float: left; width: 60%; text-align: right; padding-top: 10px; }
-#header-icons img { margin-right: 15px; }
 
 .pane-main-menu h2.pane-title,
 .pane-csc-isotope-page h2.pane-title{ display: none;  }
@@ -1890,32 +1879,4 @@ header{
   font-weight: bold;
   font-size: 12px !important;
   text-transform: uppercase;
-}
-
-/**
- *RESPONSIVE STYLES
- */
-   
-/* Wide styles */ 
-@media screen and (min-width: 1350px) {
-  .isotope-element{ width: 25%; }
-  .isotope-element img { width: 100%; }
-}
-
-/* Medium styles */ 
-@media screen and (max-width: 1349px) and (min-width: 1000px ) {
-  .isotope-element{ width: 33.33%; }
-  .isotope-element img { width: 100%; }
-}
-
-/* Small styles */ 
-@media screen and (max-width: 999px) and (min-width: 451px) {
-  .isotope-element{ width: 50%; }
-  .isotope-element img { width: 100%; }
-}
-
-/* tiny style */ 
-@media screen and (max-width: 450px) {
-  .isotope-element{ width: 300px; }
-  .isotope-element img { width: 300px; }
 }

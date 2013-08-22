@@ -36,13 +36,3 @@
   <?php print $feed_icons; ?>
 
 </div></div> <!-- /.section, /#content -->
-<script>
-(function ($) {
-  $('#main-menu > .expanded > a').each(function(){
-    $(this).attr('href','#');
-    $(this).on("click",function(e){
-      $(this).siblings('ul').toggle('fast');
-    });
-  });
-})(jQuery);
-</script>

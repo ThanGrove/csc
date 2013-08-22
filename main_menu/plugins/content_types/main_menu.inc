@@ -26,6 +26,9 @@ function main_menu_admin_info($subtype, $conf, $contexts) {
  * See ctools_plugin_examples for more advanced info
  */
 function main_menu_render($subtype, $conf, $panel_args, $context = NULL) {
+  drupal_add_js(drupal_get_path('module', 'main_menu') .'/plugins/content_types/main_menu.js');
+  drupal_add_css(drupal_get_path('module', 'main_menu') .'/plugins/content_types/main_menu.css');
+  
   $block = new stdClass();
 
   $block->title = 'Main menu';

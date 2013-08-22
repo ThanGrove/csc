@@ -1,0 +1,87 @@
+<?php
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function csc_isotope_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function csc_isotope_theme() {
+    return array(
+        'csc_isotope_item' => array(
+          'render element' => 'element',
+        ),
+    );
+}
+
+/**
+ * Build Isotope container & childs
+ */ 
+function csc_isotope_page(){
+  drupal_add_css(drupal_get_path('module', 'csc_isotope') . '/css_isotope.css');
+  drupal_add_js(libraries_get_path('jquery.isotope') . '/jquery.isotope.min.js');
+  drupal_add_js("(function ($) {  $(window).load(function() { $('#iso-container').isotope({ itemSelector : '.isotope-item'}); }); })(jQuery);", 'inline');
+
+// $('#iso-container').isotope({ itemSelector : '.isotope-item', layoutMode : 'fitRows'});
+// $('#iso-container').isotope({ masonryHorizontal: { rowHeight: 360 } });
+// $('#iso-container').isotope({ masonry: {  columnWidth: 400 }});
+
+  
+  $qry = "SELECT n.nid, n.type, n.title, SUBSTRING(fdb.body_value,1,150) as body, n.created, fm.uri
+  FROM {node} n LEFT JOIN {field_data_field_featured_image} fdfi ON fdfi.entity_id=n.nid LEFT JOIN {file_managed} fm ON fdfi.field_featured_image_fid=fm.fid, {field_data_body} fdb
+  WHERE n.status=1 AND n.type IN ('feature', 'news')
+  AND n.nid=fdb.entity_id
+  ORDER BY n.created DESC";
+  
+  $output = '<div id="iso-container" class="isotope">' . "\n";
+  $r = db_query($qry);
+  foreach($r as $row){
+    $output .= theme('csc_isotope_item', array('title' => $row->title, 'body' => $row->body, 'nid' => $row->nid, 'image' => $row->uri, 'type' => $row->type, 'created' => $row->created));
+  }
+  $output.= "</div>\n";
+  
+  return $output;
+}
+
+/**
+ * Implements hook_menu().
+ */
+function csc_isotope_menu() {
+  $items = array();
+
+  $items['news-features'] = array(
+    'title' => t('News & Features'),
+    'page callback' => 'csc_isotope_page',
+    'access arguments' => array('access content'),
+    'type' => MENU_SUGGESTED_ITEM,
+   );
+
+  return $items;
+}
+
+/**
+ * Implements theme function
+ */ 
+function theme_csc_isotope_item($var){
+  $url = l($var['title'], "node/" . $var['nid']);
+  $class = 'type-' . $var['type'];
+  $date = date('d.m.y', $var['created']);
+  $body = strip_tags($var['body'], '<p><br>');
+  $body = $body . "...";
+  //$image = ($var['image']) ? theme('image', array('path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title']  )) : '';
+  $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
+  $output = '<div class="isotope-item isotope-element '. $class .'">';
+  $output .= ($image) ? '<div class="iso-image">'. $image . '</div>' : '';
+  $output .= '
+    <div class="iso-date-wrapper"><div class="iso-date">'.$date.'</div></div>
+    <div class="iso-title">' . $url . '</div>  
+    <div class="iso-teaser">' . $body . '</div>  
+  </div>
+  ';
+  return $output;
+}
