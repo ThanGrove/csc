@@ -1895,27 +1895,31 @@ header{
 /**
  *RESPONSIVE STYLES
  */
-   
-/* Wide styles */ 
+  
+/* Wide styles
 @media screen and (min-width: 1350px) {
   .isotope-element{ width: 25%; }
   .isotope-element img { width: 100%; }
 }
-
-/* Medium styles */ 
+*/
+/* Medium styles
 @media screen and (max-width: 1349px) and (min-width: 1000px ) {
   .isotope-element{ width: 33.33%; }
   .isotope-element img { width: 100%; }
 }
-
-/* Small styles */ 
+*/ 
+/* Small styles 
 @media screen and (max-width: 999px) and (min-width: 451px) {
   .isotope-element{ width: 50%; }
   .isotope-element img { width: 100%; }
 }
-
-/* tiny style */ 
+ */
+/* tiny style 
 @media screen and (max-width: 450px) {
   .isotope-element{ width: 300px; }
   .isotope-element img { width: 300px; }
 }
+ */
+ 
+/* Start width of isotope tiles */
+.isotope-element{ width: 25%; } 

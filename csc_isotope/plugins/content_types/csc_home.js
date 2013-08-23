@@ -1,20 +1,38 @@
 (function ($) {
+  //Browser type    
+  $.browser = {};
+  $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
+  $.browser.webkit = /webkit/.test(navigator.userAgent.toLowerCase());
+  $.browser.opera = /opera/.test(navigator.userAgent.toLowerCase());
+  $.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+  
+  //Transform prefix
+  var prefix = '';
+  if($.browser.msie)    prefix = '-ms-';
+  if($.browser.webkit)  prefix = '-webkit-';
 
   //Build tiles layout
   function home_layout(){
     //Size of container
     var cWidth = $('#iso-container').width();
     
-    //tile width
-    tWidth = $('.isotope-item').width();
-    //number of tiles per width
-    var nTiles = Math.round(cWidth/tWidth);
+    //Number of tiles depending on container width
+    if(cWidth >= 1200){
+      var nCol = 4;
+    }else if(cWidth >= 1000){
+      var nCol = 3;
+    }else if(cWidth >= 450){
+      var nCol = 2;
+    }else{
+      var nCol =1
+    }
+    
+    var tWidth =  Math.round(cWidth/nCol);
+    if (nCol == 1 && tWidth < 300) tWidth = 300;
     
     //Var to save height of columns
     var tHeight = new Array();
-    for(var i=0; i < nTiles; i++) tHeight[i] = 0;
-    
-    console.log('Container: ' + cWidth + ', Tile: ' + tWidth + ', No Tiles: ' + nTiles);
+    for(var i=0; i < nCol; i++) tHeight[i] = 0;
    
     var i = 0; posX = 0
     $('.isotope-item').each(function( index ) {
@@ -22,7 +40,7 @@
         //Get smallest column
         minimumY = tHeight[0];   //Initialize min value
         shortCol = 0;
-        for (var j=0; j < nTiles; j++) {
+        for (var j=0; j < nCol; j++) {
           if( tHeight[j] < minimumY ) { minimumY = tHeight[j]; shortCol = j; }
         }    
       
@@ -30,10 +48,10 @@
         $(this).css('top', '0px');
         
         //Set tiles width. Make adjustment for last tile due to rounded issues
-        var w = (i == nTiles - 1) ? $('#iso-container').width() - posX: tWidth;
+        var w = (i == nCol - 1 && nCol > 1) ? $('#iso-container').width() - posX: tWidth;
         $(this).css('width', w + 'px');
         //Move tiles to final position
-        $(this).css('transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
+        $(this).css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
   
         //Update Column height and horizontal position
         tHeight[i] += $(this).height();
@@ -41,7 +59,7 @@
         
         //Reset tiles to next row
         i++;
-        if(i == nTiles){
+        if(i == nCol){
           i = 0;
           posX=0;
         }
@@ -50,7 +68,7 @@
     
     //Set containter to highest height
     maxH = 0;
-    for(var i=0; i < nTiles; i++) if (tHeight[i] > maxH) maxH = tHeight[i];
+    for(var i=0; i < nCol; i++) if (tHeight[i] > maxH) maxH = tHeight[i];
     $('#iso-container').css('height', maxH + 'px');
   }
   
@@ -81,7 +99,7 @@
   var doit;
   $(window).resize(function(){
     clearTimeout(doit);
-    doit = setTimeout(home_layout, 100);
+    doit = setTimeout(home_layout, 150);
   });
   
 })(jQuery);
