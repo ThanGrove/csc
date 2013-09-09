@@ -1,17 +1,21 @@
 #main-menu { list-style: none; padding: 0; margin: 0; }
 #main-menu li ul { list-style: none; padding: 0; margin: 0; }
-#main-menu .expanded > ul { display: none; }
-
+#main-menu .expanded > ul { display: none; list-style: none; }
+/*
 #main-menu > li { background: url(images/menu_home.png) 0px 16px no-repeat; }
 #main-menu > li:nth-child(2) { background: url(images/menu_about.png) 0px 16px no-repeat; }
 #main-menu > li:nth-child(3) { background: url(images/menu_initiatives.png) 0px 16px no-repeat; }
 #main-menu > li:nth-child(4) { background: url(images/menu_funding.png) 0px 16px no-repeat; }
 #main-menu > li:nth-child(5) { background: url(images/menu_events.png) 0px 16px no-repeat; }
 #main-menu > li:nth-child(6) { background: url(images/menu_contact.png) 0px 16px no-repeat; }
-
-#main-menu > li { margin: 0; padding: 10px 0 0 0; list-style: none; text-indent: 40px; }
-#main-menu li.expanded { list-style: none; }
-#main-menu a { color: #4b4b4b; font-family: brandon; font-weight: normal; font-size: 18px; }
+*/
+#main-menu > li { margin: 0; padding: 20px 0 20px 0; list-style: none; border-bottom: 1px solid #d7d6d4; text-indent: 10px; }
+#main-menu > li:last-child { border-bottom: none; }
+#main-menu > li:hover { background: #e8e7e5; }
+#main-menu li.expanded { background: url(images/plus_bg.png) top right no-repeat; }
+#main-menu li.contracted { background: url(images/minus_bg.png) top right no-repeat; }
+#main-menu a { color: #4b4b4b; font-family: brandon; font-weight: bold; font-size: 12px; text-transform: uppercase; }
+#main-menu a:hover { text-decoration: none; }
 #main-menu > li ul li a{ font-size: 12px;  }
 #main-menu > li ul li {
   background: #E8E7E5;

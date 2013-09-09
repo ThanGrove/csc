@@ -1846,6 +1846,13 @@ a#menu-toggle:after {
 /**
  *CSC Styles
  */
+.menu-desc{
+  font-size: 12px;
+  font-style: italic;
+  color: #828282;
+  padding-left: 10px;
+}
+ 
 .bryant-sidebar{
   width: 150px;
 }
@@ -1861,10 +1868,16 @@ a#menu-toggle:after {
 
 .csc-panel-col-left .csc-panel-inside { background: #ffffff; }
 
-.pane-main-menu { padding-left: 15px; }
+.pane-csc-isotope { background: #e8e7e5; }
 .pane-csc-isotope h2 { text-align: center; }
 .pane-csc-isotope .pane-content { background: #e8e7e5 url(../images/filter_bg.gif) top center no-repeat; padding: 25px 0 40px 0; }
-#filters { margin: 0; padding: 0; }
+#filters {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+
+#filters img { margin: 10px; }
 
 #page-title { display: none; } 
  
@@ -1877,8 +1890,10 @@ header{
 
 #header-logo{ float: left; width: 40%; padding-top: 5px; }
 #header-logo img { margin-left: 15px; }
-#header-icons { float: left; width: 60%; text-align: right; padding-top: 10px; }
-#header-icons img { margin-right: 15px; }
+#header-icons { float: left; width: 60%; text-align: right; 60px; }
+/* #header-icons img { margin-right: 15px; } */
+#header-icons ul { float: right; list-style: none; margin: 0; padding: 0; height: 60px; }
+#header-icons li { float: left; height: 60px; padding: 0 20px; display: inline; border-left: 1px solid #454545; }
 
 .pane-main-menu h2.pane-title,
 .pane-csc-isotope-page h2.pane-title{ display: none;  }
@@ -1890,6 +1905,33 @@ header{
   font-weight: bold;
   font-size: 12px !important;
   text-transform: uppercase;
+}
+
+/**
+ * Newsletter block
+ */
+.pane-csc-newsletter{
+  float: left;
+  border-top: 1px solid #ffffff;
+  background: #dbdad8;
+  padding: 20px 0;
+} 
+
+.pane-csc-newsletter h2{
+  font-family: brandon;
+  font-size: 12px !important;
+  font-weight: bold;
+  padding-top: 14px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.pane-csc-newsletter .content{
+  text-align: center;
+  color: #626262;
+  font-size: 11px;
+  font-style: italic;
+  padding: 10px 8px;
 }
 
 /**

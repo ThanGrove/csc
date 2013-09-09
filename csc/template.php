@@ -140,6 +140,18 @@ function csc_menu_link(array $variables) {
   return '<li' . drupal_attributes($element['#attributes']) . ' id="m-'. $element['#original_link']['mlid'] .'">' . $output . $sub_menu . "</li>\n";
 }
 
+function csc_menu_link__main_menu(array $variables) {
+  $element = $variables['element'];
+  $sub_menu = '';
+
+  if ($element['#below']) {
+    $sub_menu = drupal_render($element['#below']);
+  }
+  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
+  if(isset($element['#localized_options']['attributes']['title']) && $element['#localized_options']['attributes']['title']) $output .= '<br><span class="menu-desc">'. $element['#localized_options']['attributes']['title'] .'</span>';
+  return '<li' . drupal_attributes($element['#attributes']) . ' id="m-'. $element['#original_link']['mlid'] .'">' . $output . $sub_menu . "</li>\n";
+}
+
 /**
  * Implements theme_field__field_type().
  */

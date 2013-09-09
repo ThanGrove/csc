@@ -1,8 +1,12 @@
 <header>
-<div id="header-logo"><?php echo print_image('logo.gif', 453, 50, "Comtemplative Scinces Center");?></div>
+<div id="header-logo"><a href="/"><?php echo print_image('logo.gif', 453, 50, "Comtemplative Scinces Center");?></a></div>
 <div id="header-icons">
-  <?php echo print_image('search_icon.png', 35, 35, "Search");?>
-  <a href="#"><?php echo print_image('uva_icon.png', 35, 35, "Uva Rotunda", 'class="rollover"');?></a>
+  <ul>
+    <li><a href="#"><?php echo print_image('explore_icon.png', 48, 48, "Explore CSC", 'class="top-icons" id="explore-icon"');?></a></li>
+    <li><a href="#"><?php echo print_image('contact_icon.png', 48, 48, "Contact", 'class="top-icons" id="contact-icon"');?></a></li>
+    <li><a href="#"><?php echo print_image('login_icon.png', 48, 48, "Login", 'class="top-icons" id="login-icon"');?></a></li>
+    <li><a href="#"><?php echo print_image('search.png', 48, 48, "Search", 'class="top-icons" id="search-icon"');?></a></li>
+  </ul>
 </div>
 </header>
 <?php if ($messages): ?>
