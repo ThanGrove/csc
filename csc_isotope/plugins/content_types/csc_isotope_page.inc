@@ -26,29 +26,55 @@ function csc_isotope_info($subtype, $conf, $contexts) {
  * Build Isotope container & childs
  */ 
 function csc_isotope_render($subtype, $conf, $panel_args, $context = NULL) {
-  drupal_add_css(drupal_get_path('module', 'csc_isotope') . '/css_isotope.css');
-  //drupal_add_js(libraries_get_path('jquery.isotope') . '/jquery.isotope.js');
-  //drupal_add_js(drupal_get_path('module', 'csc_isotope') . '/plugins/content_types/csc_isotope.js');
-  //drupal_add_js("(function ($) {  $(window).load(function() { $('#iso-container').isotope({ itemSelector : '.isotope-item'}); }); })(jQuery);", 'inline');
+  drupal_add_css(drupal_get_path('module', 'csc_isotope') . '/plugins/content_types/css_isotope.css');
   drupal_add_js(drupal_get_path('module', 'csc_isotope') . '/plugins/content_types/csc_home.js');
 
   $block = new stdClass();
 
   $block->title = 'Isotope Page';
-  
+
+  //Get Activity nodes
   $qry = "SELECT n.nid, n.type, n.title, fdb.body_value as body, n.created, fm.uri
   FROM {node} n LEFT JOIN {field_data_field_featured_image} fdfi ON fdfi.entity_id=n.nid LEFT JOIN {file_managed} fm ON fdfi.field_featured_image_fid=fm.fid, {field_data_body} fdb
-  WHERE n.status=1 AND n.type IN ('feature', 'news', 'initiatives')
+  WHERE n.status=1 AND n.type = 'initiatives'
   AND n.nid=fdb.entity_id
-  ORDER BY RAND()";
-  
-  $output = '<div id="iso-container" class="isotope">' . "\n";
+  ORDER BY n.created DESC";
   $r = db_query($qry);
+  $act = array();
   foreach($r as $row){
     $body = strip_tags($row->body, '<br>');
-    $body = substr($body, 0, 150) . '...';
-    $output .= csc_isotope_item(array('title' => $row->title, 'body' => $body, 'nid' => $row->nid, 'image' => $row->uri, 'type' => $row->type, 'created' => $row->created));
-    //$output .= $row->title . "<br>\n";
+    $body = substr($body, 0, 150);
+    $act[] = csc_isotope_item(array('title' => $row->title, 'body' => $body, 'nid' => $row->nid, 'image' => $row->uri, 'type' => $row->type, 'created' => $row->created));
+  }
+  
+  //Get Feature and news
+  $qry = "SELECT n.nid, n.type, n.title, fdb.body_value as body, n.created, fm.uri
+  FROM {node} n LEFT JOIN {field_data_field_featured_image} fdfi ON fdfi.entity_id=n.nid LEFT JOIN {file_managed} fm ON fdfi.field_featured_image_fid=fm.fid, {field_data_body} fdb
+  WHERE n.status=1 AND n.type IN ('feature', 'news')
+  AND n.nid=fdb.entity_id
+  ORDER BY n.created DESC LIMIT 9";
+  $r = db_query($qry);
+  
+  $tiles = array();
+  foreach($r as $row){
+    $body = strip_tags($row->body, '<br>');
+    $body = substr($body, 0, 150);
+    $tiles[] = csc_isotope_item(array('title' => $row->title, 'body' => $body, 'nid' => $row->nid, 'image' => $row->uri, 'type' => $row->type, 'created' => $row->created));
+  }
+
+  //Build widget content
+  $nact = sizeof($act);
+  $ratio = floor(sizeof($tiles) / $nact);
+  $output = '<div id="iso-container" class="isotope">' . "\n";
+  $i = $j = 0;
+  foreach($tiles as $tile){
+    if($i == 0 and $j < $nact) $output .= $act[$j];
+    $output .= $tile;
+    $i++;
+    if($i > $ratio){
+      $j++;
+      $i = 0;
+    }
   }
   $output.= "</div>\n";
   
@@ -61,19 +87,26 @@ function csc_isotope_render($subtype, $conf, $panel_args, $context = NULL) {
  * Implements theme function
  */ 
 function csc_isotope_item($var){
+  $path = drupal_get_path('module', 'csc_isotope') . '/plugins/content_types/images/';
   $url = l($var['title'], "node/" . $var['nid']);
   $class = 'type-' . $var['type'] . ' node-' . $var['nid'];
-  $date = date('d.m.y', $var['created']);
+  $date = date('d M Y | ', $var['created']);
   $body = strip_tags($var['body'], '<p><br>');
   $body = $body . "...";
+  
+  $icon = '';
+  if($var['type'] == 'news') $icon = '<img class="iso-icon" src="'. $path .'icon_news.png" width=25 height=25 alt="">';
+  if($var['type'] == 'feature') $icon = '<img class="iso-icon" src="'. $path .'icon_feature.png" width=25 height=25 alt="">';
+  
   //$image = ($var['image']) ? theme('image', array('path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title']  )) : '';
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   $output = '<div id="node-'.$var['nid'].'" class="isotope-item isotope-element '. $class .'">';
   $output .= ($image) ? '<div class="iso-image">'. $image . '</div>' : '';
-  if($var['type'] <> 'initiatives') $output.= '<div class="iso-date-wrapper"><div class="iso-date">'.$date.'</div></div>';
+  $date = ($var['type'] == 'initiatoves') ? '' : '<span class="iso-date">' . $date . '</span>' ;
   $output .= '
-    <div class="iso-title">' . $url . '</div>  
-    <div class="iso-teaser">' . $body . '</div>  
+    <div class="iso-text">'. $icon .'  
+    <div class="iso-teaser"><h3 class="iso-title">' . $url . '</h3>' . $date . $body . '</div>
+    </div>  
   </div>
   ';
   return $output;

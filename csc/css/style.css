@@ -1935,6 +1935,50 @@ header{
 }
 
 /**
+ *Events box
+ */
+.csc-item-container { padding: 0 20px; }
+ 
+.csc-item-num-1 { width: 100%; }
+.csc-item-num-2 { width: 50%; }
+.csc-item-num-3 { width: 33%; }
+ 
+.pane-csc-related-events{
+  float: left;
+  width: 100%;
+  background: #00b0a5;
+  color: #ffffff;
+  font-size: 10px;
+  padding-bottom: 20px;  
+}
+
+.csc-organization-item,
+.csc-event-item{
+  float: left;
+  background: url(../images/line_bg.png) left no-repeat;
+}
+.csc-event-item h3 { margin: 0; padding: 0; font-size: 10px; font-family: arial, verdana, serif; font-weight: bold; }
+.pane-csc-related-events h2 a{ font-size: 13px; color: #ffffff; font-style: italic; font-weight: normal; } 
+
+.pane-csc-related-organizations{
+  float: left;
+  width: 100%;
+  background: #2f2f2f;
+  color: #ffffff;
+  font-size: 10px;
+  padding-bottom: 20px;  
+}
+.pane-csc-related-organizations h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
+
+.pane-csc-related-activities{
+  float: left;
+  width: 100%;
+  font-size: 10px;
+  padding-bottom: 20px;  
+}
+.csc-activities-item { float: left; width: 100%; }
+.pane-csc-related-activities h2 a{ font-size: 13px; color: #3b3b3b; font-style: italic; font-weight: normal; } 
+/**
  *RESPONSIVE STYLES
  */
   

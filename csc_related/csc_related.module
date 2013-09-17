@@ -1,0 +1,29 @@
+<?php
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function csc_related_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+/**
+ * Implements hook_theme
+ */ 
+function csc_related_theme() {
+    return array(
+        'csc_related_events_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_events.inc',
+        ),
+        'csc_related_organizations_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_organizations.inc',
+        ),
+        'csc_related_activities_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_activities.inc',
+        ),
+    );
+}

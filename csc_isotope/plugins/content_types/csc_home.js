@@ -29,33 +29,55 @@
     
     var tWidth =  Math.round(cWidth/nCol);
     if (nCol == 1 && tWidth < 300) tWidth = 300;
+    //Width adjustment because of border
+    //tWidth = tWidth -1;
     
     //Var to save height of columns
     var tHeight = new Array();
     for(var i=0; i < nCol; i++) tHeight[i] = 0;
-   
+
+    //*** Tiles Width ***//
     var i = 0; posX = 0
     $('.isotope-item').each(function( index ) {
-      if( !$(this).hasClass('hide-me') ){
-        //Get smallest column
-        minimumY = tHeight[0];   //Initialize min value
-        shortCol = 0;
-        for (var j=0; j < nCol; j++) {
-          if( tHeight[j] < minimumY ) { minimumY = tHeight[j]; shortCol = j; }
-        }    
-      
+      if( !$(this).hasClass('hide-me') ){         
         $(this).css('left', '0px');
         $(this).css('top', '0px');
         
         //Set tiles width. Make adjustment for last tile due to rounded issues
-        var w = (i == nCol - 1 && nCol > 1) ? $('#iso-container').width() - posX: tWidth;
+        var w = (i == nCol - 1 && nCol > 1) ? $('#iso-container').width() - posX - (nCol + 1) : tWidth; // nCol + 1 is because of border
         $(this).css('width', w + 'px');
+
+        posX += tWidth;
+        //Reset tiles to next row
+        i++;
+        if(i == nCol){
+          i = 0;
+          posX=0;
+        }
+      }  
+    });
+    
+    //*** Tiles Height ***//
+    iHeight = $('.iso-image img').height();
+    if(iHeight){
+      $('.isotope-item').each(function( index ) {
+        if( !$(this).hasClass('hide-me') ){
+          $(this).children('.iso-text').css('height', iHeight + 'px');
+        }
+      });
+    }
+   
+    //*** Tiles Positioning ***//
+    var i = 0; posX = 0
+    $('.isotope-item').each(function( index ) {
+      if( !$(this).hasClass('hide-me') ){   
+        
         //Move tiles to final position
         $(this).css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
   
         //Update Column height and horizontal position
-        tHeight[i] += $(this).height();
-        posX += tWidth;
+        tHeight[i] += $(this).height() + 1;  // add 1 because of border
+        posX += tWidth + 1;  // add 1 because of border
         
         //Reset tiles to next row
         i++;

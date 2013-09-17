@@ -32,15 +32,15 @@ function csc_isotope_admin_render($subtype, $conf, $panel_args, $context = NULL)
   
   $block = new stdClass();
 
-  $block->title = 'Filter Page Content';
-
+  $block->title = 'Filter Content';
+ 
   $block->content = '
-  <ul id="filters">
-    <li><a href="#" data-filter="type-news"><img class="rollover" src="/'.$path.'/images/news_icon.png" width=35 height=35 alt="News"></a></li>
-    <li><a href="#" data-filter="type-feature"><img class="rollover" src="/'.$path.'/images/feature_icon.png" width=35 height=35 alt="Features"></a></li>
-    <li><a href="#" data-filter="type-initiatives"><img class="rollover" src="/'.$path.'/images/initiatives_icon.png" width=35 height=35 alt="Initiatives"></a></li>
-    <li><a href="#" data-filter="*"><img class="rollover" src="/'.$path.'/images/refresh_icon.png" width=35 height=35 alt="Refresh"></a></li>
-  </ul>
+  <div id="filters">
+    <a href="#" data-filter="type-news"><img class="rollover" src="/'.$path.'/images/news_icon.png" width=35 height=35 alt="News"></a>
+    <a href="#" data-filter="type-feature"><img class="rollover" src="/'.$path.'/images/feature_icon.png" width=35 height=35 alt="Features"></a><br>
+    <a href="#" data-filter="type-initiatives"><img class="rollover" src="/'.$path.'/images/initiatives_icon.png" width=35 height=35 alt="Initiatives"></a>
+    <a href="#" data-filter="*"><img class="rollover" src="/'.$path.'/images/refresh_icon.png" width=35 height=35 alt="Refresh"></a>
+  </div>
   ';
   
   return $block;

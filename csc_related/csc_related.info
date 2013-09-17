@@ -1,0 +1,4 @@
+name = CSC Related
+description = Widget to show related content for current node
+version = 7.x-1.0
+core = 7.x
