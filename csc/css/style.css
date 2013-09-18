@@ -1935,7 +1935,7 @@ header{
 }
 
 /**
- *Events box
+ *Content boxes
  */
 .csc-item-container { padding: 0 20px; }
  
@@ -1977,7 +1977,36 @@ header{
   padding-bottom: 20px;  
 }
 .csc-activities-item { float: left; width: 100%; }
-.pane-csc-related-activities h2 a{ font-size: 13px; color: #3b3b3b; font-style: italic; font-weight: normal; } 
+.pane-csc-related-activities h2 a{ font-size: 13px; color: #3b3b3b; font-style: italic; font-weight: normal; }
+
+.pane-csc-related-people{
+  float: left;
+  width: 100%;
+  background: #2f2f2f;
+  color: #ffffff;
+  font-size: 10px;
+  padding: 0 0 20px 0;  
+}
+
+.csc-people-wrapper{
+  margin: 0 20px 0 20px;
+  height: 150px;
+  overflow: hidden;
+  position: relative  
+}
+
+.csc-people-detail{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 130px;
+  height: 130px;
+  padding: 10px;
+  text-align: center;
+  background: rgba(0, 176, 165, 0.9);
+}
+.pane-csc-related-people h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
+.csc-people-wrapper img { float: left; } 
 /**
  *RESPONSIVE STYLES
  */
