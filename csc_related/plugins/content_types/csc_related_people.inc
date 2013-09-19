@@ -29,22 +29,23 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
   module_load_include('inc', 'csc_related', 'csc_related');
   
   $type = 'people';
-  $nids = csc_related_get_nodes($type);
+  $nids = csc_related_get_nodes($type, 8);
   
   $output = '';
-  $nid = $nids[0];
-  $node = node_load($nid);
-  $lng = $node->language;
-  $output .= theme('csc_related_people_item', array('title' => $node->title,
-                                                    'body' => $node->field_small_teaser[$lng][0]['value'],
-                                                    'nid' => $node->nid,
-                                                    'position' => $node->field_position,
-                                                    'image' => $node->field_featured_image[$lng][0]['uri'],
-                                              ));
+  foreach($nids as $nid){
+    $node = node_load($nid);
+    $lng = $node->language;
+    $output .= theme('csc_related_people_item', array('title' => $node->title,
+                                                      'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                      'nid' => $node->nid,
+                                                      'position' => $node->field_position,
+                                                      'image' => $node->field_featured_image[$lng][0]['uri'],
+                                                ));
+  }
 
   $block = new stdClass();
   $block->title = 'People'; 
-  $block->content = $output;
+  $block->content = '<div class="csc-people-container">' . $output . '</div>';
   
   return $block;
 }
@@ -54,14 +55,13 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
  */ 
 function theme_csc_related_people_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
-  $style = 'style="background: url('. image_style_url('csc_medium', $var['image']) .') repeat-x;"';
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
 
-  $output = '<div class="csc-people-wrapper" '. $style .'>';
-  $output.= '<div class="csc-people-detail">';
+  $output = '<div class="csc-people-wrapper">';
+  $output.= '<div class="csc-people-detail"><div class="csc-people-text">';
   $output.= "<h2>$url</h2>";
   $output.= $var['body'];
-  $output.= '</div>';  
+  $output.= '</div></div>';  
   $output.= $image;
   $output.= '</div>';
   

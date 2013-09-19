@@ -39,7 +39,7 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
                                                       'body' => $node->field_small_teaser[$lng][0]['value'],
                                                       'nid' => $node->nid,
                                                       'location' => $node->field_location[$lng][0],
-                                                      'image' => $node->field_featured_image,
+                                                      'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
                                                       'date' => $node->field_event_date[$lng][0]['value'],
                                                       'class' => $class,
                                                 ));
@@ -61,8 +61,10 @@ function theme_csc_related_events_item($var){
   list($year, $month, $day) = explode('-', $d);
   list($h, $min, $sec) = explode(':', $t);
   $tstamp = mktime($h, $min, $sec, $month, $day, $year);
+  $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   
   $output ='<div class="csc-event-item '. $var['class'] .'"><div class="csc-item-container">';
+  if ($var['image']) $output .= $image . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= '<p><h3>WHEN</h3>' . format_date($tstamp, 'small')  . "</p>";

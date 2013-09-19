@@ -8,7 +8,8 @@
   display: table-row;
 }
 
-.csc-3col-col-left{
+.csc-3col-col-fixed{
+  float: left;
   width: 150px;
   display: table-cell;
 }

@@ -39,13 +39,13 @@ function csc_related_organizations_render($subtype, $conf, $panel_args, $context
     $output .= theme('csc_related_organizations_item', array('title' => $node->title,
                                                       'body' => $node->field_small_teaser[$lng][0]['value'],
                                                       'nid' => $node->nid,
-                                                      'image' => $node->field_featured_image,
+                                                      'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
                                                       'class' => $class,
                                                 ));
   }
 
   $block = new stdClass();
-  $block->title = 'Organizational Units'; 
+  $block->title = 'Partners'; 
   $block->content = $output;
   
   return $block;
@@ -56,8 +56,10 @@ function csc_related_organizations_render($subtype, $conf, $panel_args, $context
  */ 
 function theme_csc_related_organizations_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
+  $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   
   $output ='<div class="csc-organization-item '. $var['class'] .'"><div class="csc-item-container">';
+  if ($var['image']) $output .= $image . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= "</div></div>\n";

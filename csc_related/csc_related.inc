@@ -8,12 +8,12 @@ function csc_related_current_nid(){
 }
 
 //Retrieve nodes of a given content type related to current node
-function csc_related_get_nodes($type){
+function csc_related_get_nodes($type, $limit = 3){
   //Get current node id
   $nodeid = csc_related_current_nid();
   
   if($nodeid){
-    $qry = "SELECT entity_id FROM field_data_field_related WHERE field_related_target_id=$nodeid AND bundle='$type' ORDER BY field_related_target_id DESC LIMIT 3";
+    $qry = "SELECT entity_id FROM field_data_field_related WHERE field_related_target_id=$nodeid AND bundle='$type' ORDER BY field_related_target_id DESC LIMIT $limit";
     $r = db_query($qry);
     $nids = array();
     foreach($r as $row) $nids[] = $row->entity_id;

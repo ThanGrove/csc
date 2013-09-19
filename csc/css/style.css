@@ -1863,9 +1863,15 @@ a#menu-toggle:after {
   margin-left: 150px;
 }
 
+.csc-3col-first .csc-3col-inside { padding: 0 10px; }
+.csc-3col-second { background: #494949; }
+
+.csc-3col-col-fixed,
 .csc-panel-col-left { vertical-align: top; background: #e8e7e5; position: relative; }
 .csc-panel-col-right { background: #252525; }
 
+.csc-3col-first { background: url(../images/gray_line_bg.gif) left repeat-y; }
+.csc-3col-col-fixed .csc-3col-inside,
 .csc-panel-col-left .csc-panel-inside { background: #ffffff; }
 
 .pane-csc-isotope { background: #e8e7e5; }
@@ -1985,11 +1991,17 @@ header{
   background: #2f2f2f;
   color: #ffffff;
   font-size: 10px;
-  padding: 0 0 20px 0;  
+  padding: 0 0 20px 0;
+  border-top: 1px solid #505050;  
+}
+
+.csc-people-container{
+  padding: 0 20px;
 }
 
 .csc-people-wrapper{
-  margin: 0 20px 0 20px;
+  float: left;
+  width: 150px;
   height: 150px;
   overflow: hidden;
   position: relative  
@@ -1998,15 +2010,56 @@ header{
 .csc-people-detail{
   position: absolute;
   top: 0;
-  left: 0;
+  height: 0;
   width: 130px;
   height: 130px;
   padding: 10px;
   text-align: center;
-  background: rgba(0, 176, 165, 0.9);
+  background: rgba(0, 176, 165, 0);
 }
+.csc-people-text { float:left; display: none; }
+
+.csc-people-detail:hover { background: rgba(0, 176, 165, 0.85); }
+.csc-people-detail:hover .csc-people-text { display: block; }
+
 .pane-csc-related-people h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
-.csc-people-wrapper img { float: left; } 
+.csc-people-wrapper img { float: left; }
+
+.pane-node-title .pane-title,
+.pane-csc-related-research .pane-title { display: none; }
+
+.pane-node-title a {
+  color: #000000;
+  font-family: brandon;
+  font-size: 36px;
+}
+
+.csc-research-item {
+  float: left;
+  font-size: 10px;
+}
+
+.csc-research-item {
+  float: left;
+  background: url(../images/gray_line_bg.gif) left no-repeat;
+}
+.csc-research-item:first-child { background: none; }
+
+.pane-csc-related-people .pane-title,
+.pane-csc-related-events .pane-title,
+.pane-csc-related-organizations .pane-title {
+  font-family: brandon;
+  font-size: 25px !important;
+  padding-left: 20px;
+}
+
+.csc-research-title,
+.pane-csc-related-activities .pane-title {
+  font-family: brandon;
+  font-size: 25px !important;
+  padding-left: 20px;
+}
+ 
 /**
  *RESPONSIVE STYLES
  */

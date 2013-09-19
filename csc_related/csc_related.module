@@ -29,5 +29,9 @@ function csc_related_theme() {
           'render element' => 'element',
           'file' => 'plugins/content_types/csc_related_people.inc',
         ),
+        'csc_related_research_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_research.inc',
+        ),
     );
 }
