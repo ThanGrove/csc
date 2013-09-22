@@ -1,0 +1,6 @@
+name = CSC Newsletter
+description = Provides a widget for newsletter subscription
+dependencies[] = block
+dependencies[] = simplenews
+version = 7.x-1.0
+core = 7.x

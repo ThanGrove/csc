@@ -1,0 +1,13 @@
+.bottom-links {
+  background: #5e5e5e;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 130px;
+  padding: 10px;
+  z-index: 100000;
+}
+
+.bottom-links a:nth-child(2) { margin: 0 30px; }
+
+.pane-bottom-links h2 { display: none; }
