@@ -1,0 +1,330 @@
+/* Global variables, mixins, etc. */
+/* line 12, ../../../../../sass/_global.scss */
+.type-initiatives.node-26 {
+  color: #ff6bd3;
+}
+
+/* line 12, ../../../../../sass/_global.scss */
+.type-initiatives.node-22 {
+  color: #00b1a6;
+}
+
+/* line 12, ../../../../../sass/_global.scss */
+.type-initiatives.node-20 {
+  color: #605385;
+}
+
+/* line 12, ../../../../../sass/_global.scss */
+.type-initiatives.node-25 {
+  color: #34c780;
+}
+
+/* line 12, ../../../../../sass/_global.scss */
+.type-initiatives.node-21 {
+  color: #ff6bd3;
+}
+
+/* Start: Recommended Isotope styles */
+/**** Isotope Filtering ****/
+/* line 7, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-item {
+  z-index: 2;
+}
+
+/* line 11, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-hidden.isotope-item {
+  pointer-events: none;
+  z-index: 1;
+}
+
+/**** Isotope CSS3 transitions ****/
+/* line 19, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope,
+.isotope .isotope-item {
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+}
+
+/* line 25, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope {
+  -webkit-transition-property: height, width;
+  -moz-transition-property: height, width;
+  transition-property: height, width;
+}
+
+/* line 31, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+  -moz-transition-property: -moz-transform, opacity;
+  transition-property: transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+/* line 41, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+  -webkit-transition-duration: 0s;
+  -moz-transition-duration: 0s;
+  transition-duration: 0s;
+}
+
+/* End: Recommended Isotope styles */
+/* disable CSS transitions for isotope-containers with infinite scrolling*/
+/* line 52, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope.infinite-scrolling {
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+}
+
+/* line 59, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-element a,
+.isotope-element a code {
+  color: #fff !important;
+  text-decoration: none;
+  -moz-transition: none;
+  -webkit-transition: none;
+  transition: none;
+}
+
+/* line 68, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-element a:hover,
+.isotope-element a:hover code {
+  color: #fff;
+}
+
+/* line 73, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-element a:active,
+.isotope-element a:active code {
+  color: #fff;
+}
+
+/**** Isotope styles ****/
+/* required for isotope-containers to inherit vertical size from window */
+/* line 81, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+html,
+body {
+  height: 100%;
+}
+
+/* line 85, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-element {
+  /*  width: 400px; */
+  margin: 0;
+  /*  float: left;
+    position: relative; */
+  position: absolute;
+  overflow: hidden;
+  background: #bebebe;
+  color: #fff;
+}
+
+/* line 96, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-element img {
+  /*  width: 400px; */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* line 103, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.variable-sizes .isotope-element.width2 {
+  width: 230px;
+}
+
+/* line 105, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.variable-sizes .isotope-element.height2 {
+  height: 230px;
+}
+
+/* line 107, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.variable-sizes .isotope-element.width2.height2 {
+  font-size: 2.0em;
+}
+
+/* line 113, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.isotope-element.large,
+.variable-sizes .isotope-element.large,
+.variable-sizes .isotope-element.large.width2.height2 {
+  font-size: 3.0em;
+  width: 350px;
+  height: 350px;
+  z-index: 100;
+}
+
+/* line 120, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.clickable .isotope-element:hover {
+  cursor: pointer;
+}
+
+/* line 124, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.clickable .isotope-element:hover h3 {
+  text-shadow: 0 0 10px white, 0 0 10px white;
+}
+
+/* line 131, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.clickable .isotope-element:hover h2 {
+  color: white;
+}
+
+/**** Example Filters ****/
+/* line 137, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+#isotope-options {
+  background-color: #EEEEEE;
+}
+
+/* line 141, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.view-isotope-example ul {
+  list-style: none outside none;
+  margin: 0;
+}
+
+/* line 146, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.view-isotope-example li {
+  display: block;
+  padding: 3px 10px;
+  text-align: center;
+  float: left;
+}
+
+/** ---------------------------- **/
+/* line 154, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+#iso-container {
+  position: relative;
+}
+
+/* line 157, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-news,
+.type-feature {
+  background: #2f2f2f;
+}
+
+/* line 160, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-news:hover,
+.type-feature:hover {
+  background: #444444;
+}
+
+/* line 163, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-news .iso-title,
+.type-feature .iso-title {
+  font-family: brandon, verdana, arial;
+  font-weight: 200;
+  /*
+  font-size: 24px;
+  line-height: 26px;
+  */
+  text-align: center;
+  padding: 10px;
+}
+
+/* line 175, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-news .iso-teaser,
+.type-feature .iso-teaser {
+  font-family: arial, verdana;
+  font-size: 11px;
+  color: #a3a3a3;
+  padding: 10px;
+}
+
+/* line 182, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.iso-date {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* line 185, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-initiatives {
+  background: #a65a68;
+}
+
+/* line 194, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-initiatives .iso-title {
+  font-family: brandon, verdana, arial;
+  font-weight: bold;
+  /*
+  font-size: 30px;
+  line-height: 26px;
+  */
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+}
+
+/* line 206, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-initiatives .iso-text {
+  border-width: 0px;
+}
+
+/* line 210, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.type-initiatives .iso-teaser {
+  font-family: arial, verdana;
+  font-size: 11px;
+  color: #ffffff;
+  padding: 10px;
+}
+
+/* line 217, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.iso-text {
+  position: relative;
+  border: 1px #444 solid;
+  border-top-width: 0px;
+  border-left-width: 0px;
+}
+
+/* line 224, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+.iso-icon {
+  position: absolute;
+  top: 0;
+  right: -1px;
+}
+
+/**
+ *RESPONSIVE STYLES
+ */
+/* Wide styles */
+@media screen and (min-width: 1350px) {
+  /* line 237, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+  .type-news .iso-title,
+  .type-feature .iso-title {
+    font-size: 24px;
+    line-height: 26px;
+  }
+
+  /* line 242, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+  .type-initiatives .iso-title {
+    font-size: 30px;
+    line-height: 26px;
+  }
+}
+/* Medium styles */
+@media screen and (max-width: 1349px) and (min-width: 451px) {
+  /* line 251, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+  .type-news .iso-title,
+  .type-feature .iso-title {
+    font-size: 18px;
+    line-height: 24px;
+  }
+
+  /* line 256, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+  .type-initiatives .iso-title {
+    font-size: 24px;
+    line-height: 26px;
+  }
+}
+/* Small styles */
+@media screen and (max-width: 450px) {
+  /* line 265, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+  .type-news .iso-title,
+  .type-feature .iso-title {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  /* line 270, ../../../../../sass/sites/all/modules/csc_isotope/plugins/css_isotope.scss */
+  .type-initiatives .iso-title {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
