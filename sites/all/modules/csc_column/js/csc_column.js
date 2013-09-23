@@ -12,16 +12,16 @@
       var ajax_url;
       switch(id){
         case 'explore-icon':
-          ajax_url = '/csc_column/explore';
+          ajax_url = 'csc_column/explore';
           break;
         case 'contact-icon':
-          ajax_url = '/csc_column/contact';
+          ajax_url = 'csc_column/contact';
           break;
         case 'login-icon':
-          ajax_url = '/csc_column/login';
+          ajax_url = 'csc_column/login';
           break;
         default:
-          ajax_url = '/csc_column/search';
+          ajax_url = 'csc_column/search';
           break;
       }
       
