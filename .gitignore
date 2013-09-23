@@ -35,3 +35,7 @@ xmlrpc.php
 /profiles
 /scripts
 /themes
+
+# vim stuff
+*.un~
+*.swp
