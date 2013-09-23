@@ -63,8 +63,8 @@
 }
 
 .isotope-element a:hover,
-.isotope-element a:hover code { 
-  color: #fff; 
+.isotope-element a:hover code {
+  color: #fff;
 }
 
 .isotope-element a:active,
@@ -133,7 +133,7 @@ body {
 /**** Example Filters ****/
 
 #isotope-options {
-  background-color: #EEEEEE; 
+  background-color: #EEEEEE;
 }
 
 .view-isotope-example ul {
@@ -156,8 +156,6 @@ body {
 
 .type-news:hover,
 .type-feature:hover { background: #444444; }
-
-.isotope-item { border: 1px solid #444444; }
 
 .type-news .iso-title,
 .type-feature .iso-title {
@@ -200,6 +198,10 @@ body {
   text-transform: uppercase;
 }
 
+.type-initiatives .iso-text {
+  border-width: 0px;
+}
+
 .type-initiatives .iso-teaser{
   font-family: arial, verdana;
   font-size: 11px;
@@ -207,13 +209,23 @@ body {
   padding: 10px;
 }
 
-.iso-text { position: relative; }
-.iso-icon { position: absolute; top: 0; right: 0; }
+.iso-text {
+  position: relative;
+  border: 1px #444 solid;
+  border-top-width: 0px;
+  border-left-width: 0px;
+}
+
+.iso-icon {
+  position: absolute;
+  top: 0;
+  right: -1px;
+}
 
 /**
  *RESPONSIVE STYLES
  */
-  
+
 /* Wide styles */
 @media screen and (min-width: 1350px) {
   .type-news .iso-title,
@@ -221,7 +233,7 @@ body {
     font-size: 24px;
     line-height: 26px;
   }
-  
+
   .type-initiatives .iso-title {
     font-size: 30px;
     line-height: 26px;
@@ -235,21 +247,21 @@ body {
     font-size: 18px;
     line-height: 24px;
   }
-  
+
   .type-initiatives .iso-title {
     font-size: 24px;
     line-height: 26px;
   }
 }
- 
-/* Small styles */ 
+
+/* Small styles */
 @media screen and (max-width: 450px) {
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 16px;
     line-height: 18px;
   }
-  
+
   .type-initiatives .iso-title {
     font-size: 18px;
     line-height: 22px;

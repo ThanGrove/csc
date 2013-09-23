@@ -37,14 +37,14 @@
     for(var i=0; i < nCol; i++) tHeight[i] = 0;
 
     //*** Tiles Width ***//
-    var i = 0; posX = 0
+    i = 0, posX = 0;
     $('.isotope-item').each(function( index ) {
       if( !$(this).hasClass('hide-me') ){         
         $(this).css('left', '0px');
         $(this).css('top', '0px');
         
         //Set tiles width. Make adjustment for last tile due to rounded issues
-        var w = (i == nCol - 1 && nCol > 1) ? $('#iso-container').width() - posX - (nCol + 1) : tWidth; // nCol + 1 is because of border
+        var w = (i == nCol - 1 && nCol > 1) ? $('#iso-container').width() - posX - (nCol) : tWidth; // nCol + 1 is because of border
         $(this).css('width', w + 'px');
 
         posX += tWidth;
@@ -68,7 +68,7 @@
     }
    
     //*** Tiles Positioning ***//
-    var i = 0; posX = 0
+    i = 0, posX = 0;
     $('.isotope-item').each(function( index ) {
       if( !$(this).hasClass('hide-me') ){   
         
@@ -76,8 +76,8 @@
         $(this).css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
   
         //Update Column height and horizontal position
-        tHeight[i] += $(this).height() + 1;  // add 1 because of border
-        posX += tWidth + 1;  // add 1 because of border
+        tHeight[i] += $(this).height();  // add 1 because of border
+        posX += tWidth;  // add 1 because of border
         
         //Reset tiles to next row
         i++;
