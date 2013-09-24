@@ -1,4 +1,13 @@
 (function ($) {
+
+  // the key is the number of columns
+  var tilePlacements = {
+    1: [0, 2, 4, 6, 8],
+    2: [0, 3, 4, 7, 8],
+    3: [0, 2, 4, 6, 8],
+    4: [0, 2, 5, 8, 10]
+  };
+
   //Browser type    
   $.browser = {};
   $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
@@ -13,28 +22,62 @@
 
   //Build tiles layout
   function home_layout(){
+    var $supercontainer = $('#block-system-main').find('.csc-panel-container'),
+        $panelLeft = $supercontainer.find('.csc-panel-col-left'),
+        $panelRight = $supercontainer.find('.csc-panel-col-right'),
+        height =  $(window).height() - $supercontainer.offset().top;
+    
+    $supercontainer.add($panelLeft).height(height);
+    $panelRight.width($(window).width() - $panelRight.offset().left);
+
     //Size of container
-    var cWidth = $('#iso-container').width();
+    var $container = $('#iso-container'),
+        cWidth = $container.width(),
+        cHeight = $container.height() + $container.offset().top,
+        nCol;
     
     //Number of tiles depending on container width
     if(cWidth >= 1200){
-      var nCol = 4;
+      nCol = 4;
     }else if(cWidth >= 1000){
-      var nCol = 3;
+      nCol = 3;
     }else if(cWidth >= 450){
-      var nCol = 2;
+      nCol = 2;
     }else{
-      var nCol =1
+      nCol = 1;
     }
+
+    if (nCol > 1 && cHeight < window.innerHeight) nCol = nCol - 1;
     
     var tWidth =  Math.round(cWidth/nCol);
     if (nCol == 1 && tWidth < 300) tWidth = 300;
-    //Width adjustment because of border
-    //tWidth = tWidth -1;
     
     //Var to save height of columns
-    var tHeight = new Array();
+    var tHeight = [];
     for(var i=0; i < nCol; i++) tHeight[i] = 0;
+
+    // ordering tiles according to custom orders
+    // TODO: better way to do this
+    var $allTiles = $('.isotope-item'),
+        $orgTiles = $allTiles.filter('.type-initiatives'),
+        $tiles = $allTiles.not('.type-initiatives'),
+        tileOrderArray = tilePlacements[nCol],
+        l = $allTiles.length,
+        output = [],
+        tileIndex = 0;
+        tileOrderIndex = 0;
+
+    for(i = 0; i < l; i++) {
+      if(i == tileOrderArray[tileOrderIndex]) {
+        output.push($orgTiles[tileOrderIndex++]);
+      } else {
+        output.push($tiles[tileIndex++]);
+      }
+    }
+
+    $allTiles.parent().append(output);
+    // end ordering tiles
+
 
     //*** Tiles Width ***//
     i = 0, posX = 0;
@@ -44,7 +87,7 @@
         $(this).css('top', '0px');
         
         //Set tiles width. Make adjustment for last tile due to rounded issues
-        var w = (i == nCol - 1 && nCol > 1) ? $('#iso-container').width() - posX - (nCol) : tWidth; // nCol + 1 is because of border
+        var w = (i == nCol - 1 && nCol > 1) ? $container.width() - posX - (nCol) : tWidth; // nCol + 1 is because of border
         $(this).css('width', w + 'px');
 
         posX += tWidth;
@@ -68,16 +111,16 @@
     }
    
     //*** Tiles Positioning ***//
-    i = 0, posX = 0;
-    $('.isotope-item').each(function( index ) {
-      if( !$(this).hasClass('hide-me') ){   
+    var transformTile = function(el) {
+      var $el = $(el);
+      if( !$el.hasClass('hide-me') ){   
         
         //Move tiles to final position
-        $(this).css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
+        $el.css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
   
         //Update Column height and horizontal position
-        tHeight[i] += $(this).height();  // add 1 because of border
-        posX += tWidth;  // add 1 because of border
+        tHeight[i] += $el.height(); 
+        posX += tWidth;
         
         //Reset tiles to next row
         i++;
@@ -86,6 +129,11 @@
           posX=0;
         }
       }  
+    };
+
+    i = 0, posX = 0;
+    $('.isotope-item').each(function( index, el ) {
+      transformTile(this);
     });
     
     //Set containter to highest height
@@ -121,7 +169,7 @@
   var doit;
   $(window).resize(function(){
     clearTimeout(doit);
-    doit = setTimeout(home_layout, 150);
+    doit = setTimeout(home_layout, 300);
   });
   
 })(jQuery);
