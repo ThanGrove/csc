@@ -1857,7 +1857,7 @@ a#menu-toggle:after {
   color: #828282;
   padding-left: 10px;
 }
- 
+
 .bryant-sidebar{
   width: 150px;
 }
@@ -1947,6 +1947,7 @@ body.logged-in {
 .pane-csc-isotope-page h2.pane-title{ display: none;  }
 
 .pane-csc-isotope h2.pane-title {
+  margin-top: 0px;
   border-top: 1px solid #c0c0c0;
   padding-top: 14px;
   font-family: brandon;
@@ -1965,10 +1966,15 @@ body.logged-in {
   float: left;
   border-top: 1px solid #ffffff;
   background: #dbdad8;
-  padding: 20px 0;
+  padding: 0px;
+
+  .pane-content {
+    margin: 5px;
+  }
 } 
 
 .pane-csc-newsletter h2{
+  margin-top: 0px;
   font-family: brandon;
   font-size: 12px !important;
   font-weight: bold;
@@ -2258,4 +2264,6 @@ body.logged-in {
     font-size: 64px;
     font-weight: 500;
     color: #ccc;
+    position: relative;
+    z-index: 50;
   }

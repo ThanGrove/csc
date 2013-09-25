@@ -60,7 +60,7 @@
       mediaClass = 'x-large';
     } else if(tWidth > 380) {
       mediaClass = 'large';
-    } else if(tWidth > 310) {
+    } else if(tWidth > 305) {
       mediaClass = 'medium';
     } else {
       mediaClass = 'small';
@@ -103,10 +103,7 @@
       if( !$this.hasClass('hide-me') ){         
         $this.css('left', '0px');
         $this.css('top', '0px');
-        
-        //Set tiles width. Make adjustment for last tile due to rounded issues
-        var w = (i == nCol - 1 && nCol > 1) ? $container.width() - posX - (nCol) : tWidth; // nCol + 1 is because of border
-        $this.add($this.find('.iso-text')).css('width', w + 'px');
+        $this.add($this.find('.iso-text')).css('width', tWidth + 'px');
 
         posX += tWidth;
         //Reset tiles to next row
@@ -146,14 +143,13 @@
     };
    
     //*** Tiles Positioning ***//
-    var transformTile = function(el) {
-    };
+    var needSeparator = divideAfter > 0 && divideAfter < $('.isotope-item').length && !$('.isotope').find('.hide-me').length;
 
     i = 0, posX = 0;
     $('.isotope-item').each(function( index, el ) {
-      if(divideAfter > 0 && divideAfter < $('.isotope-item').not('.hide-me').length - 1) {
+      if(needSeparator) {
         if(index == divideAfter) {
-          sepHeight = tHeight[i] + $(this).height() + 1;
+          sepHeight = tHeight[i] + $(this).height();
         } else if (index > divideAfter) {
           posX = 0;
           tHeight[i] = sepHeight + $('.csc-panel-separator').outerHeight();
@@ -169,19 +165,21 @@
 
     
     //Set containter to highest height
-      maxH = 0;
-      var containerHeight = 0;
-      for(i=0; i < nCol; i++) {
-        if (tHeight[i] > maxH) maxH = tHeight[i];
-      }
-      containerHeight = maxH;
+    maxH = 0;
+    var containerHeight = 0;
+    for(i=0; i < nCol; i++) {
+      if (tHeight[i] > maxH) maxH = tHeight[i];
+    }
+    containerHeight = maxH;
 
-      if(sepHeight) {
-        $('.csc-panel-separator').appendTo('#iso-container').css(prefix + 'transform', 'translate(0px, ' + sepHeight + 'px)').show().css('visibility', 'visible');
-        containerHeight += $('.csc-panel-separator').height();
-      }
+    if(needSeparator && sepHeight) {
+      $('.csc-panel-separator').appendTo('#iso-container').css(prefix + 'transform', 'translate(0px, ' + sepHeight + 'px)').show().css('visibility', 'visible');
+      containerHeight += $('.csc-panel-separator').height();
+    } else {
+      $('.csc-panel-separator').hide();
+    }
 
-      $container.css('height', containerHeight + 'px');
+    $container.css('height', containerHeight + 'px');
   };
   
   //Filter function

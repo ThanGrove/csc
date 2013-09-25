@@ -309,6 +309,29 @@ body {
     line-height: 30px;
   }
 }
+@media screen and (max-width: 640px) {
+  .content {
+    .csc-panel-col-left {
+      width: 110px;
+      position: static;
+    }
+    .csc-panel-col-right {
+      left: 110px;
+    }
+    .menu-desc {
+      display: none;
+    }
+    .pane-csc-newsletter {
+      position: relative;
+      margin-top: 14px;
+      width: 110px;
+
+      input.form-text {
+        width: 74px;
+      }
+    }
+  }
+}
 
 /* Small styles */
 /*@media screen and (max-width: 450px) {*/

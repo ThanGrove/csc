@@ -357,29 +357,54 @@ body {
   line-height: 30px;
 }
 
+@media screen and (max-width: 640px) {
+  /* line 314, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .content .csc-panel-col-left {
+    width: 110px;
+    position: static;
+  }
+  /* line 318, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .content .csc-panel-col-right {
+    left: 110px;
+  }
+  /* line 321, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .content .menu-desc {
+    display: none;
+  }
+  /* line 324, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .content .pane-csc-newsletter {
+    position: relative;
+    margin-top: 14px;
+    width: 110px;
+  }
+  /* line 329, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .content .pane-csc-newsletter input.form-text {
+    width: 74px;
+  }
+}
 /* Small styles */
 /*@media screen and (max-width: 450px) {*/
-/* line 316, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 339, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .iso-teaser {
   font-size: 14px;
   line-height: 18px;
 }
-/* line 321, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 344, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .type-news .iso-title,
 .media-small .type-feature .iso-title {
   font-size: 16px;
   line-height: 22px;
 }
-/* line 326, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 349, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .type-initiatives .iso-title {
   font-size: 18px;
   line-height: 22px;
 }
-/* line 330, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 353, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .iso-date {
   font-size: 11px;
 }
-/* line 333, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 356, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .csc-panel-separator {
   font-size: 40px;
 }
