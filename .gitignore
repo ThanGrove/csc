@@ -39,3 +39,5 @@ xmlrpc.php
 # vim stuff
 *.un~
 *.swp
+.sass-cache
+.ruby-version
