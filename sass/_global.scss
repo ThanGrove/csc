@@ -1,0 +1,24 @@
+/* Global variables, mixins, etc. */
+
+$contexts:  'professions' #605385 26,
+            'health'      #00b1a6 22,
+            'design'      #ff6b53 20,
+            'culture'     #34c780 25,
+            'education'   #ffc123 21;
+
+$banner_height: 76px;
+
+@each $context in $contexts {
+  $label: nth($context, 1);
+
+  %#{$label}_bg_color {
+    background-color: nth($context, 2);
+  }
+}
+
+@mixin add_to_node($label) {
+  $index: index($contexts, $label);
+  .node-#{nth($contexts, $index + 2)} {
+    @content;
+  }
+}

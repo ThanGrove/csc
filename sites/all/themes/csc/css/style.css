@@ -2761,6 +2761,86 @@ body.logged-in #content {
 }
 
 /* line 1997, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+}
+
+/* line 1998, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all a {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: brandon;
+  color: #ffffff;
+  background: url(../images/rounded_white_arrow.png) right no-repeat;
+  padding-right: 20px;
+}
+
+/* line 1999, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all a:hover {
+  color: #ffffff;
+}
+
+/* line 2001, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all-black {
+  position: absolute;
+  top: 35px;
+  right: 20px;
+}
+
+/* line 2002, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all-black a {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: brandon;
+  color: #3c3c3c;
+  background: url(../images/rounded_black_arrow.png) right no-repeat;
+  padding-right: 20px;
+}
+
+/* line 2003, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all-black a:hover {
+  color: #3c3c3c;
+}
+
+/* line 2005, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all-research {
+  float: left;
+  width: 100%;
+  padding: 15px 0 0 0;
+  margin-top: 15px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* line 2006, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all-research a {
+  font-size: 10px;
+  font-weight: bold;
+  font-family: brandon;
+  color: #3c3c3c;
+  background: url(../images/rounded_black_arrow.png) right no-repeat;
+  padding-right: 20px;
+}
+
+/* line 2007, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.see-all-research a:hover {
+  color: #3c3c3c;
+}
+
+/* line 2009, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.csc-teaser-more {
+  float: left;
+  margin-top: 20px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: brandon;
+  color: #3c3c3c;
+  background: url(../images/rounded_black_arrow.png) right no-repeat;
+  padding-right: 20px;
+}
+
+/* line 2012, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-events {
   float: left;
   width: 100%;
@@ -2770,14 +2850,14 @@ body.logged-in #content {
   padding-bottom: 20px;
 }
 
-/* line 2007, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2022, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-organization-item,
 .csc-event-item {
   float: left;
   background: url(../images/line_bg.png) left no-repeat;
 }
 
-/* line 2011, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2026, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-event-item h3 {
   margin: 0;
   padding: 0;
@@ -2786,7 +2866,7 @@ body.logged-in #content {
   font-weight: bold;
 }
 
-/* line 2012, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2027, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-events h2 a {
   font-size: 13px;
   color: #ffffff;
@@ -2794,7 +2874,7 @@ body.logged-in #content {
   font-weight: normal;
 }
 
-/* line 2014, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2029, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-organizations {
   float: left;
   width: 100%;
@@ -2804,14 +2884,14 @@ body.logged-in #content {
   padding-bottom: 20px;
 }
 
-/* line 2022, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2037, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-organizations h2 a {
   font-size: 13px;
   color: #ffffff;
   font-weight: bold;
 }
 
-/* line 2024, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2039, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-activities {
   float: left;
   width: 100%;
@@ -2819,13 +2899,13 @@ body.logged-in #content {
   padding-bottom: 20px;
 }
 
-/* line 2030, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2045, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-activities-item {
   float: left;
   width: 100%;
 }
 
-/* line 2031, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2046, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-activities h2 a {
   font-size: 13px;
   color: #3b3b3b;
@@ -2833,7 +2913,7 @@ body.logged-in #content {
   font-weight: normal;
 }
 
-/* line 2033, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2048, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-people {
   float: left;
   width: 100%;
@@ -2842,14 +2922,15 @@ body.logged-in #content {
   font-size: 10px;
   padding: 0 0 20px 0;
   border-top: 1px solid #505050;
+  position: relative;
 }
 
-/* line 2043, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2059, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-container {
   padding: 0 20px;
 }
 
-/* line 2047, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2063, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-wrapper {
   float: left;
   width: 150px;
@@ -2858,7 +2939,7 @@ body.logged-in #content {
   position: relative;
 }
 
-/* line 2055, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2071, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-detail {
   position: absolute;
   top: 0;
@@ -2870,65 +2951,82 @@ body.logged-in #content {
   background: rgba(0, 176, 165, 0);
 }
 
-/* line 2065, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2081, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-text {
   float: left;
   display: none;
 }
 
-/* line 2067, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2083, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-detail:hover {
   background: rgba(0, 176, 165, 0.85);
 }
 
-/* line 2068, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2084, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-detail:hover .csc-people-text {
   display: block;
 }
 
-/* line 2070, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2086, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-people h2 a {
   font-size: 13px;
   color: #ffffff;
   font-weight: bold;
 }
 
-/* line 2071, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2087, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-people-wrapper img {
   float: left;
 }
 
-/* line 2074, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2090, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-teaser,
+.pane-node-title {
+  padding: 0 20px;
+}
+
+/* line 2094, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-teaser .pane-title,
 .pane-node-title .pane-title,
 .pane-csc-related-research .pane-title {
   display: none;
 }
 
-/* line 2076, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2096, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-node-title a {
   color: #000000;
   font-family: brandon;
   font-size: 36px;
 }
 
-/* line 2082, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2102, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-related-research {
+  float: left;
+  width: 100%;
+  font-size: 10px;
+  padding: 20px 0 20px 0;
+  margin-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* line 2111, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-research-item {
   float: left;
   font-size: 10px;
 }
 
-/* line 2087, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2116, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-research-item {
   float: left;
   background: url(../images/gray_line_bg.gif) left no-repeat;
 }
 
-/* line 2091, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2120, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-research-item:first-child {
   background: none;
 }
 
-/* line 2095, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2124, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .pane-csc-related-people .pane-title,
 .pane-csc-related-events .pane-title,
 .pane-csc-related-organizations .pane-title {
@@ -2937,12 +3035,91 @@ body.logged-in #content {
   padding-left: 20px;
 }
 
-/* line 2102, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2131, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-research-title,
 .pane-csc-related-activities .pane-title {
   font-family: brandon;
   font-size: 25px !important;
   padding-left: 20px;
+}
+
+/* line 2136, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.csc-research-title {
+  font-family: brandon;
+  font-size: 25px !important;
+  padding-left: 0;
+}
+
+/* line 2142, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-latest-news {
+  background: #e8e7e5;
+  text-align: center;
+  font-family: brandon;
+  font-size: 12px;
+  font-style: italic;
+  padding: 5px;
+  border-bottom: 1px solid #ffffff;
+}
+
+/* line 2152, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-latest-news h2 {
+  font-family: brandon;
+  font-size: 12px !important;
+  font-weight: bold;
+  font-style: normal;
+  text-transform: uppercase;
+}
+
+/* line 2153, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-latest-news h3 a {
+  font-family: brandon;
+  font-size: 12px !important;
+  font-weight: bold;
+  font-style: normal;
+  color: #000000;
+}
+
+/**
+ *Tooltips
+ */
+/* line 2158, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.csc-teaser-more {
+  cursor: pointer;
+}
+
+/* line 2160, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.tooltip {
+  background-color: #ffffff;
+  border: 2px solid #2f2f2f;
+  border-radius: 16px 16px 16px 16px;
+  box-shadow: 0 0 15px 3px #303030;
+  color: #676767;
+  display: none;
+  font-size: 14px;
+  overflow: auto;
+  padding: 12px;
+  max-width: 600px;
+}
+
+/* line 2173, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.inline {
+  cursor: pointer;
+}
+
+/* line 2175, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.close {
+  background-image: url("../images/close.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+  float: right;
+  height: 40px;
+  width: 40px;
+}
+
+/* line 2184, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.tooltip-content {
+  margin: 40px 30px 30px 30px;
+  text-align: justify;
 }
 
 /**
@@ -2973,25 +3150,25 @@ body.logged-in #content {
 }
  */
 /* Start width of isotope tiles */
-/* line 2138, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2216, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .isotope-element {
   width: 25%;
 }
 
-/* line 2141, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2219, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .front
 #content, .section, .region, .block-system, .content, .csc-panel-container, .csc-panel-col-right {
   /*height: 100%;*/
 }
 
-/* line 2146, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2224, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .front
 #content {
   position: relative;
   top: 76px;
 }
 
-/* line 2170, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2248, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-panel-separator {
   height: 100%;
   background-color: #252525;
