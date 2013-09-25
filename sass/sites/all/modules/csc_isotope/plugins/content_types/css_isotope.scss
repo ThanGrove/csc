@@ -161,6 +161,7 @@ body {
 
 .type-news .iso-title,
 .type-feature .iso-title {
+  margin: 0px 2px 6px 2px;
   font-family: brandon, verdana, arial;
   font-weight: 200;
   line-height: 28px;
@@ -174,12 +175,12 @@ body {
   font-family: brandon, verdana, arial;
   text-align: center;
   font-size: 16px;
+  padding: 0px 12px;
 }
 
 .type-news .iso-teaser,
 .type-feature .iso-teaser{
   color: #a3a3a3;
-  padding: 10px;
 }
 
 .iso-date { 
@@ -233,9 +234,10 @@ body {
   border-top-width: 0px;
   border-left-width: 0px;
 
-  .iso-title {
-    margin: 0px;
-  }
+}
+
+.iso-title {
+  margin: 0px;
 }
 
 .iso-icon {
@@ -293,6 +295,9 @@ body {
 /* Medium styles */
 /*@media screen and (max-width: 1349px) and (min-width: 451px ) {*/
 .media-medium {
+  .iso-teaser {
+    font-size: 16px;
+  }
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 18px;
@@ -308,15 +313,25 @@ body {
 /* Small styles */
 /*@media screen and (max-width: 450px) {*/
 .media-small {
+  .iso-teaser {
+    font-size: 14px;
+    line-height: 18px;
+  }
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 16px;
-    line-height: 18px;
+    line-height: 22px;
   }
 
   .type-initiatives .iso-title {
     font-size: 18px;
     line-height: 22px;
+  }
+  .iso-date {
+    font-size: 11px;
+  }
+  .csc-panel-separator {
+    font-size: 40px;
   }
 }
 

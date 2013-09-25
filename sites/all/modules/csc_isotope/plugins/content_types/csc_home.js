@@ -54,17 +54,18 @@
     var tWidth =  Math.round(cWidth/nCol);
     if (nCol == 1 && tWidth < 300) tWidth = 300;
 
+    // tile-based responsiveness, adding classes to body based on tile size
     var mediaClass = '';
-    if(tWidth > 430) {
+    if(tWidth > 450) {
       mediaClass = 'x-large';
-    } else if(tWidth > 350) {
+    } else if(tWidth > 380) {
       mediaClass = 'large';
-    } else if(tWidth > 300) {
+    } else if(tWidth > 310) {
       mediaClass = 'medium';
     } else {
       mediaClass = 'small';
     }
-    $container.removeClass(function(index, cls){ return (cls.match(/\bmedia\-\S+/g) || []).join(' '); }).addClass('media-' + mediaClass);
+    $('body').removeClass(function(index, cls){ return (cls.match(/\bmedia\-\S+/g) || []).join(' '); }).addClass('media-' + mediaClass);
     
     //Var to save height of columns
     var tHeight = [];
