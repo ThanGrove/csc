@@ -41,13 +41,13 @@
       nCol = 4;
     }else if(cWidth >= 1000){
       nCol = 3;
-    }else if(cWidth >= 450){
+    }else if(cWidth >= 600){
       nCol = 2;
     }else{
       nCol = 1;
     }
 
-    if (nCol > 1 && cHeight < window.innerHeight) nCol = nCol - 1;
+    //if (nCol > 1 && cHeight < window.innerHeight) nCol = nCol - 1;
     
     var tWidth =  Math.round(cWidth/nCol);
     if (nCol == 1 && tWidth < 300) tWidth = 300;
@@ -82,13 +82,14 @@
     //*** Tiles Width ***//
     i = 0, posX = 0;
     $('.isotope-item').each(function( index ) {
-      if( !$(this).hasClass('hide-me') ){         
-        $(this).css('left', '0px');
-        $(this).css('top', '0px');
+      var $this = $(this);
+      if( !$this.hasClass('hide-me') ){         
+        $this.css('left', '0px');
+        $this.css('top', '0px');
         
         //Set tiles width. Make adjustment for last tile due to rounded issues
         var w = (i == nCol - 1 && nCol > 1) ? $container.width() - posX - (nCol) : tWidth; // nCol + 1 is because of border
-        $(this).css('width', w + 'px');
+        $this.add($this.find('.iso-text')).css('width', w + 'px');
 
         posX += tWidth;
         //Reset tiles to next row

@@ -211,12 +211,12 @@ body {
 .type-feature .iso-title {
   font-family: brandon, verdana, arial;
   font-weight: 200;
+  line-height: 28px;
   /*
   font-size: 24px;
   line-height: 26px;
   */
   text-align: center;
-  padding: 10px;
 }
 
 /* line 173, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
@@ -249,6 +249,8 @@ body {
 .type-initiatives .iso-title {
   font-family: brandon, verdana, arial;
   font-weight: bold;
+  letter-spacing: 3px;
+  line-height: 28px;
   /*
   font-size: 30px;
   line-height: 26px;
@@ -258,29 +260,36 @@ body {
   text-transform: uppercase;
 }
 
-/* line 213, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 215, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .type-initiatives .iso-text {
   border-width: 0px;
+  padding: 0px 14px;
 }
 
-/* line 217, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 220, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .type-initiatives .iso-teaser {
   font-family: brandon, verdana, arial;
+  line-height: 20px;
   text-align: center;
   font-size: 18px;
   color: #ffffff;
-  padding: 10px;
 }
 
-/* line 225, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 228, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .iso-text {
+  display: table-cell;
+  vertical-align: middle;
   position: relative;
   border: 1px #444 solid;
   border-top-width: 0px;
   border-left-width: 0px;
 }
+/* line 236, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.iso-text .iso-title {
+  margin: 0px;
+}
 
-/* line 232, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 241, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .iso-icon {
   position: absolute;
   top: 0;
@@ -291,45 +300,71 @@ body {
  *RESPONSIVE STYLES
  */
 /* Wide styles */
-@media screen and (min-width: 1350px) {
-  /* line 245, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+@media screen and (min-width: 2000px) {
+  /* line 253, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .type-initiatives .iso-title {
+    font-size: 40px;
+    line-height: 45px;
+  }
+
+  /* line 258, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .type-news .iso-title, .type-feature .iso-title {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  /* line 264, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .isotope .iso-teaser {
+    font-size: 18px;
+  }
+  /* line 267, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .isotope .iso-date {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 1999px) and (min-width: 1350px) {
+  /* line 275, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 24px;
-    line-height: 26px;
+    line-height: 28px;
   }
 
-  /* line 250, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 281, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .type-initiatives .iso-title {
     font-size: 30px;
-    line-height: 26px;
+    line-height: 34px;
+  }
+  /* line 285, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .type-initiatives .iso-teaser {
+    line-height: 20px;
   }
 }
 /* Medium styles */
 @media screen and (max-width: 1349px) and (min-width: 451px) {
-  /* line 259, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 294, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 18px;
     line-height: 24px;
   }
 
-  /* line 264, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 299, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .type-initiatives .iso-title {
     font-size: 24px;
-    line-height: 26px;
+    line-height: 30px;
   }
 }
 /* Small styles */
 @media screen and (max-width: 450px) {
-  /* line 273, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 308, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 16px;
     line-height: 18px;
   }
 
-  /* line 278, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 313, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .type-initiatives .iso-title {
     font-size: 18px;
     line-height: 22px;

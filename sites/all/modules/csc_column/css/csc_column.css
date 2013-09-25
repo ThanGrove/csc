@@ -3,14 +3,15 @@
 #csc-right {
   position: fixed;
   right: 0;
-  top: 60px;
+  top: 76px;
   z-index: 100;
   height: 100%;
   width: 352px;
+  opacity: 0.98;
   background: #ffffff;
 }
 
-/* line 13, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 14, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-top {
   float: left;
   width: 100%;
@@ -18,9 +19,10 @@
   background: #e8e7e5;
 }
 
-/* line 20, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 21, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-title {
-  color: #4B4B4B;
+  opacity: 0.3;
+  color: #000;
   font-family: brandon;
   font-size: 18px;
   font-weight: bold;
@@ -28,7 +30,7 @@
   text-align: center;
 }
 
-/* line 29, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 31, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-close {
   position: absolute;
   right: 0;
@@ -39,19 +41,19 @@
   background: url(../images/right_arrow_bg.png) no-repeat;
 }
 
-/* line 39, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 41, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-content {
   float: left;
   width: 312px;
   padding: 20px;
 }
 
-/* line 45, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 47, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-hide {
   display: none;
 }
 
-/* line 46, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 48, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-show {
   display: block;
 }

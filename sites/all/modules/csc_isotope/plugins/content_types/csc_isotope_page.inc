@@ -50,11 +50,14 @@ function csc_isotope_render($subtype, $conf, $panel_args, $context = NULL) {
   }
 
   //Get Feature and news
-  $qry = "SELECT n.nid, n.type, n.title, fdb.body_value as body, n.created, fm.uri
-  FROM {node} n LEFT JOIN {field_data_field_featured_image} fdfi ON fdfi.entity_id=n.nid LEFT JOIN {file_managed} fm ON fdfi.field_featured_image_fid=fm.fid, {field_data_body} fdb
-  WHERE n.status=1 AND n.type IN ('feature', 'news')
-  AND n.nid=fdb.entity_id
-  ORDER BY n.created DESC LIMIT 9";
+  $qry = "SELECT n.nid, n.type, n.title, fst.field_small_teaser_value as body, n.created, fm.uri
+    FROM {node} n
+    LEFT JOIN {field_data_field_featured_image} fdfi ON fdfi.entity_id=n.nid
+    LEFT JOIN {file_managed} fm ON fdfi.field_featured_image_fid=fm.fid
+    LEFT JOIN field_data_field_small_teaser fst on fst.entity_id=n.nid
+    WHERE n.status=1 AND n.type IN ('feature', 'news')
+    AND n.nid=fst.entity_id
+    ORDER BY n.created DESC LIMIT 9";
   $r = db_query($qry);
 
   $tiles = array();
