@@ -359,52 +359,110 @@ body {
 
 @media screen and (max-width: 640px) {
   /* line 314, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  #main-menu li {
+    padding: 8px 0px 8px 6px;
+    text-indent: 0px;
+  }
+  /* line 317, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  #main-menu li.expanded {
+    background-image: none;
+  }
+  /* line 320, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  #main-menu li.last {
+    text-align: center;
+    padding: 8px 2px;
+  }
+  /* line 324, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  #main-menu li a {
+    font-size: 10px;
+  }
+
+  /* line 330, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .content .csc-panel-col-left {
-    width: 110px;
     position: static;
+    width: 72px;
   }
-  /* line 318, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 333, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  .content .csc-panel-col-left .csc-panel-inside {
+    width: 72px;
+  }
+  /* line 337, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .content .csc-panel-col-right {
-    left: 110px;
+    left: 72px;
   }
-  /* line 321, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 340, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .content .menu-desc {
     display: none;
   }
-  /* line 324, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 343, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .content .pane-csc-newsletter {
     position: relative;
     margin-top: 14px;
     width: 110px;
   }
-  /* line 329, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  /* line 348, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
   .content .pane-csc-newsletter input.form-text {
     width: 74px;
+  }
+
+  /* line 355, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  header #header-logo img {
+    /*width: 262px;*/
+  }
+  /* line 359, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  header #header-icons {
+    z-index: 1;
+    left: 234px;
+    top: -7px;
+    right: auto;
+    min-width: 234px;
+  }
+  /* line 366, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  header #header-icons li {
+    border-width: 0px;
+    padding: 0px 3px;
+  }
+  /* line 369, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  header #header-icons li.li-separator {
+    display: block;
+    color: white;
+    position: relative;
+    top: 46px;
+    left: 3px;
+  }
+  /* line 377, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  header #header-icons .header-icon-text {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  /* line 381, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+  header #header-icons img {
+    visibility: hidden;
   }
 }
 /* Small styles */
 /*@media screen and (max-width: 450px) {*/
-/* line 339, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 391, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .iso-teaser {
   font-size: 14px;
   line-height: 18px;
 }
-/* line 344, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 396, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .type-news .iso-title,
 .media-small .type-feature .iso-title {
   font-size: 16px;
   line-height: 22px;
 }
-/* line 349, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 401, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .type-initiatives .iso-title {
   font-size: 18px;
   line-height: 22px;
 }
-/* line 353, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 405, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .iso-date {
   font-size: 11px;
 }
-/* line 356, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+/* line 408, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
 .media-small .csc-panel-separator {
   font-size: 40px;
 }

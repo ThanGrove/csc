@@ -310,13 +310,32 @@ body {
   }
 }
 @media screen and (max-width: 640px) {
+  #main-menu {
+    li {
+      padding: 8px 0px 8px 6px;
+      text-indent: 0px;
+      &.expanded {
+        background-image: none;
+      }
+      &.last {
+        text-align: center;
+        padding: 8px 2px;
+      }
+      a {
+        font-size: 10px;
+      }
+    }
+  }
   .content {
     .csc-panel-col-left {
-      width: 110px;
       position: static;
+      width: 72px;
+      .csc-panel-inside {
+        width: 72px;
+      }
     }
     .csc-panel-col-right {
-      left: 110px;
+      left: 72px;
     }
     .menu-desc {
       display: none;
@@ -328,6 +347,39 @@ body {
 
       input.form-text {
         width: 74px;
+      }
+    }
+  }
+  header {
+    #header-logo {
+      img {
+        /*width: 262px;*/
+      }
+    }
+    #header-icons {
+      z-index: 1;
+      left: 234px;
+      top: -7px;
+      right: auto;
+      min-width: 234px;
+
+      li {
+        border-width: 0px;
+        padding: 0px 3px;
+        &.li-separator {
+          display: block;
+          color: white;
+          position: relative;
+          top: 46px;
+          left: 3px;
+        }
+      }
+      .header-icon-text {
+        font-size: 12px;
+        font-weight: bold;
+      }
+      img {
+        visibility: hidden;
       }
     }
   }

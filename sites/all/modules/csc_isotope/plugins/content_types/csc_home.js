@@ -52,7 +52,7 @@
     //if (nCol > 1 && cHeight < window.innerHeight) nCol = nCol - 1;
     
     var tWidth =  Math.round(cWidth/nCol);
-    if (nCol == 1 && tWidth < 300) tWidth = 300;
+    if (nCol == 1 && tWidth < 250) tWidth = 250;
 
     // tile-based responsiveness, adding classes to body based on tile size
     var mediaClass = '';

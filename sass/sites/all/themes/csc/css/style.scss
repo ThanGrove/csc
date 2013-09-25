@@ -1919,6 +1919,7 @@ body.logged-in {
 }
 
 #header-logo{ 
+  min-width: 453px;
   float: left; position: relative; 
   padding: 12px 0px;
   background-color: #252525;
@@ -1941,6 +1942,9 @@ body.logged-in {
 #header-icons li { 
   text-align: center;
   float: left; height: $banner_height; padding: 0 20px; display: inline; border-left: 1px solid #454545; 
+  &.li-separator {
+    display: none;
+  }
 }
 
 .pane-main-menu h2.pane-title,
