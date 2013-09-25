@@ -249,7 +249,8 @@ body {
  */
 
 /* Wide styles */
-@media screen and (min-width: 2000px) {
+/*@media screen and (min-width: 2000px) {*/
+.media-x-large {
   .type-initiatives .iso-title {
     font-size: 40px;
     line-height: 45px;
@@ -270,7 +271,8 @@ body {
   }
 }
 
-@media screen and (max-width: 1999px) and (min-width: 1350px) {
+/*@media screen and (max-width: 1999px) and (min-width: 1350px) {*/
+.media-large {
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 24px;
@@ -289,7 +291,8 @@ body {
 }
 
 /* Medium styles */
-@media screen and (max-width: 1349px) and (min-width: 451px ) {
+/*@media screen and (max-width: 1349px) and (min-width: 451px ) {*/
+.media-medium {
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 18px;
@@ -303,7 +306,8 @@ body {
 }
 
 /* Small styles */
-@media screen and (max-width: 450px) {
+/*@media screen and (max-width: 450px) {*/
+.media-small {
   .type-news .iso-title,
   .type-feature .iso-title {
     font-size: 16px;

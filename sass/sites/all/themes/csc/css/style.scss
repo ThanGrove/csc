@@ -2246,7 +2246,7 @@ body.logged-in {
   }
 
   .csc-panel-separator {
-    height: 100%;
+    visibility: hidden;
     background-color: #252525;
     border: 0px #ccc solid;
     border-bottom-width: 1px;

@@ -300,73 +300,67 @@ body {
  *RESPONSIVE STYLES
  */
 /* Wide styles */
-@media screen and (min-width: 2000px) {
-  /* line 253, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-initiatives .iso-title {
-    font-size: 40px;
-    line-height: 45px;
-  }
-
-  /* line 258, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-news .iso-title, .type-feature .iso-title {
-    font-size: 30px;
-    line-height: 38px;
-  }
-
-  /* line 264, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .isotope .iso-teaser {
-    font-size: 18px;
-  }
-  /* line 267, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .isotope .iso-date {
-    font-size: 14px;
-  }
+/*@media screen and (min-width: 2000px) {*/
+/* line 254, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-x-large .type-initiatives .iso-title {
+  font-size: 40px;
+  line-height: 45px;
 }
-@media screen and (max-width: 1999px) and (min-width: 1350px) {
-  /* line 275, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-news .iso-title,
-  .type-feature .iso-title {
-    font-size: 24px;
-    line-height: 28px;
-  }
-
-  /* line 281, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-initiatives .iso-title {
-    font-size: 30px;
-    line-height: 34px;
-  }
-  /* line 285, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-initiatives .iso-teaser {
-    line-height: 20px;
-  }
+/* line 259, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-x-large .type-news .iso-title, .media-x-large .type-feature .iso-title {
+  font-size: 30px;
+  line-height: 38px;
 }
+/* line 265, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-x-large .isotope .iso-teaser {
+  font-size: 18px;
+}
+/* line 268, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-x-large .isotope .iso-date {
+  font-size: 14px;
+}
+
+/*@media screen and (max-width: 1999px) and (min-width: 1350px) {*/
+/* line 277, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-large .type-news .iso-title,
+.media-large .type-feature .iso-title {
+  font-size: 24px;
+  line-height: 28px;
+}
+/* line 283, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-large .type-initiatives .iso-title {
+  font-size: 30px;
+  line-height: 34px;
+}
+/* line 287, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-large .type-initiatives .iso-teaser {
+  line-height: 20px;
+}
+
 /* Medium styles */
-@media screen and (max-width: 1349px) and (min-width: 451px) {
-  /* line 294, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-news .iso-title,
-  .type-feature .iso-title {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
-  /* line 299, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-initiatives .iso-title {
-    font-size: 24px;
-    line-height: 30px;
-  }
+/*@media screen and (max-width: 1349px) and (min-width: 451px ) {*/
+/* line 297, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-medium .type-news .iso-title,
+.media-medium .type-feature .iso-title {
+  font-size: 18px;
+  line-height: 24px;
 }
-/* Small styles */
-@media screen and (max-width: 450px) {
-  /* line 308, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-news .iso-title,
-  .type-feature .iso-title {
-    font-size: 16px;
-    line-height: 18px;
-  }
+/* line 302, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-medium .type-initiatives .iso-title {
+  font-size: 24px;
+  line-height: 30px;
+}
 
-  /* line 313, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
-  .type-initiatives .iso-title {
-    font-size: 18px;
-    line-height: 22px;
-  }
+/* Small styles */
+/*@media screen and (max-width: 450px) {*/
+/* line 312, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-small .type-news .iso-title,
+.media-small .type-feature .iso-title {
+  font-size: 16px;
+  line-height: 18px;
+}
+/* line 317, ../../../../../../sass/sites/all/modules/csc_isotope/plugins/content_types/css_isotope.scss */
+.media-small .type-initiatives .iso-title {
+  font-size: 18px;
+  line-height: 22px;
 }

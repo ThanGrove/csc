@@ -21,7 +21,7 @@
   <div class="csc-panel-col-right">
     <div class="csc-panel-inside-inside">
       <?php print $content['right']; ?>
-      <div class="csc-panel-separator">Older News &amp; Features</div>
+      <div class="csc-panel-separator">Previous News &amp; Features</div>
     </div>
   </div>
 </div></div>

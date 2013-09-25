@@ -1,11 +1,12 @@
 (function ($) {
+  window.csc = {};
 
   // the key is the number of columns
-  var tilePlacements = {
-    1: [0, 2, 4, 6, 8],
-    2: [0, 3, 4, 7, 8],
-    3: [0, 2, 4, 6, 8],
-    4: [0, 2, 5, 8, 10]
+  var tileData = {
+    1: {order: [0, 2, 4, 6, 8], divideAfter: 0},
+    2: {order: [0, 3, 4, 7, 8], divideAfter: 10},
+    3: {order: [0, 2, 4, 6, 8], divideAfter: 11},
+    4: {order: [0, 2, 5, 8, 10], divideAfter: 10}
   };
 
   //Browser type    
@@ -21,7 +22,7 @@
   if($.browser.webkit)  prefix = '-webkit-';
 
   //Build tiles layout
-  function home_layout(){
+  window.csc.home_layout = function home_layout(){
     var $supercontainer = $('#block-system-main').find('.csc-panel-container'),
         $panelLeft = $supercontainer.find('.csc-panel-col-left'),
         $panelRight = $supercontainer.find('.csc-panel-col-right'),
@@ -32,12 +33,13 @@
 
     //Size of container
     var $container = $('#iso-container'),
+        $containerOffset = $container.offset(),
         cWidth = $container.width(),
         cHeight = $container.height() + $container.offset().top,
         nCol;
     
     //Number of tiles depending on container width
-    if(cWidth >= 1200){
+    if(cWidth >= 1400){
       nCol = 4;
     }else if(cWidth >= 1000){
       nCol = 3;
@@ -51,6 +53,18 @@
     
     var tWidth =  Math.round(cWidth/nCol);
     if (nCol == 1 && tWidth < 300) tWidth = 300;
+
+    var mediaClass = '';
+    if(tWidth > 430) {
+      mediaClass = 'x-large';
+    } else if(tWidth > 350) {
+      mediaClass = 'large';
+    } else if(tWidth > 300) {
+      mediaClass = 'medium';
+    } else {
+      mediaClass = 'small';
+    }
+    $container.removeClass(function(index, cls){ return (cls.match(/\bmedia\-\S+/g) || []).join(' '); }).addClass('media-' + mediaClass);
     
     //Var to save height of columns
     var tHeight = [];
@@ -61,14 +75,16 @@
     var $allTiles = $('.isotope-item'),
         $orgTiles = $allTiles.filter('.type-initiatives'),
         $tiles = $allTiles.not('.type-initiatives'),
-        tileOrderArray = tilePlacements[nCol],
+        tileOrderArray = tileData[nCol].order,
         l = $allTiles.length,
         output = [],
         tileIndex = 0;
         tileOrderIndex = 0;
 
+    if($allTiles.length - 1 < tileData[nCol].divideAfter) $('.csc-panel-separator').hide();
+
     for(i = 0; i < l; i++) {
-      if(i == tileOrderArray[tileOrderIndex]) {
+      if($orgTiles.length && i == tileOrderArray[tileOrderIndex]) {
         output.push($orgTiles[tileOrderIndex++]);
       } else {
         output.push($tiles[tileIndex++]);
@@ -110,38 +126,62 @@
         }
       });
     }
-   
-    //*** Tiles Positioning ***//
-    var transformTile = function(el) {
-      var $el = $(el);
-      if( !$el.hasClass('hide-me') ){   
-        
-        //Move tiles to final position
-        $el.css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
-  
-        //Update Column height and horizontal position
-        tHeight[i] += $el.height(); 
-        posX += tWidth;
-        
-        //Reset tiles to next row
+
+    //Update Column height and horizontal position
+    var sepHeight = 0,
+        divideAfter = tileData[nCol].divideAfter;
+
+    var setNextPos = function($el, height, width) {
+      var newHeight = height || (tHeight[i] + $el.height()),
+          newWidth = (width || posX) + tWidth;
+
+        posX = newWidth;
+        tHeight[i] = newHeight;
         i++;
-        if(i == nCol){
+        if(i >= nCol){
           i = 0;
           posX=0;
         }
-      }  
+    };
+   
+    //*** Tiles Positioning ***//
+    var transformTile = function(el) {
     };
 
     i = 0, posX = 0;
     $('.isotope-item').each(function( index, el ) {
-      transformTile(this);
+      if(divideAfter > 0 && divideAfter < $('.isotope-item').not('.hide-me').length - 1) {
+        if(index == divideAfter) {
+          sepHeight = tHeight[i] + $(this).height() + 1;
+        } else if (index > divideAfter) {
+          posX = 0;
+          tHeight[i] = sepHeight + $('.csc-panel-separator').outerHeight();
+        }
+      }
+      var $el = $(el);
+      if( !$el.hasClass('hide-me') ){   
+        //Move tiles to final position
+        $el.css(prefix + 'transform', 'translate('+ posX +'px,'+ tHeight[i] +'px)');
+        setNextPos($el);
+      }  
     });
+
     
     //Set containter to highest height
-    maxH = 0;
-    for(var i=0; i < nCol; i++) if (tHeight[i] > maxH) maxH = tHeight[i];
-    $('#iso-container').css('height', maxH + 'px');
-  }
+      maxH = 0;
+      var containerHeight = 0;
+      for(i=0; i < nCol; i++) {
+        if (tHeight[i] > maxH) maxH = tHeight[i];
+      }
+      containerHeight = maxH;
+
+      if(sepHeight) {
+        $('.csc-panel-separator').appendTo('#iso-container').css(prefix + 'transform', 'translate(0px, ' + sepHeight + 'px)').show().css('visibility', 'visible');
+        containerHeight += $('.csc-panel-separator').height();
+      }
+
+      $container.css('height', containerHeight + 'px');
+  };
   
   //Filter function
   function filter(el){
@@ -153,11 +193,11 @@
         $(this).addClass('hide-me');
     });
 
-    home_layout();  
+    window.csc.home_layout();  
   }
 
   $(window).load(function() {    
-    home_layout();
+    window.csc.home_layout();
     
     //Filters
     $('#filters a').on('click', function(){
@@ -170,7 +210,7 @@
   var doit;
   $(window).resize(function(){
     clearTimeout(doit);
-    doit = setTimeout(home_layout, 300);
+    doit = setTimeout(window.csc.home_layout, 300);
   });
   
 })(jQuery);
