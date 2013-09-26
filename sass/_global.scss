@@ -1,3 +1,5 @@
+@import 'compass/css3';
+
 /* Global variables, mixins, etc. */
 
 $contexts:  'professions' #605385 26,
@@ -20,5 +22,11 @@ $banner_height: 76px;
   $index: index($contexts, $label);
   .node-#{nth($contexts, $index + 2)} {
     @content;
+  }
+}
+
+@mixin media($size) {
+  body.media-#{$size} & {
+    @content
   }
 }

@@ -1856,6 +1856,9 @@ a#menu-toggle:after {
   font-style: italic;
   color: #828282;
   padding-left: 10px;
+  text-transform: none;
+  font-weight: normal;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .bryant-sidebar{
@@ -1903,6 +1906,9 @@ header{
   width: 100%;
   height: $banner_height;
   background: #252525;
+  @media screen and (max-width: 640px) {
+    height: 50px;
+  }
 }
 
 body.logged-in {
@@ -1917,14 +1923,49 @@ body.logged-in {
     top: 0px;
   }
 }
+#header-mobile-nav {
+  display: none;
 
+  @media screen and (max-width: 640px) {
+    display: inline;
+    height: 12px;
+    width: 38px;
+    position: absolute;
+    left: 9px;
+    top: 11px;
+    z-index: 50;
+    font: 11px brandon, verdana, arial;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  img {
+    @media screen and (max-width: 640px) {
+      max-width: 200px;
+      margin-bottom: 4px;
+    }
+  }
+}
 #header-logo{ 
   min-width: 453px;
   float: left; position: relative; 
   padding: 12px 0px;
   background-color: #252525;
+  @media screen and (max-width: 640px) {
+    padding: 0px;
+    background-color: none;
+    min-width: 0px;
+    left: 43px;
+    top: 9px;
+  }
 }
-#header-logo img { margin-left: 15px; }
+#header-logo img { 
+  margin-left: 15px;
+  @media screen and (max-width: 640px) {
+    width: 290px;
+  }
+}
 #header-icons { 
    text-align: right;
    position: absolute;
@@ -1935,6 +1976,9 @@ body.logged-in {
     font-size: 13px;
     text-transform: uppercase;
     color: white;
+  }
+  @media screen and (max-width: 640px) {
+    display: none;
   }
 }
 /* #header-icons img { margin-right: 15px; } */
@@ -2193,66 +2237,16 @@ body.logged-in {
 
 .tooltip-content { margin: 40px 30px 30px 30px; text-align: justify; }
  
-/**
- *RESPONSIVE STYLES
- */
-  
-/* Wide styles
-@media screen and (min-width: 1350px) {
-  .isotope-element{ width: 25%; }
-  .isotope-element img { width: 100%; }
-}
-*/
-/* Medium styles
-@media screen and (max-width: 1349px) and (min-width: 1000px ) {
-  .isotope-element{ width: 33.33%; }
-  .isotope-element img { width: 100%; }
-}
-*/ 
-/* Small styles 
-@media screen and (max-width: 999px) and (min-width: 451px) {
-  .isotope-element{ width: 50%; }
-  .isotope-element img { width: 100%; }
-}
- */
-/* tiny style 
-@media screen and (max-width: 450px) {
-  .isotope-element{ width: 300px; }
-  .isotope-element img { width: 300px; }
-}
- */
- 
 /* Start width of isotope tiles */
 .isotope-element{ width: 25%; } 
 
-// home page styles
-%height100 {
-  /*height: 100%;*/
-}
-
-.front
+.front {
   #content {
     position: relative;
     top: $banner_height;
-    @extend %height100;
-  }
-  .section {
-    @extend %height100;
-  }
-  .region {
-    @extend %height100;
-  }
-  .block-system {
-    @extend %height100;
-  }
-  .content {
-    @extend %height100;
-  }
-  .csc-panel-container {
-    @extend %height100;
-  }
-  .csc-panel-col-right {
-    @extend %height100;
+    @media screen and (max-width: 640px) {
+      top: 50px;
+    }
   }
 
   .csc-panel-separator {
@@ -2270,4 +2264,10 @@ body.logged-in {
     color: #ccc;
     position: relative;
     z-index: 50;
+
+    @include media('small') {
+      font-size: 40px;
+    }
   }
+}
+

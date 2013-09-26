@@ -1,5 +1,6 @@
 <header>
-<div id="header-logo"><a href="/"><?php print_image('logo.gif', 453, 50, "Comtemplative Scinces Center");?></a></div>
+<div id="header-mobile-nav"><?php print_image('icon-menu.svg') ?>menu</div>
+<div id="header-logo"><a href="#"><?php print_image('logo.gif', 453, 50, "Comtemplative Scinces Center");?></a></div>
 <div id="header-icons">
   <ul>
     <!-- <li><a href="#"><?php print_image('explore_icon.png', 48, 48, "Explore CSC", 'class="top-icons" id="explore-icon"');?></a></li> -->

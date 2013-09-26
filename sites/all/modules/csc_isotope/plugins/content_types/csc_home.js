@@ -21,6 +21,24 @@
   if($.browser.msie)    prefix = '-ms-';
   if($.browser.webkit)  prefix = '-webkit-';
 
+  $(function() {
+    // TODO: here, change this to menu button and make a proper toggle
+    var toggle = 0,
+        css;
+    $('#header-mobile-nav').click(function(){
+      if( toggle ) {
+        css =  {left: '0px'}; 
+        toggle = 0;
+      } else {
+        css = {left: '150px', top: '0px'};
+        toggle = 1;
+        $('html,body').animate({scrollTop:0}, 0);
+      }
+      $('.csc-panel-col-left').toggle();
+      $('.csc-panel-col-right').css(css);
+    });
+  });
+
   //Build tiles layout
   window.csc.home_layout = function home_layout(){
     var $supercontainer = $('#block-system-main').find('.csc-panel-container'),
@@ -47,6 +65,11 @@
       nCol = 2;
     }else{
       nCol = 1;
+    }
+
+    if( cWidth > 640 ) {
+      var mobileRelics = $('#header-mobile-nav');
+      if(mobileRelics.is(':visible')) mobileRelics.click();
     }
 
     //if (nCol > 1 && cHeight < window.innerHeight) nCol = nCol - 1;

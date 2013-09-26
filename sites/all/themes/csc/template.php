@@ -4,7 +4,7 @@ function csc_preprocess_html(&$variables) {
   // Add variables for path to theme.
   $variables['base_path'] = base_path();
   $variables['path_to_resbartik'] = drupal_get_path('theme', 'responsive_bartik');
-  
+
   // Add body classes if certain regions have content.
   if (!empty($variables['page']['featured'])) {
     $variables['classes_array'][] = 'featured';
@@ -122,7 +122,7 @@ function csc_preprocess_block(&$variables) {
   }
 }
 
-/**                
+/**
  * Implements theme_menu_tree().
  */
 function csc_menu_tree($variables) {
@@ -147,8 +147,12 @@ function csc_menu_link__main_menu(array $variables) {
   if ($element['#below']) {
     $sub_menu = drupal_render($element['#below']);
   }
-  $output = l($element['#title'], $element['#href'], $element['#localized_options']);
-  if(isset($element['#localized_options']['attributes']['title']) && $element['#localized_options']['attributes']['title']) $output .= '<br><span class="menu-desc">'. $element['#localized_options']['attributes']['title'] .'</span>';
+  $output = $element['#title'];
+  if(isset($element['#localized_options']['attributes']['title']) && $element['#localized_options']['attributes']['title']) {
+    $output .= '<br><span class="menu-desc">'. $element['#localized_options']['attributes']['title'] .'</span>';
+  }
+  $element['#localized_options']['html'] = true;
+  $output = l($output, $element['#href'], $element['#localized_options']);
   return '<li' . drupal_attributes($element['#attributes']) . ' id="m-'. $element['#original_link']['mlid'] .'">' . $output . $sub_menu . "</li>\n";
 }
 
@@ -179,15 +183,15 @@ function csc_field__taxonomy_term_reference($variables) {
 /**
  * Print image located on theme floder
  */
-function print_image($img, $width='', $height='', $alt='', $attr='', $print=true){ 
+function print_image($img, $width='', $height='', $alt='', $attr='', $print=true){
  $path = base_path() . path_to_theme() . "/images/" . $img;
  $w = ($width) ? "width='$width'" : '';
  $h = ($height) ? "height='$height'" : '';
- 
+
  $img = "<img src='$path' $w $h alt='$alt' $attr>";
- 
+
  if($print)
   echo $img;
  else
-  return $img; 
+  return $img;
 }
