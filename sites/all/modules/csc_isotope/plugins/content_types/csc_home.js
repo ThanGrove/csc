@@ -21,10 +21,10 @@
   if($.browser.msie)    prefix = '-ms-';
   if($.browser.webkit)  prefix = '-webkit-';
 
+  // mobile menu navigation
   $(function() {
-    // TODO: here, change this to menu button and make a proper toggle
     var toggle = 0,
-        css;
+        css, clsFn;
     $('#header-mobile-nav').click(function(){
       if( toggle ) {
         css =  {left: '0px'}; 
@@ -35,7 +35,12 @@
         $('html,body').animate({scrollTop:0}, 0);
       }
       $('.csc-panel-col-left').toggle();
+      $('#header-icons').toggle();
       $('.csc-panel-col-right').css(css);
+
+      if(!toggle) {
+        window.csc.home_layout();
+      }
     });
   });
 
@@ -48,6 +53,8 @@
     
     $supercontainer.add($panelLeft).height(height);
     $panelRight.width($(window).width() - $panelRight.offset().left);
+
+    window.csc.containerHeight = height;
 
     //Size of container
     var $container = $('#iso-container'),
@@ -70,6 +77,7 @@
     if( cWidth > 640 ) {
       var mobileRelics = $('#header-mobile-nav');
       if(mobileRelics.is(':visible')) mobileRelics.click();
+      $('#header-icons').removeClass('mobile');
     }
 
     //if (nCol > 1 && cHeight < window.innerHeight) nCol = nCol - 1;
