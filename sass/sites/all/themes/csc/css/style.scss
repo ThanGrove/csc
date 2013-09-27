@@ -2029,6 +2029,9 @@ body.logged-in {
     padding: 0 20px; 
     display: inline; 
     border-left: 1px solid #454545; 
+    &.active, &:hover {
+      background-color: #444444;
+    }
   }
 
   .header-icon-text {
