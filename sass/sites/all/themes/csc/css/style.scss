@@ -639,15 +639,9 @@ h1#page-title {
   font-weight: bold;
   text-transform: uppercase;
 }
-@include respond-to('small') {
-  h1#page-title {
-    font-size: 3.3em;
-    margin-top: 0px;
-  }
-}
 #content h2 {
   margin-bottom: 5px;
-  font-size: 1.429em;
+  /*font-size: 1.429em;*/
   line-height: 1.4;
 }
 
@@ -1883,7 +1877,7 @@ a#menu-toggle:after {
 .csc-3col-first .csc-3col-inside { 
   padding: 0 10px; 
 
-  @include respond-to('small') {
+  @include media(small) {
     padding: 0px;
   }
 }
@@ -1894,7 +1888,7 @@ a#menu-toggle:after {
   top: $banner_height;
   vertical-align: top; background: #e8e7e5; 
 
-  @include respond-to('small') {
+  @include media(small) {
     display: none;
   }
 }
@@ -1908,29 +1902,33 @@ body.front {
 .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
 
 .csc-3col-first { 
+  padding: 30px;
   background: url(../images/gray_line_bg.gif) left repeat-y; 
-  padding: 20px;
   
-  @include respond-to('small') {
-    width: auto;
-    display: block;
-    p {
-      font-size: 14px;
+  #page-title {
+    margin-top: 5px;
+    font-size: 2.3em;
+    @include media(medium) {
+      font-size: 1.5em;
+    }
+    @include media(xlarge) {
+      font-size: 3.9em;
     }
   }
 
   .pane-node-title {
     margin-bottom: 8px;
-    a {
-      text-transform: uppercase;
-      font-weight: bold;
-      font-size: 34px;
-      
-      @include respond-to('small') {
-        font-size: 34px;
-      }
+  }
+
+  @include media(small) {
+    width: auto;
+    display: block;
+    padding: 20px;
+    p {
+      font-size: 14px;
     }
   }
+
 }
 .csc-3col-col-fixed .csc-3col-inside,
 .csc-panel-col-left .csc-panel-inside { background: #ffffff; }
@@ -1938,6 +1936,7 @@ body.front {
 .pane-csc-isotope { background: #e8e7e5; }
 .pane-csc-isotope h2 { text-align: center; }
 .pane-csc-isotope .pane-content { background: #e8e7e5 url(../images/filter_bg.gif) top center no-repeat; padding: 25px 0 40px 0; }
+
 #filters {
   float: left;
   width: 100%;
@@ -1955,7 +1954,7 @@ header{
   width: 100%;
   height: $banner_height;
   background: #252525;
-  @include respond-to('small') {
+  @include media(small) {
     height: 50px;
   }
 }
@@ -1975,7 +1974,7 @@ body.logged-in {
 #header-mobile-nav {
   display: none;
 
-  @include respond-to('small') {
+  @include media(small) {
     display: inline;
     height: 12px;
     width: 38px;
@@ -1990,7 +1989,7 @@ body.logged-in {
   }
 
   img {
-    @include respond-to('small') {
+    @include media(small) {
       max-width: 200px;
       margin-bottom: 4px;
     }
@@ -2001,7 +2000,7 @@ body.logged-in {
   float: left; position: relative; 
   padding: 12px 0px;
   background-color: #252525;
-  @include respond-to('small') {
+  @include media(small) {
     padding: 0px;
     background-color: none;
     min-width: 0px;
@@ -2011,7 +2010,7 @@ body.logged-in {
 }
 #header-logo img { 
   margin-left: 15px;
-  @include respond-to('small') {
+  @include media(small) {
     width: 290px;
   }
 }
@@ -2038,7 +2037,7 @@ body.logged-in {
     color: white;
   }
 
-  @include respond-to('small') {
+  @include media(small) {
     display: none;
     background-color: #252525;
     top: 50px;
@@ -2116,10 +2115,8 @@ body.logged-in {
  *Content boxes
  */
 .csc-item-container { 
-  padding: 0 20px; 
-
-  @include respond-to('small') {
-    padding: 0;
+  @include media(large xlarge) {
+    padding: 0 20px; 
   }
 }
  
@@ -2137,7 +2134,7 @@ body.logged-in {
 
 .see-all-research { 
   float: left; width: 100%; padding: 15px 0 0 0; margin-top: 15px; border-top: 1px solid #e0e0e0;
-  @include respond-to('small') {
+  @include media(small medium) {
     border: none;
     float: none;
     padding: 0px;
@@ -2157,10 +2154,9 @@ body.logged-in {
   font-size: 10px;
   padding-bottom: 20px;  
 
-  @include respond-to('small') {
+  @include media(small) {
     position: relative;
     padding: 20px;
-    width: auto;
 
     .pane-content {
       position: relative;
@@ -2177,7 +2173,7 @@ body.logged-in {
   float: left;
   background: url(../images/line_bg.png) left no-repeat;
 
-  @include respond-to('small') {
+  @include media(small) {
     float: none;
     width: auto;
     background: none;
@@ -2194,7 +2190,7 @@ body.logged-in {
   font-size: 10px;
   padding-bottom: 20px;  
 
-  @include respond-to('small') {
+  @include media(small) {
     padding: 20px;
     width: auto;
     h2 {
@@ -2211,7 +2207,7 @@ body.logged-in {
   font-size: 10px;
   padding-bottom: 20px;  
 
-  @include respond-to('small') {
+  @include media(small) {
     padding-bottom: 0px;
 
     h2 {
@@ -2264,19 +2260,10 @@ body.logged-in {
 .pane-csc-related-people h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
 .csc-people-wrapper img { float: left; }
 
-.csc-3col-right2 {
-  > div {
-    padding: 30px;
-    #page-title {
-      margin-top: 5px;
-      font-size: 2.3em;
-    }
-  }
-}
 
 .pane-csc-teaser { 
 
-  @include respond-to('small') {
+  @include media(small) {
     padding: 0px;
     margin-bottom: 34px;
   }
@@ -2300,7 +2287,7 @@ body.logged-in {
   margin-top: 20px;
   border-top: 1px solid #e0e0e0;  
 
-  @include respond-to('small') {
+  @include media(small) {
     float: none;
     margin: 10px 0px 0px 0px;
     padding: 0px;
@@ -2321,7 +2308,7 @@ body.logged-in {
     background: none;
   }
 
-  @include respond-to('small') {
+  @include media(small medium) {
     float: none;
     width: auto;
     background: none;
@@ -2340,8 +2327,8 @@ body.logged-in {
 .csc-research-title,
 .pane-csc-related-activities .pane-title {
   font-family: brandon;
-  font-size: 25px !important;
-  padding-left: 20px;
+  font-size: 25px;
+  /*padding-left: 20px;*/
 }
 .csc-research-title {
   font-family: brandon;
@@ -2457,7 +2444,7 @@ body.logged-in {
   #content {
     position: relative;
     top: $banner_height;
-    @include respond-to('small') {
+    @include media(small) {
       top: 50px;
     }
   }

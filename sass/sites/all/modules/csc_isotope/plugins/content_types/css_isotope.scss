@@ -301,7 +301,7 @@ body {
 /*@media screen and (max-width: 1999px) and (min-width: 1350px) {*/
 
 /* small styles */
-@include respond-to('small') {
+@include media(small) {
   .content {
     .csc-panel-col-left {
       position: static;

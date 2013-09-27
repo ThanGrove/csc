@@ -12,7 +12,10 @@ $contexts:  'professions' #605385 26,
 
 $banner_height: 76px;
 $nav_width: 150px;
-$break_small: 640px;
+
+$break_small: 640;
+$break_medium: 1310;
+$break_large: 2000;
 
 @each $context in $contexts {
   $label: nth($context, 1);
@@ -35,10 +38,24 @@ $break_small: 640px;
   }
 }
 
-@mixin respond-to($size) {
-  @if $size == 'small' {
-    @media only screen and (max-width: $break_small) {
-      @content
+@mixin media($sizes) {
+  @each $size in $sizes {
+    @if $size == small {
+      @media only screen and (max-width: $break_small + 'px') {
+        @content
+      }
+    } @else if $size == medium {
+      @media only screen and (min-width: $break_small + 1 + 'px') and (max-width: $break_medium + 'px') {
+        @content
+      }
+    } @else if $size == large {
+      @media only screen and (min-width: $break_medium + 1 + 'px') and (max-width: $break_large + 'px') {
+        @content
+      }
+    } @else if $size == xlarge {
+      @media only screen and (min-width: $break_large + 1 + 'px') {
+        @content
+      }
     }
   }
 }
