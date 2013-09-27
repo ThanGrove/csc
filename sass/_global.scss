@@ -9,6 +9,8 @@ $contexts:  'professions' #605385 26,
             'education'   #ffc123 21;
 
 $banner_height: 76px;
+$nav_width: 150px;
+$break_small: 640px;
 
 @each $context in $contexts {
   $label: nth($context, 1);
@@ -25,8 +27,16 @@ $banner_height: 76px;
   }
 }
 
-@mixin media($size) {
+@mixin tile($size) {
   body.media-#{$size} & {
     @content
+  }
+}
+
+@mixin respond-to($size) {
+  @if $size == 'small' {
+    @media only screen and (max-width: $break_small) {
+      @content
+    }
   }
 }

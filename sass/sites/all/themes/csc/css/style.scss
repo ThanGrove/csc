@@ -66,7 +66,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 1.0em 0 0.5em;
+  margin: 1.0em 0 0em;
   font-weight: inherit;
 }
 h1 {
@@ -1871,13 +1871,23 @@ a#menu-toggle:after {
   margin-left: 150px;
 }
 
-.csc-3col-first .csc-3col-inside { padding: 0 10px; }
+.csc-3col-first .csc-3col-inside { 
+  padding: 0 10px; 
+
+  @include respond-to('small') {
+    padding: 0px;
+  }
+}
 .csc-3col-second { background: #494949; }
 
 .csc-3col-col-fixed,
 .csc-panel-col-left { 
   top: $banner_height;
   vertical-align: top; background: #e8e7e5; 
+
+  @include respond-to('small') {
+    display: none;
+  }
 }
 
 body.front {
@@ -1892,21 +1902,29 @@ body.front {
   background: url(../images/gray_line_bg.gif) left repeat-y; 
   padding: 20px;
   
+  @include respond-to('small') {
+    width: auto;
+    display: block;
+    p {
+      font-size: 14px;
+    }
+  }
+
   .pane-node-title {
+    margin-bottom: 8px;
     a {
       text-transform: uppercase;
       font-weight: bold;
       font-size: 34px;
+      
+      @include respond-to('small') {
+        font-size: 34px;
+      }
     }
   }
 }
 .csc-3col-col-fixed .csc-3col-inside,
 .csc-panel-col-left .csc-panel-inside { background: #ffffff; }
-
-/*.csc-3col-right2 {*/
-  /*position: relative;*/
-  /*left: 150px;*/
-/*}*/
 
 .pane-csc-isotope { background: #e8e7e5; }
 .pane-csc-isotope h2 { text-align: center; }
@@ -1928,7 +1946,7 @@ header{
   width: 100%;
   height: $banner_height;
   background: #252525;
-  @media screen and (max-width: 640px) {
+  @include respond-to('small') {
     height: 50px;
   }
 }
@@ -1948,7 +1966,7 @@ body.logged-in {
 #header-mobile-nav {
   display: none;
 
-  @media screen and (max-width: 640px) {
+  @include respond-to('small') {
     display: inline;
     height: 12px;
     width: 38px;
@@ -1963,7 +1981,7 @@ body.logged-in {
   }
 
   img {
-    @media screen and (max-width: 640px) {
+    @include respond-to('small') {
       max-width: 200px;
       margin-bottom: 4px;
     }
@@ -1974,7 +1992,7 @@ body.logged-in {
   float: left; position: relative; 
   padding: 12px 0px;
   background-color: #252525;
-  @media screen and (max-width: 640px) {
+  @include respond-to('small') {
     padding: 0px;
     background-color: none;
     min-width: 0px;
@@ -1984,7 +2002,7 @@ body.logged-in {
 }
 #header-logo img { 
   margin-left: 15px;
-  @media screen and (max-width: 640px) {
+  @include respond-to('small') {
     width: 290px;
   }
 }
@@ -2011,7 +2029,7 @@ body.logged-in {
     color: white;
   }
 
-  @media screen and (max-width: 640px) {
+  @include respond-to('small') {
     display: none;
     background-color: #252525;
     top: 50px;
@@ -2088,7 +2106,13 @@ body.logged-in {
 /**
  *Content boxes
  */
-.csc-item-container { padding: 0 20px; }
+.csc-item-container { 
+  padding: 0 20px; 
+
+  @include respond-to('small') {
+    padding: 0;
+  }
+}
  
 .csc-item-num-1 { width: 100%; }
 .csc-item-num-2 { width: 50%; }
@@ -2116,6 +2140,14 @@ body.logged-in {
   color: #ffffff;
   font-size: 10px;
   padding-bottom: 20px;  
+
+  @include respond-to('small') {
+    padding: 20px;
+    h2 {
+      padding-left: 0px !important;
+      margin-top: 0px;
+    }
+  }
 }
 
 .csc-organization-item,
@@ -2141,6 +2173,15 @@ body.logged-in {
   width: 100%;
   font-size: 10px;
   padding-bottom: 20px;  
+
+  @include respond-to('small') {
+    padding-bottom: 0px;
+
+    h2 {
+      margin-top: 0px;
+      padding-left: 0px !important;
+    }
+  }
 }
 .csc-activities-item { float: left; width: 100%; }
 .pane-csc-related-activities h2 a{ font-size: 13px; color: #3b3b3b; font-style: italic; font-weight: normal; }
@@ -2186,8 +2227,7 @@ body.logged-in {
 .pane-csc-related-people h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
 .csc-people-wrapper img { float: left; }
 
-.pane-csc-teaser,
-.pane-node-title { padding: 0 20px; }
+.pane-csc-teaser { padding: 0 20px; }
 
 .pane-csc-teaser .pane-title,
 .pane-node-title .pane-title,
@@ -2206,18 +2246,33 @@ body.logged-in {
   padding: 20px 0 20px 0;
   margin-top: 20px;
   border-top: 1px solid #e0e0e0;  
+
+  @include respond-to('small') {
+    float: none;
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+    border: none;
+    h3 {
+      margin-top: 10px;
+    }
+  }
 }
 
 .csc-research-item {
   float: left;
   font-size: 10px;
-}
-
-.csc-research-item {
-  float: left;
   background: url(../images/gray_line_bg.gif) left no-repeat;
+
+  &:first-child {
+    background: none;
+  }
+
+  @include respond-to('small') {
+    float: none;
+    width: auto;
+    background: none;
+  }
 }
-.csc-research-item:first-child { background: none; }
 
 .pane-csc-related-people .pane-title,
 .pane-csc-related-events .pane-title,
@@ -2290,7 +2345,7 @@ body.logged-in {
   #content {
     position: relative;
     top: $banner_height;
-    @media screen and (max-width: 640px) {
+    @include respond-to('small') {
       top: 50px;
     }
   }
@@ -2311,7 +2366,8 @@ body.logged-in {
     position: relative;
     z-index: 50;
 
-    @include media('small') {
+    @include tile('small') {
+      background: url(../images/icon-menu.svg) no-repeat;
       font-size: 40px;
     }
   }

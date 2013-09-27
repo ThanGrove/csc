@@ -169,19 +169,19 @@ body {
     font-weight: 200;
     line-height: 28px;
 
-    @include media('x-large') {
+    @include tile('x-large') {
       font-size: 30px;
       line-height: 38px;
     }
-    @include media('large') {
+    @include tile('large') {
       font-size: 22px;
       line-height: 26px;
     }
-    @include media('medium') {
+    @include tile('medium') {
       font-size: 18px;
       line-height: 24px;
     }
-    @include media('small') {
+    @include tile('small') {
       font-size: 16px;
       line-height: 22px;
     }
@@ -197,10 +197,10 @@ body {
   font-size: 16px;
   padding: 0px 12px;
 
-  @include media('x-large') {
+  @include tile('x-large') {
     font-size: 18px;
   }
-  @include media('small') {
+  @include tile('small') {
     font-size: 14px;
     line-height: 18px;
   }
@@ -211,10 +211,10 @@ body {
   text-transform: uppercase;
   font-size: 12px;
 
-  @include media('x-large') {
+  @include tile('x-large') {
     font-size: 14px;
   }
-  @include media('small') {
+  @include tile('small') {
     font-size: 11px;
   }
 }
@@ -239,19 +239,19 @@ body {
     text-transform: uppercase;
     text-transform: uppercase;
     
-    @include media('x-large') {
+    @include tile('x-large') {
       font-size: 40px;
       line-height: 45px;
     }
-    @include media('large') {
+    @include tile('large') {
       font-size: 30px;
       line-height: 34px;
     }
-    @include media('medium') {
+    @include tile('medium') {
       font-size: 24px;
       line-height: 30px;
     }
-    @include media('small') {
+    @include tile('small') {
       font-size: 18px;
       line-height: 22px;
       }
@@ -301,7 +301,7 @@ body {
 /*@media screen and (max-width: 1999px) and (min-width: 1350px) {*/
 
 /* small styles */
-@media screen and (max-width: 640px) {
+@include respond-to('small') {
   .content {
     .csc-panel-col-left {
       position: static;

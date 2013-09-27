@@ -34,7 +34,7 @@
         toggle = 1;
         $('html,body').animate({scrollTop:0}, 0);
       }
-      $('.csc-panel-col-left').toggle();
+      $('.csc-panel-col-left, .csc-3col-col-fixed').toggle();
       $('#header-icons').toggle();
       $('.csc-panel-col-right').css(css);
 
