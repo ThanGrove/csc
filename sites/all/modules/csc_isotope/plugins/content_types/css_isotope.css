@@ -1,25 +1,25 @@
 /* Global variables, mixins, etc. */
-/* line 23, ../../../../../../sass/_global.scss */
+/* line 24, ../../../../../../sass/_global.scss */
 .type-initiatives.node-26 {
   background-color: #605385;
 }
 
-/* line 23, ../../../../../../sass/_global.scss */
+/* line 24, ../../../../../../sass/_global.scss */
 .type-initiatives.node-22 {
   background-color: #00b1a6;
 }
 
-/* line 23, ../../../../../../sass/_global.scss */
+/* line 24, ../../../../../../sass/_global.scss */
 .type-initiatives.node-20 {
   background-color: #ff6b53;
 }
 
-/* line 23, ../../../../../../sass/_global.scss */
+/* line 24, ../../../../../../sass/_global.scss */
 .type-initiatives.node-25 {
   background-color: #34c780;
 }
 
-/* line 23, ../../../../../../sass/_global.scss */
+/* line 24, ../../../../../../sass/_global.scss */
 .type-initiatives.node-21 {
   background-color: #ffc123;
 }
@@ -215,22 +215,22 @@ body {
   line-height: 28px;
   text-align: center;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-x-large .type-news .iso-title, body.media-x-large .type-feature .iso-title {
   font-size: 30px;
   line-height: 38px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-large .type-news .iso-title, body.media-large .type-feature .iso-title {
   font-size: 22px;
   line-height: 26px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-medium .type-news .iso-title, body.media-medium .type-feature .iso-title {
   font-size: 18px;
   line-height: 24px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-small .type-news .iso-title, body.media-small .type-feature .iso-title {
   font-size: 16px;
   line-height: 22px;
@@ -243,11 +243,11 @@ body.media-small .type-news .iso-title, body.media-small .type-feature .iso-titl
   font-size: 16px;
   padding: 0px 12px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-x-large .isotope .iso-teaser {
   font-size: 18px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-small .isotope .iso-teaser {
   font-size: 14px;
   line-height: 18px;
@@ -259,11 +259,11 @@ body.media-small .isotope .iso-teaser {
   text-transform: uppercase;
   font-size: 12px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-x-large .iso-date {
   font-size: 14px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-small .iso-date {
   font-size: 11px;
 }
@@ -284,22 +284,22 @@ body.media-small .iso-date {
   text-transform: uppercase;
   text-transform: uppercase;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-x-large .type-initiatives .iso-title {
   font-size: 40px;
   line-height: 45px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-large .type-initiatives .iso-title {
   font-size: 30px;
   line-height: 34px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-medium .type-initiatives .iso-title {
   font-size: 24px;
   line-height: 30px;
 }
-/* line 36, ../../../../../../sass/_global.scss */
+/* line 37, ../../../../../../sass/_global.scss */
 body.media-small .type-initiatives .iso-title {
   font-size: 18px;
   line-height: 22px;

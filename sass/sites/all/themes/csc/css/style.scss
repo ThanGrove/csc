@@ -1896,6 +1896,9 @@ a#menu-toggle:after {
 body.front {
   .csc-3col-col-fixed, .csc-panel-col-left {
     position: fixed;
+    @include media(short) {
+      position: static;
+    }
   }
 }
 
@@ -2087,9 +2090,14 @@ body.logged-in {
   border-top: 1px solid #ffffff;
   background: #dbdad8;
   padding: 0px;
+  margin-top: 13px;
 
   .pane-content {
     margin: 5px;
+  }
+
+  @include media(short) {
+    position: static;
   }
 } 
 

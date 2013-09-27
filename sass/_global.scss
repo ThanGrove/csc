@@ -16,6 +16,7 @@ $nav_width: 150px;
 $break_small: 640;
 $break_medium: 1310;
 $break_large: 2000;
+$break_short: 810;
 
 @each $context in $contexts {
   $label: nth($context, 1);
@@ -54,6 +55,10 @@ $break_large: 2000;
       }
     } @else if $size == xlarge {
       @media only screen and (min-width: $break_large + 1 + 'px') {
+        @content
+      }
+    } @else if $size == short {
+      @media only screen and (max-height: $break_short + 'px') {
         @content
       }
     }
