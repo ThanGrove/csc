@@ -1,0 +1,4 @@
+name = CSC Test Widget
+description = To test custom code
+version = 7.x-1.0
+core = 7.x

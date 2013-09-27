@@ -1,0 +1,4 @@
+name = CSC Latest News
+description = Shows latest news on widget
+version = 7.x-1.0
+core = 7.x

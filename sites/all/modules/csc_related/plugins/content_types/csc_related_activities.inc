@@ -31,7 +31,7 @@ function csc_related_activities_render($subtype, $conf, $panel_args, $context = 
   $type = 'activities';
   $nids = csc_related_get_nodes($type);
   
-  $output = '';
+  $output = '<div class="see-all-black"><a href="'. url('events', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
   foreach($nids as $nid){
     $node = node_load($nid);
     $lng = $node->language;

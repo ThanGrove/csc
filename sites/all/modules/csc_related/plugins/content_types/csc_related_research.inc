@@ -70,6 +70,7 @@ function theme_csc_related_research_item($var){
   if ($var['image']) $output .= $image . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= $var['body'];
+  $output.= '<div class="see-all-research"><a href="'. url($var['type'], array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL '. strtoupper($var['type']) .'</a></div>';
   $output.= '</div>';  
   $output.= '</div>';
   

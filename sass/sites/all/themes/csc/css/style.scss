@@ -66,7 +66,7 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 1.0em 0 0em;
+  margin: 1.0em 0 0.5em;
   font-weight: inherit;
 }
 h1 {
@@ -2274,6 +2274,7 @@ body.logged-in {
   }
 }
 
+.pane-csc-next-event .pane-title,
 .pane-csc-related-people .pane-title,
 .pane-csc-related-events .pane-title,
 .pane-csc-related-organizations .pane-title {
@@ -2307,6 +2308,63 @@ body.logged-in {
 .pane-csc-latest-news h2 { font-family: brandon; font-size: 12px !important; font-weight: bold; font-style: normal; text-transform: uppercase; }
 .pane-csc-latest-news h3 a { font-family: brandon; font-size: 12px !important; font-weight: bold; font-style: normal; color: #000000; }
 
+.pane-csc-next-event{
+  float: left;
+  width: 100%;
+  background: #653352;
+  padding: 0 0 20px 0;
+  color: #ffffff;
+  font-size: 10px;
+}
+
+.pane-csc-next-event h3 { border-top: 1px solid #835c74; padding-top: 10px; }
+.pane-csc-next-event h3 a {
+  color: #FFFFFF;
+  font-size: 21px;
+  font-style: italic;
+  font-weight: normal;
+  font-family: brandon;
+}
+
+.when {
+  font-family: arial,verdana,serif;
+  font-size: 10px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+
+.event-desc{
+  float: left;
+  width: 100%;
+  font-size: 11px;
+  padding: 10px 0;
+  margin: 10px 0;
+  border-top: 1px solid #835c74;
+  border-bottom: 1px solid #835c74;
+}
+
+.white-link{ font-size: 10px; font-weight: bold; font-family: brandon; color: #ffffff; background: url(../images/rounded_white_arrow.png) right no-repeat; padding-right: 20px; }
+.white-link:hover { color: #ffffff; }
+
+.csc-first-image-wrapper{
+  float: left;
+  width: 100%;
+  position: relative;
+}
+
+.csc-first-image-caption{
+  background: rgba(0,0,0,0.2);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  text-align: center;
+}
+
+.csc-first-image-caption a:hover,
+.csc-first-image-caption a { color: #ffffff; font-style: italic; }
 /**
  *Tooltips
  */

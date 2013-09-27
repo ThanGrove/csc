@@ -22,7 +22,7 @@
     var url = String(location);
     //Search if current page is a sub-menu
     $('ul.menu > li > a').each(function(index){
-      hr = $(this).attr('href'); console.log(hr);
+      hr = $(this).attr('href');
       found = url.search(hr);
       if(found > 0){
         el = $(this);

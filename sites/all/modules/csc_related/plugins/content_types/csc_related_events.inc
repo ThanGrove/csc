@@ -30,7 +30,7 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
   $type = 'event';
   $nids = csc_related_get_nodes($type);
   
-  $output = '';
+  $output = '<div class="see-all"><a href="'. url('events', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
   $class = 'csc-item-num-' . sizeof($nids);
   foreach($nids as $nid){
     $node = node_load($nid);
@@ -63,7 +63,7 @@ function theme_csc_related_events_item($var){
   $tstamp = mktime($h, $min, $sec, $month, $day, $year);
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   
-  $output ='<div class="csc-event-item '. $var['class'] .'"><div class="csc-item-container">';
+  $output = '<div class="csc-event-item '. $var['class'] .'"><div class="csc-item-container">';
   if ($var['image']) $output .= $image . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";

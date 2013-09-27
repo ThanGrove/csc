@@ -1,0 +1,4 @@
+name = CSC Teaser
+description = Shows node teaser and node body on pop-up window
+version = 7.x-1.0
+core = 7.x
