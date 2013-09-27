@@ -19,10 +19,12 @@
     <div class="csc-3col-inside"><?php print $content['fixed']; ?></div>
   </div>
 
-  <div class="csc-3col-col-fluid csc-3col-first">
-    <div class="csc-3col-inside"><?php print $content['fluid1']; ?></div>
-  </div>
-  <div class="csc-3col-col-fluid csc-3col-second">
-    <div class="csc-3col-inside"><?php print $content['fluid2']; ?></div>
+  <div class="csc-3col-right2">
+    <div class="csc-3col-col-fluid csc-3col-first">
+      <div class="csc-3col-inside"><?php print $content['fluid1']; ?></div>
+    </div>
+    <div class="csc-3col-col-fluid csc-3col-second">
+      <div class="csc-3col-inside"><?php print $content['fluid2']; ?></div>
+    </div>
   </div>
 </div></div>

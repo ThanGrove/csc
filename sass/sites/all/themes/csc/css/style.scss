@@ -1878,13 +1878,35 @@ a#menu-toggle:after {
 .csc-panel-col-left { 
   top: $banner_height;
   vertical-align: top; background: #e8e7e5; 
-  position: fixed;
 }
+
+body.front {
+  .csc-3col-col-fixed, .csc-panel-col-left {
+    position: fixed;
+  }
+}
+
 .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
 
-.csc-3col-first { background: url(../images/gray_line_bg.gif) left repeat-y; }
+.csc-3col-first { 
+  background: url(../images/gray_line_bg.gif) left repeat-y; 
+  padding: 20px;
+  
+  .pane-node-title {
+    a {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 34px;
+    }
+  }
+}
 .csc-3col-col-fixed .csc-3col-inside,
 .csc-panel-col-left .csc-panel-inside { background: #ffffff; }
+
+/*.csc-3col-right2 {*/
+  /*position: relative;*/
+  /*left: 150px;*/
+/*}*/
 
 .pane-csc-isotope { background: #e8e7e5; }
 .pane-csc-isotope h2 { text-align: center; }
@@ -2264,7 +2286,7 @@ body.logged-in {
 /* Start width of isotope tiles */
 .isotope-element{ width: 25%; } 
 
-.front {
+.front, .page-node {
   #content {
     position: relative;
     top: $banner_height;
