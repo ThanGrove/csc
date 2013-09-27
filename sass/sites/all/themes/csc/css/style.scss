@@ -2264,8 +2264,17 @@ body.logged-in {
 .pane-csc-related-people h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
 .csc-people-wrapper img { float: left; }
 
+.csc-3col-right2 {
+  > div {
+    padding: 30px;
+    #page-title {
+      margin-top: 5px;
+      font-size: 2.3em;
+    }
+  }
+}
+
 .pane-csc-teaser { 
-  padding: 0 20px;
 
   @include respond-to('small') {
     padding: 0px;
@@ -2476,3 +2485,9 @@ body.logged-in {
   }
 }
 
+@if $mode == 'debug' {
+  #messages {
+    position: absolute;
+    z-index: 9999;
+  }
+}
