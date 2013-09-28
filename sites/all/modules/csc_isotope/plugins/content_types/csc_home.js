@@ -1,5 +1,5 @@
 (function ($) {
-  window.csc = {};
+  window.csc = window.csc || {};
 
   // the key is the number of columns
   var tileData = {
@@ -20,29 +20,6 @@
   var prefix = '';
   if($.browser.msie)    prefix = '-ms-';
   if($.browser.webkit)  prefix = '-webkit-';
-
-  // mobile menu navigation
-  $(function() {
-    var toggle = 0,
-        css, clsFn;
-    $('#header-mobile-nav').click(function(){
-      if( toggle ) {
-        css =  {left: '0px'}; 
-        toggle = 0;
-      } else {
-        css = {left: '150px', top: '0px'};
-        toggle = 1;
-        $('html,body').animate({scrollTop:0}, 0);
-      }
-      $('.csc-panel-col-left, .csc-3col-col-fixed').toggle();
-      $('#header-icons').toggle();
-      $('.csc-panel-col-right').css(css);
-
-      if(!toggle) {
-        window.csc.home_layout();
-      }
-    });
-  });
 
   //Build tiles layout
   window.csc.home_layout = function home_layout(){

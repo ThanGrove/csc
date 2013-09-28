@@ -1988,12 +1988,10 @@ body.logged-in {
     color: white;
     text-transform: uppercase;
     text-align: center;
-  }
 
-  img {
-    @include media(small) {
-      max-width: 200px;
-      margin-bottom: 4px;
+    img {
+        max-width: 200px;
+        margin-bottom: 4px;
     }
   }
 }

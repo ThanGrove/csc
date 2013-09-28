@@ -1,4 +1,44 @@
 (function ($) {
+  var menuToggle = 0;
+
+  window.csc = window.csc || {};
+
+  window.csc.toggleMenu = function(){
+    var css, clsFn;
+    
+    if( menuToggle ) {
+      css =  {left: '0px'}; 
+      menuToggle = 0;
+      if(!window.csc.menuToggleListener)
+        window.csc.menuToggleListener = (menuToggleListener)();
+    } else {
+      css = {left: '150px', top: '0px'};
+      menuToggle = 1;
+      $('html,body').animate({scrollTop:0}, 0);
+    }
+    $('.csc-panel-col-left, .csc-3col-col-fixed').toggle();
+    $('#header-icons').toggle();
+    $('.csc-panel-col-right').css(css);
+
+    if(!menuToggle && window.csc.home_layout) {
+      window.csc.home_layout();
+    }
+  };
+
+  var wto;
+  var menuToggleListener = function(){
+    $(window).resize(function(){
+      clearTimeout(wto);
+      wto = setTimeout(function() {
+        var ww = $(window).width();
+        if((!menuToggle && ww > 640) || menuToggle && ww < 641) {
+          window.csc.toggleMenu();
+        }
+      }, 150);
+    });
+  };
+
+
   $(document).ready(function () {
     //Bind expand/contract effect to menus
     $('#main-menu > .expanded > a').each(function(){
@@ -40,6 +80,8 @@
         }
       }
     }    
-    
+   
+    // mobile menu
+    $('#header-mobile-nav').click(window.csc.toggleMenu);
   });
 })(jQuery);
