@@ -1977,11 +1977,12 @@ body.logged-in {
 
   @include media(small) {
     display: inline;
-    height: 12px;
+    height: 33px;
     width: 38px;
     position: absolute;
     left: 9px;
-    top: 11px;
+    top: 8px;
+    padding-top: 3px;
     z-index: 50;
     font: 11px brandon, verdana, arial;
     color: white;
@@ -2026,12 +2027,21 @@ body.logged-in {
     text-align: center;
     float: left; 
     height: $banner_height; 
-    padding: 0 20px; 
     display: inline; 
     border-left: 1px solid #454545; 
     &.active, &:hover {
       background-color: #444444;
     }
+    a {
+      position: relative;
+      display: table-cell;
+      height: $banner_height;
+      width: 84px;
+      vertical-align: middle;
+    }
+  }
+  img {
+    margin-bottom: 19px;
   }
 
   .header-icon-text {
@@ -2039,6 +2049,9 @@ body.logged-in {
     font-size: 13px;
     text-transform: uppercase;
     color: white;
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
   }
 
   @include media(small) {
@@ -2056,11 +2069,17 @@ body.logged-in {
       height: auto;
       border: none;
       padding: 0px 3px;
+
+      a {
+        width: 42px;
+        height: 57px;
+      }
     }
     img {
-      width: 31px;
+      margin-bottom: 14px;
     }
     .header-icon-text {
+      bottom: 3px;
       font-size: 9px;
     }
   }
