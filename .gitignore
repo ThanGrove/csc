@@ -26,3 +26,4 @@ sites/all/themes/README.txt
 *.swp
 .sass-cache
 .ruby-version
+*.DS_Store
