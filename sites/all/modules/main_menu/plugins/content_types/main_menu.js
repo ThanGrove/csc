@@ -58,28 +58,37 @@
     });
 
     //Auto expand for active sub-menus
-    var el = false;
-    var url = String(location);
-    //Search if current page is a sub-menu
-    $('ul.menu > li > a').each(function(index){
-      hr = $(this).attr('href');
-      found = url.search(hr);
-      if(found > 0){
-        el = $(this);
-      }  
-    });
-    
-    if(el){
-      var ul = el.parent().parent();  //UL of current anchor
-      //it is a sub-menu
-      if(ul.attr('id') != 'main-menu'){
-        var li = ul.parent();
-        if(li.hasClass('expanded')){
-          li.removeClass('expanded');
-          li.addClass('contracted');
-        }
+    var url = location.href.split('/').slice(3).join('/'),
+        $el = $('#main-menu').find('a[href*=\"' + url + '\"]'),
+        $li;
+
+    if($el.length) {
+      $li = $el.closest('li.expanded');
+      if ($li.length) {
+        $li.removeClass('expanded').addClass('contracted');
+        $li.closest('ul').show();
+        $el.addClass('active');
       }
-    }    
+    }
+    //Search if current page is a sub-menu
+    
+    //$('#main-menu .leaf a').each(function(index){
+      //found = ~url.indexOf(this.href);
+      //if(found){
+        //$el = $(this);
+        //var $ul = $el.closest('ul');  //UL of current anchor
+        ////it is a sub-menu
+        //if($ul.attr('id') != 'main-menu'){
+          //var li = ul.parent();
+          //if(li.hasClass('expanded')){
+            //li.removeClass('expanded');
+            //li.addClass('contracted');
+          //}
+        //}  
+        //return false;
+      //}
+    //});
+    
    
     // mobile menu
     $('#header-mobile-nav').click(window.csc.toggleMenu);
