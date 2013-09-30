@@ -2563,7 +2563,7 @@ body.logged-in {
 /* Start width of isotope tiles */
 .isotope-element{ width: 25%; } 
 
-.front, .page-node {
+body:not(.logged-in) {
   #content {
     position: relative;
     top: $banner_height;
