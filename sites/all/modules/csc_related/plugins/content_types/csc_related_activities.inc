@@ -24,14 +24,14 @@ function csc_related_activities_info($subtype, $conf, $contexts) {
 
 /**
  * Build blocks for Related events
- */ 
+ */
 function csc_related_activities_render($subtype, $conf, $panel_args, $context = NULL) {
   module_load_include('inc', 'csc_related', 'csc_related');
-  
+
   $type = 'activities';
   $nids = csc_related_get_nodes($type);
-  
-  $output = '<div class="see-all-black"><a href="'. url('events', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
+
+  $output = '<div class="see-all"><a href="'. url('events', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
   foreach($nids as $nid){
     $node = node_load($nid);
     $lng = $node->language;
@@ -43,24 +43,24 @@ function csc_related_activities_render($subtype, $conf, $panel_args, $context = 
   }
 
   $block = new stdClass();
-  $block->title = 'Activities'; 
+  $block->title = 'Activities';
   $block->content = $output;
-  
+
   return $block;
 }
 
 /**
  * Theme function
- */ 
+ */
 function theme_csc_related_activities_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
-  
+
   $output ='<div class="csc-activities-item"><div class="csc-item-container">';
   if ($var['image']) $output .= $image . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= "</div></div>\n";
-  
+
   return $output;
 }

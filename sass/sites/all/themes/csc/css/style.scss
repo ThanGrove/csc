@@ -1882,6 +1882,9 @@ a#menu-toggle:after {
 .csc-3col-second { 
   background: #494949;
 
+  h2 {
+    margin-top: 12px;
+  }
   .panel-pane:first-child {
     @include add_nodes;
   }
@@ -2154,9 +2157,24 @@ body.logged-in {
 /**
  *Content boxes
  */
-.csc-item-container { 
-  @include media(large xlarge) {
-    padding: 0 20px; 
+.csc-3col-second {
+  .csc-item-container {
+    padding: 0px 20px;
+  }
+}
+
+.pane-csc-related-research {
+  .csc-research-item {
+    @include media(large xlarge) {
+      .csc-item-container {
+        padding: 0 20px; 
+      }
+      &:first-child {
+        .csc-item-container {
+          padding-left: 0px;
+        }
+      }
+    }
   }
 }
  
@@ -2164,13 +2182,16 @@ body.logged-in {
 .csc-item-num-2 { width: 50%; }
 .csc-item-num-3 { width: 33%; }
 
-.see-all { position: absolute; top: 35px; right: 20px; }
-.see-all a { font-size: 10px; font-weight: bold; font-family: brandon; color: #ffffff; background: url(../images/rounded_white_arrow.png) right no-repeat; padding-right: 20px; }
-.see-all a:hover { color: #ffffff; }
- 
-.see-all-black { position: absolute; top: 35px; right: 20px; }
-.see-all-black a { font-size: 10px; font-weight: bold; font-family: brandon; color: #3c3c3c; background: url(../images/rounded_black_arrow.png) right no-repeat; padding-right: 20px; }
-.see-all-black a:hover { color: #3c3c3c; }
+.see-all { 
+  float: right;
+  margin-top: -28px;
+  margin-right: 20px;
+
+  a {
+    color: white;
+    @include see-all(white);
+  }
+}
 
 .see-all-research { 
   float: left; width: 100%; padding: 15px 0 0 0; margin-top: 15px; border-top: 1px solid #e0e0e0;
@@ -2180,10 +2201,24 @@ body.logged-in {
     padding: 0px;
   }
 }
-.see-all-research a { font-size: 10px; font-weight: bold; font-family: brandon; color: #3c3c3c; background: url(../images/rounded_black_arrow.png) right no-repeat; padding-right: 20px; }
-.see-all-research a:hover { color: #3c3c3c; }
+.see-all-research a { 
+  @include see-all;
+}
 
-.csc-teaser-more { float: left; margin-top: 20px; font-size: 10px; font-weight: bold; font-family: brandon; color: #3c3c3c; background: url(../images/rounded_black_arrow.png) right no-repeat; padding-right: 20px; }
+.csc-item-teaser {
+  font-size: 12px;
+}
+
+.csc-teaser-more { 
+  margin-top: 20px; 
+  font-size: 11px;
+  font-weight: bold; 
+  font-family: brandon; 
+  color: #3c3c3c; 
+  background: url(../images/rounded_black_arrow.png) right no-repeat; 
+  padding-right: 22px; 
+  width: 62px;
+}
 
  
 .pane-csc-related-events{
@@ -2194,16 +2229,26 @@ body.logged-in {
   font-size: 12px;
   padding-bottom: 20px;  
 
+  h2 {
+      a { 
+        font-size: 14px; 
+        color: #ffffff; 
+        font-style: italic; 
+        font-weight: normal; 
+      } 
+
+      @include media(small) {
+        padding-left: 0px !important;
+        margin-top: 0px;
+      }
+  }
+
   @include media(small) {
     position: relative;
     padding: 20px;
 
     .pane-content {
       position: relative;
-    }
-    h2 {
-      padding-left: 0px !important;
-      margin-top: 0px;
     }
   }
 }
@@ -2222,15 +2267,24 @@ body.logged-in {
 .csc-event-item h3 { 
   margin: 0; padding: 0; font-size: 12px; font-family: arial, verdana, serif; font-weight: bold; 
 }
-.pane-csc-related-events h2 a{ font-size: 13px; color: #ffffff; font-style: italic; font-weight: normal; } 
 
-.pane-csc-related-organizations{
+.pane-csc-related-organizations {
   float: left;
   width: 100%;
   background: #2f2f2f;
   color: #ffffff;
-  font-size: 10px;
+  font-size: 12px;
   padding-bottom: 20px;  
+
+  .csc-organization-item {
+    h2 {
+      font-family: brandon;
+      text-transform: uppercase;
+      a { 
+        font-size: 13px; color: #ffffff; font-weight: bold; 
+    }
+  }
+}
 
   @include media(small) {
     padding: 20px;
@@ -2241,25 +2295,32 @@ body.logged-in {
     }
   }
 }
-.pane-csc-related-organizations h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
 
-.pane-csc-related-activities{
+.pane-csc-related-activities {
   float: left;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 28px;
   width: 100%;
   font-size: 10px;
-  padding-bottom: 20px;  
 
-  @include media(small) {
-    padding-bottom: 0px;
+  h2 {
+    a { 
+      @extend %h2a;
+    }
 
-    h2 {
+    @include media(small) {
       margin-top: 0px;
       padding-left: 0px !important;
     }
   }
+
+  .see-all a {
+    @include see-all;
+  }
+
 }
+
 .csc-activities-item { float: left; width: 100%; }
-.pane-csc-related-activities h2 a{ font-size: 13px; color: #3b3b3b; font-style: italic; font-weight: normal; }
 
 .pane-csc-related-people{
   float: left;
@@ -2270,10 +2331,19 @@ body.logged-in {
   padding: 0 0 20px 0;
   border-top: 1px solid #505050;  
   position: relative;  
+  h2 {
+    a { 
+      font-size: 14px; 
+      color: #ffffff; 
+      font-weight: bold; 
+      font-family: brandon;
+      text-transform: uppercase;
+    }
+  }
 }
 
 .csc-people-container{
-  padding: 0 20px;
+  padding: 0px 0px 0px 20px;
 }
 
 .csc-people-wrapper{
@@ -2294,12 +2364,15 @@ body.logged-in {
   text-align: center;
   background: rgba(0, 176, 165, 0);
 }
-.csc-people-text { float:left; display: none; }
+.csc-people-text { 
+  font-size: 11px;
+  float:left; 
+  display: none; 
+}
 
 .csc-people-detail:hover { background: rgba(0, 176, 165, 0.85); }
 .csc-people-detail:hover .csc-people-text { display: block; }
 
-.pane-csc-related-people h2 a{ font-size: 13px; color: #ffffff; font-weight: bold; }
 .csc-people-wrapper img { float: left; }
 
 
@@ -2329,6 +2402,12 @@ body.logged-in {
   margin-top: 20px;
   border-top: 1px solid #e0e0e0;  
 
+  h2 {
+    a {
+      @extend %h2a;
+    }
+  }
+
   @include media(small) {
     float: none;
     margin: 10px 0px 0px 0px;
@@ -2343,7 +2422,7 @@ body.logged-in {
 
 .csc-research-item {
   float: left;
-  font-size: 10px;
+  font-size: 12px;
   background: url(../images/gray_line_bg.gif) left no-repeat;
 
   &:first-child {
@@ -2373,6 +2452,7 @@ body.logged-in {
   /*padding-left: 20px;*/
 }
 .csc-research-title {
+  margin-top: 0px;
   font-family: brandon;
   font-size: 25px !important;
   padding-left: 0;

@@ -72,3 +72,33 @@ $break_short: 810;
     }
   }
 }
+
+%h2a {
+  font-size: 13px; 
+  color: #3b3b3b; 
+  font-style: italic; 
+  font-weight: normal; 
+}
+
+%see-all {
+  font-size: 11px;
+  font-weight: bold;
+  font-family: brandon;
+  color: #3c3c3c;
+  background: url(../images/rounded_black_arrow.png) right no-repeat;
+  padding-right: 22px;
+
+  &:hover {
+    color: lighten(#3c3c3c, 30%);
+  }
+}
+
+@mixin see-all($color: black) {
+  @extend %see-all;
+  @if $color == white {
+    background: url(../images/rounded_white_arrow.png) right no-repeat;
+    &:hover {
+      color: darken(#fff, 20%);
+    }
+  }
+}
