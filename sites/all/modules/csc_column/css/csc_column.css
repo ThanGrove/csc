@@ -1,8 +1,21 @@
 /* Global variables, mixins, etc. */
 /* line 3, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-right {
+  -webkit-transition-property: translate;
+  -moz-transition-property: translate;
+  -o-transition-property: translate;
+  transition-property: translate;
+  -webkit-transition-duration: 200ms;
+  -moz-transition-duration: 200ms;
+  -o-transition-duration: 200ms;
+  transition-duration: 200ms;
+  -webkit-transform: translateX(340px);
+  -moz-transform: translateX(340px);
+  -ms-transform: translateX(340px);
+  -o-transform: translateX(340px);
+  transform: translateX(340px);
   position: fixed;
-  right: 0;
+  right: 0px;
   top: 76px;
   z-index: 100;
   height: 100%;
@@ -16,21 +29,29 @@
     top: 100px;
     width: 167px;
   }
-  /* line 15, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+  /* line 19, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
   #csc-right h2 {
     margin-top: 0px;
   }
-  /* line 18, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+  /* line 22, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
   #csc-right #csc-column-content {
     padding: 8px;
   }
-  /* line 21, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+  /* line 25, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
   #csc-right #edit-search-block-form--2 {
     width: 7.4em;
   }
 }
+/* line 30, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+#csc-right.in {
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  -ms-transform: translateX(0px);
+  -o-transform: translateX(0px);
+  transform: translateX(0px);
+}
 
-/* line 27, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 35, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-top {
   float: left;
   width: 100%;
@@ -38,7 +59,7 @@
   background: #e8e7e5;
 }
 
-/* line 34, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 42, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-title {
   margin: 12px 0px 8px;
   opacity: 0.7;
@@ -50,30 +71,30 @@
   text-align: center;
 }
 
-/* line 45, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 53, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-close {
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  background: url(../images/right_arrow_bg.png) no-repeat;
+  font: bold 18px brandon;
+  text-transform: uppercase;
+  color: #444;
 }
 
-/* line 55, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 63, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-content {
   float: left;
   width: 312px;
   padding: 20px;
 }
 
-/* line 61, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 69, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-hide {
   display: none;
 }
 
-/* line 62, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 70, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-show {
   display: block;
 }
