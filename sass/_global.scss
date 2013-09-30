@@ -33,6 +33,14 @@ $break_short: 810;
   }
 }
 
+@mixin add_nodes {
+  @each $context in $contexts {
+    body.page-node-#{nth($context, 3)} & {
+      background-color: nth($context, 2);
+    }
+  }
+}
+
 @mixin tile($size) {
   body.media-#{$size} & {
     @content

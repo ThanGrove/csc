@@ -1879,7 +1879,13 @@ a#menu-toggle:after {
     padding: 0px;
   }
 }
-.csc-3col-second { background: #494949; }
+.csc-3col-second { 
+  background: #494949;
+
+  .panel-pane:first-child {
+    @include add_nodes;
+  }
+}
 
 .csc-3col-col-fixed,
 .csc-panel-col-left { 
