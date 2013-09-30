@@ -1,14 +1,6 @@
 #main-menu { list-style: none; padding: 0; margin: 0; }
 #main-menu li ul { list-style: none; padding: 0; margin: 0; }
 #main-menu .expanded > ul { display: none; list-style: none; }
-/*
-#main-menu > li { background: url(images/menu_home.png) 0px 16px no-repeat; }
-#main-menu > li:nth-child(2) { background: url(images/menu_about.png) 0px 16px no-repeat; }
-#main-menu > li:nth-child(3) { background: url(images/menu_initiatives.png) 0px 16px no-repeat; }
-#main-menu > li:nth-child(4) { background: url(images/menu_funding.png) 0px 16px no-repeat; }
-#main-menu > li:nth-child(5) { background: url(images/menu_events.png) 0px 16px no-repeat; }
-#main-menu > li:nth-child(6) { background: url(images/menu_contact.png) 0px 16px no-repeat; }
-*/
 #main-menu > li { margin: 0; padding: 0px; list-style: none; border-bottom: 1px solid #d7d6d4; text-indent: 10px; }
 #main-menu > li:last-child { border-bottom: none; }
 #main-menu li {
