@@ -31,24 +31,39 @@ function csc_related_organizations_render($subtype, $conf, $panel_args, $context
   $type = 'organization';
   $nids = csc_related_get_nodes($type);
   
-  $output = '<div class="see-all"><a href="'. url('organizations', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
-  $class = 'csc-item-num-' . sizeof($nids);
-  foreach($nids as $nid){
-    $node = node_load($nid);
-    $lng = $node->language;
-    $output .= theme('csc_related_organizations_item', array('title' => $node->title,
-                                                      'body' => $node->field_small_teaser[$lng][0]['value'],
-                                                      'nid' => $node->nid,
-                                                      'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
-                                                      'class' => $class,
-                                                ));
+  if($nids){
+    $output = '<div class="see-all"><a href="'. url('organizations', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
+    $class = 'csc-item-num-' . sizeof($nids);
+    foreach($nids as $nid){
+      $node = node_load($nid);
+      $lng = $node->language;
+      $output .= theme('csc_related_organizations_item', array('title' => $node->title,
+                                                        'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                        'nid' => $node->nid,
+                                                        'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
+                                                        'class' => $class,
+                                                  ));
+    }
+    
+    switch($node->type){
+      case 'initiatives':
+      case 'research':
+      case 'learning':
+      case 'engagement':
+        $title = 'Partners';
+        break;
+      default:
+        $title = 'Affiliations';
+        break;
+    }
+  
+    $block = new stdClass();
+    $block->title = $title; 
+    $block->content = $output;
+    
+    return $block;  
   }
 
-  $block = new stdClass();
-  $block->title = 'Partners'; 
-  $block->content = $output;
-  
-  return $block;
 }
 
 /**
