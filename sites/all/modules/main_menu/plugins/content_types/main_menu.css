@@ -83,6 +83,7 @@
 /* line 43, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu a.active {
   color: white;
+  background-color: #444;
 }
 /* line 38, ../../../../../../sass/_global.scss */
 body.page-node-26 #main-menu a.active {
@@ -105,12 +106,12 @@ body.page-node-21 #main-menu a.active {
   background-color: #ffc123;
 }
 
-/* line 48, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 49, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu a:hover {
   text-decoration: none;
 }
 
-/* line 49, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 50, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu > li ul li a {
   font-size: 15px;
   text-align: right;
@@ -118,12 +119,12 @@ body.page-node-21 #main-menu a.active {
   font-weight: normal;
   text-transform: none;
 }
-/* line 55, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 56, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu > li ul li a:hover {
   background-color: #444;
 }
 
-/* line 59, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 60, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu > li ul li {
   background: #E8E7E5;
   list-style: none;

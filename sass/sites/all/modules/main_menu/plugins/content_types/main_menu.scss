@@ -41,8 +41,9 @@
   padding: 18px 0px;
 
   &.active {
-    @include add_nodes;
     color: white;
+    background-color: #444;
+    @include add_nodes;
   }
 }
 #main-menu a:hover { text-decoration: none; }
