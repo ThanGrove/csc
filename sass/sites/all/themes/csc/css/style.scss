@@ -2057,8 +2057,9 @@ body.logged-in {
     text-transform: uppercase;
     color: white;
     position: absolute;
-    width: 100%;
     bottom: 10px;
+    width: 84px;
+    text-align: center;
   }
 
   @include media(small) {
