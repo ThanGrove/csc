@@ -3515,18 +3515,18 @@ body.logged-in #content {
 }
 
 /* line 2567, ../../../../../sass/sites/all/themes/csc/css/style.scss */
-body:not(.logged-in) #content {
+body #content {
   position: relative;
   top: 76px;
 }
 @media only screen and (max-width: 640px) {
   /* line 2567, ../../../../../sass/sites/all/themes/csc/css/style.scss */
-  body:not(.logged-in) #content {
+  body #content {
     top: 50px;
   }
 }
 /* line 2575, ../../../../../sass/sites/all/themes/csc/css/style.scss */
-body:not(.logged-in) .csc-panel-separator {
+body .csc-panel-separator {
   visibility: hidden;
   background-color: #252525;
   border: 0px #ccc solid;
@@ -3543,12 +3543,17 @@ body:not(.logged-in) .csc-panel-separator {
   z-index: 50;
 }
 /* line 45, ../../../../../sass/_global.scss */
-body.media-small body:not(.logged-in) .csc-panel-separator {
+body.media-small body .csc-panel-separator {
   background: url(../images/icon-menu.svg) no-repeat;
   font-size: 40px;
 }
 
 /* line 2599, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+body.logged-in #content {
+  top: 0px;
+}
+
+/* line 2605, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #messages {
   position: absolute;
   z-index: 9999;

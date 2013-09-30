@@ -2563,7 +2563,7 @@ body.logged-in {
 /* Start width of isotope tiles */
 .isotope-element{ width: 25%; } 
 
-body:not(.logged-in) {
+body {
   #content {
     position: relative;
     top: $banner_height;
@@ -2592,6 +2592,12 @@ body:not(.logged-in) {
       background: url(../images/icon-menu.svg) no-repeat;
       font-size: 40px;
     }
+  }
+}
+
+body.logged-in {
+  #content {
+    top: 0px;
   }
 }
 
