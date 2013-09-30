@@ -1,34 +1,59 @@
 (function ($) {
   $(document).ready(function () {
+    var $header_icons = $('#header-icons'),
+        $wedge = $('<img src="/csc/sites/all/themes/csc/images/wedge.png" class="wedge"/>').appendTo('body'),
+        active_el;
+
+    var getRightOffset = function(el) {
+      var $el = $(el);
+      return $(window).width() - ($el.offset().left + $el.outerWidth()) + 26;
+    };
+
     //create right column
     $( '#content' ).append( '<div id="csc-right" style="display: none;"><div id="csc-column-top"><h2 id="csc-column-title"></h2><div id="csc-column-close"></div></div><div id="csc-column-content"></div></div>' );
-    
+
     //bind actions to top menu buttons
-    $('#header-icons').find('a').on("click",function(e){
-      if(~this.className.indexOf('noxhr')) {
+    $header_icons.find('a').on("click",function(e){
+      var cls = this.className;
+
+      if(~cls.indexOf('noxhr'))
         return true;
-      }
+
       event.preventDefault();
-      title = $(this).attr('alt');
-      
-      $('#csc-column-title').html(title);
-      var ajax_url = this.href;
-      
-      $.ajax({
-         url: ajax_url,
-         success: function(res){
-          $('#csc-column-content').html(res);
-         }
-      });
-      
-      $('#csc-right').show('fast');
-      return false;
-      
+
+      if(!~cls.indexOf('active')) {
+        this.className += ' active';
+        if(active_el)
+          $(active_el).removeClass('active');
+        active_el = this;
+
+        var rght = getRightOffset(this);
+        $wedge.css('right', rght + 'px').show();
+
+        title = $(this).attr('alt');
+
+        $('#csc-column-title').html(title);
+        var ajax_url = this.href;
+
+        $.ajax({
+          url: ajax_url,
+          success: function(res){
+            $('#csc-column-content').html(res);
+          }
+        });
+
+        $('#csc-right').show('fast');
+      }
     });
+
+
     
     //bind action to close buttons
     $('#csc-column-close').on("click",function(e){
       $('#csc-right').hide('fast');
+      $(active_el).removeClass('active');
+      active_el = null;
+      $wedge.hide();
       return false; 
     });    
     

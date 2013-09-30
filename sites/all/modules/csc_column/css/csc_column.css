@@ -6,7 +6,7 @@
   top: 76px;
   z-index: 100;
   height: 100%;
-  width: 369px;
+  width: 340px;
   opacity: 0.98;
   background: #ffffff;
 }
@@ -40,7 +40,8 @@
 
 /* line 34, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-title {
-  opacity: 0.3;
+  margin: 12px 0px 8px;
+  opacity: 0.7;
   color: #000;
   font-family: brandon;
   font-size: 18px;
@@ -49,7 +50,7 @@
   text-align: center;
 }
 
-/* line 44, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 45, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-close {
   position: absolute;
   right: 0;
@@ -60,19 +61,19 @@
   background: url(../images/right_arrow_bg.png) no-repeat;
 }
 
-/* line 54, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 55, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-content {
   float: left;
   width: 312px;
   padding: 20px;
 }
 
-/* line 60, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 61, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-hide {
   display: none;
 }
 
-/* line 61, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 62, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-show {
   display: block;
 }

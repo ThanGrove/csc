@@ -2027,7 +2027,7 @@ body.logged-in {
     height: $banner_height; 
     display: inline; 
     border-left: 1px solid #454545; 
-    &.active, &:hover {
+    &:hover, a.active {
       background-color: #444444;
     }
     a {
@@ -2082,6 +2082,14 @@ body.logged-in {
     }
   }
 
+}
+
+.wedge {
+  display: none;
+  position: absolute;
+  z-index: 999;
+  top: 76px;
+  right: 197px;
 }
 
 .pane-main-menu h2.pane-title,
