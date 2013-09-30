@@ -2529,6 +2529,10 @@ body.logged-in {
 
 .csc-first-image-caption a:hover,
 .csc-first-image-caption a { color: #ffffff; font-style: italic; }
+
+.csc-event-text-container { float: left; }
+.csc-event-image{ float: left; width: 50%; text-align: center;}
+.half { width: 50%; }
 /**
  *Tooltips
  */
