@@ -2601,7 +2601,7 @@ body.front .csc-3col-col-fixed, body.front .csc-panel-col-left {
 /* line 1905, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-3col-first {
   padding: 30px;
-  background: url(../images/gray_line_bg.gif) left repeat-y;
+  background: white url(../images/gray_line_bg.gif) left repeat-y;
 }
 /* line 1909, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-3col-first #page-title {
