@@ -5,13 +5,8 @@ $plugin = array(
   'title' => t('CSC Newsletter'),
   'description' => t('Newsletter subscription form'),
   'category' => t('CSC Plugins'),
-//  'edit form' => 'examplemodule_twitter_timeline_edit_form',
   'render callback' => 'csc_newsletter_render',
   'admin info' => 'csc_newsletter_admin_info',
-  'defaults' => array(
-    'username' => 'wiifm',
-    'tweets_to_show' => 5,
-  )
 );
 
 /**
@@ -30,7 +25,7 @@ function csc_newsletter_admin_info($subtype, $conf, $contexts) {
  * Run-time rendering of the body of the block (content type)
  * See ctools_plugin_examples for more advanced info
  */
-function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
+function csc_newsletter_render_original($subtype, $conf, $panel_args, $context = NULL) {
   $block = new stdClass();
 
   $block->title = 'Sign up for our Newsletter';
@@ -40,6 +35,36 @@ function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $output = render($render_array);
   
+  $block->content = $output;
+
+  return $block;
+}
+
+function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
+  $path = drupal_get_path('module', 'csc_newsletter');
+  drupal_add_js($path . '/plugins/content_types/csc_newsletter.js');
+  
+  $output = '<div class="content">';
+  $output.= '<p>Enter your email address below to stay up to date on the latest happenings at the Contemplative Scienes Center</p>';
+  $output.= '<form action="http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=bee009d669" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>';
+  $output .=
+  '<div class="form-item form-type-textfield">
+    <label for="mce-EMAIL">E-mail <span class="form-required" title="This field is required.">*</span></label>
+    <input type="email" value="" name="EMAIL" id="mce-EMAIL" size="20" maxlength="128" class="form-text required">
+  </div>';
+
+  $output.=
+  '<div id="mce-responses" class="clear">
+  	<div class="response" id="mce-error-response" style="display:none"></div>
+  	<div class="response" id="mce-success-response" style="display:none"></div>
+   </div>
+   <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
+
+  $output.= '</from>';
+  $output.= "</div>\n";
+
+  $block = new stdClass();
+  $block->title = 'Sign up for our Newsletter';  
   $block->content = $output;
 
   return $block;
