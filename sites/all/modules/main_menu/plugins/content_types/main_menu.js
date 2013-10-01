@@ -62,7 +62,7 @@
         $el = $('#main-menu').find('a[href*=\"' + url + '\"]'),
         $li;
 
-    if($el.length) {
+    if($el.length == 1) {
       $li = $el.closest('li.expanded');
       if ($li.length) {
         $li.removeClass('expanded').addClass('contracted');
