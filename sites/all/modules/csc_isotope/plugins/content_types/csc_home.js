@@ -28,7 +28,7 @@
         $panelRight = $supercontainer.find('.csc-panel-col-right'),
         height =  $(window).height() - $supercontainer.offset().top;
     
-    $supercontainer.add($panelLeft).height(height);
+    $supercontainer.add($panelLeft).add($panelRight).height(height);
     $panelRight.width($(window).width() - $panelRight.offset().left);
 
     window.csc.containerHeight = height;
