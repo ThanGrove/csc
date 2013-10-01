@@ -1888,6 +1888,7 @@ a#menu-toggle:after {
   .panel-pane:first-child {
     @include add_nodes;
   }
+
 }
 
 .csc-3col-col-fixed,
@@ -1910,6 +1911,12 @@ body.front {
 }
 
 .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
+
+.csc-3col-right2 {
+  @include media(small) {
+    background-color: white;
+  }
+}
 
 .csc-3col-first { 
   padding: 30px;
@@ -2266,7 +2273,7 @@ body.logged-in {
   float: left;
   background: url(../images/line_bg.png) left no-repeat;
 
-  @include media(small) {
+  @include media(small medium) {
     float: none;
     width: auto;
     background: none;
@@ -2317,7 +2324,7 @@ body.logged-in {
     }
 
     @include media(small) {
-      margin-top: 0px;
+      margin-top: 20px;
       padding-left: 0px !important;
     }
   }
@@ -2326,6 +2333,9 @@ body.logged-in {
     @include see-all;
   }
 
+  @include media(small) {
+    float: none;
+  }
 }
 
 .csc-activities-item { float: left; width: 100%; }
@@ -2417,7 +2427,6 @@ body.logged-in {
   }
 
   @include media(small) {
-    float: none;
     margin: 10px 0px 0px 0px;
     padding: 0px;
     border: none;
