@@ -2625,6 +2625,11 @@ li.bjqs-next a { background: url(../images/right_arrow.png) top center no-repeat
 /* Start width of isotope tiles */
 .isotope-element{ width: 25%; } 
 
+ul.bjqs-controls.v-centered a {
+  opacity: 0.7;
+}
+
+
 body {
   #content {
     position: relative;
