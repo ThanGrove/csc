@@ -35,21 +35,24 @@ function csc_node_image_render($subtype, $conf, $panel_args, $context = NULL) {
     $node = node_load($nodeid);
     $lng = $node->language;
     
-    $li = '';
-    foreach($node->field_featured_image[$lng] as $img){
-      $image = theme_image_style(array('style_name' => 'large','path' => $img['uri'], 'alt' => '', 'title' => $img['image_field_caption']['value'], 'width' => '', 'height' => ''  ));
-      $li .= "<li>$image</li>\n";
+    if($node->field_featured_image){
+      $li = '';
+      foreach($node->field_featured_image[$lng] as $img){
+        $caption = (isset($img['image_field_caption']['value'])) ? $img['image_field_caption']['value'] : '';
+        $image = theme_image_style(array('style_name' => 'large','path' => $img['uri'], 'alt' => '', 'title' => $caption, 'width' => '', 'height' => ''  ));
+        $li .= "<li>$image</li>\n";
+      }
+      
+      $output = '<div id="csc-node-images"><ul class="bjqs">';
+      $output.= $li;
+      $output.= "</ul></div>\n"; 
+      
+      $block = new stdClass();
+      $block->title = '';
+      $block->content = $output;
+      
+      return $block;
     }
-    
-    $output = '<div id="csc-node-images"><ul class="bjqs">';
-    $output.= $li;
-    $output.= "</ul></div>\n"; 
-    
-    $block = new stdClass();
-    $block->title = '';
-    $block->content = $output;
-    
-    return $block;
   } 
 
 }

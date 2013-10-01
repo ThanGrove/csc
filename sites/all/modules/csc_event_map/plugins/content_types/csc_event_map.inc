@@ -33,23 +33,26 @@ function csc_event_map_render($subtype, $conf, $panel_args, $context = NULL) {
     $node = node_load($nodeid);
     $lng = $node->language;
     
-    $name = $node->field_location[$lng][0]['name'];
-    $street = $node->field_location[$lng][0]['street'];
-    $city = $node->field_location[$lng][0]['city'];
-    $zip = $node->field_location[$lng][0]['postal_code'];
-    $country = $node->field_location[$lng][0]['country'];
-    
-    $src = "https://maps.google.com/?q=$street,$city,$zip,$country";
-    $near = "$street,$city,$zip";
-    
-    $output = '<div class="csc-map-wrapper">';
-    $output.= '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'. $src .'&amp;ie=UTF8&amp;hq=&amp;hnear='. $near .'&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>';
-    $output.= "</div>\n";
-                                                                                                                                                                                                                                                           
-    $block = new stdClass();
-    $block->title = 'Event Map';
-    $block->content = $output;
-  
-    return $block;
+    if($node->field_location){
+      $street = ($node->field_location[$lng][0]['street']) ? $node->field_location[$lng][0]['street'] : '';
+      $city = ($node->field_location[$lng][0]['city']) ? $node->field_location[$lng][0]['city'] : '';
+      $zip = ($node->field_location[$lng][0]['postal_code']) ? $node->field_location[$lng][0]['postal_code'] : '';
+      $country = ($node->field_location[$lng][0]['country']) ? $node->field_location[$lng][0]['country'] : '';
+      
+      if($street or $city or $zip){
+        $src = "https://maps.google.com/?q=$street,$city,$zip,$country";
+        $near = "$street,$city,$zip";
+        
+        $output = '<div class="csc-map-wrapper">';
+        $output.= '<iframe width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="'. $src .'&amp;ie=UTF8&amp;hq=&amp;hnear='. $near .'&amp;t=m&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe>';
+        $output.= "</div>\n";
+                                                                                                                                                                                                                                                               
+        $block = new stdClass();
+        $block->title = 'Event Map';
+        $block->content = $output;
+      
+        return $block;    
+      }    
+    }
   }
 }
