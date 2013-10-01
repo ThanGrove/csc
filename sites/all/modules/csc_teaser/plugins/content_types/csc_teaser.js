@@ -1,12 +1,20 @@
 (function ($) {
   $(document).ready(function () {
+    var $overlay = $('<div/>', {class: 'overlay', id: 'teaser-overlay'}).appendTo('body');
     $('.csc-teaser-more').click(function(e) {
-      $('#csc-teaser-body').lightbox_me({centered: true});
-      e.preventDefault();
+      $overlay.fadeIn();
+      $('.tooltip').addClass('in');
+      //$('#csc-teaser-body').lightbox_me({
+        //appearEffect: 'show',
+        //lightboxSpeed: 0,
+        //overlaySpeed: 0,
+        //className: 'in'
+      //});
     });
    
-    $('.close').click(function(e) {
-  		$(this).parent().trigger('close');
-  	});
+    $overlay.click(function(){
+      $(this).fadeOut();
+      $('.tooltip').removeClass('in');
+    });
   });
 })(jQuery);
