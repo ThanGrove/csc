@@ -33,3 +33,4 @@ sites/all/themes/README.txt
 compass_app_log.txt
 sites/all/themes/csc/css/style.css
 sites/all/modules/main_menu/plugins/content_types/main_menu.css
+sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css
