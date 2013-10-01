@@ -30,3 +30,7 @@
 2013-10-01 10:43:53 identical ./sites/all/modules/csc_column/css/csc_column.css 
 2013-10-01 10:43:54 identical ./sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css 
 2013-10-01 10:43:54 identical ./sites/all/modules/main_menu/plugins/content_types/main_menu.css 
+2013-10-01 12:20:49 identical ./sites/all/modules/csc_column/css/csc_column.css 
+2013-10-01 12:20:49 identical ./sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css 
+2013-10-01 12:20:49 overwrite ./sites/all/modules/main_menu/plugins/content_types/main_menu.css 
+2013-10-01 12:20:50 overwrite ./sites/all/themes/csc/css/style.css 

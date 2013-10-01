@@ -31,7 +31,7 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
   $type = 'people';
   $nids = csc_related_get_nodes($type, 8);
   
-  $output = '<div class="see-all"><a href="'. url('people', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
+  $output = '<div class="see-all"><a href="'. url('people/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
   foreach($nids as $nid){
     $node = node_load($nid);
     $lng = $node->language;

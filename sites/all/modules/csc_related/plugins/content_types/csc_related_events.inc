@@ -30,7 +30,7 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
   $type = 'event';
   $nids = csc_related_get_nodes($type);
   
-  $output = '<div class="see-all"><a href="'. url('events', array('query' => array('nid' => csc_related_current_nid()))) .'">SEE ALL</a></div>';
+  $output = '<div class="see-all"><a href="'. url('events/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
   $class = 'csc-item-num-' . sizeof($nids);
   foreach($nids as $nid){
     $node = node_load($nid);
