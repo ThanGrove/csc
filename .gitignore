@@ -20,6 +20,8 @@ robots.txt
 sites/all/README.txt
 sites/all/modules/README.txt
 sites/all/themes/README.txt
+sites/all/themes/csc/css/style.css
+compass_app_log.txt
 
 # vim stuff
 *.un~

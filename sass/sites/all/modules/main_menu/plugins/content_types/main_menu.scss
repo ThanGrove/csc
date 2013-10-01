@@ -1,3 +1,5 @@
+@import 'global';
+
 #main-menu { list-style: none; padding: 0; margin: 0; }
 #main-menu li ul { list-style: none; padding: 0; margin: 0; }
 #main-menu .expanded > ul { display: none; list-style: none; }
@@ -37,6 +39,12 @@
   color: #444; font-family: brandon; font-weight: bold; font-size: 12px; text-transform: uppercase; 
   display: block;
   padding: 18px 0px;
+
+  &.active {
+    color: white;
+    background-color: #444;
+    @include add_nodes;
+  }
 }
 #main-menu a:hover { text-decoration: none; }
 #main-menu > li ul li a{ 
@@ -57,4 +65,5 @@
   text-indent: 0;
   text-align: center;
 } 
+
 

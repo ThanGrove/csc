@@ -1,0 +1,4 @@
+name = CSC Event Map
+description = Shows Event Map
+version = 7.x-1.0
+core = 7.x

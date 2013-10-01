@@ -10,7 +10,7 @@
     };
 
     //create right column
-    $( '#content' ).append( '<div id="csc-right" style="display: none;"><div id="csc-column-top"><h2 id="csc-column-title"></h2><div id="csc-column-close"></div></div><div id="csc-column-content"></div></div>' );
+    $( '#content' ).append( '<div id="csc-right"><div id="csc-column-top"><h2 id="csc-column-title"></h2><div id="csc-column-close">x</div></div><div id="csc-column-content"></div></div>' );
 
     //bind actions to top menu buttons
     $header_icons.find('a').on("click",function(event){
@@ -42,7 +42,7 @@
           }
         });
 
-        $('#csc-right').show('fast');
+        $('#csc-right').addClass('in');
       }
     });
 
@@ -50,7 +50,7 @@
     
     //bind action to close buttons
     $('#csc-column-close').on("click",function(e){
-      $('#csc-right').hide('fast');
+      $('#csc-right').removeClass('in');
       $(active_el).removeClass('active');
       active_el = null;
       $wedge.hide();

@@ -1,8 +1,12 @@
 @import 'global';
 
 #csc-right{
+  @include transition-property(translate);
+  @include transition-duration(200ms);
+  @include translateX(340px);
+
   position: fixed;
-  right: 0;
+  right: 0px;
   top: $banner_height;
   z-index: 100;
   height: 100%;
@@ -21,6 +25,10 @@
     #edit-search-block-form--2 {
       width: 7.4em;
     }
+  }
+
+  &.in {
+    @include translateX(0px);
   }
 }
 
@@ -44,12 +52,12 @@
 
 #csc-column-close{
   position: absolute;
-  right: 0;
-  top: 0;
+  right: 10px;
+  top: 10px;
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  background: url(../images/right_arrow_bg.png) no-repeat;
+  font: bold 18px brandon;
+  text-transform: uppercase;
+  color: #444;
 }
 
 #csc-column-content{

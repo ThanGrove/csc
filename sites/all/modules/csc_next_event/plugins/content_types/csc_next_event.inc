@@ -46,7 +46,7 @@ function csc_next_event_render($subtype, $conf, $panel_args, $context = NULL) {
       $img = '';
       $class = '';
     }
-    
+
     $output = '<div class="csc-item-container">';
     $output.= '<div class="csc-event-text-container'.$class.'">';   
     $output.= "<h3>" . l($node->title, "node/" . $node->nid). "</h3>";
