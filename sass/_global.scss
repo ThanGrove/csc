@@ -73,6 +73,16 @@ $break_short: 810;
   }
 }
 
+%active {
+  background-color: #444;
+  color: white;
+}
+
+%inactive {
+  background-color: white;
+  color: #444;
+}
+
 %h2a {
   font-size: 13px; 
   color: #3b3b3b; 
