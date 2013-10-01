@@ -1888,6 +1888,7 @@ a#menu-toggle:after {
   .panel-pane:first-child {
     @include add_nodes;
   }
+
 }
 
 .csc-3col-col-fixed,
@@ -1910,6 +1911,12 @@ body.front {
 }
 
 .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
+
+.csc-3col-right2 {
+  @include media(small) {
+    background-color: white;
+  }
+}
 
 .csc-3col-first { 
   padding: 30px;
@@ -2161,10 +2168,26 @@ body.logged-in {
 .csc-3col-second {
   .csc-item-container {
     padding: 0px 20px;
+    @include media(small) {
+      padding: 0px;
+    }
   }
 }
 
 .pane-csc-related-research {
+  float: left;
+  width: 100%;
+  font-size: 10px;
+  padding: 20px 0 20px 0;
+  margin-top: 20px;
+  border-top: 1px solid #e0e0e0;  
+
+  h2 {
+    a {
+      @extend %h2a;
+    }
+  }
+
   .csc-research-item {
     @include media(large xlarge) {
       .csc-item-container {
@@ -2175,6 +2198,25 @@ body.logged-in {
           padding-left: 0px;
         }
       }
+    }
+    @include media(medium) {
+      margin-top: 20px;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 20px;
+    }
+  }
+  @include media(medium) {
+    padding: 0px;
+    margin-top: 0px;
+    border-top: none;
+  }
+  @include media(small) {
+    margin: 10px 0px 0px 0px;
+    padding: 0px;
+    border: none;
+    h3 {
+      padding-top: 10px;
+      border-top: 1px solid #e0e0e0;
     }
   }
 }
@@ -2200,10 +2242,14 @@ body.logged-in {
     border: none;
     float: none;
     padding: 0px;
+    margin-bottom: 30px;
   }
 }
 .see-all-research a { 
   @include see-all;
+  &:hover {
+    left: 0px;
+  }
 }
 
 .csc-item-teaser {
@@ -2219,6 +2265,10 @@ body.logged-in {
   background: url(../images/rounded_black_arrow.png) right no-repeat; 
   padding-right: 22px; 
   width: 62px;
+
+  &:hover {
+    background-image: url(../images/rounded_black_arrow_up.png);
+  }
 }
 
  
@@ -2240,13 +2290,14 @@ body.logged-in {
 
       @include media(small) {
         padding-left: 0px !important;
-        margin-top: 0px;
+        margin-top: 10px;
       }
   }
 
   @include media(small) {
     position: relative;
     padding: 20px;
+    width: auto;
 
     .pane-content {
       position: relative;
@@ -2259,7 +2310,7 @@ body.logged-in {
   float: left;
   background: url(../images/line_bg.png) left no-repeat;
 
-  @include media(small) {
+  @include media(small medium) {
     float: none;
     width: auto;
     background: none;
@@ -2310,7 +2361,7 @@ body.logged-in {
     }
 
     @include media(small) {
-      margin-top: 0px;
+      margin-top: 20px;
       padding-left: 0px !important;
     }
   }
@@ -2319,6 +2370,9 @@ body.logged-in {
     @include see-all;
   }
 
+  @include media(small) {
+    float: none;
+  }
 }
 
 .csc-activities-item { float: left; width: 100%; }
@@ -2393,32 +2447,6 @@ body.logged-in {
   color: #000000;
   font-family: brandon;
   font-size: 36px;
-}
-
-.pane-csc-related-research{
-  float: left;
-  width: 100%;
-  font-size: 10px;
-  padding: 20px 0 20px 0;
-  margin-top: 20px;
-  border-top: 1px solid #e0e0e0;  
-
-  h2 {
-    a {
-      @extend %h2a;
-    }
-  }
-
-  @include media(small) {
-    float: none;
-    margin: 10px 0px 0px 0px;
-    padding: 0px;
-    border: none;
-    h3 {
-      margin-top: 10px;
-      border-top: 1px solid #e0e0e0;
-    }
-  }
 }
 
 .csc-research-item {

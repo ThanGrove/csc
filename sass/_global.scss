@@ -81,6 +81,7 @@ $break_short: 810;
 }
 
 %see-all {
+  position: relative;
   font-size: 11px;
   font-weight: bold;
   font-family: brandon;
@@ -90,6 +91,8 @@ $break_short: 810;
 
   &:hover {
     color: lighten(#3c3c3c, 30%);
+    left: 2px;
+    padding-right: 24px;
   }
 }
 
