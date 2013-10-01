@@ -2623,7 +2623,7 @@ li.bjqs-next a { background: url(../images/right_arrow.png) top center no-repeat
   z-index: 50;
 
   &.in {
-    @include translateY(-148px);
+    @include translateY($banner_height);
   }
 }
 
