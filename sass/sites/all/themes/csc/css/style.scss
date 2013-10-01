@@ -2638,7 +2638,15 @@ li.bjqs-next a { background: url(../images/right_arrow.png) top center no-repeat
   width: 40px;
 }
 
-.tooltip-content { text-align: justify; }
+.tooltip-content { 
+  text-align: justify; 
+  
+  h2 {
+    font-weight: bold;
+    font-family: brandon;
+    text-transform: uppercase;
+  }
+}
  
 /* Start width of isotope tiles */
 .isotope-element{ width: 25%; } 

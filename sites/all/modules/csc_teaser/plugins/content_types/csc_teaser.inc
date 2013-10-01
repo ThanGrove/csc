@@ -26,7 +26,7 @@ function csc_teaser_admin_info($subtype, $conf, $contexts) {
  * See ctools_plugin_examples for more advanced info
  */
 function csc_teaser_render($subtype, $conf, $panel_args, $context = NULL) {
-  drupal_add_js(drupal_get_path('module', 'csc_teaser') . '/plugins/content_types/jquery.lightbox_me.js');
+  //drupal_add_js(drupal_get_path('module', 'csc_teaser') . '/plugins/content_types/jquery.lightbox_me.js');
   drupal_add_js(drupal_get_path('module', 'csc_teaser') . '/plugins/content_types/csc_teaser.js');
 
   $block = new stdClass();
