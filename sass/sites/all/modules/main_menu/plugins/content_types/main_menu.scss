@@ -35,19 +35,30 @@
     }
   }
 }
-#main-menu a { 
-  color: #444; font-family: brandon; font-weight: bold; font-size: 12px; text-transform: uppercase; 
-  display: block;
-  padding: 18px 0px;
+#main-menu {
+  a { 
+    @extend %inactive;
+    font-family: brandon; font-weight: bold; font-size: 12px; text-transform: uppercase; 
+    display: block;
+    padding: 18px 0px;
 
-  &.active {
-    color: white;
-    background-color: #444;
-    @include add_nodes;
+    &.active {
+      @extend %active;
+      @include add_nodes;
+    }
+  }
+  > li.first {
+    a.active {
+      @extend %inactive;
+      &:hover {
+        @extend %active;
+      }
+    }
   }
 }
 #main-menu a:hover { text-decoration: none; }
 #main-menu > li ul li a{ 
+  background-color: #E8E7E5;
   font-size: 15px;
   text-align: right;
   padding: 2px 10px 2px 4px;
@@ -61,7 +72,7 @@
   background: #E8E7E5;
   list-style: none;
   margin: 0;
-  padding: 3px 0;
+  padding: 0px;
   text-indent: 0;
   text-align: center;
 } 

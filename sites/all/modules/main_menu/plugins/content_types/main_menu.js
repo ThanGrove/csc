@@ -70,26 +70,7 @@
         $el.addClass('active');
       }
     }
-    //Search if current page is a sub-menu
-    
-    //$('#main-menu .leaf a').each(function(index){
-      //found = ~url.indexOf(this.href);
-      //if(found){
-        //$el = $(this);
-        //var $ul = $el.closest('ul');  //UL of current anchor
-        ////it is a sub-menu
-        //if($ul.attr('id') != 'main-menu'){
-          //var li = ul.parent();
-          //if(li.hasClass('expanded')){
-            //li.removeClass('expanded');
-            //li.addClass('contracted');
-          //}
-        //}  
-        //return false;
-      //}
-    //});
-    
-   
+
     // mobile menu
     $('#header-mobile-nav').click(window.csc.toggleMenu);
   });
