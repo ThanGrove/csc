@@ -2529,6 +2529,39 @@ body.logged-in {
 
 .csc-first-image-caption a:hover,
 .csc-first-image-caption a { color: #ffffff; font-style: italic; }
+
+.csc-event-text-container { float: left; }
+.csc-event-image{ float: left; width: 50%; text-align: center;}
+.half { width: 50%; }
+
+.pane-csc-event-map{
+  float: left;
+  width: 100%;
+  background: #efebe2;
+}
+
+.pane-csc-event-map h2{
+  font-family: brandon;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000000;
+}
+
+.csc-map-wrapper{
+  float: left;
+  width :100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+#csc-node-images { float: left; width: 100%;}
+ul.bjqs { padding: 0; margin: 0; }
+.bjqs-caption { color: #000000; background: rgba(255,255,255,0.7); }
+li.bjqs-prev a, li.bjqs-next a { text-indent: -9999px; }
+li.bjqs-prev a { background: url(../images/left_arrow.png) top center no-repeat; width: 30px; height: 39px;}
+li.bjqs-next a { background: url(../images/right_arrow.png) top center no-repeat; width: 30px; height: 39px;}
 /**
  *Tooltips
  */

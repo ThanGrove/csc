@@ -3465,15 +3465,94 @@ body.logged-in #content {
   font-style: italic;
 }
 
+/* line 2533, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.csc-event-text-container {
+  float: left;
+}
+
+/* line 2534, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.csc-event-image {
+  float: left;
+  width: 50%;
+  text-align: center;
+}
+
+/* line 2535, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.half {
+  width: 50%;
+}
+
+/* line 2537, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-event-map {
+  float: left;
+  width: 100%;
+  background: #efebe2;
+}
+
+/* line 2543, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.pane-csc-event-map h2 {
+  font-family: brandon;
+  font-size: 15px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  color: #000000;
+}
+
+/* line 2552, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.csc-map-wrapper {
+  float: left;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+/* line 2559, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+#csc-node-images {
+  float: left;
+  width: 100%;
+}
+
+/* line 2560, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+ul.bjqs {
+  padding: 0;
+  margin: 0;
+}
+
+/* line 2561, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.bjqs-caption {
+  color: #000000;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* line 2562, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+li.bjqs-prev a, li.bjqs-next a {
+  text-indent: -9999px;
+}
+
+/* line 2563, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+li.bjqs-prev a {
+  background: url(../images/left_arrow.png) top center no-repeat;
+  width: 30px;
+  height: 39px;
+}
+
+/* line 2564, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+li.bjqs-next a {
+  background: url(../images/right_arrow.png) top center no-repeat;
+  width: 30px;
+  height: 39px;
+}
+
 /**
  *Tooltips
  */
-/* line 2535, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2568, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-teaser-more {
   cursor: pointer;
 }
 
-/* line 2537, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2570, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip {
   background-color: #ffffff;
   border: 2px solid #2f2f2f;
@@ -3487,12 +3566,12 @@ body.logged-in #content {
   max-width: 600px;
 }
 
-/* line 2550, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2583, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .inline {
   cursor: pointer;
 }
 
-/* line 2552, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2585, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .close {
   background-image: url("../images/close.png");
   background-repeat: no-repeat;
@@ -3502,30 +3581,30 @@ body.logged-in #content {
   width: 40px;
 }
 
-/* line 2561, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2594, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip-content {
   margin: 40px 30px 30px 30px;
   text-align: justify;
 }
 
 /* Start width of isotope tiles */
-/* line 2564, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2597, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .isotope-element {
   width: 25%;
 }
 
-/* line 2567, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2600, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 body #content {
   position: relative;
   top: 76px;
 }
 @media only screen and (max-width: 640px) {
-  /* line 2567, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+  /* line 2600, ../../../../../sass/sites/all/themes/csc/css/style.scss */
   body #content {
     top: 50px;
   }
 }
-/* line 2575, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2608, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 body .csc-panel-separator {
   visibility: hidden;
   background-color: #252525;
@@ -3548,12 +3627,12 @@ body.media-small body .csc-panel-separator {
   font-size: 40px;
 }
 
-/* line 2599, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2632, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 body.logged-in #content {
   top: 0px;
 }
 
-/* line 2605, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2638, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #messages {
   position: absolute;
   z-index: 9999;
