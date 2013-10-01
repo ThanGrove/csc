@@ -128,7 +128,7 @@
     if(iHeight){
       $('.isotope-item').each(function( index ) {
         if( !$(this).hasClass('hide-me') ){
-          $(this).children('.iso-text').css('height', iHeight + 'px');
+          $(this).find('.iso-text').css('height', iHeight + 'px');
         }
       });
     }
