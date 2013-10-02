@@ -2586,7 +2586,10 @@ body.logged-in {
   border-top: 1px #e0e0e0 solid;
 }
 
-#csc-node-images { float: left; width: 100%;}
+#csc-node-images { 
+  float: left; width: 100%;
+  position: relative;
+}
 ul.bjqs { padding: 0; margin: 0; }
 .bjqs-caption { color: #000000; background: rgba(255,255,255,0.7); }
 li.bjqs-prev a, li.bjqs-next a { text-indent: -9999px; }
