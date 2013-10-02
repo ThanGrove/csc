@@ -2264,7 +2264,7 @@ body.logged-in {
   color: #3c3c3c; 
   background: url(../images/rounded_black_arrow.png) right no-repeat; 
   padding-right: 22px; 
-  width: 62px;
+  width: 65px;
 
   &:hover {
     background-image: url(../images/rounded_black_arrow_up.png);
@@ -2565,7 +2565,7 @@ body.logged-in {
 .pane-csc-event-map{
   float: left;
   width: 100%;
-  background: #efebe2;
+  margin-top: -5px;
 }
 
 .pane-csc-event-map h2{
@@ -2574,14 +2574,16 @@ body.logged-in {
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
-  color: #000000;
+  color: white;
 }
 
 .csc-map-wrapper{
   float: left;
   width :100%;
   text-align: center;
-  padding-bottom: 20px;
+  margin-top: 5px;
+  margin-bottom: -6px;
+  border-top: 1px #e0e0e0 solid;
 }
 
 #csc-node-images { float: left; width: 100%;}

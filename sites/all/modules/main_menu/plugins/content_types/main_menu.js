@@ -27,9 +27,15 @@
   };
 
   window.csc.maximize = function(){
+    var h, w;
     if($cols.length) {
-      var h = $(window).height() - $header.outerHeight();
-      $content.add($cols).height(h);
+      w = $(window).width();
+      if(w > 640) {
+        h = $(window).height() - $header.outerHeight();
+        $content.add($cols).height(h);
+      } else {
+        $content.add($cols).height('');
+      }
     }
   };
 

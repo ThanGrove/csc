@@ -220,7 +220,7 @@ body {
 }
 
 .type-initiatives { 
-  background: rgb(166,90,104);
+  background: $default_color;
   &:hover {
     @include opacity(0.93);
   }
