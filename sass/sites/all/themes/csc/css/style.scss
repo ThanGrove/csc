@@ -1,5 +1,13 @@
 @import 'global';
 
+@if $mode == 'debug' {
+  #messages {
+    position: absolute;
+    z-index: 9999;
+  }
+}
+
+
 font-face{     
 font-family: brandon;
 src: url('fonts/Brandon_reg.ttf'),
@@ -2282,10 +2290,8 @@ body.logged-in {
 
   h2 {
       a { 
-        font-size: 14px; 
+        @extend %h2a;
         color: #ffffff; 
-        font-style: italic; 
-        font-weight: normal; 
       } 
 
       @include media(small) {
@@ -2699,9 +2705,49 @@ body.logged-in {
   }
 }
 
-@if $mode == 'debug' {
-  #messages {
-    position: absolute;
-    z-index: 9999;
+/* Events list */
+
+#content {
+  .pane-events-panel-pane-1 {
+    h2 {
+      @extend %upper;
+      font-size: 2em;
+      margin-top: 0px;
+      margin-bottom: 20px;
+      @include media(large xlarge) {
+        font-size: 3em;
+      }
+    }
+    .views-row {
+      border-top: 1px #e0e0e0 solid;
+      padding: 10px 0px 20px 0px;
+      clear: both;
+    }
+    .views-field-title {
+      a {
+        @extend %h2a;
+        font-size: 1.7em;
+      }
+    }
+    .views-field-field-featured-image {
+      float: left;
+      margin: 8px 15px 15px 0px;
+
+      blockquote {
+        display: none;
+      }
+    }
+    .views-field-field-small-teaser {
+      margin-top: 2px;
+      p {
+        font-size: 1em;
+      }
+    }
+    .views-label {
+      @extend %upper;
+    }
+    .views-field-field-location {
+      margin: 8px 0px 0px 0px;
+    }
   }
 }

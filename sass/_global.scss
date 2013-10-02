@@ -85,11 +85,18 @@ $break_short: 810;
   color: #444;
 }
 
+%upper {
+  font-family: brandon;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 %h2a {
-  font-size: 13px; 
+  font-size: 18px; 
   color: #3b3b3b; 
   font-style: italic; 
   font-weight: normal; 
+  font-family: brandon;
 }
 
 %see-all {
