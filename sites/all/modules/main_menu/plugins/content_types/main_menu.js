@@ -1,5 +1,6 @@
 (function ($) {
-  var menuToggle = 0;
+  var menuToggle = 0,
+      $content, $header, $cols;
 
   window.csc = window.csc || {};
 
@@ -25,6 +26,13 @@
     }
   };
 
+  window.csc.maximize = function(){
+    if($cols.length) {
+      var h = $(window).height() - $header.outerHeight();
+      $content.add($cols).height(h);
+    }
+  };
+
   var wto;
   var menuToggleListener = function(){
     $(window).resize(function(){
@@ -33,13 +41,21 @@
         var ww = $(window).width();
         if((!menuToggle && ww > 640) || menuToggle && ww < 641) {
           window.csc.toggleMenu();
-        }
+        } 
       }, 150);
     });
   };
 
 
   $(document).ready(function () {
+
+    if(!$content) {
+      $content = $('#content');
+      $header = $('header');
+      $cols = $('.csc-3col-col-fluid');
+      window.csc.maximize();
+    }
+
     //Bind expand/contract effect to menus
     $('#main-menu > .expanded > a').each(function(){
       $(this).attr('href','#');
@@ -70,6 +86,10 @@
         $el.addClass('active');
       }
     }
+
+    $(window).resize(function(){
+      window.csc.maximize();
+    });
 
     // mobile menu
     $('#header-mobile-nav').click(window.csc.toggleMenu);

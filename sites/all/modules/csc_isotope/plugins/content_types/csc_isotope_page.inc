@@ -94,7 +94,7 @@ function csc_isotope_render($subtype, $conf, $panel_args, $context = NULL) {
  */
 function csc_isotope_item($var){
   $path = drupal_get_path('module', 'csc_isotope') . '/plugins/content_types/images/';
-  $url = l($var['title'], "node/" . $var['nid']);
+  //$url = l($var['title'], "node/" . $var['nid']);
   $class = 'type-' . $var['type'] . ' node-' . $var['nid'];
   $date = date('d M Y', $var['created']);
   $body = strip_tags($var['body'], '<p><br>');
@@ -109,13 +109,15 @@ function csc_isotope_item($var){
   //$image = ($var['image']) ? theme('image', array('path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title']  )) : '';
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   $output = '<div id="node-'.$var['nid'].'" class="isotope-item isotope-element '. $class .'">';
-  $output .= ($image) ? '<div class="iso-image">'. $image . '</div>' : '';
+  $outputInside = ($image) ? '<div class="iso-image">'. $image . '</div>' : '';
   $date = ($var['type'] == 'initiatives') ? '' : '<span class="iso-date">' . $date . '</span>' ;
-  $output .= '
+  $outputInside .= '
     <div class="iso-text">'. $icon .'
-    <div class="iso-teaser"><h3 class="iso-title">' . $url . '</h3>' . $date . $body . '</div>
+    <div class="iso-teaser"><h3 class="iso-title">' . $var['title'] . '</h3>' . $date . $body . '</div>
     </div>
-  </div>
   ';
+  $outputInside = l($outputInside, "node/" . $var['nid'], array('html' => true));
+  $output = $output . $outputInside . '</div>';
+
   return $output;
 }

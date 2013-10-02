@@ -26,9 +26,9 @@ function csc_teaser_admin_info($subtype, $conf, $contexts) {
  * See ctools_plugin_examples for more advanced info
  */
 function csc_teaser_render($subtype, $conf, $panel_args, $context = NULL) {
-  drupal_add_js(drupal_get_path('module', 'csc_teaser') . '/plugins/content_types/jquery.lightbox_me.js');
+  //drupal_add_js(drupal_get_path('module', 'csc_teaser') . '/plugins/content_types/jquery.lightbox_me.js');
   drupal_add_js(drupal_get_path('module', 'csc_teaser') . '/plugins/content_types/csc_teaser.js');
-  
+
   $block = new stdClass();
 
   //Current node's id
@@ -43,7 +43,7 @@ function csc_teaser_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $output = $data->field_teaser_value;
   $output.= '<div class="csc-teaser-more">READ MORE</div>';
-  $output.= '<div id="csc-teaser-body" class="tooltip hide-me"><div class="close"></div><div class="tooltip-content">'. render($content) .'</div></div>';
+  $output.= '<div id="csc-teaser-body" class="tooltip"><div class="close"></div><div class="tooltip-content">'. render($content) .'</div></div>';
 
   $block->title = 'Teaser';
   $block->content = $output;
