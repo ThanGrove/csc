@@ -2443,6 +2443,35 @@ body.logged-in {
 .csc-directors-wrapper img { float: left; }
 .csc-director-text { float: left; font-size: 0.7em; }
 
+.pane-csc-important-dates,
+.pane-csc-grants-buttons{
+  float: left;
+  width: 50%;
+}
+
+.pane-csc-important-dates .content,
+.pane-csc-grants-buttons .content{
+  padding: 10px;
+}
+
+.pane-csc-important-dates { background: #49929a; color: #ffffff; }
+.pane-csc-important-dates ol { margin: 20px }
+
+.pane-csc-grants-buttons { background: #2f2f2f; }
+.pane-csc-grants-buttons .content { text-align: center; }
+.pane-csc-grants-buttons a {
+  color: #ffffff;
+  background: #ff8a54;
+  padding: 6px;
+  width: 80%;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 10px;
+  border-radius: 4px;
+}
+
+.pane-csc-grants-buttons a:hover { color: #000000;}
+
 .pane-csc-teaser { 
 
   @include media(small) {
