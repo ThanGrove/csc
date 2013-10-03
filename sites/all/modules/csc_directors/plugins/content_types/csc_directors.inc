@@ -1,0 +1,68 @@
+<?php
+
+$plugin = array(
+  'single' => TRUE,
+  'title' => t('CSC Directors'),
+  'description' => t('Shows CSC Directors'),
+  'category' => t('CSC Plugins'),
+  'render callback' => 'csc_directors_render',
+  'admin info' => 'csc_directors_info',
+);
+
+/**
+ * 'admin info' callback for panel pane.
+ */
+function csc_directors_info($subtype, $conf, $contexts) {
+  if (!empty($conf)) {
+    $block = new stdClass;
+    $block->title = 'The CSC Directorate';
+    $block->content = 'CSC Directors Widget';
+    return $block;
+  }
+}
+
+
+/**
+ * Build blocks for Related events
+ */ 
+function csc_directors_render($subtype, $conf, $panel_args, $context = NULL) {
+  
+  $qry = "SELECT n.nid FROM {node} n, {field_data_field_csc_director} fsd WHERE n.status=1 AND n.type = 'people' AND n.nid = fsd.entity_id AND fsd.field_csc_director_value=1";
+  $r = db_query($qry);
+  
+  $output = '';
+  foreach($r as $row){
+    $node = node_load($row->nid);
+    $lng = $node->language;
+    $output.= theme('csc_directors_item', array('title' => $node->title,
+                                                'nid' => $node->nid,
+                                                'position' => $node->field_position[$lng][0]['value'],
+                                                'image' => $node->field_featured_image[$lng][0]['uri'],
+                                                ));
+  }
+
+  $block = new stdClass();
+  $block->title = 'The CSC Directorate'; 
+  $block->content = '<div class="csc-directors-container">' . $output . '</div>';
+  
+  return $block;
+}
+
+/**
+ * Theme function
+ */ 
+function theme_csc_directors_item($var){
+  $url = l($var['title'], "node/" . $var['nid']);
+  $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
+
+  $output = '<div class="csc-directors-wrapper">';
+  $output.= '<div class="csc-directors-detail">';
+  $output.= $image;
+  $output.= '<div class="csc-director-text">';
+  $output.= "<h2>$url</h2>";
+  $output.= $var['position'];
+  $output.= '</div></div>';  
+  $output.= '</div>';
+  
+  return $output;
+}
