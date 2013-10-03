@@ -15,10 +15,12 @@ $default_color: #A65A68;
 $banner_height: 76px;
 $nav_width: 150px;
 
-$break_small: 640;
-$break_medium: 1310;
-$break_large: 2000;
-$break_short: 810;
+$break_small  : 640;
+$break_smedium: 960;
+$break_medium : 1310;
+$break_large  : 2000;
+
+$break_short  : 810;
 
 @each $context in $contexts {
   $label: nth($context, 1);
@@ -55,8 +57,12 @@ $break_short: 810;
       @media only screen and (max-width: $break_small + 'px') {
         @content
       }
+    } @else if $size == smedium {
+      @media only screen and (min-width: $break_small + 1 + 'px') and (max-width: $break_smedium + 'px') {
+        @content
+      }
     } @else if $size == medium {
-      @media only screen and (min-width: $break_small + 1 + 'px') and (max-width: $break_medium + 'px') {
+      @media only screen and (min-width: $break_smedium + 1 + 'px') and (max-width: $break_medium + 'px') {
         @content
       }
     } @else if $size == large {
@@ -97,6 +103,9 @@ $break_short: 810;
   font-style: italic; 
   font-weight: normal; 
   font-family: brandon;
+  &:hover {
+    color: lighten(#3b3b3b, 30%);
+  }
 }
 
 %see-all {

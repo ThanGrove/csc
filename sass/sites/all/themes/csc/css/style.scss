@@ -2436,12 +2436,72 @@ body.logged-in {
 
 .csc-people-wrapper img { float: left; }
 
-.csc-directors-container,
-.pane-csc-directors { float: left; width: 100%; background: #ffffff;}
-.pane-csc-directors h2 { float: left; width: 100%; margin: 0; text-align: center; background: #e8e7e5; }
-.csc-directors-wrapper{ float: left; }
-.csc-directors-wrapper img { float: left; }
-.csc-director-text { float: left; font-size: 0.7em; }
+.pane-csc-directors {
+  clear: both;
+  background: #ffffff;
+  > h2 { 
+    width: 100%;  
+    margin: 0px;
+    text-align: center;
+    padding: 10px;
+    background-color: #e0e0e0;
+    @extend %upper;
+  }
+  img {
+    width: 69px;
+    float: left;
+    margin-right: 7px;
+  }
+}
+
+#content {
+  .pane-csc-directors {
+    h2 {
+      margin-top: 0px;
+      margin-bottom: 0px;
+      @include media(smedium) {
+        line-height: 1.1em;
+      }
+    }
+  }
+}
+
+.csc-directors-wrapper{ 
+  float: left; 
+  width: 50%;
+  background-color: white;
+  border-bottom: 1px #e0e0e0 solid;
+  max-height: 69px;
+  overflow: hidden;
+  @include media(xlarge) {
+    width: 33.3333%;
+  }
+  @include media(small smedium) {
+    width: 100%;
+  }
+}
+
+.csc-director-text { 
+  padding: 3px 3px 0px 0px;
+  font-size: 1.1em; 
+  font-family: brandon;
+  font-style: italic;
+  line-height: 16px;
+  color: #888;
+  h2 {
+    font-family: brandon;
+    font-size: 1.2em;
+    font-style: normal;
+    text-transform: none;
+    a {
+      color: black;
+    }
+  }
+  @include media(smedium medium) {
+    font-size: 1em;
+    line-height: 14px;
+  }
+}
 
 .pane-csc-important-dates,
 .pane-csc-grants-buttons{
@@ -2788,3 +2848,5 @@ body.logged-in {
     }
   }
 }
+
+
