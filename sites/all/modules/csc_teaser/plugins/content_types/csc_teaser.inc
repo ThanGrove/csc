@@ -43,7 +43,7 @@ function csc_teaser_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $output = $data->field_teaser_value;
   $output.= '<div class="csc-teaser-more">READ MORE</div>';
-  $output.= '<div id="csc-teaser-body" class="tooltip"><div class="close"></div><div class="tooltip-content">'. render($content) .'</div></div>';
+  $output.= '<div id="csc-teaser-body" class="tooltip"><div class="close">x</div><div class="tooltip-content">'. render($content) .'</div></div>';
 
   $block->title = 'Teaser';
   $block->content = $output;
