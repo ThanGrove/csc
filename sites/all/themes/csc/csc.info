@@ -3,6 +3,7 @@ description = A flexible, recolorable theme with many regions and a responsive.
 version = VERSION
 core = 7.x
 
+stylesheets[all][] = css/jquery.mCustomScrollbar.css
 stylesheets[all][] = css/layout.css
 stylesheets[all][] = css/style.css
 stylesheets[all][] = css/colors.css
@@ -10,6 +11,8 @@ stylesheets[print][] = css/print.css
 
 scripts[] = js/collapsible-menu.js
 scripts[] = js/ui.rollovers.js
+scripts[] = js/jquery.mCustomScrollbar.concat.min.js
+scripts[] = js/csc_common.js
 
 regions[header] = Header
 regions[help] = Help

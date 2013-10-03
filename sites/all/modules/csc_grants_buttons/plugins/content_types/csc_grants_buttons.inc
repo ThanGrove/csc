@@ -35,7 +35,7 @@ function csc_grants_buttons_render($subtype, $conf, $panel_args, $context = NULL
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $output = render($render_array);
   
-  $block->content = $output;
+  $block->content = '<div class="add-scroll csc-grants-buttons-scroll">' . $output . "</div>";
 
   return $block;
 }

@@ -35,7 +35,7 @@ function csc_important_dates_render($subtype, $conf, $panel_args, $context = NUL
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $output = render($render_array);
   
-  $block->content = $output;
+  $block->content = '<div class="add-scroll csc-important-dates-scroll">' . $output . "</div>";
 
   return $block;
 }
