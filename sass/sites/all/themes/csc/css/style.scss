@@ -2878,7 +2878,7 @@ body.logged-in {
 #content {
   .pane-events-panel-pane-1 {
     h2 {
-      @extend title;
+      @extend %title;
     }
     .views-row {
       border-top: 1px #e0e0e0 solid;
