@@ -67,8 +67,9 @@
       $(this).attr('href','#');
       $(this).on("click",function(e){
         $parent = $(this).parent();
-        $(this).siblings('ul').toggle('fast');
+        $(this).siblings('ul').slideToggle('fast');
         if( $parent.hasClass('expanded') ){
+          $('#main-menu').find('.contracted').removeClass('contracted').addClass('expanded').find('ul').slideUp('fast');
           $parent.removeClass('expanded');
           $parent.addClass('contracted');
         }else{

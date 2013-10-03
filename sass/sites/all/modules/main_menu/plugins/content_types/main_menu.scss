@@ -15,7 +15,7 @@
 }
 }
 #main-menu li.expanded { 
-  a {
+  > a {
     background: url(images/plus_bg.png) top right no-repeat;
     &:hover {
       background-color: #444;
