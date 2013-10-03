@@ -2538,13 +2538,17 @@ body.logged-in {
 
   @include media(small) {
     padding: 0px;
-    margin-bottom: 34px;
+    margin-bottom: 34px;                                                                                                                     
   }
 }
 
 .pane-csc-teaser .pane-title,
 .pane-node-title .pane-title,
 .pane-csc-related-research .pane-title { display: none; }
+
+.pane-csc-newsletter-big { float: left; width: 100%; background: #49929a; color: #ffffff; }
+.pane-csc-newsletter-big .content { padding: 10px; }
+.newsletter-text-wrapper, .newsletter-form-wrapper { float: left; width: 50%; }
 
 .pane-node-title a {
   color: #000000;
