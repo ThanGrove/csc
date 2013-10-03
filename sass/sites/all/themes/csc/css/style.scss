@@ -2039,10 +2039,10 @@ body.logged-in {
   }
 }
 #header-icons { 
-   text-align: right;
-   position: absolute;
-   z-index: -1;
-   right: 0px;
+  text-align: right;
+  position: absolute;
+  z-index: -1;
+  right: 0px;
 
   ul { float: right; list-style: none; margin: 0; padding: 0; height: $banner_height; }
   li { 
@@ -2082,7 +2082,7 @@ body.logged-in {
     background-color: #252525;
     top: 50px;
     border-top: 1px #444 solid;
-    padding: 1px 2px 5px 4px;
+    padding: 1px 2px 0px 4px;
     @include border-bottom-left-radius(3px);
 
     ul {
@@ -2104,6 +2104,7 @@ body.logged-in {
     .header-icon-text {
       bottom: 3px;
       font-size: 9px;
+      width: 41px;
     }
   }
 
@@ -2115,6 +2116,9 @@ body.logged-in {
   z-index: 999;
   top: 76px;
   right: 197px;
+  @include media(small) {
+    top: -100px;
+  }
 }
 
 .pane-main-menu h2.pane-title,
@@ -2930,6 +2934,9 @@ body.logged-in {
       }
       .views-row {
         border-top: 1px #e0e0e0 solid;
+      }
+      .clearfix:after {
+        clear: none;
       }
     }
   }
