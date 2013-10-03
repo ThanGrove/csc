@@ -3,14 +3,18 @@
     var $overlay = $('<div/>', {class: 'overlay', id: 'teaser-overlay'}).appendTo('body'),
         $tooltip = $('.tooltip').appendTo('body');
 
+    var killMe = function(){
+      $overlay.fadeOut();
+      $tooltip.removeClass('in');
+    };
+
     $('.csc-teaser-more').click(function(e) {
       $overlay.fadeIn();
       $tooltip.addClass('in');
     });
-   
-    $overlay.click(function(){
-      $(this).fadeOut();
-      $tooltip.removeClass('in');
-    });
+
+    $tooltip.on('click', '.close', killMe); 
+    $overlay.on('click', killMe); 
+
   });
 })(jQuery);

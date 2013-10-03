@@ -241,3 +241,7 @@
 2013-10-03 14:56:54    create ./sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css 
 2013-10-03 14:56:54    create ./sites/all/modules/main_menu/plugins/content_types/main_menu.css 
 2013-10-03 14:56:56    create ./sites/all/themes/csc/css/style.css 
+2013-10-03 17:50:25 overwrite ./sites/all/modules/csc_column/css/csc_column.css 
+2013-10-03 17:50:25 identical ./sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css 
+2013-10-03 17:50:25 overwrite ./sites/all/modules/main_menu/plugins/content_types/main_menu.css 
+2013-10-03 17:50:27 overwrite ./sites/all/themes/csc/css/style.css 

@@ -13,11 +13,11 @@
   width: 340px;
   opacity: 0.98;
   background: #ffffff;
-  @media screen and (max-width: 640px) {
-    top: 100px;
-    width: 167px;
+  @include media(small) {
+    top: 108px;
+    width: 198px;
     h2 {
-      margin-top: 0px;
+      margin-top: 8px;
     }
     #csc-column-content {
       padding: 8px;
@@ -48,6 +48,9 @@
   font-weight: bold;
   text-transform: uppercase;
   text-align: center;
+  @include media(small) {
+    font-size: 14px;
+  }
 }
 
 #csc-column-close{
@@ -58,6 +61,11 @@
   font: bold 18px brandon;
   text-transform: uppercase;
   color: #444;
+  @include media(small) {
+    right: 8px;
+    top: 6px;
+    font-size: 15px;
+  }
 }
 
 #csc-column-content{

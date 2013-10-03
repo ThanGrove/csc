@@ -43,8 +43,11 @@ function csc_teaser_render($subtype, $conf, $panel_args, $context = NULL) {
   if($nodeid) $content = node_view(node_load($nodeid));
 
   $output = $data->field_teaser_value;
-  if($data->body_value) $output.= '<div class="csc-teaser-more">READ MORE</div>';
-  $output.= '<div id="csc-teaser-body" class="tooltip"><div class="close"></div><div class="tooltip-content">'. render($content) .'</div></div>';
+
+  if($data->body_value){
+    $output.= '<div class="csc-teaser-more">READ MORE</div>';
+    $output.= '<div id="csc-teaser-body" class="tooltip"><div class="close"></div><div class="tooltip-content">'. render($content) .'</div></div>';
+  }
 
   $block->title = 'Teaser';
   $block->content = $output;
