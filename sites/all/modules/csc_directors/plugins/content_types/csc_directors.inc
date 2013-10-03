@@ -36,8 +36,8 @@ function csc_directors_render($subtype, $conf, $panel_args, $context = NULL) {
     $lng = $node->language;
     $output.= theme('csc_directors_item', array('title' => $node->title,
                                                 'nid' => $node->nid,
-                                                'position' => $node->field_position[$lng][0]['value'],
-                                                'image' => $node->field_featured_image[$lng][0]['uri'],
+                                                'position' => isset($node->field_position[$lng][0]['value']) ? $node->field_position[$lng][0]['value'] : '',
+                                                'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
                                                 ));
   }
 
