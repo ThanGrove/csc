@@ -2511,28 +2511,74 @@ body.logged-in {
 
 .pane-csc-important-dates .content,
 .pane-csc-grants-buttons .content{
-  padding: 10px 0 10px 10px;
+  padding: 12px 20px 10px 24px;
+  font-family: brandon;
+  font-size: 1.12em;
 }
 
-.pane-csc-important-dates { background: #49929a; color: #ffffff; }
+#content .pane-csc-important-dates h2 {
+  @include text-shadow(#3c787e 0px 2px);
+  font-family: brandon;
+  font-size: 2em;
+  margin-top: 0px;
+  border-bottom: 1px #6da8ae solid;
+  padding-bottom: 10px;
+}
+
+.pane-csc-important-dates { 
+  background: #49929a; color: #ffffff; 
+  h3 {
+    @extend %h2a;
+    color: white;
+  }
+}
 .pane-csc-important-dates ol { margin: 20px }
 
-.pane-csc-grants-buttons { background: #2f2f2f; }
+.pane-csc-grants-buttons { 
+  background: #3b3b3b;
+
+  blockquote {
+    background: none;
+    border: none;
+    padding: 1em 10px;
+    font-size: 1.3em;
+    border: #666 solid;
+    border-width: 1px 0px;
+    color: lighten(#666, 10%);
+
+    &:before, &:after {
+      content: '';
+    }
+  }
+
+  p {
+    margin-top: 30px;
+  }
+
+  a {
+    @include border-radius(4px);
+    color: #ffffff;
+    background: #ff8a54;
+    padding: 8px 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 0.8em;
+
+    &:hover {
+      @include opacity(0.95);
+      color: #fff;
+    }
+  }
+}
 .pane-csc-grants-buttons .content { text-align: center; }
 .pane-csc-grants-buttons a {
-  color: #ffffff;
-  background: #ff8a54;
-  padding: 6px;
-  width: 80%;
-  text-align: center;
-  text-transform: uppercase;
-  font-size: 10px;
-  border-radius: 4px;
 }
 
-.pane-csc-grants-buttons a:hover { color: #000000;}
-
-.csc-important-dates-scroll, .csc-grants-buttons-scroll { overflow: hidden; height: 220px; }
+.csc-important-dates-scroll, .csc-grants-buttons-scroll {
+  height: 396px;
+}
 
 .pane-csc-teaser { 
 
