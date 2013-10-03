@@ -19,6 +19,28 @@ function csc_column_login(){
 }
 
 function csc_column_search(){
+$output .='
+<form accept-charset="UTF-8" method="post" action="'. url('csc_do_find') .'"><div><div class="container-inline">
+<input type="hidden" name="q" value="'. url('search/site') .'">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label for="field-key" class="element-invisible">Search </label>
+ <input type="text" class="form-text" maxlength="128" size="15" value="" name="key" id="field-key" title="Enter the terms you wish to search for.">
+</div>
+<div id="edit-actions" class="form-actions form-wrapper"><input type="submit" class="form-submit" value="Search"></div>
+</div>
+</div></form>';
+
+echo $output;
+}
+
+function csc_column_find(){
+  $key = urlencode($_POST['key']);
+  $url = url('search/site/' . $key);
+  drupal_goto('search/site/' . $key);
+}
+
+function csc_column_search_original(){
   //Load block from search module
   $block = block_load('search', 'form');
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
@@ -58,6 +80,11 @@ function csc_column_menu(){
     'page callback' => 'csc_column_explore',
     'access arguments' => array('access content'),
   );
+  
+  $items['csc_do_find'] = array(
+    'page callback' => 'csc_column_find',
+    'access arguments' => array('access content'),
+  );  
   
   return $items;
 } 
