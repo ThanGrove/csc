@@ -2874,13 +2874,7 @@ body.logged-in {
 #content {
   .pane-events-panel-pane-1 {
     h2 {
-      @extend %upper;
-      font-size: 2em;
-      margin-top: 0px;
-      margin-bottom: 20px;
-      @include media(large xlarge) {
-        font-size: 3em;
-      }
+      @extend title;
     }
     .views-row {
       border-top: 1px #e0e0e0 solid;
@@ -2912,6 +2906,31 @@ body.logged-in {
     }
     .views-field-field-location {
       margin: 8px 0px 0px 0px;
+    }
+  }
+}
+
+/* Research list */
+
+#content {
+  @each $label in research, learning, engagement, classes {
+    .pane-#{$label}-panel-pane-1 {
+      h2.pane-title {
+        @extend %title;
+      }
+      .node {
+        h2 {
+          a {
+            @extend %h2a;
+          }
+        }
+      }
+      .link-wrapper {
+        display: none;
+      }
+      .views-row {
+        border-top: 1px #e0e0e0 solid;
+      }
     }
   }
 }

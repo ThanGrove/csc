@@ -97,6 +97,16 @@ $break_short  : 810;
   font-weight: bold;
 }
 
+%title {
+  @extend %upper;
+  font-size: 2em;
+  margin-top: 0px;
+  margin-bottom: 20px;
+  @include media(large xlarge) {
+    font-size: 3em;
+  }
+}
+
 %h2a {
   font-size: 18px; 
   color: #3b3b3b; 
