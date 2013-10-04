@@ -245,3 +245,6 @@
 2013-10-03 17:50:25 identical ./sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css 
 2013-10-03 17:50:25 overwrite ./sites/all/modules/main_menu/plugins/content_types/main_menu.css 
 2013-10-03 17:50:27 overwrite ./sites/all/themes/csc/css/style.css 
+2013-10-03 21:05:03 overwrite ./sites/all/themes/csc/css/style.css 
+2013-10-03 21:06:37 overwrite ./sites/all/themes/csc/css/style.css 
+2013-10-03 21:07:37 overwrite ./sites/all/themes/csc/css/style.css 

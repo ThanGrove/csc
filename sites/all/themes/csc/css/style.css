@@ -3858,14 +3858,22 @@ li.bjqs-next a {
 }
 
 /**
- *Tooltips
+ *Column Connect
  */
 /* line 2760, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+.column-form-wrapper label {
+  display: none;
+}
+
+/**
+ *Tooltips
+ */
+/* line 2767, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .csc-teaser-more {
   cursor: pointer;
 }
 
-/* line 2762, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2769, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .overlay {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=30);
   opacity: 0.3;
@@ -3876,7 +3884,7 @@ li.bjqs-next a {
   height: 100%;
 }
 
-/* line 2771, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2778, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip {
   -webkit-transition-duration: 500ms;
   -moz-transition-duration: 500ms;
@@ -3910,7 +3918,7 @@ li.bjqs-next a {
   margin-left: -350px;
   z-index: 50;
 }
-/* line 2788, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2795, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip.in {
   -webkit-transform: translateY(76px);
   -moz-transform: translateY(76px);
@@ -3918,7 +3926,7 @@ li.bjqs-next a {
   -o-transform: translateY(76px);
   transform: translateY(76px);
 }
-/* line 2792, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2799, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip .close {
   position: absolute;
   top: -12px;
@@ -3929,7 +3937,7 @@ li.bjqs-next a {
   cursor: pointer;
 }
 
-/* line 2803, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2810, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .inline {
   cursor: pointer;
 }
@@ -3942,16 +3950,16 @@ li.bjqs-next a {
 /*height: 40px;*/
 /*width: 40px;*/
 /*}*/
-/* line 2814, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2821, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip-content {
   text-align: justify;
 }
-/* line 2817, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2824, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip-content .pane-content {
   /*margin-top: -18px;*/
   /*padding-bottom: 1px;*/
 }
-/* line 2822, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2829, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .tooltip-content h2 {
   display: none;
   font-weight: bold;
@@ -3960,29 +3968,29 @@ li.bjqs-next a {
 }
 
 /* Start width of isotope tiles */
-/* line 2832, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2839, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 .isotope-element {
   width: 25%;
 }
 
-/* line 2834, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2841, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 ul.bjqs-controls.v-centered a {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=70);
   opacity: 0.7;
 }
 
-/* line 2840, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2847, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 body #content {
   position: relative;
   top: 76px;
 }
 @media only screen and (max-width: 640px) {
-  /* line 2840, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+  /* line 2847, ../../../../../sass/sites/all/themes/csc/css/style.scss */
   body #content {
     top: 50px;
   }
 }
-/* line 2848, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2855, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 body .csc-panel-separator {
   visibility: hidden;
   background-color: #252525;
@@ -4005,90 +4013,90 @@ body.media-small body .csc-panel-separator {
   font-size: 40px;
 }
 
-/* line 2872, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2879, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 body.logged-in #content {
   top: 0px;
 }
 
 /* Events list */
-/* line 2884, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2891, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-row {
   border-top: 1px #e0e0e0 solid;
   padding: 12px 0px 22px 0px;
   clear: both;
 }
-/* line 2890, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2897, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-field-title a {
   font-size: 1.7em;
 }
-/* line 2895, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2902, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-field-field-featured-image {
   float: left;
   margin: 8px 15px 15px 0px;
 }
-/* line 2899, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2906, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-field-field-featured-image blockquote {
   display: none;
 }
-/* line 2903, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2910, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-field-field-small-teaser {
   margin-top: 4px;
 }
-/* line 2905, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2912, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-field-field-small-teaser p {
   font-size: 1em;
 }
-/* line 2912, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2919, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-events-panel-pane-1 .views-field-field-location {
   margin: 8px 0px 0px 0px;
 }
 
 /* Research list */
-/* line 2933, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2940, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-research-panel-pane-1 .link-wrapper {
   display: none;
 }
-/* line 2936, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2943, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-research-panel-pane-1 .views-row {
   border-top: 1px #e0e0e0 solid;
 }
-/* line 2939, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2946, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-research-panel-pane-1 .clearfix:after {
   clear: none;
 }
-/* line 2933, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2940, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-learning-panel-pane-1 .link-wrapper {
   display: none;
 }
-/* line 2936, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2943, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-learning-panel-pane-1 .views-row {
   border-top: 1px #e0e0e0 solid;
 }
-/* line 2939, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2946, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-learning-panel-pane-1 .clearfix:after {
   clear: none;
 }
-/* line 2933, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2940, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-engagement-panel-pane-1 .link-wrapper {
   display: none;
 }
-/* line 2936, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2943, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-engagement-panel-pane-1 .views-row {
   border-top: 1px #e0e0e0 solid;
 }
-/* line 2939, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2946, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-engagement-panel-pane-1 .clearfix:after {
   clear: none;
 }
-/* line 2933, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2940, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-classes-panel-pane-1 .link-wrapper {
   display: none;
 }
-/* line 2936, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2943, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-classes-panel-pane-1 .views-row {
   border-top: 1px #e0e0e0 solid;
 }
-/* line 2939, ../../../../../sass/sites/all/themes/csc/css/style.scss */
+/* line 2946, ../../../../../sass/sites/all/themes/csc/css/style.scss */
 #content .pane-classes-panel-pane-1 .clearfix:after {
   clear: none;
 }

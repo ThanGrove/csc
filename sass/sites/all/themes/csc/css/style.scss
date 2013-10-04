@@ -2755,6 +2755,13 @@ li.bjqs-prev a { background: url(../images/left_arrow.png) top center no-repeat;
 li.bjqs-next a { background: url(../images/right_arrow.png) top center no-repeat; width: 30px; height: 39px;}
 
 /**
+ *Column Connect
+ */
+.column-form-wrapper label {
+  display: none;
+}
+
+/**
  *Tooltips
  */
  .csc-teaser-more { cursor: pointer; }
