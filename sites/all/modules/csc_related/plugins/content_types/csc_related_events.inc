@@ -36,7 +36,7 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
     $node = node_load($nid);
     $lng = $node->language;
     $output .= theme('csc_related_events_item', array('title' => $node->title,
-                                                      'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                      'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value']: '',
                                                       'nid' => $node->nid,
                                                       'location' => ($node->field_location) ? $node->field_location[$lng][0] : '',
                                                       'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',

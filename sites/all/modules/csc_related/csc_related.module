@@ -33,5 +33,9 @@ function csc_related_theme() {
           'render element' => 'element',
           'file' => 'plugins/content_types/csc_related_research.inc',
         ),
+        'csc_related_classes_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_classes.inc',
+        ),
     );
 }
