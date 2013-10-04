@@ -56,11 +56,11 @@
 }
 
 /* line 18, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
-#main-menu li.expanded a {
+#main-menu li.expanded > a {
   background: url(images/plus_bg.png) top right no-repeat;
 }
 /* line 20, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
-#main-menu li.expanded a:hover {
+#main-menu li.expanded > a:hover {
   background-color: #444;
 }
 
