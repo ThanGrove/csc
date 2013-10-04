@@ -36,11 +36,11 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
     $node = node_load($nid);
     $lng = $node->language;
     $output .= theme('csc_related_events_item', array('title' => $node->title,
-                                                      'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                      'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value']: '',
                                                       'nid' => $node->nid,
                                                       'location' => ($node->field_location) ? $node->field_location[$lng][0] : '',
                                                       'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
-                                                      'date' => $node->field_event_date[$lng][0]['value'],
+                                                      'date' => isset($node->field_event_date[$lng][0]['value']) ? $node->field_event_date[$lng][0]['value'] : '',
                                                       'class' => $class,
                                                 ));
   }
@@ -57,10 +57,16 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
  */ 
 function theme_csc_related_events_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
-  list($d,$t) = explode(' ', $var['date']);
-  list($year, $month, $day) = explode('-', $d);
-  list($h, $min, $sec) = explode(':', $t);
-  $tstamp = mktime($h, $min, $sec, $month, $day, $year);
+
+  $when = '';
+  if($var['date']){
+    list($d,$t) = explode(' ', $var['date']);
+    list($year, $month, $day) = explode('-', $d);
+    list($h, $min, $sec) = explode(':', $t);
+    $tstamp = mktime($h, $min, $sec, $month, $day, $year);
+    $when = format_date($tstamp, 'small');
+  }
+
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   $location = ($var['location'])? $var['location']['name']: '';
   
@@ -68,7 +74,7 @@ function theme_csc_related_events_item($var){
   if ($var['image']) $output .= $image . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
-  $output.= '<p><h3>WHEN</h3>' . format_date($tstamp, 'small')  . "</p>";
+  $output.= '<p><h3>WHEN</h3>' . $when  . "</p>";
   $output.= '<p><h3>WHERE</h3>' . $location . "</p>";
   $output.= "</div></div>\n";
   

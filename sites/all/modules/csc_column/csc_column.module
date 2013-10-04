@@ -9,16 +9,137 @@ function csc_column_init() {
   drupal_add_css($path . '/css/csc_column.css');
 }
 
-function csc_column_login(){
+function csc_column_form($form, &$form_state){
+  $form['first_name'] = array(
+    '#type' => 'textfield',
+    '#title' => '',
+    '#attributes' => array('placeholder' => array('First Name*')),
+    '#required' => true
+  );
+  
+  $form['last_name'] = array(
+    '#type' => 'textfield',
+    '#title' => '',
+    '#attributes' => array('placeholder' => array('Last Name*')),
+    '#required' => true
+  );
+  
+  $form['email'] = array(
+    '#type' => 'textfield',
+    '#title' => '',
+    '#attributes' => array('placeholder' => array('Email*')),
+    '#required' => true
+  );
+  
+  $form['phone'] = array(
+    '#type' => 'textfield',
+    '#title' => '',
+    '#attributes' => array('placeholder' => array('Phone')),
+  );
+  
+  $form['comments'] = array(
+    '#type' => 'textarea',
+    '#title' => '',
+    '#rows' => 5,
+    '#attributes' => array('placeholder' => array('Comments')), 
+  );
+  
+  $form['newsletter'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Sign up for Newsletter',
+  );
+  
+  $form['submit'] = array(
+  '#type' => 'submit',
+  '#value' => 'Submit',
+  );
+ 
+  return $form;
+}
+
+function csc_column_form_submit($form, &$form_state){
+  $values = $form_state['values'];
+  $body = '';
+  foreach($values as $k => $v) $body .= "$k: $v<br>\n";
+
+  $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+  $headers .= 'From: Conlaser <info@conlaser.com>' . "\r\n";  
+  mail('csc@virginia.edu', 'CSC - Web Form', $body, $headers);
+  $form_state['redirect'] = '/';
+}
+
+function csc_column_login_form($form) {
+//  $form['#action'] = url(current_path(), array('query' => drupal_get_destination(), 'external' => FALSE));
+  $form['#id'] = 'user-login-form';
+  $form['#validate'] = user_login_default_validators();
+  $form['#submit'][] = 'user_login_submit';
+  $form['name'] = array('#type' => 'textfield',
+    '#title' => t('Username'),
+    '#maxlength' => USERNAME_MAX_LENGTH,
+    '#size' => 15,
+    '#required' => TRUE,
+  );
+  $form['pass'] = array('#type' => 'password',
+    '#title' => t('Password'),
+    '#size' => 15,
+    '#required' => TRUE,
+  );
+  $form['actions'] = array('#type' => 'actions');
+  $form['actions']['submit'] = array('#type' => 'submit',
+    '#value' => t('Log in'),
+  );
+  $items = array();
+  if (variable_get('user_register', USER_REGISTER_VISITORS_ADMINISTRATIVE_APPROVAL)) {
+    $items[] = l(t('Create new account'), 'user/register', array('attributes' => array('title' => t('Create a new user account.'))));
+  }
+  $items[] = l(t('Request new password'), 'user/password', array('attributes' => array('title' => t('Request new password via e-mail.'))));
+  $form['links'] = array('#markup' => theme('item_list', array('items' => $items)));
+  return $form;
+}
+
+function csc_column_login_original(){ 
   //Load login block from user module
   $block = block_load('user', 'login');
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
+  $render_array['user_login']['#action'] = url('csc_login');
   $output = render($render_array);
-  
+$output.= "<!--" . var_export($render_array,true) . '-->';  
+  echo $output;  
+}
+
+function csc_column_login_form_submit($form, &$form_state){
+  user_login_authenticate_validate($form, $form_state);
+  if($form_state['id']) drupal_goto('/');
+}
+
+function csc_column_login(){
+  $output = drupal_render(drupal_get_form('csc_column_login_form'));
   echo $output;
 }
 
 function csc_column_search(){
+$output .='
+<form accept-charset="UTF-8" method="post" action="'. url('csc_do_find') .'"><div><div class="container-inline">
+<input type="hidden" name="q" value="'. url('search/site') .'">
+      <h2 class="element-invisible">Search form</h2>
+    <div class="form-item form-type-textfield form-item-search-block-form">
+  <label for="field-key" class="element-invisible">Search </label>
+ <input type="text" class="form-text" maxlength="128" size="15" value="" name="key" id="field-key" title="Enter the terms you wish to search for.">
+</div>
+<div id="edit-actions" class="form-actions form-wrapper"><input type="submit" class="form-submit" value="Search"></div>
+</div>
+</div></form>';
+
+echo $output;
+}
+
+function csc_column_find(){
+  $key = urlencode($_POST['key']);
+  $url = url('search/site/' . $key);
+  drupal_goto('search/site/' . $key);
+}
+
+function csc_column_search_original(){
   //Load block from search module
   $block = block_load('search', 'form');
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
@@ -28,11 +149,24 @@ function csc_column_search(){
 }
 
 function csc_column_contact(){
-  echo "Contact information";
+  $path = drupal_get_path('module', 'csc_column');
+
+  //Load block CONNECT WITH US
+  $block = block_load('block', 3);
+  $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
+  $output = render($render_array);
+  
+  $output.= '<div class="column-form-wrapper">';
+  $output.= '<h3>Get in Touch</h3>';
+  $output.= '<p>Fill out the form below with any comments or questions you may have.</p>';
+  $output.= drupal_render(drupal_get_form('csc_column_form'));
+  $output.= '</div>'; 
+  
+  echo $output;  
 }
 
 function csc_column_explore(){
-  echo "Eploring CSC";
+  echo "Explore information";
 }
 
 /**
@@ -58,6 +192,11 @@ function csc_column_menu(){
     'page callback' => 'csc_column_explore',
     'access arguments' => array('access content'),
   );
+  
+  $items['csc_do_find'] = array(
+    'page callback' => 'csc_column_find',
+    'access arguments' => array('access content'),
+  );  
   
   return $items;
 } 
