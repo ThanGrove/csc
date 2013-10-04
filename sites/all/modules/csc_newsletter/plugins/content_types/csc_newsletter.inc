@@ -29,12 +29,12 @@ function csc_newsletter_render_original($subtype, $conf, $panel_args, $context =
   $block = new stdClass();
 
   $block->title = 'Sign up for our Newsletter';
-  
+
   //Load block from simplenews module
   $block = block_load('simplenews', 1);
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $output = render($render_array);
-  
+
   $block->content = $output;
 
   return $block;
@@ -43,9 +43,9 @@ function csc_newsletter_render_original($subtype, $conf, $panel_args, $context =
 function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
   $path = drupal_get_path('module', 'csc_newsletter');
   drupal_add_js($path . '/plugins/content_types/csc_newsletter.js');
-  
+
   $output = '<div class="content">';
-  $output.= '<p>Enter your email address below to stay up to date on the latest happenings at the Contemplative Scienes Center</p>';
+  $output.= '<p>Enter your email address below to stay up to date on the latest at CSC.';
   $output.= '<form action="http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=bee009d669" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>';
   $output .=
   '<div class="form-item form-type-textfield">
@@ -64,7 +64,7 @@ function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
   $output.= "</div>\n";
 
   $block = new stdClass();
-  $block->title = 'Sign up for our Newsletter';  
+  $block->title = 'Sign up for our Newsletter';
   $block->content = $output;
 
   return $block;

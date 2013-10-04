@@ -38,7 +38,7 @@
         $.ajax({
           url: ajax_url,
           success: function(res){
-            $('#csc-column-content').html(res);
+            $('#csc-column-content').addClass('csc-' + title.replace(/ /g, '-').toLowerCase()).html(res);
           }
         });
 

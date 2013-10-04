@@ -38,7 +38,7 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
     $output .= theme('csc_related_people_item', array('title' => $node->title,
                                                       'body' => $node->field_small_teaser[$lng][0]['value'],
                                                       'nid' => $node->nid,
-                                                      'position' => $node->field_position,
+                                                      'position' => $node->field_position[$lng][0]['value'],
                                                       'image' => isset($node->field_featured_image[$lng][0]['uri']) ? $node->field_featured_image[$lng][0]['uri'] : '',
                                                 ));
   }
@@ -59,7 +59,7 @@ function theme_csc_related_people_item($var){
   $output = '<div class="csc-people-wrapper">';
   $outputInner = '<div class="csc-people-detail"><div class="csc-people-text">';
   $outputInner.= "<h2>" . $var['title'] . "</h2>";
-  $outputInner.= $var['body'];
+  $outputInner.= $var['position'];
   $outputInner.= '</div></div>';
   $outputInner.= $image;
   $url = l($outputInner, "node/" . $var['nid'], array('html' => true));

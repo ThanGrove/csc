@@ -640,7 +640,7 @@ h1#site-name {
 /* ----------------- Content ------------------ */
 h1#page-title {
   font-size: 2em;
-  line-height: 1;
+  line-height: 1.3em;
   font-family: brandon;
   font-weight: bold;
   text-transform: uppercase;
@@ -2147,6 +2147,10 @@ body.logged-in {
   padding: 0px;
   margin-top: 13px;
 
+  h2.pane-title {
+    font-size: 1.1em !important;
+    margin-bottom: 0px;
+  }
   .pane-content {
     margin: 5px;
   }
@@ -2171,7 +2175,7 @@ body.logged-in {
   color: #626262;
   font-size: 11px;
   font-style: italic;
-  padding: 10px 8px;
+  padding: 4px 8px 1px 8px;
 }
 
 /**
@@ -2431,7 +2435,7 @@ body.logged-in {
 }
 .csc-people-text { 
   font-size: 14px;
-  line-height: 14px;
+  line-height: 15px;
   float:left; 
   display: none; 
   color: white;
@@ -2440,7 +2444,7 @@ body.logged-in {
   h2 {
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 1.1em;
+    font-size: 1em;
   }
 }
 
@@ -2658,15 +2662,32 @@ body.logged-in {
   background: #e8e7e5;
   text-align: center;
   font-family: brandon;
-  font-size: 12px;
-  font-style: italic;
+  font-size: 1em;
   padding: 5px;
   border-bottom: 1px solid #ffffff;
   border-top: 1px solid #ffffff;
-}
+  line-height: 1.2em;
 
-.pane-csc-latest-news h2 { font-family: brandon; font-size: 12px !important; font-weight: bold; font-style: normal; text-transform: uppercase; }
-.pane-csc-latest-news h3 a { font-family: brandon; font-size: 12px !important; font-weight: bold; font-style: normal; color: #000000; }
+  h2 {
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  h3 {
+    margin-top: 0px;
+    a {
+      @extend %h2a;
+      font-size: 1em;
+    }
+  }
+  p {
+    margin-bottom: 0.9em;
+  }
+  .pane-content {
+    margin-top: 9px;
+  }
+}
 
 .pane-csc-next-event{
   float: left;
@@ -2968,4 +2989,16 @@ body.logged-in {
   }
 }
 
+/* right sidebar */
 
+.csc-connect-with-us {
+  font-family: brandon;
+  em {
+    @extend %h2a;
+  }
+  strong {
+    text-transform: uppercase;
+    display: block;
+    margin-top: 0.2em;
+  }
+}
