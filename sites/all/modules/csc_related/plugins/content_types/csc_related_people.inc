@@ -24,13 +24,13 @@ function csc_related_people_info($subtype, $conf, $contexts) {
 
 /**
  * Build blocks for Related events
- */ 
+ */
 function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL) {
   module_load_include('inc', 'csc_related', 'csc_related');
-  
+
   $type = 'people';
   $nids = csc_related_get_nodes($type, 8);
-  
+
   $output = '<div class="see-all"><a href="'. url('people/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
   foreach($nids as $nid){
     $node = node_load($nid);
@@ -44,26 +44,26 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
   }
 
   $block = new stdClass();
-  $block->title = 'People'; 
+  $block->title = 'People';
   $block->content = '<div class="csc-people-container">' . $output . '</div>';
-  
+
   return $block;
 }
 
 /**
  * Theme function
- */ 
+ */
 function theme_csc_related_people_item($var){
-  $url = l($var['title'], "node/" . $var['nid']);
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
 
   $output = '<div class="csc-people-wrapper">';
-  $output.= '<div class="csc-people-detail"><div class="csc-people-text">';
-  $output.= "<h2>$url</h2>";
-  $output.= $var['body'];
-  $output.= '</div></div>';  
-  $output.= $image;
-  $output.= '</div>';
-  
+  $outputInner = '<div class="csc-people-detail"><div class="csc-people-text">';
+  $outputInner.= "<h2>" . $var['title'] . "</h2>";
+  $outputInner.= $var['body'];
+  $outputInner.= '</div></div>';
+  $outputInner.= $image;
+  $url = l($outputInner, "node/" . $var['nid'], array('html' => true));
+  $output.= $url . '</div>';
+
   return $output;
 }
