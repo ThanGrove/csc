@@ -118,10 +118,14 @@
             /* Remove or hide all elements */
             function closeLightbox() {
                 var s = $self[0].style;
+
                 if (opts.destroyOnClose) {
                     $self.add($overlay).remove();
                 } else {
-                    $self.add($overlay).hide();
+                  if(opts.className)
+                    $self.removeClass(opts.className);
+
+                  $self.add($overlay).hide();
                 }
 
                 //show the hidden parent lightbox
@@ -210,6 +214,8 @@
                             $self.css({ position: 'fixed', top: '50%', marginTop: ($self.outerHeight() / 2) * -1})
                         } else {
                             $self.css({ position: 'fixed'}).css(opts.modalCSS);
+                            if(opts.className)
+                              $self.addClass(opts.className);
                         }
 
                     }
