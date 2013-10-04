@@ -2485,6 +2485,7 @@ body.logged-in {
   background-color: white;
   border-bottom: 1px #e0e0e0 solid;
   max-height: 69px;
+  height: 69px;
   overflow: hidden;
   @include media(xlarge) {
     width: 33.3333%;
