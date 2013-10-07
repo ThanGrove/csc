@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_ctools_plugin_directory().
+ */
+function csc_readblock_ctools_plugin_directory($owner, $plugin_type) {
+  if ($owner == 'ctools' && $plugin_type == 'content_types') {
+    return 'plugins/' . $plugin_type;
+  }
+}
+
+function csc_readblock_get($delta, $module = 'block'){
+  //Load block Important Dates
+  $block = block_load($module, $delta);
+  $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
+  return render($render_array);
+}
