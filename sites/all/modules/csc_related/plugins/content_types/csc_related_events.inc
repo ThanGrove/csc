@@ -29,27 +29,29 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
   
   $type = 'event';
   $nids = csc_related_get_nodes($type);
-  
-  $output = '<div class="see-all"><a href="'. url('events/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
-  $class = 'csc-item-num-' . sizeof($nids);
-  foreach($nids as $nid){
-    $node = node_load($nid);
-    $lng = $node->language;
-    $output .= theme('csc_related_events_item', array('title' => $node->title,
-                                                      'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value']: '',
-                                                      'nid' => $node->nid,
-                                                      'location' => ($node->field_location) ? $node->field_location[$lng][0] : '',
-                                                      'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
-                                                      'date' => isset($node->field_event_date[$lng][0]['value']) ? $node->field_event_date[$lng][0]['value'] : '',
-                                                      'class' => $class,
-                                                ));
-  }
 
-  $block = new stdClass();
-  $block->title = 'Events'; 
-  $block->content = $output;
+  if(sizeof($nids)){
+    $output = '<div class="see-all"><a href="'. url('events/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    $class = 'csc-item-num-' . sizeof($nids);
+    foreach($nids as $nid){
+      $node = node_load($nid);
+      $lng = $node->language;
+      $output .= theme('csc_related_events_item', array('title' => $node->title,
+                                                        'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value']: '',
+                                                        'nid' => $node->nid,
+                                                        'location' => ($node->field_location) ? $node->field_location[$lng][0] : '',
+                                                        'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
+                                                        'date' => isset($node->field_event_date[$lng][0]['value']) ? $node->field_event_date[$lng][0]['value'] : '',
+                                                        'class' => $class,
+                                                  ));
+    }
   
-  return $block;
+    $block = new stdClass();
+    $block->title = 'Events'; 
+    $block->content = $output;
+    
+    return $block;
+  }  
 }
 
 /**

@@ -90,7 +90,8 @@
         tileIndex = 0;
         tileOrderIndex = 0;
 
-    if($allTiles.length - 1 < tileData[nCol].divideAfter) $('.csc-panel-separator').hide();
+    //if($allTiles.length - 1 < tileData[nCol].divideAfter) 
+      $('.csc-panel-separator').hide();
 
     for(i = 0; i < l; i++) {
       if($orgTiles.length && i == tileOrderArray[tileOrderIndex]) {
@@ -151,7 +152,7 @@
     };
    
     //*** Tiles Positioning ***//
-    var needSeparator = divideAfter > 0 && divideAfter < $('.isotope-item').length && !$('.isotope').find('.hide-me').length;
+    var needSeparator = 0; //divideAfter > 0 && divideAfter < $('.isotope-item').length && !$('.isotope').find('.hide-me').length;
 
     i = 0, posX = 0;
     $('.isotope-item').each(function( index, el ) {
