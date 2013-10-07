@@ -30,22 +30,24 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
 
   $type = 'class';
   $nids = csc_related_get_nodes($type);
-
-  $output = '<div class="see-all"><a href="'. url('classes/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
-  foreach($nids as $nid){
-    $node = node_load($nid);
-    $lng = $node->language;
-    $output .= theme('csc_related_classes_item', array('title' => $node->title,
-                                                      'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value'] : '',
-                                                      'nid' => $node->nid,
-                                                ));
+  
+  if(sizeof($nids)){
+    $output = '<div class="see-all"><a href="'. url('classes/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    foreach($nids as $nid){
+      $node = node_load($nid);
+      $lng = $node->language;
+      $output .= theme('csc_related_classes_item', array('title' => $node->title,
+                                                        'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value'] : '',
+                                                        'nid' => $node->nid,
+                                                  ));
+    }
+  
+    $block = new stdClass();
+    $block->title = 'Classes';
+    $block->content = $output;
+  
+    return $block;
   }
-
-  $block = new stdClass();
-  $block->title = 'Classes';
-  $block->content = $output;
-
-  return $block;
 }
 
 /**
