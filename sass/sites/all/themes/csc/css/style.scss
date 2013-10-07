@@ -1895,7 +1895,7 @@ a#menu-toggle:after {
   }
   .panels-ipe-portlet-wrapper {
     &:first-child {
-      display: table-cell;
+      display: table;
       @include add_nodes;
     }
   }

@@ -40,7 +40,7 @@ function csc_teaser_render($subtype, $conf, $panel_args, $context = NULL) {
   $qry = "SELECT fdt.field_teaser_value, fdb.body_value FROM {field_data_field_teaser} fdt LEFT JOIN  {field_data_body} fdb ON fdt.entity_id=fdb.entity_id WHERE fdt.entity_id=$nodeid";
   $data = db_query($qry)->fetchObject();
   $content = '';
-  if($nodeid) $content = node_view(node_load($nodeid));
+  if($nodeid) $content = $data->body_value;
 
   $output = isset($data->field_teaser_value) ? $data->field_teaser_value : '';
 
