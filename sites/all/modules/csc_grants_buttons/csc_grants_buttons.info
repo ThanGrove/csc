@@ -1,5 +1,0 @@
-name = CSC Grant Buttons
-description = Show Grants Buttons on Widget
-dependencies[] = block
-version = 7.x-1.0
-core = 7.x

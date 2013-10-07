@@ -1893,11 +1893,15 @@ a#menu-toggle:after {
   h2 {
     margin-top: 12px;
   }
-  .panel-pane:first-child {
-    @include add_nodes;
+  .panels-ipe-portlet-wrapper {
+    &:first-child {
+      display: table;
+      @include add_nodes;
+    }
   }
 
 }
+
 
 .csc-3col-col-fixed,
 .csc-panel-col-left { 
@@ -2291,7 +2295,7 @@ body.logged-in {
 .pane-csc-related-events{
   float: left;
   width: 100%;
-  background: #00b0a5;
+  /*background: #00b0a5;*/
   color: #ffffff;
   font-size: 12px;
   padding-bottom: 20px;  
@@ -2463,6 +2467,7 @@ body.logged-in {
     padding: 10px;
     background-color: #e0e0e0;
     @extend %upper;
+    font-weight: bold;
   }
   img {
     width: 69px;
@@ -2512,7 +2517,7 @@ body.logged-in {
     font-style: normal;
     text-transform: none;
     a {
-      color: black;
+      color: #444;
     }
   }
   @include media(smedium medium) {
@@ -3002,3 +3007,5 @@ body.logged-in {
     margin-top: 0.2em;
   }
 }
+
+
