@@ -24,12 +24,12 @@ function csc_directors_info($subtype, $conf, $contexts) {
 
 /**
  * Build blocks for Related events
- */ 
+ */
 function csc_directors_render($subtype, $conf, $panel_args, $context = NULL) {
-  
+
   $qry = "SELECT n.nid FROM {node} n, {field_data_field_csc_director} fsd WHERE n.status=1 AND n.type = 'people' AND n.nid = fsd.entity_id AND fsd.field_csc_director_value=1";
   $r = db_query($qry);
-  
+
   $output = '';
   foreach($r as $row){
     $node = node_load($row->nid);
@@ -37,20 +37,20 @@ function csc_directors_render($subtype, $conf, $panel_args, $context = NULL) {
     $output.= theme('csc_directors_item', array('title' => $node->title,
                                                 'nid' => $node->nid,
                                                 'position' => isset($node->field_position[$lng][0]['value']) ? $node->field_position[$lng][0]['value'] : '',
-                                                'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
+                                                'image' => isset($node->field_featured_image[$lng][1]['uri'])? $node->field_featured_image[$lng][1]['uri'] : '',
                                                 ));
   }
 
   $block = new stdClass();
-  $block->title = 'The CSC Directorate'; 
+  $block->title = 'The CSC Directorate';
   $block->content = '<div class="csc-directors-container">' . $output . '</div>';
-  
+
   return $block;
 }
 
 /**
  * Theme function
- */ 
+ */
 function theme_csc_directors_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
@@ -61,8 +61,8 @@ function theme_csc_directors_item($var){
   $output.= '<div class="csc-director-text">';
   $output.= "<h2>$url</h2>";
   $output.= $var['position'];
-  $output.= '</div></div>';  
+  $output.= '</div></div>';
   $output.= '</div>';
-  
+
   return $output;
 }
