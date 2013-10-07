@@ -31,23 +31,25 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
   $type = 'people';
   $nids = csc_related_get_nodes($type, 8);
 
-  $output = '<div class="see-all"><a href="'. url('people/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
-  foreach($nids as $nid){
-    $node = node_load($nid);
-    $lng = $node->language;
-    $output .= theme('csc_related_people_item', array('title' => $node->title,
-                                                      'body' => $node->field_small_teaser[$lng][0]['value'],
-                                                      'nid' => $node->nid,
-                                                      'position' => $node->field_position[$lng][0]['value'],
-                                                      'image' => isset($node->field_featured_image[$lng][1]['uri']) ? $node->field_featured_image[$lng][1]['uri'] : '',
-                                                ));
+  if(sizeof($nids)){
+    $output = '<div class="see-all"><a href="'. url('people/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    foreach($nids as $nid){
+      $node = node_load($nid);
+      $lng = $node->language;
+      $output .= theme('csc_related_people_item', array('title' => $node->title,
+                                                        'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                        'nid' => $node->nid,
+                                                        'position' => $node->field_position[$lng][0]['value'],
+                                                        'image' => isset($node->field_featured_image[$lng][0]['uri']) ? $node->field_featured_image[$lng][0]['uri'] : '',
+                                                  ));
+    }
+  
+    $block = new stdClass();
+    $block->title = 'People';
+    $block->content = '<div class="csc-people-container">' . $output . '</div>';
+  
+    return $block;
   }
-
-  $block = new stdClass();
-  $block->title = 'People';
-  $block->content = '<div class="csc-people-container">' . $output . '</div>';
-
-  return $block;
 }
 
 /**

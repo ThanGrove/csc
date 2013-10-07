@@ -31,22 +31,24 @@ function csc_related_activities_render($subtype, $conf, $panel_args, $context = 
   $type = 'activities';
   $nids = csc_related_get_nodes($type);
 
-  $output = '<div class="see-all"><a href="'. url('activities/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
-  foreach($nids as $nid){
-    $node = node_load($nid);
-    $lng = $node->language;
-    $output .= theme('csc_related_activities_item', array('title' => $node->title,
-                                                      'body' => $node->field_small_teaser[$lng][0]['value'],
-                                                      'nid' => $node->nid,
-                                                      'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
-                                                ));
+  if(sizeof($nids)){
+    $output = '<div class="see-all"><a href="'. url('activities/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    foreach($nids as $nid){
+      $node = node_load($nid);
+      $lng = $node->language;
+      $output .= theme('csc_related_activities_item', array('title' => $node->title,
+                                                        'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                        'nid' => $node->nid,
+                                                        'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
+                                                  ));
+    }
+  
+    $block = new stdClass();
+    $block->title = 'Activities';
+    $block->content = $output;
+  
+    return $block;  
   }
-
-  $block = new stdClass();
-  $block->title = 'Activities';
-  $block->content = $output;
-
-  return $block;
 }
 
 /**

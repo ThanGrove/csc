@@ -34,27 +34,30 @@ function csc_related_research_render($subtype, $conf, $panel_args, $context = NU
     $nids = csc_related_get_nodes($type);
     if($nids) $res[] = array('type' => $type, 'nid' => $nids[0]);  
   }
-  
-  $output = '';
-  $class = 'csc-item-num-' . sizeof($res);
-  foreach($res as $n){
-    $nid = $n['nid'];
-    $node = node_load($nid);
-    $lng = $node->language;
-    $output .= theme('csc_related_research_item', array('title' => $node->title,
-                                                        'body' => $node->field_small_teaser[$lng][0]['value'],
-                                                        'nid' => $node->nid,
-                                                        'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
-                                                        'type' => $n['type'],
-                                                        'class' => $class,
-                                                ));
-  }
 
-  $block = new stdClass();
-  $block->title = 'Research'; 
-  $block->content = $output;
+  if(sizeof($res)){
+    $output = '';
+    $class = 'csc-item-num-' . sizeof($res);
+    foreach($res as $n){
+      $nid = $n['nid'];
+      $node = node_load($nid);
+      $lng = $node->language;
+      $output .= theme('csc_related_research_item', array('title' => $node->title,
+                                                          'body' => $node->field_small_teaser[$lng][0]['value'],
+                                                          'nid' => $node->nid,
+                                                          'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
+                                                          'type' => $n['type'],
+                                                          'class' => $class,
+                                                  ));
+    }
   
-  return $block;
+    $block = new stdClass();
+    $block->title = 'Research'; 
+    $block->content = $output;
+    
+    return $block;  
+  }  
+
 }
 
 /**
