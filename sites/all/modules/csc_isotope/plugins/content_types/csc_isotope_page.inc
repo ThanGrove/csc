@@ -103,8 +103,8 @@ function csc_isotope_item($var){
   }
 
   $icon = '';
-  if($var['type'] == 'news') $icon = '<img class="iso-icon" src="'. $path .'icon_news.png" width=25 height=25 alt="">';
-  if($var['type'] == 'feature') $icon = '<img class="iso-icon" src="'. $path .'icon_feature.png" width=25 height=25 alt="">';
+  if($var['type'] == 'news') $icon = '<img class="iso-icon" src="/'. $path .'icon_news.png" width=25 height=25 alt="">';
+  if($var['type'] == 'feature') $icon = '<img class="iso-icon" src="/'. $path .'icon_feature.png" width=25 height=25 alt="">';
 
   //$image = ($var['image']) ? theme('image', array('path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title']  )) : '';
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
