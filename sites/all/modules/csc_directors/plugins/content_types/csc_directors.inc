@@ -52,17 +52,17 @@ function csc_directors_render($subtype, $conf, $panel_args, $context = NULL) {
  * Theme function
  */
 function theme_csc_directors_item($var){
-  $url = l($var['title'], "node/" . $var['nid']);
+  //$url = l($var['title'], "node/" . $var['nid']);
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
 
   $output = '<div class="csc-directors-wrapper">';
-  $output.= '<div class="csc-directors-detail">';
-  $output.= $image;
-  $output.= '<div class="csc-director-text">';
-  $output.= "<h2>$url</h2>";
-  $output.= $var['position'];
-  $output.= '</div></div>';
-  $output.= '</div>';
+  $outputInside = '<div class="csc-directors-detail">';
+  $outputInside.= $image;
+  $outputInside.= '<div class="csc-director-text">';
+  $outputInside.= "<h2>" . $var['title'] . "</h2>";
+  $outputInside.= $var['position'];
+  $outputInside.= '</div></div>';
+  $output.= l($outputInside, "node/" . $var['nid'], array('html' => true)) . '</div>';
 
   return $output;
 }
