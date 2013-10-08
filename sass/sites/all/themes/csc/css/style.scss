@@ -1956,7 +1956,7 @@ body.front {
 
   @include media(small) {
     width: auto;
-    display: block;
+    display: table;
     padding: 20px;
     p {
       font-size: 14px;
