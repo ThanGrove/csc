@@ -2278,7 +2278,7 @@ body.logged-in {
 }
 
 .csc-item-teaser {
-  font-size: 12px;
+  font-size: 1em;
 }
 
 .csc-teaser-more, .csc-teaser-less { 
@@ -3122,4 +3122,10 @@ body.logged-in {
       color: white;
     }
   }
+}
+
+/* related lists */
+
+.title-context {
+  text-transform: none;
 }
