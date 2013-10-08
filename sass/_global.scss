@@ -40,6 +40,7 @@ $break_short  : 810;
 @mixin add_nodes {
   @each $context in $contexts {
     body.page-node-#{nth($context, 3)} & {
+      border: none;
       background-color: nth($context, 2);
     }
   }

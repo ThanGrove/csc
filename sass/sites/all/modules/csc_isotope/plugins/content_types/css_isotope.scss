@@ -151,7 +151,10 @@ body {
 }
 
 /** ---------------------------- **/
-#iso-container { position: relative; }
+#iso-container { 
+  position: relative;
+  background-color: #3b3b3b;
+}
 
 .type-news, .type-feature { 
   background: #2f2f2f; 

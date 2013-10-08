@@ -1,11 +1,11 @@
 /* Global variables, mixins, etc. */
-/* line 84, ../../../../../../sass/_global.scss */
+/* line 85, ../../../../../../sass/_global.scss */
 #main-menu a.active, #main-menu > li.first a.active:hover {
   background-color: #444;
   color: white;
 }
 
-/* line 89, ../../../../../../sass/_global.scss */
+/* line 90, ../../../../../../sass/_global.scss */
 #main-menu a, #main-menu > li.first a.active {
   background-color: white;
   color: #444;
@@ -93,22 +93,27 @@
 }
 /* line 42, ../../../../../../sass/_global.scss */
 body.page-node-26 #main-menu a.active {
+  border: none;
   background-color: #605385;
 }
 /* line 42, ../../../../../../sass/_global.scss */
 body.page-node-22 #main-menu a.active {
+  border: none;
   background-color: #00b1a6;
 }
 /* line 42, ../../../../../../sass/_global.scss */
 body.page-node-20 #main-menu a.active {
+  border: none;
   background-color: #ff6b53;
 }
 /* line 42, ../../../../../../sass/_global.scss */
 body.page-node-25 #main-menu a.active {
+  border: none;
   background-color: #34c780;
 }
 /* line 42, ../../../../../../sass/_global.scss */
 body.page-node-21 #main-menu a.active {
+  border: none;
   background-color: #ffc123;
 }
 

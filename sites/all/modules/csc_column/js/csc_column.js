@@ -1,7 +1,7 @@
 (function ($) {
   $(document).ready(function () {
     var $header_icons = $('#header-icons'),
-        $wedge = $('<img src="sites/all/themes/csc/images/wedge.png" class="wedge"/>').appendTo('body'),
+        $wedge = $('<img src="/sites/all/themes/csc/images/wedge.png" class="wedge"/>').appendTo('body'),
         active_el;
 
     var getRightOffset = function(el) {
