@@ -1959,7 +1959,7 @@ body.front {
 
   @include media(small) {
     width: auto;
-    display: block;
+    display: table;
     padding: 20px;
     p {
       font-size: 14px;
@@ -2281,7 +2281,7 @@ body.logged-in {
 }
 
 .csc-item-teaser {
-  font-size: 12px;
+  font-size: 1em;
 }
 
 .csc-teaser-more, .csc-teaser-less { 
@@ -3143,4 +3143,10 @@ body.logged-in {
       font-size: 1.4em;
     }
   }
+}
+
+/* related lists */
+
+.title-context {
+  text-transform: none;
 }
