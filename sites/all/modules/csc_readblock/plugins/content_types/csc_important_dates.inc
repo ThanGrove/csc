@@ -28,11 +28,11 @@ function csc_important_dates_admin_info($subtype, $conf, $contexts) {
 function csc_important_dates_render($subtype, $conf, $panel_args, $context = NULL) {
   $block = new stdClass();
 
-  $block->title = 'Important Dates';
-  
+  $block->title = 'Important Facts';
+
   //Load block Important Dates
   $output = csc_readblock_get(1);
-  
+
   $block->content = '<div class="add-scroll csc-important-dates-scroll">' . $output . "</div>";
 
   return $block;

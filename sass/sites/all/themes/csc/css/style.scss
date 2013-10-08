@@ -1901,7 +1901,7 @@ a#menu-toggle:after {
   }
   .panels-ipe-portlet-wrapper:first-child, .csc-3col-inside {
     .panel-pane:first-child {
-      border-top: 1px solid #e0e0e0;
+      /*border-top: 1px solid #e0e0e0;*/
       @include add_nodes;
     }
   }
@@ -2357,6 +2357,7 @@ body.logged-in {
   color: #ffffff;
   font-size: 12px;
   padding-bottom: 20px;  
+  border-top: 1px solid #505050;
 
   .csc-organization-item {
     h2 {
@@ -2543,6 +2544,7 @@ body.logged-in {
 
 .pane-csc-important-dates,
 .pane-csc-grants-buttons{
+  height: 394px;
   float: left;
   width: 50%;
 }
@@ -2958,6 +2960,23 @@ body.logged-in {
   }
 }
 
+/* event items */
+
+.pane-node-field-event-date  {
+  border-top: 1px solid #e0e0e0;
+  h2 {
+    @extend %upper;
+  }
+}
+
+.pane-node-field-location {
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 18px;
+  h2 {
+    @extend %upper;
+  }
+}
+
 /* Research list */
 
 #content {
@@ -3003,6 +3022,48 @@ body.logged-in {
   }
 }
 
+.view-panopoly-database-search {
+      h2.pane-title {
+        @extend %title;
+      }
+      .node, .views-field-title {
+        margin: 10px 0px;
+        h2, span {
+          a {
+            @extend %h2a;
+            font-size: 1.4em;
+          }
+        }
+      }
+      .link-wrapper {
+        display: none;
+      }
+      .views-row {
+        border-top: 1px #e0e0e0 solid;
+        clear: both;
+      }
+      .clearfix:after {
+        clear: none;
+      }
+      .views-field-field-featured-image {
+        /*float: left;*/
+        margin: 8px 15px 15px 0px;
+
+        blockquote {
+          display: none;
+        }
+      }
+      .views-field-field-small-teaser {
+        margin-top: 4px;
+        p {
+          font-size: 1em;
+        }
+      }
+      .panopoly-image-quarter {
+        /*width: 15%;*/
+      }
+}
+
 /* right sidebar */
 
 .csc-connect-with-us {
@@ -3035,6 +3096,30 @@ body.logged-in {
     a {
       color: #444;
       font-weight: bold;
+    }
+  }
+}
+
+@each $type in event, research, learning, engagement, class {
+  .node-type-#{$type} {
+    #page-title {
+      text-transform: none;
+    }
+  }
+}
+
+/* search */
+
+.pane-facet {
+  background-color: #3b3b3b;
+  padding: 6px 23px;
+
+  h2 {
+    color: lighten(#666, 10%);
+  }
+  .item-list {
+    a {
+      color: white;
     }
   }
 }
