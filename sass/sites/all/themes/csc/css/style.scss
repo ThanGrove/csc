@@ -2560,7 +2560,7 @@ body.logged-in {
   font-size: 2em;
   margin-top: 0px;
   border-bottom: 1px #6da8ae solid;
-  padding-bottom: 10px;
+  padding: 10px 0px 10px 18px;
 }
 
 .pane-csc-important-dates { 
@@ -2615,7 +2615,7 @@ body.logged-in {
 }
 
 .csc-important-dates-scroll, .csc-grants-buttons-scroll {
-  height: 396px;
+  max-height: 396px;
 }
 
 .pane-csc-teaser { 
@@ -2679,6 +2679,7 @@ body.logged-in {
 }
 
 .pane-csc-latest-news{
+  display: none; /* problematic, disabled for now*/
   background: #e8e7e5;
   text-align: center;
   font-family: brandon;
@@ -3006,14 +3007,34 @@ body.logged-in {
 
 .csc-connect-with-us {
   font-family: brandon;
+  font-size: 1.2em;
   em {
     @extend %h2a;
   }
   strong {
     text-transform: uppercase;
     display: block;
-    margin-top: 0.2em;
+    margin: 0.2em 0em;
+  }
+  p {
+    margin-bottom: 1em;
   }
 }
 
+/* grant styling */
 
+.grant-body {
+  h1 {
+    font-style: italic;
+    font-family: brandon;
+    color: #444;
+  }
+  h2 {
+    font-family: brandon;
+    font-size: 1.8em;
+    a {
+      color: #444;
+      font-weight: bold;
+    }
+  }
+}

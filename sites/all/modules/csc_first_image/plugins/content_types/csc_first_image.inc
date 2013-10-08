@@ -29,8 +29,12 @@ function csc_first_image_render($subtype, $conf, $panel_args, $context = NULL) {
 
   //Nothing to do
   if(!isset($GLOBALS['view_content_type']) or $GLOBALS['view_content_type'] == '' ) return;
+
+  $nodeid = 0;
+  if (is_numeric(arg(1))) $nodeid = arg(1);
   
-  $qry = "SELECT fm.uri, n.title, n.nid FROM {node} n, {field_data_field_featured_image} ffi, {file_managed} fm WHERE n.type='". $GLOBALS['view_content_type'] ."' AND n.status=1 AND ffi.entity_id=n.nid AND ffi.field_featured_image_fid=fm.fid ORDER BY n.nid DESC LIMIT 1";
+  //$qry = "SELECT fm.uri, n.title, n.nid FROM {node} n, {field_data_field_featured_image} ffi, {file_managed} fm WHERE n.type='". $GLOBALS['view_content_type'] ."' AND n.status=1 AND ffi.entity_id=n.nid AND ffi.field_featured_image_fid=fm.fid ORDER BY n.nid DESC LIMIT 1";
+  $qry = "SELECT fm.uri FROM {node} n, {field_data_field_related} fr, {field_data_field_featured_image} ffi, {file_managed} fm WHERE fr.bundle = '". $GLOBALS['view_content_type'] ."' AND fr.field_related_target_id=$nodeid AND n.nid=fr.entity_id AND n.nid=ffi.entity_id AND fm.fid=ffi.field_featured_image_fid";
   $row = db_query($qry)->fetchObject();
 
   if($row){
@@ -47,5 +51,4 @@ function csc_first_image_render($subtype, $conf, $panel_args, $context = NULL) {
     
     return $block;
   }
-
 }

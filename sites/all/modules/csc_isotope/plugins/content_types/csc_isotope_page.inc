@@ -57,7 +57,7 @@ function csc_isotope_render($subtype, $conf, $panel_args, $context = NULL) {
     LEFT JOIN field_data_field_small_teaser fst on fst.entity_id=n.nid
     WHERE n.status=1 AND n.type IN ('feature', 'news')
     AND n.nid=fst.entity_id
-    ORDER BY n.created DESC LIMIT 9";
+    ORDER BY n.created";
   $r = db_query($qry);
 
   $tiles = array();
