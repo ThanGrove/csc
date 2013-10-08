@@ -16,44 +16,44 @@ function csc_column_form($form, &$form_state){
     '#attributes' => array('placeholder' => array('First Name*')),
     '#required' => true
   );
-  
+
   $form['last_name'] = array(
     '#type' => 'textfield',
     '#title' => '',
     '#attributes' => array('placeholder' => array('Last Name*')),
     '#required' => true
   );
-  
+
   $form['email'] = array(
     '#type' => 'textfield',
     '#title' => '',
     '#attributes' => array('placeholder' => array('Email*')),
     '#required' => true
   );
-  
+
   $form['phone'] = array(
     '#type' => 'textfield',
     '#title' => '',
     '#attributes' => array('placeholder' => array('Phone')),
   );
-  
+
   $form['comments'] = array(
     '#type' => 'textarea',
     '#title' => '',
     '#rows' => 5,
-    '#attributes' => array('placeholder' => array('Comments')), 
+    '#attributes' => array('placeholder' => array('Comments')),
   );
-  
+
   $form['newsletter'] = array(
     '#type' => 'checkbox',
     '#title' => 'Sign up for Newsletter',
   );
-  
+
   $form['submit'] = array(
   '#type' => 'submit',
   '#value' => 'Submit',
   );
- 
+
   return $form;
 }
 
@@ -63,7 +63,7 @@ function csc_column_form_submit($form, &$form_state){
   foreach($values as $k => $v) $body .= "$k: $v<br>\n";
 
   $headers = 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-  $headers .= 'From: Conlaser <info@conlaser.com>' . "\r\n";  
+  $headers .= 'From: Conlaser <info@conlaser.com>' . "\r\n";
   mail('csc@virginia.edu', 'CSC - Web Form', $body, $headers);
   $form_state['redirect'] = '/';
 }
@@ -97,14 +97,14 @@ function csc_column_login_form($form) {
   return $form;
 }
 
-function csc_column_login_original(){ 
+function csc_column_login_original(){
   //Load login block from user module
   $block = block_load('user', 'login');
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $render_array['user_login']['#action'] = url('csc_login');
   $output = render($render_array);
-$output.= "<!--" . var_export($render_array,true) . '-->';  
-  echo $output;  
+$output.= "<!--" . var_export($render_array,true) . '-->';
+  echo $output;
 }
 
 function csc_column_login_form_submit($form, &$form_state){
@@ -144,7 +144,7 @@ function csc_column_search_original(){
   $block = block_load('search', 'form');
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $output = render($render_array);
-  
+
   echo $output;
 }
 
@@ -155,14 +155,14 @@ function csc_column_contact(){
   $block = block_load('block', 3);
   $render_array = _block_get_renderable_array(_block_render_blocks(array($block)));
   $output = render($render_array);
-  
-  $output.= '<div class="column-form-wrapper">';
-  $output.= '<h3>Get in Touch</h3>';
-  $output.= '<p>Fill out the form below with any comments or questions you may have.</p>';
-  $output.= drupal_render(drupal_get_form('csc_column_form'));
-  $output.= '</div>'; 
-  
-  echo $output;  
+
+  //$output.= '<div class="column-form-wrapper">';
+  //$output.= '<h3>Get in Touch</h3>';
+  //$output.= '<p>Fill out the form below with any comments or questions you may have.</p>';
+  //$output.= drupal_render(drupal_get_form('csc_column_form'));
+  //$output.= '</div>';
+
+  echo $output;
 }
 
 function csc_column_explore(){
@@ -182,21 +182,21 @@ function csc_column_menu(){
     'page callback' => 'csc_column_search',
     'access arguments' => array('access content'),
   );
-  
+
   $items['csc_column/contact'] = array(
     'page callback' => 'csc_column_contact',
     'access arguments' => array('access content'),
   );
-  
+
   $items['csc_column/explore'] = array(
     'page callback' => 'csc_column_explore',
     'access arguments' => array('access content'),
   );
-  
+
   $items['csc_do_find'] = array(
     'page callback' => 'csc_column_find',
     'access arguments' => array('access content'),
-  );  
-  
+  );
+
   return $items;
-} 
+}
