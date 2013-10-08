@@ -13,6 +13,7 @@ scripts[] = js/collapsible-menu.js
 scripts[] = js/ui.rollovers.js
 scripts[] = js/jquery.mCustomScrollbar.concat.min.js
 scripts[] = js/csc_common.js
+scripts[] = js/jquery.cookie.js
 
 regions[header] = Header
 regions[help] = Help
