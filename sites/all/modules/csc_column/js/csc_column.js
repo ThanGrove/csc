@@ -13,7 +13,7 @@
     $( '#content' ).append( '<div id="csc-right"><div id="csc-column-top"><h2 id="csc-column-title"></h2><div id="csc-column-close">x</div></div><div id="csc-column-content"></div></div>' );
 
     //bind actions to top menu buttons
-    $header_icons.find('a').on("click",function(event){
+    $('.top-anchor').on("click",function(event){
       var cls = this.className;
 
       if(~cls.indexOf('noxhr'))

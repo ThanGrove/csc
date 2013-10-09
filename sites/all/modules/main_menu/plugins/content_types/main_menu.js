@@ -81,11 +81,23 @@
     });
 
     //Auto expand for active sub-menus
-    $('ul#main-menu > li > ul > li > a').bind('click', function(e){
-      var lid = $(this).parent().attr('id');
-      $.cookie('expanded', lid);      
-    });
+    var url = location.href.split('/').slice(3).join('/'),
+        $el = $('#main-menu').find('a[href*=\"' + url + '\"]'),
+        $li;
+
+    if($el.length == 1) {
+      $li = $el.closest('li.expanded');
+      if ($li.length) {
+        $li.removeClass('expanded').addClass('contracted');
+        $li.closest('ul').show();
+        $el.addClass('active');
+        
+        var lid = $el.parent().attr('id');
+        $.cookie('expanded', lid); 
+      }
+    }
     
+    //if mlid of a give li is saved, expand that branch
     if($.cookie('expanded')){
       elid = $.cookie('expanded');
       el = $('#' + elid).parent().parent();
@@ -93,8 +105,12 @@
 
       $('#' + elid).addClass('active');
       $('#' + elid + " > a").addClass('active');
-      console.log('Element: ' + elid);
     }
+    
+    //Reset cookie
+    $("#m-1008 > a, #anchor-about, #header-logo > a").bind('click', function(e){
+      $.removeCookie('expanded');
+    });
 
     $(window).resize(function(){
       window.csc.maximize();
