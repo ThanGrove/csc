@@ -1944,12 +1944,21 @@ body.front {
   
   #page-title {
     margin-top: 5px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
     font-size: 2.3em;
+
+    @include media(xlarge) {
+      font-size: 3.9em;
+    }
     @include media(medium) {
       font-size: 1.5em;
     }
-    @include media(xlarge) {
-      font-size: 3.9em;
+    @include media(small) {
+      margin-bottom: 0.5em;
+      padding-bottom: 0px;
+      border-bottom: none;
     }
   }
 
