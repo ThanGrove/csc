@@ -91,8 +91,26 @@
         $li.removeClass('expanded').addClass('contracted');
         $li.closest('ul').show();
         $el.addClass('active');
+        
+        var lid = $el.parent().attr('id');
+        $.cookie('expanded', lid); 
       }
     }
+    
+    //if mlid of a give li is saved, expand that branch
+    if($.cookie('expanded')){
+      elid = $.cookie('expanded');
+      el = $('#' + elid).parent().parent();
+      el.removeClass('expanded').addClass('contracted');
+
+      $('#' + elid).addClass('active');
+      $('#' + elid + " > a").addClass('active');
+    }
+    
+    //Reset cookie
+    $("#m-1008 > a, #anchor-about, #header-logo > a").bind('click', function(e){
+      $.removeCookie('expanded');
+    });
 
     $(window).resize(function(){
       window.csc.maximize();
