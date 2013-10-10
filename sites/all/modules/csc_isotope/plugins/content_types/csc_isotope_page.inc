@@ -50,21 +50,24 @@ function csc_isotope_render($subtype, $conf, $panel_args, $context = NULL) {
   }
 
   //Get Feature and news
-  $qry = "SELECT n.nid, n.type, n.title, fst.field_small_teaser_value as body, n.created, fm.uri
-    FROM {node} n
-    LEFT JOIN {field_data_field_featured_image} fdfi ON fdfi.entity_id=n.nid
-    LEFT JOIN {file_managed} fm ON fdfi.field_featured_image_fid=fm.fid
+  $qry = "    
+    SELECT n.nid, n.type, n.title, fst.field_small_teaser_value as body, n.created, fm.uri, fau.field_alternate_url_target_id as target
+    FROM node n
     LEFT JOIN field_data_field_small_teaser fst on fst.entity_id=n.nid
-    WHERE n.status=1 AND n.type IN ('feature', 'news')
-    AND n.nid=fst.entity_id
+    LEFT JOIN field_data_field_featured_image fdfi ON fdfi.entity_id=n.nid
+    LEFT JOIN file_managed fm ON fdfi.field_featured_image_fid=fm.fid
+    LEFT JOIN field_data_field_alternate_url fau ON n.nid=fau.entity_id
+    WHERE n.status=1
+    AND n.type IN ('feature', 'news')
     ORDER BY n.created DESC";
+    
   $r = db_query($qry);
 
   $tiles = array();
   foreach($r as $row){
     $body = strip_tags($row->body, '<br>');
     $body = substr($body, 0, 150);
-    $tiles[] = csc_isotope_item(array('title' => $row->title, 'body' => $body, 'nid' => $row->nid, 'image' => $row->uri, 'type' => $row->type, 'created' => $row->created));
+    $tiles[] = csc_isotope_item(array('title' => $row->title, 'body' => $body, 'nid' => $row->nid, 'target' => $row->target, 'image' => $row->uri, 'type' => $row->type, 'created' => $row->created));
   }
 
   //Build widget content
@@ -103,6 +106,7 @@ function csc_isotope_item($var){
   }
 
   $icon = '';
+  $nid = isset($var['target']) ? $var['target'] : $var['nid'];
   if($var['type'] == 'news') $icon = '<img class="iso-icon" src="/'. $path .'icon_news.png" width=25 height=25 alt="">';
   if($var['type'] == 'feature') $icon = '<img class="iso-icon" src="/'. $path .'icon_feature.png" width=25 height=25 alt="">';
 
@@ -116,7 +120,7 @@ function csc_isotope_item($var){
     <div class="iso-teaser"><h3 class="iso-title">' . $var['title'] . '</h3>' . $date . $body . '</div>
     </div>
   ';
-  $outputInside = l($outputInside, "node/" . $var['nid'], array('html' => true));
+  $outputInside = l($outputInside, "node/" . $nid, array('html' => true));
   $output = $output . $outputInside . '</div>';
 
   return $output;
