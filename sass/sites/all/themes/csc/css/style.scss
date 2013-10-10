@@ -1944,12 +1944,21 @@ body.front {
   
   #page-title {
     margin-top: 5px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
     font-size: 2.3em;
+
+    @include media(xlarge) {
+      font-size: 3.9em;
+    }
     @include media(medium) {
       font-size: 1.5em;
     }
-    @include media(xlarge) {
-      font-size: 3.9em;
+    @include media(small) {
+      margin-bottom: 0.5em;
+      padding-bottom: 0px;
+      border-bottom: none;
     }
   }
 
@@ -2150,7 +2159,7 @@ body.logged-in {
  * Newsletter block
  */
 .pane-csc-newsletter{
-  position: absolute;
+  position: fixed;
   bottom: 0px;
   width: 150px;
   float: left;
@@ -2168,6 +2177,7 @@ body.logged-in {
   }
 
   @include media(short) {
+    margin-top: 0px;
     position: static;
   }
 } 
@@ -2727,6 +2737,14 @@ body.logged-in {
   padding: 0 0 20px 0;
   color: #ffffff;
   font-size: 13px;
+
+  .csc-event-image {
+    display: none;
+  }
+
+  .half {
+    width: 100%;
+  }
 }
 
 .pane-csc-next-event h3 { border-top: 1px solid #835c74; padding-top: 10px; }
@@ -3109,7 +3127,7 @@ body.logged-in {
   }
 }
 
-@each $type in event, research, learning, engagement, class {
+@each $type in news, feature, event, research, learning, engagement, class {
   .node-type-#{$type} {
     #page-title {
       text-transform: none;

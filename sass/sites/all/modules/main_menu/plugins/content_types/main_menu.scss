@@ -1,5 +1,16 @@
 @import 'global';
 
+@each $context in $contexts {
+  $menu-id: nth($context, 4);
+  $color: nth($context, 2);
+
+  ##{$menu-id} {
+    a.active {
+      background-color: $color;
+    }
+  }
+}
+
 #main-menu { list-style: none; padding: 0; margin: 0; }
 #main-menu li ul { list-style: none; padding: 0; margin: 0; }
 #main-menu .expanded > ul { display: none; list-style: none; }
@@ -44,7 +55,7 @@
 
     &.active {
       @extend %active;
-      @include add_nodes;
+      /*@include add_nodes;*/
     }
   }
   > li.first {
