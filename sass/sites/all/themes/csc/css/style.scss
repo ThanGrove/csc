@@ -2727,6 +2727,14 @@ body.logged-in {
   padding: 0 0 20px 0;
   color: #ffffff;
   font-size: 13px;
+
+  .csc-event-image {
+    display: none;
+  }
+
+  .half {
+    width: 100%;
+  }
 }
 
 .pane-csc-next-event h3 { border-top: 1px solid #835c74; padding-top: 10px; }
