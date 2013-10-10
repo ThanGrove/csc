@@ -100,11 +100,12 @@
     //if mlid of a give li is saved, expand that branch
     if($.cookie('expanded')){
       elid = $.cookie('expanded');
-      el = $('#' + elid).parent().parent();
-      el.removeClass('expanded').addClass('contracted');
+      $el = $('#' + elid);
+      $parent = $el.parent().parent();
+      $parent.removeClass('expanded').addClass('contracted');
 
-      $('#' + elid).addClass('active');
-      $('#' + elid + " > a").addClass('active');
+      $el.addClass('active');
+      $el.children('a').addClass('active');
     }
     
     //Reset cookie
