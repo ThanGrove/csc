@@ -81,17 +81,19 @@
     });
 
     //Auto expand for active sub-menus
-    var url = location.href.split('/').slice(3).join('/'),
-        $el = $('#main-menu').find('a[href*=\"' + url + '\"]'),
-        $li;
+    $('ul#main-menu > li > ul > li > a').bind('click', function(e){
+      var lid = $(this).parent().attr('id');
+      $.cookie('expanded', lid);      
+    });
+    
+    if($.cookie('expanded')){
+      elid = $.cookie('expanded');
+      el = $('#' + elid).parent().parent();
+      el.removeClass('expanded').addClass('contracted');
 
-    if($el.length == 1) {
-      $li = $el.closest('li.expanded');
-      if ($li.length) {
-        $li.removeClass('expanded').addClass('contracted');
-        $li.closest('ul').show();
-        $el.addClass('active');
-      }
+      $('#' + elid).addClass('active');
+      $('#' + elid + " > a").addClass('active');
+      console.log('Element: ' + elid);
     }
 
     $(window).resize(function(){

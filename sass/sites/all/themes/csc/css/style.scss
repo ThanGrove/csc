@@ -3109,7 +3109,7 @@ body.logged-in {
   }
 }
 
-@each $type in event, research, learning, engagement, class {
+@each $type in news, feature, event, research, learning, engagement, class {
   .node-type-#{$type} {
     #page-title {
       text-transform: none;
