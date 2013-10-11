@@ -1,0 +1,45 @@
+<?php
+
+function auto_related_entity_insert($entity, $type){
+  auto_related_entity_get($entity, $type);
+}
+
+function auto_related_entity_update($entity, $type){
+  auto_related_entity_get($entity, $type);
+}
+
+function auto_related__entity_delete($entity, $type){
+  $lng = $entity->language;
+  
+  drupal_set_message("Deleting: " . var_export($entity,true));
+}
+
+//Check if node relation exists
+// params - $eid: entity id
+//          $tid: related target id
+function auto_related_exists($eid, $tid){
+  $qry = "SELECT * FROM field_data_field_related WHERE entity_id=$eid AND field_related_target_id=$tid";
+  $r = db_query($qry)->fetchObject();
+  if($r)
+    return true;
+  else
+    return false;  
+}
+
+function auto_related_entity_get($entity, $type){
+  //drupal_set_message("Type of entity: $type");
+  //drupal_set_message("Entity: " .var_export($entity,true));
+  if($type == 'node'){
+    $lng = $entity->language;
+    drupal_set_message("Node Id:" . $entity->nid);
+    
+    //Check if other relation exists
+    foreach($entity->field_related[$lng] as $k => $v) {
+      if(auto_related_exists($v['target_id'],$entity->nid))
+        drupal_set_message("Relations to " . $v['target_id'] . " exists");
+      else
+        drupal_set_message("Relations to " . $v['target_id'] . " does not exists");
+    }
+
+  }
+}
