@@ -60,7 +60,7 @@ function theme_csc_related_people_item($var){
   $image = ($var['image']) ? '<img src="'. image_style_url('csc_medium', $var['image']) .'" alt = "'. $var['title'] . '" title="' . $var['title'] .'">' : '';
 
   $output = '<div class="csc-people-wrapper">';
-  $outputInner = '<div class="csc-people-detail"><div class="csc-people-text">';
+  $outputInner = '<div class="csc-people-detail"><div class="csc-people-text'. ($image == '' ? ' show' : '') . '">';
   $outputInner.= "<h2>" . $var['title'] . "</h2>";
   $outputInner.= $var['position'];
   $outputInner.= '</div></div>';

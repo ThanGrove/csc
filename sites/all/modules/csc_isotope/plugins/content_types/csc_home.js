@@ -9,6 +9,8 @@
     4: {order: [0, 2, 5, 8, 10], divideAfter: 10}
   };
 
+  var $filterTip;
+
   //Browser type    
   $.browser = {};
   $.browser.mozilla = /mozilla/.test(navigator.userAgent.toLowerCase()) && !/webkit/.test(navigator.userAgent.toLowerCase());
@@ -204,6 +206,32 @@
     window.csc.home_layout();  
   }
 
+  function getFilterText($el) {
+    var type = $el.attr('data-filter'),
+        txt;
+
+    switch( type ) {
+      case 'type-feature':
+        txt = 'features'; break;
+      case 'type-news':
+        txt = 'news'; break;
+      case 'type-initiatives':
+        txt = 'contexts'; break;
+      default:
+        txt = 'all';
+    }
+    return txt;
+  }
+
+  function positionFilterTip($el) {
+    var offset = $el.offset();
+
+    return $filterTip.css({
+      top: offset.top + 5 + 'px',
+      left: offset.left - 9 + 'px'
+    });
+  }
+
   $(window).load(function() {    
     window.csc.home_layout();
     
@@ -211,7 +239,19 @@
     $('#filters a').on('click', function(){
         filter( $(this) );
         return false;
-    });        
+    })
+    .on('mouseenter', function(){
+      var $this = $(this);
+      if(!$filterTip) {
+        $filterTip = $('<div id="filter-tip" class="filter-tip">' + getFilterText($this) + '</div>').appendTo('body');
+      } else {
+        $filterTip.html(getFilterText($this));
+      }
+      positionFilterTip($this).show();
+    })
+    .on('mouseleave', function(){
+      $filterTip.hide();
+    });
   });
   
   //Resize event (only when resize ends)
