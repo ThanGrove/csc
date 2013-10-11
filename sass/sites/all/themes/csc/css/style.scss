@@ -3177,10 +3177,8 @@ body.logged-in {
 .filter-tip {
   background: url(../images/filter-tip.png) no-repeat;
   width: 70px;
-  height: 28px;
+  height: 20px;
   position: absolute;
-  top: 700px;
-  left: 0px;
   z-index: 50;
   @extend %upper;
   font-size: 0.85em;

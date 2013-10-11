@@ -56,7 +56,7 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
  * Theme function
  */
 function theme_csc_related_people_item($var){
-  $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
+  $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '<img src="/sites/all/themes/csc/images/CSC_ImagePlaceholder9.png" />';
 
   $output = '<div class="csc-people-wrapper">';
   $outputInner = '<div class="csc-people-detail"><div class="csc-people-text'. ($image == '' ? ' show' : '') . '">';
