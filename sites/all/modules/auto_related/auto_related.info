@@ -1,0 +1,7 @@
+name = Auto related nodes
+description = Make related nodes works boht ways
+dependencies[] = entityreference
+version = 7.x-1.0
+core = 7.x
+
+

@@ -69,7 +69,8 @@ function theme_csc_related_events_item($var){
     $when = format_date($tstamp, 'small');
   }
 
-  $image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
+  //$image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
+  $image = ($var['image']) ? '<img src="'. image_style_url('panopoly_image_featured', $var['image']) .'" alt = "'. $var['title'] . '" title="' . $var['title'] .'">' : '';
   $location = ($var['location'])? $var['location']['name']: '';
   
   $output = '<div class="csc-event-item '. $var['class'] .'"><div class="csc-item-container">';
