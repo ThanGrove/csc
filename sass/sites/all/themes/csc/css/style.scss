@@ -2470,6 +2470,10 @@ body.logged-in {
   color: white;
   font-family: brandon;
 
+  &.show {
+    display: block;
+  }
+
   h2 {
     text-transform: uppercase;
     font-weight: bold;
@@ -2989,7 +2993,6 @@ body.logged-in {
 /* event items */
 
 .pane-node-field-event-date  {
-  border-top: 1px solid #e0e0e0;
   h2 {
     @extend %upper;
   }
@@ -3167,4 +3170,12 @@ body.logged-in {
 
 .title-context {
   text-transform: none;
+}
+
+/* filters */
+
+.filter-tip {
+  background: url(../images/filter-tip.png) no-repeat;
+  width: 100px;
+  height: 38px;
 }
