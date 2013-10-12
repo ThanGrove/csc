@@ -1,6 +1,11 @@
 .csc-3col-container{
   float: left;
   width: 100%;
+  display: table;
+}
+
+.csc-3col-wrapper{
+  display: table-row;
 }
 
 .csc-3col-col-fixed{
@@ -9,12 +14,8 @@
   display: table-cell;
 }
 
-.csc-3col-fluid-wrapper{
-  width: 100%;
-  display: table-cell;
-}
-
 .csc-3col-col-fluid{
-  float: left;
+  display: table-cell;
+  vertical-align: top;
   width: 50%;
 }
