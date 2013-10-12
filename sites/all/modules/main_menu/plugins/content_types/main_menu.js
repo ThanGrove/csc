@@ -81,36 +81,85 @@
     });
 
     //Auto expand for active sub-menus
-    var url = location.href.split('/').slice(3).join('/'),
-        $el = $('#main-menu').find('a[href*=\"' + url + '\"]'),
-        $li;
+    //
+    var excludeUrls = [
+          '',
+          'content/home',
+          'content/about-us'
+        ],
+        url = location.href.split('/').slice(3).join('/'),
+        haveHistory = window.history;
 
-    if($el.length == 1) {
-      $li = $el.closest('li.expanded');
-      if ($li.length) {
-        $li.removeClass('expanded').addClass('contracted');
-        $li.closest('ul').show();
-        $el.addClass('active');
-        
-        var lid = $el.parent().attr('id');
-        $.cookie('expanded', lid); 
+    var urlIncluded = function() {
+      if(~url.indexOf('search/site'))
+        return false;
+
+      for (var i = 0; i < excludeUrls.length; i += 1) {
+        if( url === excludeUrls[i] ) {
+          return false;
+        }
       }
-    }
-    
-    //if mlid of a give li is saved, expand that branch
-    if($.cookie('expanded')){
-      elid = $.cookie('expanded');
-      $el = $('#' + elid);
-      $parent = $el.parent().parent();
-      $parent.removeClass('expanded').addClass('contracted');
+      return true;
+    },
+    retrieve = function(key){
+      return window.sessionStorage ? 
+        sessionStorage.getItem(key) : 
+        $.cookie(key);
+    },
+    store = function(key, val){
+      return window.sessionStorage ?
+        sessionStorage.setItem(key, val) :
+        $.cookie(key, val);
+    },
+    remove = function(key){
+      return window.sessionStorage ?
+        sessionStorage.removeItem(key) :
+        $.removeCookie(key);
+    };
 
-      $el.addClass('active');
-      $el.children('a').addClass('active');
+    if( urlIncluded() ) {
+      var $el = $('#main-menu').find('a[href*=\"' + url + '\"]'),
+          $li;
+
+      if($el.length == 1) {
+        $li = $el.closest('li.expanded');
+        if ($li.length) {
+          $li.removeClass('expanded').addClass('contracted');
+          $li.closest('ul').show();
+          $el.addClass('active');
+
+          var lid = $el.parent().attr('id');
+
+          store('expanded', lid);
+          if(haveHistory && history.replaceState) {
+            history.replaceState({id: lid}, '', location.href);
+          }
+        }
+      }
+
+      //if mlid of a give li is saved, expand that branch
+      if((haveHistory && history.state) || retrieve('expanded')){
+        if( haveHistory && history.state ) {
+          elid = history.state.id;
+        } else {
+          elid = retrieve('expanded');
+          if(haveHistory) {
+            history.replaceState({id: elid}, '', location.href);
+          }
+        }
+        $el = $('#' + elid);
+        $parent = $el.parent().parent();
+        $parent.removeClass('expanded').addClass('contracted');
+
+        $el.addClass('active').children('a').addClass('active');
+      }
+    } else {
+      remove('expanded');
     }
-    
+
     //Reset cookie
     $("#m-1008 > a, #anchor-about, #header-logo > a").bind('click', function(e){
-      $.removeCookie('expanded');
+      remove('expanded');
     });
 
     $(window).resize(function(){
