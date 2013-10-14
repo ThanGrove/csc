@@ -66,7 +66,7 @@ function theme_csc_related_events_item($var){
     list($year, $month, $day) = explode('-', $d);
     list($h, $min, $sec) = explode(':', $t);
     $tstamp = mktime($h, $min, $sec, $month, $day, $year);
-    $when = format_date($tstamp, 'small');
+    $when = format_date($tstamp, 'small', '', 'America/New_York');
   }
 
   //$image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
