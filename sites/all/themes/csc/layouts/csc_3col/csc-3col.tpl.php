@@ -14,12 +14,12 @@
  *   - $content['fluid2']: Content in the second fluid column.
  */
 ?>
-<div class="csc-3col-container">
+<div class="csc-3col-container"><div class="csc-3col-wrapper">
   <div class="csc-3col-col-fixed">
     <div class="csc-3col-inside"><?php print $content['fixed']; ?></div>
   </div>
 
-  <div class="csc-3col-fluid-wrapper">
+  <div class="csc-3col-right2">
     <div class="csc-3col-col-fluid csc-3col-first">
       <div class="csc-3col-inside"><?php print $content['fluid1']; ?></div>
     </div>
@@ -27,4 +27,4 @@
       <div class="csc-3col-inside"><?php print $content['fluid2']; ?></div>
     </div>
   </div>
-</div>
+</div></div>

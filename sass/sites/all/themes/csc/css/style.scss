@@ -1893,9 +1893,6 @@ a#menu-toggle:after {
   h2 {
     margin-top: 12px;
   }
-  .panel-pane:first-child {
-
-  }
   .panels-ipe-portlet-wrapper:first-child {
     display: table;
   }
@@ -1904,7 +1901,7 @@ a#menu-toggle:after {
       /*border-top: 1px solid #e0e0e0;*/
       @include add_nodes;
       @include media(small) {
-        width: 100%;
+        /*width: 100%;*/
       }
     }
   }
@@ -2337,6 +2334,7 @@ body.logged-in {
   }
 
   @include media(small) {
+    float: none;
     position: relative;
     padding: 20px;
     width: auto;
@@ -2377,12 +2375,13 @@ body.logged-in {
       text-transform: uppercase;
       a { 
         font-size: 13px; color: #ffffff; font-weight: bold; 
+      }
     }
   }
-}
 
   @include media(small) {
-    padding: 20px;
+    float: none;
+    padding: 5px 20px;
     width: auto;
     h2 {
       padding-left: 0px !important;
