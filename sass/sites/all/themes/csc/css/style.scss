@@ -1930,6 +1930,9 @@ body.front {
 .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
 
 .csc-3col-right2 {
+  img {
+    width: 100%;
+  }
   @include media(small) {
     background-color: white;
   }
