@@ -15,5 +15,7 @@
 
 .csc-3col-col-fluid{
   width: 50%;
-  float: left;
+  display: table-cell;
+  vertical-align: top;
+  /*float: left;*/
 }

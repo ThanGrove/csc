@@ -1930,11 +1930,24 @@ body.front {
 .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
 
 .csc-3col-right2 {
+  /*display: table;*/
+
   img {
     width: 100%;
   }
   @include media(small) {
+    margin-left: 0px;
     background-color: white;
+  }
+}
+
+.page-search {
+  .csc-3col-content-wrapper {
+    overflow-x: hidden;
+  }
+  .csc-3col-right2 {
+    display: table;
+    width: 100%;
   }
 }
 
@@ -2210,6 +2223,9 @@ body.logged-in {
     @include media(small) {
       padding: 0px;
     }
+  }
+  @include media(small) {
+    width: auto;
   }
 }
 
