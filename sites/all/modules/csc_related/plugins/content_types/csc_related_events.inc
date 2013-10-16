@@ -74,7 +74,7 @@ function theme_csc_related_events_item($var){
   $location = ($var['location'])? $var['location']['name']: '';
   
   $output = '<div class="csc-event-item '. $var['class'] .'"><div class="csc-item-container">';
-  if ($var['image']) $output .= $image . "<br>";
+  if ($var['image']) $output .=  l($image, 'node/' . $var['nid'], array('html'=>true)) . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= '<p><h3>WHEN</h3>' . $when  . "</p>";
