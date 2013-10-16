@@ -1,21 +1,19 @@
-.csc-3col-container{
+#csc-3col-container{
   float: left;
   width: 100%;
-  display: table;
 }
 
-.csc-3col-wrapper{
-  display: table-row;
+.csc-3col-right2{
+  margin-left: 150px; /*Set left margin to fixed column width*/
 }
 
 .csc-3col-col-fixed{
   float: left;
-  width: 150px;
-  display: table-cell;
+  width: 150px; /*Width of fixed column*/
+  margin-right: -100%;
 }
 
 .csc-3col-col-fluid{
-  display: table-cell;
-  vertical-align: top;
   width: 50%;
+  float: left;
 }
