@@ -46,7 +46,7 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   
   $output = '<div class="content">';
   $output.= '<div class="newsletter-text-wrapper">';
-  $output.= '<h3>Newsletter Signup</h3>';
+  $output.= '<h3>Newsletter Sign Up</h3>';
   $output.= '<p>Enter your email address to recieve our monthly newsletter</p>';
   $output.= '</div>';
   $output.= '<div class="newsletter-form-wrapper">';
@@ -64,9 +64,9 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   	<div class="response" id="mce-error-response" style="display:none"></div>
   	<div class="response" id="mce-success-response" style="display:none"></div>
    </div>
-   <div class="clear"><input type="submit" value="SINGUP" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
+   <div class="clear"><input type="submit" value="SING UP" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
 
-  $output.= '</from>';
+  $output.= '</form>';
   $output.= "</div>\n";
 
   $block = new stdClass();

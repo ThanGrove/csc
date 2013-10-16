@@ -75,7 +75,7 @@ function theme_csc_related_organizations_item($var){
   $image = ($var['image']) ? '<img src="'. image_style_url('panopoly_image_featured', $var['image']) .'" alt = "'. $var['title'] . '" title="' . $var['title'] .'">' : '';
   
   $output ='<div class="csc-organization-item '. $var['class'] .'"><div class="csc-item-container">';
-  if ($var['image']) $output .= $image . "<br>";
+  if ($var['image']) $output .= l($image, 'node/' . $var['nid'], array('html'=>true)) . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= "</div></div>\n";

@@ -60,7 +60,7 @@ function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
    </div>
    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
 
-  $output.= '</from>';
+  $output.= '</form>';
   $output.= "</div>\n";
 
   $block = new stdClass();
