@@ -1,17 +1,34 @@
 <?php
-
+/**
+ * hook_entity_insert
+ */ 
 function auto_related_entity_insert($entity, $type){
   auto_related_entity_get($entity, $type);
 }
 
+/**
+ * hook_entity_update
+ */
 function auto_related_entity_update($entity, $type){
   auto_related_entity_get($entity, $type);
 }
 
-function auto_related__entity_delete($entity, $type){
+/**
+ * hook_entity_delete
+ */
+function auto_related_entity_delete($entity, $type){
   $lng = $entity->language;
   
   drupal_set_message("Deleting: " . var_export($entity,true));
+}
+
+/**
+ * hook_entity_delete
+ */
+function auto_related_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items){
+  $lng = $entity->language;
+  
+  drupal_set_message("Deleting field: " . var_export($entity,true));
 }
 
 //Check if node relation exists
@@ -35,11 +52,30 @@ function auto_related_entity_get($entity, $type){
     
     //Check if other relation exists
     foreach($entity->field_related[$lng] as $k => $v) {
-      if(auto_related_exists($v['target_id'],$entity->nid))
+      if(auto_related_exists($v['target_id'],$entity->nid)){
         drupal_set_message("Relations to " . $v['target_id'] . " exists");
-      else
+      }else{
         drupal_set_message("Relations to " . $v['target_id'] . " does not exists");
+        //auto_related_save_related($v['target_id'],$entity->nid);
+      }
     }
 
   }
+}
+
+function auto_related_save_related($eid, $tid){
+  $qry = "SELECT MAX(delta) as dmax FROM {field_data_field_related} WHERE entity_id=$eid";
+  $row = db_query($qry)->fetchObject();
+  if(isset($row->dmax)){
+    $delta = $row->dmax + 1;
+  }else{
+    $delta = 0;
+  }
+  
+  $qry = "SELECT type, language FROM {node} WHERE nid=$eid";
+  $row = db_query($qry)->fetchObject();
+  
+  $fields = array('entity_type' => 'node', 'bundle' => $row->type, 'deleted' => 0, 'entity_id' => $eid, 'revision_id' => $eid, 'language' => $row->language, 'delta' => $delta, 'field_related_target_id' => $tid);
+  db_insert('field_data_field_related')->fields($fields)->execute();
+  db_insert('field_revision_field_related')->fields($fields)->execute();
 }

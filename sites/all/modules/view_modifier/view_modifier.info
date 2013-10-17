@@ -1,0 +1,7 @@
+name = View SQL alter
+description = Modify a View SQL to add custom features
+dependencies[] = views
+version = 7.x-1.0
+core = 7.x
+
+
