@@ -46,13 +46,14 @@ font-weight: 200;
 
 body {
   line-height: 1.5;
-  font-size: 87.5%;
+  font-size: 1em;
   word-wrap: break-word;
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
   background-color: #e8e7e5;
+  font-family: brandon;
 }
 a:link,
 a:visited {
@@ -156,12 +157,12 @@ pre {
 
 /* ------------------ Fonts ------------------ */
 
-body,
-#site-slogan,
-.ui-widget,
-.comment-form label {
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
+/*body,*/
+/*#site-slogan,*/
+/*.ui-widget,*/
+/*.comment-form label {*/
+  /*font-family: Georgia, "Times New Roman", Times, serif;*/
+/*}*/
 #header,
 #footer-wrapper,
 #skip-link,
@@ -1861,13 +1862,12 @@ a#menu-toggle:after {
  *CSC Styles
  */
 .menu-desc{
-  font-size: 12px;
+  font-size: 1.2em;
   font-style: italic;
   color: #828282;
   padding-left: 10px;
   text-transform: none;
   font-weight: normal;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .bryant-sidebar{
@@ -2210,7 +2210,7 @@ body.logged-in {
 .pane-csc-newsletter .content{
   text-align: center;
   color: #626262;
-  font-size: 11px;
+  font-size: 0.8em;
   font-style: italic;
   padding: 4px 8px 1px 8px;
 }
@@ -2235,7 +2235,7 @@ body.logged-in {
 .pane-csc-related-research {
   float: left;
   width: 100%;
-  font-size: 10px;
+  font-size: 0.9em;
   padding: 20px 0 20px 0;
   margin-top: 20px;
   border-top: 1px solid #e0e0e0;  
@@ -2342,7 +2342,7 @@ body.logged-in {
   width: 100%;
   /*background: #00b0a5;*/
   color: #ffffff;
-  font-size: 12px;
+  font-size: 0.9em;
   padding-bottom: 20px;  
 
   h2 {
@@ -2389,7 +2389,7 @@ body.logged-in {
   width: 100%;
   background: #2f2f2f;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 0.9em;
   padding-bottom: 20px;  
   border-top: 1px solid #505050;
 
@@ -2686,7 +2686,6 @@ body.logged-in {
 
 .csc-research-item {
   float: left;
-  font-size: 12px;
   background: url(../images/gray_line_bg.gif) left no-repeat;
 
   &:first-child {
