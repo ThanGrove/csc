@@ -17,7 +17,7 @@
   position: fixed;
   right: 0px;
   top: 76px;
-  z-index: 100;
+  z-index: 50;
   height: 100%;
   width: 340px;
   opacity: 0.98;
@@ -32,7 +32,7 @@
     top: 58px;
     position: absolute;
     height: 500px;
-    width: 198px;
+    width: 168px;
   }
   /* line 22, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
   #csc-right h2 {
@@ -47,8 +47,13 @@
   #csc-right #edit-search-block-form--2 {
     width: 7.4em;
   }
+  /* line 32, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+  #csc-right .form-text {
+    width: 120px;
+    margin-left: 3px;
+  }
 }
-/* line 34, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 38, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-right.in {
   -webkit-transform: translateX(0px);
   -moz-transform: translateX(0px);
@@ -57,7 +62,7 @@
   transform: translateX(0px);
 }
 
-/* line 39, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 43, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-top {
   float: left;
   width: 100%;
@@ -65,7 +70,7 @@
   background: #e8e7e5;
 }
 
-/* line 46, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 50, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-title {
   margin: 12px 0px 8px;
   opacity: 0.7;
@@ -77,13 +82,13 @@
   text-align: center;
 }
 @media only screen and (max-width: 640px) {
-  /* line 46, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+  /* line 50, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
   #csc-column-title {
     font-size: 14px;
   }
 }
 
-/* line 60, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 64, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-close {
   position: absolute;
   right: 10px;
@@ -94,7 +99,7 @@
   color: #444;
 }
 @media only screen and (max-width: 640px) {
-  /* line 60, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+  /* line 64, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
   #csc-column-close {
     right: 8px;
     top: 6px;
@@ -102,19 +107,19 @@
   }
 }
 
-/* line 75, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 79, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-column-content {
   float: left;
   width: 312px;
   padding: 20px;
 }
 
-/* line 81, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 85, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-hide {
   display: none;
 }
 
-/* line 82, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
+/* line 86, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 .csc-show {
   display: block;
 }
