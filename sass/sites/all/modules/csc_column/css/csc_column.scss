@@ -8,7 +8,7 @@
   position: fixed;
   right: 0px;
   top: $banner_height;
-  z-index: 100;
+  z-index: 50;
   height: 100%;
   width: 340px;
   opacity: 0.98;
@@ -18,7 +18,7 @@
     top: 58px;
     position: absolute;
     height: 500px;
-    width: 198px;
+    width: 168px;
     h2 {
       margin-top: 8px;
     }
@@ -28,6 +28,10 @@
     }
     #edit-search-block-form--2 {
       width: 7.4em;
+    }
+    .form-text {
+      width: 120px;
+      margin-left: 3px;
     }
   }
 

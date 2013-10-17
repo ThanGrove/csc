@@ -2062,7 +2062,8 @@ body.logged-in {
     background-color: none;
     min-width: 0px;
     left: 43px;
-    top: 9px;
+    top: 11px;
+    max-width: 256px;
   }
 }
 #header-logo img { 
@@ -2115,7 +2116,7 @@ body.logged-in {
     background-color: #252525;
     top: 50px;
     border-top: 1px #444 solid;
-    padding: 1px 2px 0px 4px;
+    padding: 1px 1px 0px 1px;
     @include border-bottom-left-radius(3px);
 
     ul {
@@ -2124,7 +2125,7 @@ body.logged-in {
     li {
       height: auto;
       border: none;
-      padding: 0px 3px;
+      padding: 0px;
 
       a {
         width: 42px;
@@ -2133,11 +2134,13 @@ body.logged-in {
     }
     img {
       margin-bottom: 14px;
+      width: 16px;
+      height: 16px;
     }
     .header-icon-text {
       bottom: 3px;
       font-size: 9px;
-      width: 41px;
+      width: 42px;
     }
   }
 
