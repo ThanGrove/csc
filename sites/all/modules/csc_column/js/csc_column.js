@@ -39,6 +39,8 @@
           url: ajax_url,
           success: function(res){
             $('#csc-column-content').addClass('csc-' + title.replace(/ /g, '-').toLowerCase()).html(res);
+            if(~title.indexOf('Search'))
+              $('#field-key').focus();
           }
         });
 
