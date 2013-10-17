@@ -2567,15 +2567,13 @@ body.logged-in {
   font-family: brandon;
   font-style: italic;
   line-height: 16px;
-  color: #000;
+  color: #999;
   h2 {
     font-family: brandon;
     font-size: 1.2em;
     font-style: normal;
     text-transform: none;
-    a {
-      color: #444;
-    }
+    color: #000;
   }
   @include media(smedium medium) {
     font-size: 1em;
