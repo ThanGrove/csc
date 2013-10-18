@@ -3009,6 +3009,15 @@ body.logged-in {
   }
 }
 
+#event-nav{
+  font-size: 12px;
+  color: #7e7e7e;
+  text-align: right;
+  font-family: brandon;
+}
+
+#event-nav a { color: #000000; font-weight: bold; }
+
 /* event items */
 
 .pane-node-field-event-date  {

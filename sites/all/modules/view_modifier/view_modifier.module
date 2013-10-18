@@ -1,0 +1,31 @@
+<?php
+/**
+ * hook_views_pre_execute
+ *  
+ */ 
+function view_modifier_views_pre_execute(&$view) {
+   if( $view->name == 'events'){
+    $related = arg(1);
+    $show = arg(2);
+
+    //Adds event date table
+    $view->build_info['query']->join('field_data_field_event_date', 'fed', 'fed.entity_id=node.nid');
+    
+    //adds filter for past and future
+    if($show){    
+      if($show == 'past')
+        $view->build_info['query']->where('NOW() >= fed.field_event_date_value');
+      else
+        $view->build_info['query']->where('NOW() < fed.field_event_date_value');
+    }
+    
+    //Adds order condition
+    if($show == 'future'){
+      $view->build_info['query']->orderBy('fed.field_event_date_value', 'ASC');
+    }else{
+      $view->build_info['query']->orderBy('fed.field_event_date_value', 'DESC');
+    }
+    
+   }
+
+}
