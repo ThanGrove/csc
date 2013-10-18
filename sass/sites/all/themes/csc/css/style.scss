@@ -1862,7 +1862,7 @@ a#menu-toggle:after {
  *CSC Styles
  */
 .menu-desc{
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-style: italic;
   color: #828282;
   padding-left: 10px;
@@ -2285,7 +2285,7 @@ body.logged-in {
 
 .see-all { 
   float: right;
-  margin-top: -28px;
+  margin-top: -32px;
   margin-right: 20px;
 
   a {
@@ -2317,7 +2317,8 @@ body.logged-in {
 .csc-teaser-more, .csc-teaser-less { 
   cursor: pointer;
   margin-top: 20px; 
-  font-size: 11px;
+  font-size: 0.7em;
+  line-height: 1.5em;
   font-weight: bold; 
   font-family: brandon; 
   color: #3c3c3c; 
@@ -2342,7 +2343,7 @@ body.logged-in {
   width: 100%;
   /*background: #00b0a5;*/
   color: #ffffff;
-  font-size: 0.9em;
+  font-size: 1em;
   padding-bottom: 20px;  
 
   h2 {
@@ -2389,7 +2390,7 @@ body.logged-in {
   width: 100%;
   background: #2f2f2f;
   color: #ffffff;
-  font-size: 0.9em;
+  font-size: 1em;
   padding-bottom: 20px;  
   border-top: 1px solid #505050;
 
@@ -2566,7 +2567,7 @@ body.logged-in {
 
 .csc-director-text { 
   padding: 3px 3px 0px 0px;
-  font-size: 1.1em; 
+  font-size: 1em; 
   font-family: brandon;
   font-style: italic;
   line-height: 16px;
