@@ -111,22 +111,22 @@
 #main-menu a {
   font-family: brandon;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 0.9em;
   text-transform: uppercase;
   display: block;
   padding: 18px 0px;
 }
-/* line 56, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 59, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu a.active {
   /*@include add_nodes;*/
 }
 
-/* line 70, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 73, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu a:hover {
   text-decoration: none;
 }
 
-/* line 71, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 74, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu > li ul li a {
   background-color: #E8E7E5;
   font-size: 15px;
@@ -135,12 +135,12 @@
   font-weight: normal;
   text-transform: none;
 }
-/* line 78, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 81, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu > li ul li a:hover {
   background-color: #444;
 }
 
-/* line 82, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
+/* line 85, ../../../../../../sass/sites/all/modules/main_menu/plugins/content_types/main_menu.scss */
 #main-menu > li ul li {
   background: #E8E7E5;
   list-style: none;
