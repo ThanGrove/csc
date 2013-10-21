@@ -99,7 +99,9 @@ img {
 
 .hide-me{ display: none; }
 .highlight { 
+  @include border-radius(3px);
   @extend %education_bg_color;
+  padding: 0em 0.2em;
 }
 
 /**
