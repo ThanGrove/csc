@@ -1,0 +1,5 @@
+;
+
+name = Search Higlight
+description = Hightlight keywords on search results
+core = 7.x

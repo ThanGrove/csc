@@ -1,0 +1,26 @@
+<?php
+
+/**
+ * Implementation of hook_info()
+ */
+function search_highlight_block_info(){
+  $blocks['highlight']['info']= t('Search Highlight');
+  return $blocks;
+}
+
+/**
+ * Implementation of hook_view()
+ */
+function search_highlight_block_view($delta = ''){
+  switch ($delta) {
+    case 'highlight':    
+      $key = arg(2);
+      $path = drupal_get_path('module', 'search_highlight');
+      drupal_add_js($path .'/js/jquery.highlight-4.js');
+      drupal_add_js("(function ($) {  $(window).load(function() { $('.csc-3col-first .view-content').highlight('". $key ."');  }); })(jQuery);", 'inline');
+      
+      $block['subject'] = '';
+      $block['content'] = '';
+      return $block;
+  }
+} 

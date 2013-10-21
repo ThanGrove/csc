@@ -98,6 +98,9 @@ img {
 }
 
 .hide-me{ display: none; }
+.highlight { 
+  @extend %education_bg_color;
+}
 
 /**
  * The generic monospace font family is listed before Courier new to avoid a
