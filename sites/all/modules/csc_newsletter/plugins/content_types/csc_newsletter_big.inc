@@ -64,7 +64,7 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   	<div class="response" id="mce-error-response" style="display:none"></div>
   	<div class="response" id="mce-success-response" style="display:none"></div>
    </div>
-   <div class="clear"><input type="submit" value="SING UP" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
+   <div class="clear"><input type="submit" value="SIGN UP" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
 
   $output.= '</form>';
   $output.= "</div>\n";
