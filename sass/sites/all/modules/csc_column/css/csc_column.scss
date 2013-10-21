@@ -11,8 +11,10 @@
   z-index: 50;
   height: 100%;
   width: 340px;
+  min-height: 750px;
   opacity: 0.98;
   background: #ffffff;
+
   @include media(small) {
     @include border-bottom-left-radius(3px);
     top: 58px;
