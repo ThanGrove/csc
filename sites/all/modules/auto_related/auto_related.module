@@ -13,23 +13,6 @@ function auto_related_entity_update($entity, $type){
   auto_related_entity_get($entity, $type);
 }
 
-/**
- * hook_entity_delete
- */
-function auto_related_entity_delete($entity, $type){
-  $lng = $entity->language;
-  
-  drupal_set_message("Deleting: " . var_export($entity,true));
-}
-
-/**
- * hook_entity_delete
- */
-function auto_related_field_delete($entity_type, $entity, $field, $instance, $langcode, &$items){
-  $lng = $entity->language;
-  
-  drupal_set_message("Deleting field: " . var_export($entity,true));
-}
 
 //Check if node relation exists
 // params - $eid: entity id
@@ -44,40 +27,17 @@ function auto_related_exists($eid, $tid){
 }
 
 function auto_related_entity_get($entity, $type){
-  //drupal_set_message("Type of entity: $type");
-  //drupal_set_message("Entity: " .var_export($entity,true));
   if($type == 'node'){
     $lng = $entity->language;
-    drupal_set_message("Node Id:" . $entity->nid);
     
     //Check if other relation exists
     foreach($entity->field_related[$lng] as $k => $v) {
-      if(auto_related_exists($v['target_id'],$entity->nid)){
-        drupal_set_message("Relations to " . $v['target_id'] . " exists");
-      }else{
-        drupal_set_message("Relations to " . $v['target_id'] . " does not exists");
+      if(!auto_related_exists($v['target_id'],$entity->nid)){
         auto_related_save_related($v['target_id'],$entity->nid);
       }
     }
 
   }
-}
-
-function auto_related_save_related_old($eid, $tid){
-  $qry = "SELECT MAX(delta) as dmax FROM {field_data_field_related} WHERE entity_id=$eid";
-  $row = db_query($qry)->fetchObject();
-  if(isset($row->dmax)){
-    $delta = $row->dmax + 1;
-  }else{
-    $delta = 0;
-  }
-  
-  $qry = "SELECT type, language FROM {node} WHERE nid=$eid";
-  $row = db_query($qry)->fetchObject();
-  
-  $fields = array('entity_type' => 'node', 'bundle' => $row->type, 'deleted' => 0, 'entity_id' => $eid, 'revision_id' => $eid, 'language' => $row->language, 'delta' => $delta, 'field_related_target_id' => $tid);
-  db_insert('field_data_field_related')->fields($fields)->execute();
-  db_insert('field_revision_field_related')->fields($fields)->execute();
 }
 
 function auto_related_save_related($eid, $tid){
@@ -95,20 +55,22 @@ function auto_related_node_presave($n){
   $lng = $n->language;
   $delta = sizeof($n->field_related[$lng]);
 
+  //Get node''s ids of related fields
   $p = array();
   for($i=0; $i < sizeof($_POST['field_related'][$lng]); $i++){
     $start = strrpos($_POST['field_related'][$lng][$i]['target_id'], '(', -1) +1;
     $len = strlen($_POST['field_related'][$lng][$i]['target_id']);
     $p[] = substr($_POST['field_related'][$lng][$i]['target_id'], $start, $len - $start -1);
+  }
+
+  //Remove duplicated nodes
+  for($i = sizeof($p)-1; $i > 0; $i--){
+    for($j = $i-1; $j >= 0; $j--){
+      if($p[$i] == $p[$j]){
+         unset($n->field_related[$lng][$i]);
+         break;
+      }
+    }
   } 
 
- drupal_set_message("Post: " . var_export($p,true));  
-   
-  foreach($n->field_related[$lng] as $k => $v){
-    if(!in_array($v['target_id'], $p)) drupal_set_message("Delete: " . $v['target_id']);
-  }
-  
-//  drupal_set_message("Before: $delta");
-  
-//  drupal_set_message("Now: " . sizeof($_POST['field_related'][$lng]));  
 }
