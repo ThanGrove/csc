@@ -2977,6 +2977,7 @@ body {
     top: $banner_height;
     @include media(small) {
       top: 50px;
+      overflow-x: hidden;
     }
   }
 
