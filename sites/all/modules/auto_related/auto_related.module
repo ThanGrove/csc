@@ -48,7 +48,8 @@ function auto_related_save_related($eid, $tid){
   $delta = sizeof($node->field_related[$lng]);
   
   $node->field_related[$lng][$delta]['target_id'] = $tid;
-  node_save($node);
+
+  field_attach_update('node', $node);
 }
 
 function auto_related_node_presave($n){
@@ -71,6 +72,26 @@ function auto_related_node_presave($n){
          break;
       }
     }
-  } 
+  }
 
+  //check deleted "Related to" fields
+  foreach($n->original->field_related[$lng] as $k => $v){
+    if(!in_array($v['target_id'], $p)) auto_related_remove_field($v['target_id'],$n->nid);
+  }
+  
+}
+
+/**
+ *Remove a "Related to" node field from a given node
+ * Params
+ *  $nid : node to delete field form
+ *  $tid : target id of field to be deleted
+ */    
+function auto_related_remove_field($nid,$tid){
+  $node = node_load($nid);
+  $lng = $node->language;
+  
+  foreach($node->field_related[$lng] as $k => $v) if($v['target_id'] == $tid) unset($node->field_related[$lng][$k]);
+  
+  field_attach_update('node', $node);
 }
