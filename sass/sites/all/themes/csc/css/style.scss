@@ -2373,6 +2373,22 @@ body.logged-in {
       }
   }
 
+  .csc-item-container {
+    position: relative;
+  }
+  .past-flag {
+    @include border-bottom-right-radius(3px);
+    position: absolute;
+    top: 0px;
+    padding: 0.2em 0.6em;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    background-color: #111;
+    opacity: 0.5;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+  }
+
   @include media(small) {
     float: none;
     position: relative;
@@ -3248,4 +3264,8 @@ body.logged-in {
   font-size: 0.8em;
   text-align: center;
   padding-top: 6px;
+}
+
+.past {
+  @include opacity(0.7);
 }
