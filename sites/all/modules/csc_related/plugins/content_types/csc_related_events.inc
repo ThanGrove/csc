@@ -26,9 +26,43 @@ function csc_related_events_info($subtype, $conf, $contexts) {
  */ 
 function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL) {
   module_load_include('inc', 'csc_related', 'csc_related');
+
+  //Get current node id
+  $nodeid = csc_related_current_nid();
+  //Future events
+  $qry = "SELECT fr.entity_id, UNIX_TIMESTAMP(ed.field_event_date_value) as stamp
+          FROM field_data_field_related fr, node n, field_data_field_event_date ed
+          WHERE fr.field_related_target_id=$nodeid
+          AND fr.entity_id=n.nid
+          AND ed.entity_type='node' AND ed.entity_id=fr.entity_id
+          AND UNIX_TIMESTAMP() <= UNIX_TIMESTAMP(ed.field_event_date_value)
+          AND n.status = 1
+          AND fr.bundle='event'
+          ORDER BY stamp ASC
+          LIMIT 3";
+          
+  $r = db_query($qry);
+  $nids = array();
+  foreach($r as $row) $nids[] = $row->entity_id;
   
-  $type = 'event';
-  $nids = csc_related_get_nodes($type);
+  //Less than 3 events, search past events
+  $count = sizeof($nids);
+  if($count < 3){
+    $limit = 3 - $count;
+    $qry = "SELECT fr.entity_id, UNIX_TIMESTAMP(ed.field_event_date_value) as stamp
+            FROM field_data_field_related fr, node n, field_data_field_event_date ed
+            WHERE fr.field_related_target_id=$nodeid
+            AND fr.entity_id=n.nid
+            AND ed.entity_type='node' AND ed.entity_id=fr.entity_id
+            AND UNIX_TIMESTAMP() > UNIX_TIMESTAMP(ed.field_event_date_value)
+            AND n.status = 1
+            AND fr.bundle='event'
+            ORDER BY stamp DESC
+            LIMIT $limit";
+            
+    $r = db_query($qry);
+    foreach($r as $row) $nids[] = $row->entity_id;    
+  }
 
   if(sizeof($nids)){
     $output = '<div class="see-all"><a href="'. url('events/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
