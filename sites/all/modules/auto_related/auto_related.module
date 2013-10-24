@@ -48,7 +48,8 @@ function auto_related_save_related($eid, $tid){
   $delta = sizeof($node->field_related[$lng]);
   
   $node->field_related[$lng][$delta]['target_id'] = $tid;
-  node_save($node);
+
+  field_attach_update('node', $node);
 }
 
 function auto_related_node_presave($n){
