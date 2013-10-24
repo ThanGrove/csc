@@ -3269,3 +3269,30 @@ body.logged-in {
 .past {
   @include opacity(0.7);
 }
+
+/* calendar styles */
+
+.date-nav-wrapper {
+  margin-top: 0px;
+  background-color: #dfdfdf;
+  .date-heading {
+    top: 0.55em;
+  }
+}
+.date-nav.item-list {
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  .pager {
+    margin-bottom: 1.2em;
+  }
+  .date-prev, .date-next {
+    @include border-radius(0px);
+  }
+}
+.calendar-calendar {
+  .view-item {
+    .calendar {
+      background: none;
+    }
+  }
+}
