@@ -1,0 +1,6 @@
+name = IE8 Redirect
+description = Redirect in case user browser is IE8 or less
+version = 7.x-1.0
+core = 7.x
+
+
