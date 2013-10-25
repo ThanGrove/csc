@@ -17,9 +17,13 @@ function ie8_redirect_init(){
   if(strpos($_SERVER['QUERY_STRING'], $url)) return;
   
   if($url){
-    $url = url($url);
-    drupal_add_js(drupal_get_path('module', 'ie8_redirect') . '/ie8_redirect.js');
-    drupal_add_js("(function ($) { ie8_redirect('$url'); })(jQuery);", 'inline');  
+    preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);
+  
+    //Browser is IE
+    if (count($matches)>1){
+      $version = $matches[1];
+      if($version<=8) drupal_goto($url);
+    }  
   }
 }
 
