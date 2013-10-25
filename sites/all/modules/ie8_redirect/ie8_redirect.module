@@ -13,6 +13,9 @@ function ie8_redirect_permission() {
 
 function ie8_redirect_init(){
   $url = variable_get('ie8_redirect_url','');
+  
+  if(strpos($_SERVER['QUERY_STRING'], $url)) return;
+  
   if($url){
     $url = url($url);
     drupal_add_js(drupal_get_path('module', 'ie8_redirect') . '/ie8_redirect.js');
