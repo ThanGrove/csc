@@ -3272,27 +3272,34 @@ body.logged-in {
 
 /* calendar styles */
 
-.date-nav-wrapper {
+.view .date-nav-wrapper {
   margin-top: 0px;
   background-color: #dfdfdf;
+
   .date-heading {
     top: 0.55em;
   }
-}
-.date-nav.item-list {
-  margin-bottom: 0px;
-  padding-bottom: 0px;
-  .pager {
-    margin-bottom: 1.2em;
-  }
-  .date-prev, .date-next {
-    @include border-radius(0px);
-  }
-}
-.calendar-calendar {
-  .view-item {
-    .calendar {
-      background: none;
+  .date-nav.item-list {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    .pager {
+      margin: 0px;
+      padding: 0px;
+      margin-bottom: 1.2em;
+    }
+    .date-prev, .date-next {
+      @include border-radius(0px);
     }
   }
+}
+.calendar-calendar .month-view .full td.single-day div.monthview {
+  background: none;
+
+  .views-field {
+    display: inline;
+    .field-content {
+      display: inline;
+    }
+  }
+
 }
