@@ -2,8 +2,8 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('CSC Related Classes'),
-  'description' => t('Shows Classes related to current page'),
+  'title' => t('CSC Related Instruction'),
+  'description' => t('Shows Instruction related to current page'),
   'category' => t('CSC Plugins'),
   'render callback' => 'csc_related_classes_render',
   'admin info' => 'csc_related_classes_info',
@@ -15,8 +15,8 @@ $plugin = array(
 function csc_related_classes_info($subtype, $conf, $contexts) {
   if (!empty($conf)) {
     $block = new stdClass;
-    $block->title = 'Related Classes';
-    $block->content = 'CSC Related Classes widget';
+    $block->title = 'Related Instruction';
+    $block->content = 'CSC Related Instruction widget';
     return $block;
   }
 }
@@ -44,7 +44,7 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
     }
   
     $block = new stdClass();
-    $block->title = 'Classes';
+    $block->title = 'Instruction';
     $block->content = $output;
   
     return $block;
