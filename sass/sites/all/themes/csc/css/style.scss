@@ -3293,14 +3293,27 @@ body.logged-in {
     }
   }
 }
-.calendar-calendar .month-view .full td.single-day div.monthview {
-  background: none;
-
-  .views-field {
-    display: inline;
-    .field-content {
-      display: inline;
+.calendar-calendar .month-view .full {
+  td a {
+    color: rgb(0, 113, 179);
+    &:hover {
+      text-decoration: none;
     }
   }
+  td.date-box.today {
+    border-color: $default_color; 
+  }
+  tr td.single-day.today {
+    border-color: $default_color;
+  }
+  td.single-day div.monthview {
+    background: none;
 
+    .views-field {
+      display: inline;
+      .field-content {
+        display: inline;
+      }
+    }
+  }
 }
