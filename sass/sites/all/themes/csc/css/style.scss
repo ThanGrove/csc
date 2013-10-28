@@ -45,6 +45,7 @@ font-weight: 200;
 /* ---------- Overall Specifications ---------- */
 
 body {
+  color: #000 !important;
   line-height: 1.5;
   font-size: 1em;
   word-wrap: break-word;
@@ -3268,4 +3269,51 @@ body.logged-in {
 
 .past {
   @include opacity(0.7);
+}
+
+/* calendar styles */
+
+.view .date-nav-wrapper {
+  margin-top: 0px;
+  background-color: #dfdfdf;
+
+  .date-heading {
+    top: 0.55em;
+  }
+  .date-nav.item-list {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    .pager {
+      margin: 0px;
+      padding: 0px;
+      margin-bottom: 1.2em;
+    }
+    .date-prev, .date-next {
+      @include border-radius(0px);
+    }
+  }
+}
+.calendar-calendar .month-view .full {
+  td a {
+    color: rgb(0, 113, 179);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  td.date-box.today {
+    border-color: $default_color; 
+  }
+  tr td.single-day.today {
+    border-color: $default_color;
+  }
+  td.single-day div.monthview {
+    background: none;
+
+    .views-field {
+      display: inline;
+      .field-content {
+        display: inline;
+      }
+    }
+  }
 }
