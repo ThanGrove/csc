@@ -3,6 +3,7 @@
 /sites/all/modules/main_menu/plugins/content_types/main_menu.css
 /sites/all/modules/csc_isotope/plugins/content_types/css_isotope.css
 sites/*/*settings*.php
+sites/csc*
 
 # Ignore paths that contain generated content.
 cache/
