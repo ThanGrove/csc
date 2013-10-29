@@ -1,0 +1,6 @@
+name = CSC General Functions
+description = General and common functions for CSC website
+version = 7.x-1.0
+core = 7.x
+
+

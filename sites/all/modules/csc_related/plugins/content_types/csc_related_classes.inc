@@ -2,8 +2,8 @@
 
 $plugin = array(
   'single' => TRUE,
-  'title' => t('CSC Related Classes'),
-  'description' => t('Shows Classes related to current page'),
+  'title' => t('CSC Related Instruction'),
+  'description' => t('Shows Instruction related to current page'),
   'category' => t('CSC Plugins'),
   'render callback' => 'csc_related_classes_render',
   'admin info' => 'csc_related_classes_info',
@@ -15,8 +15,8 @@ $plugin = array(
 function csc_related_classes_info($subtype, $conf, $contexts) {
   if (!empty($conf)) {
     $block = new stdClass;
-    $block->title = 'Related Classes';
-    $block->content = 'CSC Related Classes widget';
+    $block->title = 'Related Instruction';
+    $block->content = 'CSC Related Instruction widget';
     return $block;
   }
 }
@@ -38,12 +38,13 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
       $lng = $node->language;
       $output .= theme('csc_related_classes_item', array('title' => $node->title,
                                                         'body' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value'] : '',
+                                                        'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
                                                         'nid' => $node->nid,
                                                   ));
     }
   
     $block = new stdClass();
-    $block->title = 'Classes';
+    $block->title = 'Instruction';
     $block->content = $output;
   
     return $block;
@@ -55,8 +56,10 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
  */
 function theme_csc_related_classes_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
+  $image = ($var['image']) ? '<img src="'. image_style_url('panopoly_image_featured', $var['image']) .'" alt = "'. $var['title'] . '" title="' . $var['title'] .'">' : '';
 
   $output ='<div class="csc-classes-item"><div class="csc-item-container">';
+  if ($var['image']) $output .= l($image, 'node/' . $var['nid'], array('html'=>true)) . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= "</div></div>\n";
