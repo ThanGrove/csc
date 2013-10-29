@@ -1587,8 +1587,15 @@ div.add-or-remove-shortcuts {
 /* ---------- Admin-specific Theming ---------- */
 
 .admin-menu {
-  .region {
-    padding: 20px;
+  &.page-node-edit {
+    .region {
+      padding: 0px 20px 20px 20px;
+    }
+  }
+  .pane-node-form-title {
+    span {
+      font-weight: bold;
+    }
   }
 }
 
