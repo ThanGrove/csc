@@ -2474,6 +2474,12 @@ body.logged-in {
   margin-top: 28px;
   width: 100%;
 
+  img {
+    width: 30%;
+    float: left;
+    margin: 0.3em 0.8em 0em 0em;
+  }
+
   h2 {
     a { 
       @extend %h2a;
