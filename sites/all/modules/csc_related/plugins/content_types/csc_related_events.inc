@@ -99,7 +99,7 @@ function theme_csc_related_events_item($var){
   $when = '';
   if($var['date']){
     $now = new DateTime('now');
-    $date = new DateTime($var['date']);
+    $date = new DateTime($var['date']['value']);
     if( $date < $now ) {
       $past = true;
       $class .= ' past ';
