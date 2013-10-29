@@ -14,7 +14,7 @@ function ie8_redirect_permission() {
 function ie8_redirect_init(){
   $url = variable_get('ie8_redirect_url','');
   
-  if(strpos($_SERVER['QUERY_STRING'], $url)) return;
+  if(strpos($_SERVER['REQUEST_URI'], $url)) return;
   
   if($url){
     preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);

@@ -75,7 +75,7 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
                                                         'nid' => $node->nid,
                                                         'location' => ($node->field_location) ? $node->field_location[$lng][0] : '',
                                                         'image' => ($node->field_featured_image) ? $node->field_featured_image[$lng][0]['uri'] : '',
-                                                        'date' => isset($node->field_event_date[$lng][0]['value']) ? $node->field_event_date[$lng][0]['value'] : '',
+                                                        'date' => isset($node->field_event_date[$lng][0]) ? $node->field_event_date[$lng][0] : '',
                                                         'class' => $class,
                                                   ));
     }
@@ -109,6 +109,28 @@ function theme_csc_related_events_item($var){
     list($h, $min, $sec) = explode(':', $t);
     $tstamp = mktime($h, $min, $sec, $month, $day, $year);
     $when = format_date($tstamp, 'small', '', 'UTC');
+    $stamp1 = strtotime($var['date']['value']);
+    $stamp2 = strtotime($var['date']['value2']);
+    $date1 = date('Y-m-d', $stamp1);
+    $date2 = date('Y-m-d', $stamp2);
+    $arg = array('date1' => format_date($stamp1, 'short', '', 'UTC'),
+                 'date2' => format_date($stamp2, 'short', '', 'UTC'),
+                 'timezone' => '',
+                 'attributes_start' => array(),
+                 'attributes_end' => array(),
+           );
+
+    if($stamp1 == $stamp2){
+      $arg['date'] = $arg['date1'];
+      $when = theme('date_display_single',$arg);
+    }
+    elseif($stamp2 - $stamp1 <= 86400){
+      $arg['date'] = $arg['date1'];
+      $when = theme('date_display_single',$arg);
+      $when .= ' to ' . format_date($stamp2, 'custom', 'g:ia', 'UTC');
+    }else{
+      $when = theme('date_display_range',$arg);
+    }
   }
 
   //$image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
