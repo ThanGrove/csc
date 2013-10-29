@@ -124,6 +124,7 @@ function theme_csc_related_events_item($var){
       $arg['date'] = $arg['date1'];
       $when = theme('date_display_single',$arg);
     }
+    //Same date, diferent hour
     elseif($stamp2 - $stamp1 <= 86400){
       $arg['date'] = $arg['date1'];
       $when = theme('date_display_single',$arg);
