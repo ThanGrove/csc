@@ -113,8 +113,8 @@ function theme_csc_related_events_item($var){
     $stamp2 = strtotime($var['date']['value2']);
     $date1 = date('Y-m-d', $stamp1);
     $date2 = date('Y-m-d', $stamp2);
-    $arg = array('date1' => format_date($stamp1, 'short', '', 'UTC'),
-                 'date2' => format_date($stamp2, 'short', '', 'UTC'),
+    $arg = array('date1' => format_date($stamp1, 'custom', 'F j, Y - g:ia', 'UTC'),
+                 'date2' => format_date($stamp2, 'custom', 'F j, Y - g:ia', 'UTC'),
                  'timezone' => '',
                  'attributes_start' => array(),
                  'attributes_end' => array(),
