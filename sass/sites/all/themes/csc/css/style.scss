@@ -55,6 +55,14 @@ body {
   outline: 0;
   background-color: #e8e7e5;
   font-family: brandon, Georgia;
+
+  &.page-node-edit {
+    /*background-color: white;*/
+  }
+  &.cke_show_border {
+    background-color: white;
+    padding: 10px;
+  }
 }
 a:link,
 a:visited {
