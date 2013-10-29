@@ -1586,6 +1586,12 @@ div.add-or-remove-shortcuts {
 
 /* ---------- Admin-specific Theming ---------- */
 
+.admin-menu {
+  .region {
+    padding: 20px;
+  }
+}
+
 .page-admin #content img {
   margin-right: 15px; /* LTR */
 }
