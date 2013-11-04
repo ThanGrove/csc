@@ -1,0 +1,8 @@
+<?php
+
+function csc_general_enable(){
+  db_update('system')
+    ->fields(array('weight' => 101))
+    ->condition('name', 'csc_general', '=')
+    ->execute();
+}
