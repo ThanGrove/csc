@@ -6,6 +6,136 @@ function csc_general_form_alter(&$form, &$form_state, $form_id){
   if(isset($form['#node_edit_form'])){
     $types = node_type_get_types();
     $type = $types[$form['type']['#value']]->name;
-    $form['title']['#prefix'] = "<h3>Content &nbsp;&gt;&nbsp; <span>$type</span></h3>";
+    $lng = $form['field_related']['#language'];
+    $items = sizeof($form['field_related'][$lng]);
+
+    $types = array();
+    if($items){
+      foreach($form['field_related'][$lng][0]['target_id']['#entity']->field_related[$lng] as $fr){
+        $types[] =  csc_general_get_type($fr['target_id']);
+      }
+    }
+
+    for($i=0; $i < $items; $i++){
+      if(isset($form['field_related'][$lng][$i]['target_id']['#default_value']) && $form['field_related'][$lng][$i]['target_id']['#default_value'] <> ''){
+        $form['field_related'][$lng][$i]['target_id']['#description'] = "(" . $types[$i] . ")";
+      }
+    }
   }
+}
+
+/**
+ * Implements hook_menu().
+ */
+function csc_general_menu() {
+  $items = array();
+
+  $items['entityreference/autocomplete/single/%/%/%'] = array(
+    'title' => 'Entity Reference Autocomplete',
+    'page callback' => 'csc_general_autocomplete_callback',
+    'page arguments' => array(2, 3, 4, 5),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  $items['csc/modules_weight'] = array(
+    'title' => 'Modules Weight',
+    'page callback' => 'csc_general_module_weight',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+
+  return $items;
+}
+
+function csc_general_autocomplete_callback($type, $field_name, $entity_type, $bundle_name, $entity_id = '', $string = '') {
+  $field = field_info_field($field_name);
+  $instance = field_info_instance($entity_type, $field_name, $bundle_name);
+
+  if($field_name == 'field_related')
+    return csc_general_autocomplete_callback_get_matches($type, $field, $instance, $entity_type, $entity_id, $string);
+  else
+    return entityreference_autocomplete_callback_get_matches($type, $field, $instance, $entity_type, $entity_id, $string);
+}
+
+function csc_general_module_weight(){
+
+  $modules = implode('<br>', module_list());
+  return $modules;
+}
+
+/**
+ * Return JSON based on given field, instance and string.
+ *
+ * This function can be used by other modules that wish to pass a mocked
+ * definition of the field on instance.
+ *
+ * @param $type
+ *   The widget type (i.e. 'single' or 'tags').
+ * @param $field
+ *   The field array defintion.
+ * @param $instance
+ *   The instance array defintion.
+ * @param $entity_type
+ *   The entity type.
+ * @param $entity_id
+ *   Optional; The entity ID the entity-reference field is attached to.
+ *   Defaults to ''.
+ * @param $string
+ *   The label of the entity to query by.
+ */
+function csc_general_autocomplete_callback_get_matches($type, $field, $instance, $entity_type, $entity_id = '', $string = '') {
+  $matches = array();
+  $types = node_type_get_types();
+
+  $entity = NULL;
+  if ($entity_id !== 'NULL') {
+    $entity = entity_load_single($entity_type, $entity_id);
+    if (!$entity || !entity_access('view', $entity_type, $entity)) {
+      return MENU_ACCESS_DENIED;
+    }
+  }
+
+  $handler = entityreference_get_selection_handler($field, $instance, $entity_type, $entity);
+
+  if ($type == 'tags') {
+    // The user enters a comma-separated list of tags. We only autocomplete the last tag.
+    $tags_typed = drupal_explode_tags($string);
+    $tag_last = drupal_strtolower(array_pop($tags_typed));
+    if (!empty($tag_last)) {
+      $prefix = count($tags_typed) ? implode(', ', $tags_typed) . ', ' : '';
+    }
+  }
+  else {
+    // The user enters a single tag.
+    $prefix = '';
+    $tag_last = $string;
+  }
+
+  if (isset($tag_last)) {
+    // Get an array of matching entities.
+    $entity_labels = $handler->getReferencableEntities($tag_last, $instance['widget']['settings']['match_operator'], 10);
+
+    // Loop through the products and convert them into autocomplete output.
+    foreach ($entity_labels as $ctype => $values) {
+      foreach ($values as $entity_id => $label) {
+        $key = "$label ($entity_id)";
+        // Strip things like starting/trailing white spaces, line breaks and tags.
+        $key = preg_replace('/\s\s+/', ' ', str_replace("\n", '', trim(decode_entities(strip_tags($key)))));
+        // Names containing commas or quotes must be wrapped in quotes.
+        if (strpos($key, ',') !== FALSE || strpos($key, '"') !== FALSE) {
+          $key = '"' . str_replace('"', '""', $key) . '"';
+        }
+        $matches[$prefix . $key] = '<div class="reference-autocomplete">' . $label . " (" . $types[$ctype]->name . ")" . '</div>';
+      }
+    }
+  }
+
+  drupal_json_output($matches);
+}
+
+function csc_general_get_type($nid){
+  $qry = "SELECT nt.name FROM {node} n, {node_type} nt WHERE n.nid=$nid AND nt.type=n.type";
+  $r = db_query($qry)->fetchObject();
+  return $r->name;
 }
