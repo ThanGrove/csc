@@ -1605,6 +1605,11 @@ div.add-or-remove-shortcuts {
       font-weight: bold;
     }
   }
+  .form-item {
+    .description {
+      display: inline;
+    }
+  }
 }
 
 .page-admin #content img {
