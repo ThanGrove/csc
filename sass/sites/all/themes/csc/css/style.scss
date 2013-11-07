@@ -2215,7 +2215,7 @@ body.logged-in {
  * Newsletter block
  */
 .pane-csc-newsletter{
-  /*position: fixed;*/
+  position: static;
   bottom: 0px;
   width: 150px;
   float: left;
@@ -2232,6 +2232,9 @@ body.logged-in {
     margin: 5px;
   }
 
+  @include media(tall) {
+    position: fixed;
+  }
   @include media(short) {
     /*margin-top: 0px;*/
     /*position: static;*/

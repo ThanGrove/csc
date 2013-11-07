@@ -21,6 +21,7 @@ $break_medium : 1279;
 $break_large  : 2000;
 
 $break_short  : 810;
+$break_tall   : 1170;
 
 @each $context in $contexts {
   $label: nth($context, 1);
@@ -76,6 +77,10 @@ $break_short  : 810;
       }
     } @else if $size == short {
       @media only screen and (max-height: $break_short + 'px') {
+        @content
+      }
+    } @else if $size == tall {
+      @media only screen and (min-height: $break_tall + 'px') {
         @content
       }
     }
