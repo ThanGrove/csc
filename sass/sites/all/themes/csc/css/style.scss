@@ -2232,6 +2232,11 @@ body.logged-in {
     margin: 5px;
   }
 
+  .form-item input {
+    width: 90%;
+    font-size: 10px;
+  }
+
   @include media(tall) {
     position: fixed;
   }
@@ -2259,7 +2264,25 @@ body.logged-in {
   padding: 4px 8px 1px 8px;
 }
 
-#mce-EMAIL { width: 90%; font-size: 10px; }
+/* newsletter on about us page */
+.newsletter-text-wrapper {
+  h3 {
+    margin-top: 0em;
+  }
+}
+
+.pane-csc-newsletter-big {
+  .form-item {
+    margin-bottom: 0em;
+  }
+  .form-text {
+    width: 95%;
+    font-size: 0.9em;
+  }
+  .form-submit {
+    margin-top: 0.7em;
+  }
+}
 
 /**
  *Content boxes
