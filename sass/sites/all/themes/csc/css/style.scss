@@ -3126,12 +3126,10 @@ body.logged-in {
   }
 }
 
-#event-nav 
-
 /* event items */
 
 .pane-node-field-event-date  {
-  h2 {
+  h2.pane-title {
     @extend %upper;
   }
 }
