@@ -3331,6 +3331,9 @@ body.logged-in {
 
 /* calendar styles */
 
+.pane-csc-events-calendar { 
+  float: left; 
+}
 .view .date-nav-wrapper {
   margin-top: 0px;
   background-color: #dfdfdf;
