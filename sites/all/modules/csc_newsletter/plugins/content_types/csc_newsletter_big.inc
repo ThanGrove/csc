@@ -41,16 +41,28 @@ function csc_newsletter_big_render_original($subtype, $conf, $panel_args, $conte
 }
 
 function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL) {
+  global $base_root, $base_path;
+  
   $path = drupal_get_path('module', 'csc_newsletter');
+  drupal_add_js($base_root . $base_path . 'profiles/panopoly/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.position.min.js');
+  drupal_add_js($base_root . $base_path . 'profiles/panopoly/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.dialog.min.js');
   drupal_add_js($path . '/plugins/content_types/csc_newsletter.js');
   
-  $output = '<div class="content">';
+  $output = '<div id="dialog-modal" class="csc-hide" title="Select Newsletter">';
+  $output.= '<p>Please select which newsletter would you like to subscribe</p>';
+  $output.= '<form id="modal-form">';
+  $output.= '<p><input type="radio" name="newsletter" value="general" checked>General Newsletter</p>';
+  $output.= '<p><input type="radio" name="newsletter" value="low">Low Frecuency Newsletter</p>';
+  $output.='</form>';
+  $output.='</div>';
+
+  $output.= '<div class="content">';
   $output.= '<div class="newsletter-text-wrapper">';
   $output.= '<h3>Newsletter Sign Up</h3>';
   $output.= '<p>Enter your email address to recieve our monthly newsletter</p>';
   $output.= '</div>';
   $output.= '<div class="newsletter-form-wrapper">';
-  $output.= '<form action="http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=bee009d669" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>';
+  $output.= '<form action="http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=bee009d669" method="post" class="validate" target="_blank" novalidate>';
   $output .=
   '<div class="form-item form-type-textfield">
     <input type="text" value="" name="FNAME" id="mce-FNAME" maxlength="128" class="form-text required" placeholder="Name*">
@@ -64,7 +76,7 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   	<div class="response" id="mce-error-response" style="display:none"></div>
   	<div class="response" id="mce-success-response" style="display:none"></div>
    </div>
-   <div class="clear"><input type="submit" value="SIGN UP" name="subscribe" id="mc-embedded-subscribe" class="form-submit"></div>';
+   <div class="clear"><input type="button" value="SIGN UP" class="mce-button form-submit"></div>';
 
   $output.= '</form>';
   $output.= "</div>\n";
