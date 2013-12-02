@@ -30,7 +30,7 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
 
   $type = 'class';
   $nids = csc_related_get_nodes($type);
-  
+
   if(sizeof($nids)){
     $output = '<div class="see-all"><a href="'. url('classes/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
     foreach($nids as $nid){
@@ -42,11 +42,11 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
                                                         'nid' => $node->nid,
                                                   ));
     }
-  
+
     $block = new stdClass();
     $block->title = 'Instruction';
     $block->content = $output;
-  
+
     return $block;
   }
 }
@@ -59,9 +59,9 @@ function theme_csc_related_classes_item($var){
   $image = ($var['image']) ? '<img src="'. image_style_url('panopoly_image_featured', $var['image']) .'" alt = "'. $var['title'] . '" title="' . $var['title'] .'">' : '';
 
   $output ='<div class="csc-classes-item"><div class="csc-item-container">';
-  if ($var['image']) $output .= l($image, 'node/' . $var['nid'], array('html'=>true)) . "<br>";
   $output.= "<h2>$url</h2>";
-  $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
+  if ($var['image']) $output .= l($image, 'node/' . $var['nid'], array('html'=>true));
+  $output.= '<div class="csc-item-teaser">' . $var['body'] . "</div>";
   $output.= "</div></div>\n";
 
   return $output;

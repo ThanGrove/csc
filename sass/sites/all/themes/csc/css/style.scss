@@ -45,14 +45,24 @@ font-weight: 200;
 /* ---------- Overall Specifications ---------- */
 
 body {
+  color: #000 !important;
   line-height: 1.5;
-  font-size: 87.5%;
+  font-size: 1em;
   word-wrap: break-word;
   margin: 0;
   padding: 0;
   border: 0;
   outline: 0;
   background-color: #e8e7e5;
+  font-family: brandon, Georgia;
+
+  &.page-node-edit {
+    /*background-color: white;*/
+  }
+  &.cke_show_border {
+    background-color: white;
+    padding: 10px;
+  }
 }
 a:link,
 a:visited {
@@ -97,7 +107,11 @@ img {
 }
 
 .hide-me{ display: none; }
-.highlight { background: yellow; }
+.highlight { 
+  @include border-radius(3px);
+  background-color: #FFECBB;
+  padding: 0em 0.2em;
+}
 
 /**
  * The generic monospace font family is listed before Courier new to avoid a
@@ -157,12 +171,12 @@ pre {
 
 /* ------------------ Fonts ------------------ */
 
-body,
-#site-slogan,
-.ui-widget,
-.comment-form label {
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
+/*body,*/
+/*#site-slogan,*/
+/*.ui-widget,*/
+/*.comment-form label {*/
+  /*font-family: Georgia, "Times New Roman", Times, serif;*/
+/*}*/
 #header,
 #footer-wrapper,
 #skip-link,
@@ -649,7 +663,7 @@ h1#page-title {
 #content h2 {
   margin-bottom: 5px;
   /*font-size: 1.429em;*/
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 #content h2 a:link {
@@ -1580,6 +1594,24 @@ div.add-or-remove-shortcuts {
 
 /* ---------- Admin-specific Theming ---------- */
 
+.admin-menu {
+  &.page-node-edit {
+    .region {
+      padding: 0px 20px 20px 20px;
+    }
+  }
+  .pane-node-form-title {
+    span {
+      font-weight: bold;
+    }
+  }
+  .form-item {
+    .description {
+      display: inline;
+    }
+  }
+}
+
 .page-admin #content img {
   margin-right: 15px; /* LTR */
 }
@@ -1862,13 +1894,12 @@ a#menu-toggle:after {
  *CSC Styles
  */
 .menu-desc{
-  font-size: 12px;
+  font-size: 1.1em;
   font-style: italic;
   color: #828282;
   padding-left: 10px;
   text-transform: none;
   font-weight: normal;
-  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .bryant-sidebar{
@@ -1882,7 +1913,7 @@ a#menu-toggle:after {
 }
 
 .csc-3col-first .csc-3col-inside { 
-  padding: 20px 30px; 
+  padding: 1.5em 2.4em 1.3em 2.3em; 
 
   @include media(small) {
     padding: 0px;
@@ -1928,8 +1959,18 @@ body.front {
   }
 }
 
-.csc-panel-col-right { width: 100%; background: #ffffff; }
-.front .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
+/*.csc-panel-col-right { width: 100%; background: #ffffff; }*/
+/*.front .csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }*/
+.csc-3col-col-fixed {
+  @include media(small) {
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    border-right: 1px solid #d7d6d4;
+  }
+}
+
+.csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
 
 .csc-3col-right2 {
   /*display: table;*/
@@ -2064,7 +2105,8 @@ body.logged-in {
     background-color: none;
     min-width: 0px;
     left: 43px;
-    top: 9px;
+    top: 11px;
+    max-width: 256px;
   }
 }
 #header-logo img { 
@@ -2117,7 +2159,7 @@ body.logged-in {
     background-color: #252525;
     top: 50px;
     border-top: 1px #444 solid;
-    padding: 1px 2px 0px 4px;
+    padding: 1px 1px 0px 1px;
     @include border-bottom-left-radius(3px);
 
     ul {
@@ -2126,7 +2168,7 @@ body.logged-in {
     li {
       height: auto;
       border: none;
-      padding: 0px 3px;
+      padding: 0px;
 
       a {
         width: 42px;
@@ -2135,11 +2177,13 @@ body.logged-in {
     }
     img {
       margin-bottom: 14px;
+      width: 16px;
+      height: 16px;
     }
     .header-icon-text {
       bottom: 3px;
       font-size: 9px;
-      width: 41px;
+      width: 42px;
     }
   }
 
@@ -2173,7 +2217,7 @@ body.logged-in {
  * Newsletter block
  */
 .pane-csc-newsletter{
-  position: fixed;
+  position: static;
   bottom: 0px;
   width: 150px;
   float: left;
@@ -2183,16 +2227,24 @@ body.logged-in {
   margin-top: 13px;
 
   h2.pane-title {
-    font-size: 1.1em !important;
+    font-size: 0.9em !important;
     margin-bottom: 0px;
   }
   .pane-content {
     margin: 5px;
   }
 
+  .form-item input {
+    width: 90%;
+    font-size: 10px;
+  }
+
+  @include media(tall) {
+    position: fixed;
+  }
   @include media(short) {
-    margin-top: 0px;
-    position: static;
+    /*margin-top: 0px;*/
+    /*position: static;*/
   }
 } 
 
@@ -2209,12 +2261,30 @@ body.logged-in {
 .pane-csc-newsletter .content{
   text-align: center;
   color: #626262;
-  font-size: 11px;
+  font-size: 0.8em;
   font-style: italic;
   padding: 4px 8px 1px 8px;
 }
 
-#mce-EMAIL { width: 90%; font-size: 10px; }
+/* newsletter on about us page */
+.newsletter-text-wrapper {
+  h3 {
+    margin-top: 0em;
+  }
+}
+
+.pane-csc-newsletter-big {
+  .form-item {
+    margin-bottom: 0em;
+  }
+  .form-text {
+    width: 95%;
+    font-size: 0.9em;
+  }
+  .form-submit {
+    margin-top: 0.7em;
+  }
+}
 
 /**
  *Content boxes
@@ -2234,7 +2304,7 @@ body.logged-in {
 .pane-csc-related-research {
   float: left;
   width: 100%;
-  font-size: 10px;
+  font-size: 1em;
   padding: 20px 0 20px 0;
   margin-top: 20px;
   border-top: 1px solid #e0e0e0;  
@@ -2284,7 +2354,7 @@ body.logged-in {
 
 .see-all { 
   float: right;
-  margin-top: -28px;
+  margin-top: -32px;
   margin-right: 20px;
 
   a {
@@ -2316,7 +2386,8 @@ body.logged-in {
 .csc-teaser-more, .csc-teaser-less { 
   cursor: pointer;
   margin-top: 20px; 
-  font-size: 11px;
+  font-size: 0.7em;
+  line-height: 1.5em;
   font-weight: bold; 
   font-family: brandon; 
   color: #3c3c3c; 
@@ -2324,6 +2395,7 @@ body.logged-in {
   padding-right: 20px; 
   width: 131px;
   text-transform: uppercase;
+  line-height: 1.5em;
 
   /*&:hover {*/
     /*background-image: url(../images/rounded_black_arrow_down.png);*/
@@ -2341,7 +2413,7 @@ body.logged-in {
   width: 100%;
   /*background: #00b0a5;*/
   color: #ffffff;
-  font-size: 12px;
+  font-size: 1em;
   padding-bottom: 20px;  
 
   h2 {
@@ -2354,6 +2426,22 @@ body.logged-in {
         padding-left: 0px !important;
         margin-top: 10px;
       }
+  }
+
+  .csc-item-container {
+    position: relative;
+  }
+  .past-flag {
+    @include border-bottom-right-radius(3px);
+    position: absolute;
+    top: 0px;
+    padding: 0.2em 0.6em;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    background-color: #111;
+    opacity: 0.5;
+    font-weight: bold;
+    letter-spacing: 0.1em;
   }
 
   @include media(small) {
@@ -2388,7 +2476,7 @@ body.logged-in {
   width: 100%;
   background: #2f2f2f;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 1em;
   padding-bottom: 20px;  
   border-top: 1px solid #505050;
 
@@ -2418,6 +2506,12 @@ body.logged-in {
   border-top: 1px solid #e0e0e0;
   margin-top: 28px;
   width: 100%;
+
+  img {
+    width: 30%;
+    float: left;
+    margin: 0.3em 0.8em 0em 0em;
+  }
 
   h2 {
     a { 
@@ -2565,19 +2659,17 @@ body.logged-in {
 
 .csc-director-text { 
   padding: 3px 3px 0px 0px;
-  font-size: 1.1em; 
+  font-size: 1em; 
   font-family: brandon;
   font-style: italic;
   line-height: 16px;
-  color: #000;
+  color: #999;
   h2 {
     font-family: brandon;
     font-size: 1.2em;
     font-style: normal;
     text-transform: none;
-    a {
-      color: #444;
-    }
+    color: #000;
   }
   @include media(smedium medium) {
     font-size: 1em;
@@ -2687,7 +2779,6 @@ body.logged-in {
 
 .csc-research-item {
   float: left;
-  font-size: 12px;
   background: url(../images/gray_line_bg.gif) left no-repeat;
 
   &:first-child {
@@ -2963,6 +3054,7 @@ body {
     top: $banner_height;
     @include media(small) {
       top: 50px;
+      overflow-x: hidden;
     }
   }
 
@@ -3008,22 +3100,38 @@ body.logged-in {
     .views-row {
       padding: 12px 0px 22px 0px;
     }
+    .view-header {
+      position: relative;
+    }
   }
 }
 
-#event-nav{
-  font-size: 12px;
-  color: #7e7e7e;
-  text-align: right;
-  font-family: brandon;
+.views-label {
+  font-size: 0.9em;
 }
 
-#event-nav a { color: #000000; font-weight: bold; }
+#event-nav{
+  position: absolute;
+  top: 0.3em;
+  right: 0px;
+  margin-top: 0.4em;
+  a { 
+    color: #000; 
+    font-weight: bold;
+    padding: 0.3em 0.4em;
+    font-size: 0.8em;
+
+    &.active, &:hover {
+      color: #fff;
+      background-color: #444;
+    }
+  }
+}
 
 /* event items */
 
 .pane-node-field-event-date  {
-  h2 {
+  h2.pane-title {
     @extend %upper;
   }
 }
@@ -3072,7 +3180,7 @@ body.logged-in {
         }
       }
       .views-field-field-small-teaser {
-        margin-top: 4px;
+        margin-top: 0.5em;
         p {
           font-size: 1em;
         }
@@ -3129,13 +3237,14 @@ body.logged-in {
 .csc-connect-with-us {
   font-family: brandon;
   font-size: 1.2em;
+
   em {
     @extend %h2a;
   }
   strong {
     text-transform: uppercase;
     display: block;
-    margin: 0.2em 0em;
+    margin: 0.7em 0em 0.1em 0em;
   }
   p {
     margin-bottom: 1em;
@@ -3272,11 +3381,64 @@ body.logged-in {
   position: absolute;
   z-index: 50;
   @extend %upper;
-  font-size: 0.85em;
+  font-size: 0.8em;
   text-align: center;
   padding-top: 6px;
 }
 
-.list-item-body { font-size: 80%; }
-.csc-lists-container h2 { width: 100%; clear: both; font-size: 26px; color: #0099ff; border-bottom: 1px solid #d0d0d0; }
+/*.list-item-body { font-size: 80%; }*/
+/*.csc-lists-container h2 { width: 100%; clear: both; font-size: 26px; color: #0099ff; border-bottom: 1px solid #d0d0d0; }*/
 
+.past {
+  @include opacity(0.7);
+}
+
+/* calendar styles */
+
+.pane-csc-events-calendar { 
+  float: left; 
+}
+.view .date-nav-wrapper {
+  margin-top: 0px;
+  background-color: #dfdfdf;
+
+  .date-heading {
+    top: 0.55em;
+  }
+  .date-nav.item-list {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+    .pager {
+      margin: 0px;
+      padding: 0px;
+      margin-bottom: 1.2em;
+    }
+    .date-prev, .date-next {
+      @include border-radius(0px);
+    }
+  }
+}
+.calendar-calendar .month-view .full {
+  td a {
+    color: rgb(0, 113, 179);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  td.date-box.today {
+    border-color: $default_color; 
+  }
+  tr td.single-day.today {
+    border-color: $default_color;
+  }
+  td.single-day div.monthview {
+    background: none;
+
+    .views-field {
+      display: inline;
+      .field-content {
+        display: inline;
+      }
+    }
+  }
+}

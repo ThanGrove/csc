@@ -1,26 +1,24 @@
 <?php
 /**
  * hook_form_alter
- */ 
+ */
 function csc_general_form_alter(&$form, &$form_state, $form_id){
   if(isset($form['#node_edit_form'])){
     $types = node_type_get_types();
     $type = $types[$form['type']['#value']]->name;
-    $form['title']['#prefix'] = "<h3>Node of type $type</h3>";
-    
     $lng = $form['field_related']['#language'];
     $items = sizeof($form['field_related'][$lng]);
-    
+
     $types = array();
     if($items){
       foreach($form['field_related'][$lng][0]['target_id']['#entity']->field_related[$lng] as $fr){
         $types[] =  csc_general_get_type($fr['target_id']);
       }
     }
-        
+
     for($i=0; $i < $items; $i++){
       if(isset($form['field_related'][$lng][$i]['target_id']['#default_value']) && $form['field_related'][$lng][$i]['target_id']['#default_value'] <> ''){
-        $form['field_related'][$lng][$i]['target_id']['#description'] = "(" . $types[$i] . ")";       
+        $form['field_related'][$lng][$i]['target_id']['#description'] = "(" . $types[$i] . ")";
       }
     }
   }
@@ -39,14 +37,14 @@ function csc_general_menu() {
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
-  
+
   $items['csc/modules_weight'] = array(
     'title' => 'Modules Weight',
     'page callback' => 'csc_general_module_weight',
     'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
   );
-  
+
   return $items;
 }
 
