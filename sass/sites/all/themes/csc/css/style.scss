@@ -1959,8 +1959,7 @@ body.front {
   }
 }
 
-.csc-panel-col-right { width: 100%; background: #ffffff; }
-.front .csc-panel-col-right { position: absolute; left: 150px}
+.csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }
 .csc-3col-col-fixed {
   @include media(small) {
     position: absolute;
@@ -1969,8 +1968,6 @@ body.front {
     border-right: 1px solid #d7d6d4;
   }
 }
-
-/*.csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #252525; }*/
 
 .csc-3col-right2 {
   /*display: table;*/
