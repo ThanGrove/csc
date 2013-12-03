@@ -259,30 +259,31 @@ function csc_lists_select() {
 
   switch($type){
     case 'people':
-      $sort = array('name_asc' => 'Name: Ascending', 'name_desc' => 'Name: Descending', 'date_desc' => 'Date added: Newest First', 'date_asc' => 'Date added: Oldest First');
+      $sort = array('Name' => array('name_asc' => 'A-Z', 'name_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
+      //$sort = array('name_asc' => 'Name: Ascending', 'name_desc' => 'Name: Descending', 'date_desc' => 'Date added: Newest First', 'date_asc' => 'Date added: Oldest First');
       $filter = array();
       break;
     case 'class':
-      $sort = array('offered' => 'Date Offered', 'title_asc' => 'Title: Ascending', 'title_desc' => 'Title: Descending', 'date_desc' => 'Date added: Newest First', 'date_asc' => 'Date added: Oldest First', 'school' => 'School');
+      $sort = array('Date Offered' => array('offered' => 'Upcoming'), 'Title' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'), 'School' => array('school' => 'School A-Z'));
       $filter = array('upcoming' => 'Upcoming', 'ongoing' => 'Ongoing', 'past' => 'Past');
       break;
     case 'organization':
-      $sort = array('title_asc' => 'Title: Ascending', 'title_desc' => 'Title: Descending', 'date_desc' => 'Date added: Newest First', 'date_asc' => 'Date added: Oldest First');
+      $sort = array('Name' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
       $filter = array();
       break;
     case 'research':
     case 'learning':
     case 'engagement':
-      $sort = array('title_asc' => 'Title: (A-Z)', 'title_desc' => 'Title: (Z-A)', 'date_desc' => 'Date added: Newest First', 'date_asc' => 'Date added: Oldest First', 'year_asc' => 'Year: Ascending', 'year_desc' => 'Year: Descending');
+      $sort = array('Title' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'), 'Year' => array('year_asc' => 'Ascending', 'year_desc' => 'Descending'));
       $filter = array();
       break;
     case 'feature':
-      $sort = array('date_desc' => 'Date: Newest First', 'date_asc' => 'Date: Oldest First');
+      $sort = array('Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
       $filter = array();
       break;
     //Default News
     default:
-      $sort = array('date_desc' => 'Date: Newest First', 'date_asc' => 'Date: Oldest First');
+      $sort = array('Date' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
       $filter = array();
       break;
   }
@@ -291,18 +292,19 @@ function csc_lists_select() {
   $output .= '<input type="hidden" name="q" value="list/' . $type .'">';
 
   if(sizeof($sort)){
-    $output .= '<select name="sort">';
-    $output .= '<option  value="">Sort by</option>';
-    //$output .= '<div class="sort-options">';
-    foreach($sort as $k => $v){
-      //$sort_this = (isset($_GET['sort']) && $_GET['sort'] == $k);
-      //$output .= '<a href="?q=list/' . $type . '&sort=' . $k . '"' . ($sort_this ? ' class="selected"' : '' ) . '>' . $v . '</a>';
-      $output .= '<option value="'. $k .'"';
-      if(isset($_GET['sort']) && $_GET['sort'] == $k) $output .= ' selected';
-      $output .='>' . $v . '</option>';
+    $output .= '<div class="sort-label">Sort by</div>';
+    $output .= '<select data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
+    foreach($sort as $k1 => $v1){
+      $output .= '<optgroup label="' . $k1 . '">';
+      foreach($v1 as $k => $v){
+        $output .= '<option value="'. $k .'"';
+        if(isset($_GET['sort']) && $_GET['sort'] == $k) $output .= ' selected';
+        $output .='>' . $v . '</option>';
+      }
+      $output .= '</optgroup>';
     }
-    //$output .= "</div>";
     $output .= '</select>';
+    $output .= '<script>jQuery("#csc-list-form").find("select").chosen({disable_search: true})</script>';
   }
 
   if(sizeof($filter)){
@@ -316,7 +318,7 @@ function csc_lists_select() {
     $output.= "</select>\n";
   }
 
-  $output .= '<input type="submit" value="ok">';
+  //$output .= '<input type="submit" value="ok">';
   $output .= "</form>\n";
 
   return $output;
