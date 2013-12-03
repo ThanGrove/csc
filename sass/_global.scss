@@ -140,6 +140,10 @@ $break_tall   : 1170;
   }
 }
 
+%gray-line {
+  background: white url(../images/gray_line_bg.gif) left repeat-y; 
+}
+
 @mixin see-all($color: black) {
   @extend %see-all;
   @if $color == white {

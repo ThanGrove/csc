@@ -244,6 +244,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   //$output = csc_lists_select();
   $output = '<div class="list-items">' . $render_function($qry) . '</div>';
+  $output .= '<script>jQuery(".list-item").dotdotdot()</script>';
 
   $block = new stdClass();
   $block->title = $title;
@@ -274,7 +275,8 @@ function csc_lists_select() {
     case 'research':
     case 'learning':
     case 'engagement':
-      $sort = array('Title' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'), 'Year' => array('year_asc' => 'Ascending', 'year_desc' => 'Descending'));
+      $year = date('Y');
+      $sort = array('Title' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First')); //, 'Year' => array('year_asc' => '2013-' . $year, 'year_desc' => $year . '-2013'));
       $filter = array();
       break;
     case 'feature':
@@ -318,7 +320,6 @@ function csc_lists_select() {
     $output.= "</select>\n";
   }
 
-  //$output .= '<input type="submit" value="ok">';
   $output .= "</form>\n";
 
   return $output;
