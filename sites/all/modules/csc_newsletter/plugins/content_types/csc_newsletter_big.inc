@@ -50,7 +50,8 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
 
   $output = '
     <div id="dialog-modal" class="csc-hide" title="Select Newsletter">
-      <p>Please select which newsletter would you like to subscribe</p>
+      <p>By clicking "Subscribe" you are signing up to receive our monthly newsletter.</p>
+      <p class="subheader">Also sign up for...</p>
       <form id="modal-form">
         <p><input type="checkbox" value="1" name="news-1" id="news-1">Local updates (events, classes at UVa, etc.)</p>
         <p><input type="checkbox" value="2" name="news-2" id="news-2">Online course updates</p>
