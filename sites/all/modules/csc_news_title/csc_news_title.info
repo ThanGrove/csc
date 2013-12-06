@@ -1,0 +1,4 @@
+name = CSC News Title
+description = Show Author's name for News of type blog
+version = 7.x-1.0
+core = 7.x

@@ -64,7 +64,7 @@ $break_tall   : 1170;
         @content
       }
     } @else if $size == medium {
-      @media only screen and (min-width: $break_small + 1 + 'px') and (max-width: $break_medium + 'px') {
+      @media only screen and (min-width: $break_smedium + 1 + 'px') and (max-width: $break_medium + 'px') {
         @content
       }
     } @else if $size == large {
@@ -138,6 +138,10 @@ $break_tall   : 1170;
     left: 2px;
     padding-right: 24px;
   }
+}
+
+%gray-line {
+  background: white url(../images/gray_line_bg.gif) left repeat-y; 
 }
 
 @mixin see-all($color: black) {
