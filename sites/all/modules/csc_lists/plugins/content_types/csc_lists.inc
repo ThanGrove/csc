@@ -109,8 +109,10 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         break;
       default:
-        $sort_by = 'n.title';
-        $order = 'ASC';
+        $sort_by = 'n.created';
+        $order = 'DESC';
+        //$sort_by = 'n.title';
+        //$order = 'ASC';
         break;
     }
   }
@@ -173,9 +175,11 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
           $tables .= ', {field_data_field_date} fd';
           $where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
         }
-        $sort_by = 'fd.field_date_value';
+        $sort_by = 'n.created';
         $order = 'DESC';
-        $render_function = 'csc_lists_offered_render';
+        //$sort_by = 'fd.field_date_value';
+        //$order = 'DESC';
+        //$render_function = 'csc_lists_offered_render';
         break;
     }
   }
@@ -232,10 +236,17 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         $render_function = 'csc_lists_alpha_render';
         break;
-      default:
+      case 'title_asc':
         $sort_by = 'n.title';
         $order = 'ASC';
         $render_function = 'csc_lists_alpha_render';
+        break;
+      default:
+        $sort_by = 'n.created';
+        $order = 'DESC';
+        //$sort_by = 'n.title';
+        //$order = 'ASC';
+        //$render_function = 'csc_lists_alpha_render';
         break;
     }
   }
@@ -261,15 +272,18 @@ function csc_lists_select() {
   switch($type){
     case 'people':
       $sort = array('Name' => array('name_asc' => 'A-Z', 'name_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
+      $sort_default = 'name_asc';
       //$sort = array('name_asc' => 'Name: Ascending', 'name_desc' => 'Name: Descending', 'date_desc' => 'Date added: Newest First', 'date_asc' => 'Date added: Oldest First');
       $filter = array();
       break;
     case 'class':
       $sort = array('Date Offered' => array('offered' => 'Upcoming'), 'Title' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'), 'School' => array('school' => 'School A-Z'));
-      $filter = array('upcoming' => 'Upcoming', 'ongoing' => 'Ongoing', 'past' => 'Past');
+      $sort_default = 'date_desc';
+      //$filter = array('upcoming' => 'Upcoming', 'ongoing' => 'Ongoing', 'past' => 'Past');
       break;
     case 'organization':
       $sort = array('Name' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
+      $sort_default = 'title_asc';
       $filter = array();
       break;
     case 'research':
@@ -277,15 +291,18 @@ function csc_lists_select() {
     case 'engagement':
       $year = date('Y');
       $sort = array('Title' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First')); //, 'Year' => array('year_asc' => '2013-' . $year, 'year_desc' => $year . '-2013'));
+      $sort_default = 'date_desc';
       $filter = array();
       break;
     case 'feature':
       $sort = array('Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
+      $sort_default = 'date_desc';
       $filter = array();
       break;
     //Default News
     default:
       $sort = array('Date' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
+      $sort_default = 'date_desc';
       $filter = array();
       break;
   }
@@ -295,12 +312,12 @@ function csc_lists_select() {
 
   if(sizeof($sort)){
     $output .= '<div class="sort-label">Sort by</div>';
-    $output .= '<select data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
+    $output .= '<select data-placeholder="Sort by..." style="min-width: 122px" name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
     foreach($sort as $k1 => $v1){
       $output .= '<optgroup label="' . $k1 . '">';
       foreach($v1 as $k => $v){
         $output .= '<option value="'. $k .'"';
-        if(isset($_GET['sort']) && $_GET['sort'] == $k) $output .= ' selected';
+        if((isset($_GET['sort']) && $_GET['sort'] == $k) || (!isset($_GET['sort']) && $sort_default == $k)) $output .= ' selected';
         $output .='>' . $v . '</option>';
       }
       $output .= '</optgroup>';
