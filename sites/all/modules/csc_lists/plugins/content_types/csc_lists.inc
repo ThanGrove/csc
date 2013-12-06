@@ -244,7 +244,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   //$output = csc_lists_select();
   $output = '<div class="list-items">' . $render_function($qry) . '</div>';
-  $output .= '<script>jQuery(".list-item").dotdotdot()</script>';
+  $output .= '<script>jQuery(".list-item").dotdotdot({watch: true, height: 150})</script>';
 
   $block = new stdClass();
   $block->title = $title;

@@ -1968,7 +1968,13 @@ body.front {
   }
 }
 
-.csc-panel-col-right { width: 100%; position: absolute; left: 150px;  background: #fff; }
+.csc-panel-col-right { 
+  width: auto;
+  position: absolute;
+  left: 150px;
+  background: #fff;
+ }
+
 .front .csc-panel-col-right { background-color: #3b3b3b }
 
 .csc-3col-right2 {
@@ -3339,19 +3345,15 @@ body.logged-in {
     }
   }
   .list-item {
-    /*@include single-box-shadow(darken(#e8e7e5, 5%));*/
     position: relative;
-    width: 400px;
+    width: 45%;
     margin: 1px;
     border: 1px solid #e8e7e5;
-    /*border-top-style: none;*/
-    /*border-left-style: none;*/
     padding: 0em 1em 0em 0em;
     float: left;
     height: 160px;
     &:hover {
       background-color: #444;
-      /*border-color: #444;*/
       .list-item-title { 
         color: white;
       }
@@ -3359,9 +3361,20 @@ body.logged-in {
         color: lighten(#828282, 20%);
       }
     }
+    @include media(xlarge) {
+      width: 23%;
+    }
+    @include media(large) {
+      width: 31%;
+    }
+    @include media(medium) {
+      width: 47%;
+    }
+    @include media(smedium) {
+      width: 98%;
+    }
     @include media(small) {
-      height: 151px;
-      width: 96%;
+      width: 91%;
     }
   }
   .list-item-title {
@@ -3386,21 +3399,12 @@ body.logged-in {
     }
   }
   .list-item-image {
-    height: 100%;
-    width: 40%;
     float: left;
-    margin-right: 3%;
+    margin-right: 0.7em;
 
     img {
-      width: 100%;
-      @include media(small) {
-        width: 97%;
-      }
-    }
-    @include media(small) {
-      margin-right: 2%;
-      max-height: 151px;
-      max-width: 156px;
+      width: 160px;
+      height: 160px;
     }
   }
   .list-item-teaser {
@@ -3409,7 +3413,7 @@ body.logged-in {
 }
 
 #csc-list-form {
-  margin: 0.5em 0em 1em 0em;
+  margin: 0.5em 0em 1em 0.1em;
 
   .sort-label {
     @include inline-block;
@@ -3456,6 +3460,7 @@ body.logged-in {
 /* calendar styles */
 
 .pane-csc-events-calendar { 
+  width: 100%;
   float: left; 
 }
 .view .date-nav-wrapper {
