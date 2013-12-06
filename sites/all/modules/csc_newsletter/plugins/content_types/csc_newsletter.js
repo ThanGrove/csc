@@ -11,10 +11,15 @@
        buttons: {
         "Close": function() { $(this).dialog("close");},
         "Accept": function(){
-                    if( $('#modal-form input:radio[name=newsletter]:checked').val() == 'low' )
-                      f.attr('action', 'http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=c4f581edd0');
+                    if( $('#news-1').prop('checked') ) 
+                      $('#mce-group-16045-0').prop('checked', true );
                     else
-                      f.attr('action', 'http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=bee009d669');
+                      $('#mce-group-16045-0').prop('checked', false);
+
+                    if( $('#modal-form #news-2').prop('checked') ) 
+                      $('#mce-group-16045-1').prop('checked', true);
+                    else
+                      $('#mce-group-16045-1').prop('checked', false);
                       
                     f.submit();
                     $(this).dialog("close");

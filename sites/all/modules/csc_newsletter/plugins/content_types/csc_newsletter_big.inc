@@ -48,6 +48,16 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   drupal_add_js($base_root . $base_path . 'profiles/panopoly/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.dialog.min.js');
   drupal_add_js($path . '/plugins/content_types/csc_newsletter.js');
 
+  $output = '
+    <div id="dialog-modal" class="csc-hide" title="Select Newsletter">
+      <p>Please select which newsletter would you like to subscribe</p>
+      <form id="modal-form">
+        <p><input type="checkbox" value="1" name="news-1" id="news-1">Local updates (events, classes at UVa, etc.)</p>
+        <p><input type="checkbox" value="2" name="news-2" id="news-2">Online course updates</p>
+     </form>
+    </div>
+  ';
+
   $output = '<div class="content">';
   $output.= '<div class="newsletter-text-wrapper">';
   $output.= '<h3>Newsletter Sign Up</h3>';
@@ -67,6 +77,11 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   '<div id="mce-responses" class="clear">
   	<div class="response" id="mce-error-response" style="display:none"></div>
   	<div class="response" id="mce-success-response" style="display:none"></div>
+   </div>
+   <div class= "csc-hide">
+     <input type="checkbox" value="1" name="group[16045][1]" id="mce-group-16045-0"><br>
+     <input type="checkbox" value="2" name="group[16045][2]" id="mce-group-16045-1"><br>
+     <input type="text" name="b_bb09e07367e52174653ec5969_bee009d669" value="">
    </div>
    <div class="clear"><input type="button" value="SIGN UP" class="mce-button form-submit"></div>';
 
