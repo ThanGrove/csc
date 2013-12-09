@@ -10,7 +10,7 @@ function csc_lists_ctools_plugin_directory($owner, $plugin_type) {
 
 /**
  * Implements hook_theme
- */ 
+ */
 function csc_lists_theme() {
     return array(
         'csc_lists_item' => array(
@@ -23,20 +23,23 @@ function csc_lists_theme() {
  * Theme function
  */
 function theme_csc_lists_item($var){
-  $title = l($var['title'], "node/" . $var['nid']);
   $image = ($var['image']) ? theme_image_style(array('style_name' => 'csc_medium','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
 
   $output = '<div class="list-item">';
-  $output.= '    <h3 class="list-item-title">'. $title .'</h3>';
-  $output.= '<div class="list-item-image">';
-  $output.= $image;
-  $output.= '  </div>';
+  if( $image != '' ) {
+    $output.= '<div class="list-item-image">';
+    $output.= $image;
+    $output.= '  </div>';
+  }
+  $output.= '    <h3 class="list-item-title">'. $var['title'] .'</h3>';
   $output.= '  <div class="list-item-body">';
   $output.= '    <div class="list-item-teaser">';
   $output.= $var['teaser'];
   $output.= '    </div>';
   $output.= ' </div>';
   $output.= '</div>';
+
+  $output = l($output, 'node/' . $var['nid'], array('html' => true));
 
   return $output;
 }

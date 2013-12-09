@@ -42,7 +42,7 @@ function csc_newsletter_render_original($subtype, $conf, $panel_args, $context =
 
 function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
   global $base_root, $base_path;
-  
+
   $path = drupal_get_path('module', 'csc_newsletter');
   drupal_add_js($base_root . $base_path . 'profiles/panopoly/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.position.min.js');
   drupal_add_js($base_root . $base_path . 'profiles/panopoly/modules/contrib/jquery_update/replace/ui/ui/minified/jquery.ui.dialog.min.js');
@@ -50,13 +50,14 @@ function csc_newsletter_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $output = '
     <div id="dialog-modal" class="csc-hide" title="Select Newsletter">
-      <p>Please select which newsletter would you like to subscribe</p>
+      <p>By clicking "Subscribe" you are signing up to receive our monthly newsletter.</p>
+      <p>Also sign up for...</p>
       <form id="modal-form">
         <p><input type="checkbox" value="1" name="news-1" id="news-1">Local updates (events, classes at UVa, etc.)</p>
         <p><input type="checkbox" value="2" name="news-2" id="news-2">Online course updates</p>
      </form>
     </div>
-      
+
     <div class="content">
       <p>Enter your email address below to stay up to date on the latest at CSC.
       <form action="http://uvacontemplation.us5.list-manage.com/subscribe/post?u=bb09e07367e52174653ec5969&amp;id=bee009d669" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>

@@ -232,6 +232,11 @@
     });
   }
 
+  function trackEvent(el) {
+    if ( window._gaq )
+      _gaq.push(['_trackEvent', 'Filters', 'click', el.getAttribute('data-filter')]);
+  }
+
   $(window).load(function() {    
     window.csc.home_layout();
     
@@ -249,6 +254,7 @@
       stick = this;
 
       filter( $(this) );
+      trackEvent(this);
       return false;
     })
     .on('mouseenter', function(){

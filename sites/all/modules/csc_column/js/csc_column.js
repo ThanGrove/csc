@@ -39,14 +39,17 @@
           url: ajax_url,
           success: function(res){
             $('#csc-column-content').addClass('csc-' + title.replace(/ /g, '-').toLowerCase()).html(res);
+            if(~title.indexOf('Search')) {
+              $('#field-key').focus();
+            } else if (~title.indexOf('account')) {
+              $('#user-login-form').append('At present, login is restricted to CSC staff. We plan to add functionality in the future that will make the site more interactive and which may thus require users to login to access such features.');
+            }
           }
         });
 
         $('#csc-right').addClass('in');
       }
     });
-
-
     
     //bind action to close buttons
     $('#csc-column-close').on("click",function(e){

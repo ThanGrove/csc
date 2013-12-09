@@ -21,6 +21,7 @@ $break_medium : 1279;
 $break_large  : 2000;
 
 $break_short  : 810;
+$break_tall   : 1170;
 
 @each $context in $contexts {
   $label: nth($context, 1);
@@ -63,7 +64,7 @@ $break_short  : 810;
         @content
       }
     } @else if $size == medium {
-      @media only screen and (min-width: $break_small + 1 + 'px') and (max-width: $break_medium + 'px') {
+      @media only screen and (min-width: $break_smedium + 1 + 'px') and (max-width: $break_medium + 'px') {
         @content
       }
     } @else if $size == large {
@@ -76,6 +77,10 @@ $break_short  : 810;
       }
     } @else if $size == short {
       @media only screen and (max-height: $break_short + 'px') {
+        @content
+      }
+    } @else if $size == tall {
+      @media only screen and (min-height: $break_tall + 'px') {
         @content
       }
     }
@@ -133,6 +138,10 @@ $break_short  : 810;
     left: 2px;
     padding-right: 24px;
   }
+}
+
+%gray-line {
+  background: white url(../images/gray_line_bg.gif) left repeat-y; 
 }
 
 @mixin see-all($color: black) {
