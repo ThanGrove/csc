@@ -166,8 +166,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'ASC';
         $render_function = 'csc_lists_alpha_render';
         break;
-      //Date offered
-      default:
+      case 'offered':
         $fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
         if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
           $tables .= ', {field_data_field_date} fd';
@@ -176,6 +175,17 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $sort_by = 'fd.field_date_value';
         $order = 'DESC';
         $render_function = 'csc_lists_offered_render';
+        break;
+      //Date offered consolidate
+      default:
+        $fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
+        if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
+          $tables .= ', {field_data_field_date} fd';
+          $where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
+        }
+        $sort_by = 'fd.field_date_value';
+        $order = 'DESC';
+        $render_function = ($filter) ? 'csc_lists_offered_render' : 'csc_lists_consolidate_render';
         break;
     }
   }
@@ -443,6 +453,40 @@ function csc_lists_offered_render($qry){
   if($on){
     $output .= "<h2>Ongoing</h2>\n";
     $output .= $on;
+  }
+  if($past){
+    $output .= "<h2>Past</h2>\n";
+    $output .= $past;
+  }  
+  
+  return $output;
+}
+
+function csc_lists_consolidate_render($qry){
+  $r = db_query($qry);
+  
+  $now = time();
+  $output = $con = $past = ''; 
+  foreach($r as $row){
+    $node = node_load($row->nid);
+    $lng = $node->language;
+    $item = theme('csc_lists_item', array('title' => $node->title,
+                                          'nid' => $node->nid,
+                                          'teaser' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value'] : '',
+                                          'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
+                                         ));
+                                         
+    if($row->start_date > $now)
+      $con .= $item;
+    elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
+      $con .= $item;
+    else
+      $past .= $item;
+  }
+
+  if($con){
+    $output .= "<h2>Future</h2>\n";
+    $output .= $con;
   }
   if($past){
     $output .= "<h2>Past</h2>\n";
