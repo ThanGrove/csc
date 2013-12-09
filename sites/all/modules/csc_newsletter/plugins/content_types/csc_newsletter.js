@@ -2,8 +2,15 @@
 
   $(document).ready(function () {
     $('.mce-button').on("click",function(e){
-  	 var f = $(this).closest("form");
+     var f = $(this).closest("form");
      e.preventDefault();
+     
+     //Check email field
+     if($('#mce-EMAIL').val() == ''){
+      alert('Email field is requiered');
+      return;
+     }
+     
      $( "#dialog-modal" ).dialog({
   		 height: 250,
        width: 370,
