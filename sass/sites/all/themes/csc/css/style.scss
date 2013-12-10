@@ -3511,3 +3511,8 @@ body.logged-in {
 .clear {
   clear: both;
 }
+
+#audience-filter a { padding-left: 5px; padding-right: 5px; }
+div.academic a:nth-child(1) { background: #0099ff; color: #ffffff; }
+div.non-academic a:nth-child(2) { background: #0099ff; color: #ffffff; }
+div.drop-in a:nth-child(3) { background: #0099ff; color: #ffffff; }

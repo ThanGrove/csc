@@ -66,14 +66,14 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   }
 
   //*** Initializing ***
-  $sort = isset($_GET['sort']) ? $_GET['sort']: '';
+  $sort = isset($_GET['sort']) ? htmlspecialchars($_GET['sort']): '';
   $sort_by = 'n.title';
   $order = 'ASC';
   $render_function = 'csc_lists_default_render';
   $tables = $where = $fields = '';
 
   //*** Filter ***
-  $filter = isset($_GET['filter']) ? $_GET['filter']: '';
+  $filter = isset($_GET['filter']) ? htmlspecialchars($_GET['filter']): '';
   $filter_by = '';
   if($type == 'class'){
     switch($filter){
@@ -102,6 +102,12 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   if($nid){
     $tables .= ', {field_data_field_related} fr';
     $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
+  }
+  
+  //*** Audience ***
+  if(isset($_GET['audience'])){
+    $tables .= ', {field_data_field_audience} fa';
+    $where .= "AND fa.field_audience_value='". htmlspecialchars($_GET['audience']) ."' AND fa.entity_id=n.nid AND n.status = 1 AND fa.bundle='$node_type'";
   }
 
   //*** Sorting and Render Function ***
@@ -307,11 +313,20 @@ function csc_lists_select() {
       $filter = array();
       break;
   }
+  
+  //Audience filter
+  if($type == 'class'){
+    $base_link = 'list/' . $type;
+    $base_link.= ($nid) ? "/$nid" : '';
+    $class = isset($_GET['audience']) ? $_GET['audience'] : '';
+    $output .= '<div id="audience-filter" class="'. $class .'"><a href="'. url($base_link,array('query' => array('audience' => 'academic'))) .'">Courses for UVa students</a>&nbsp;|&nbsp;<a href="'. url($base_link,array('query' => array('audience' => 'non-academic'))) .'">Courses for Anyone</a>&nbsp;|&nbsp;<a href="'. url($base_link,array('query' => array('audience' => 'drop-in'))) .'">Drop-in Classes for Anyone</a></div>';
+  }  
 
   $output .= '<form id="csc-list-form">';
   $output .= '<input type="hidden" name="q" value="list/' . $type;
   $output .= ($nid) ? "/$nid" : '';
   $output .= '">';
+  $output .= isset($_GET['audience']) ? '<input type="hidden" name="audience" value="'. htmlspecialchars($_GET['audience']) .'">' : '';
 
   if(sizeof($sort)){
     $output .= '<div class="sort-label">Sort by</div>';
