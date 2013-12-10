@@ -24,6 +24,7 @@ function csc_lists_info($subtype, $conf, $contexts) {
 function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $type = arg(1);
+  $nid = arg(2);
 
   switch($type){
     case 'class':
@@ -96,6 +97,12 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     $tables = ', {field_data_field_organization_type} ot';
     $where = "AND n.nid = ot.entity_id AND ot.entity_type = 'node' AND ot.field_organization_type_value='UVA School'";
   }
+  
+  //*** Related Nodes ***
+  if($nid){
+    $tables .= ', {field_data_field_related} fr';
+    $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
+  }
 
   //*** Sorting and Render Function ***
   if($type == 'news' or $type == 'feature'){
@@ -149,9 +156,9 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         break;
       case 'school':
-        $fields = ', fr.field_related_target_id, n2.title as rtitle';
-        $tables .= ", {field_data_field_related fr}, {node} n2, {field_data_field_organization_type} ot";
-        $where .= "AND fr.entity_id=n.nid AND fr.entity_type='node' AND n2.nid=fr.field_related_target_id AND n2.nid=ot.entity_id AND ot.field_organization_type_value='UVA School'";
+        $fields = ', fr2.field_related_target_id, n2.title as rtitle';
+        $tables .= ", {field_data_field_related} fr2, {node} n2, {field_data_field_organization_type} ot";
+        $where .= "AND fr2.entity_id=n.nid AND fr2.entity_type='node' AND n2.nid=fr2.field_related_target_id AND n2.nid=ot.entity_id AND ot.field_organization_type_value='UVA School'";
         $sort_by = 'n2.title, n.title';
         $order = 'ASC';
         $render_function = 'csc_lists_school_render';
@@ -266,6 +273,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 function csc_lists_select() {
 
   $type = arg(1);
+  $nid = arg(2);
   $output = '';
 
   switch($type){
@@ -301,7 +309,9 @@ function csc_lists_select() {
   }
 
   $output .= '<form id="csc-list-form">';
-  $output .= '<input type="hidden" name="q" value="list/' . $type .'">';
+  $output .= '<input type="hidden" name="q" value="list/' . $type;
+  $output .= ($nid) ? "/$nid" : '';
+  $output .= '">';
 
   if(sizeof($sort)){
     $output .= '<div class="sort-label">Sort by</div>';
