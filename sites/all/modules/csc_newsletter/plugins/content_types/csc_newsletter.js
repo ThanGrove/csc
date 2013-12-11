@@ -7,7 +7,8 @@
      
      //Check email field
      if($('#mce-EMAIL').val() == ''){
-      alert('Email field is requiered');
+      alert('Email field is required');
+      $('#mce-EMAIL').focus();
       return;
      }
      

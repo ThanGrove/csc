@@ -2,3 +2,4 @@ name = CSC Lists Views
 description = Custom display for several lists
 version = 7.x-1.0
 core = 7.x
+scripts[] = js/csc-lists.js

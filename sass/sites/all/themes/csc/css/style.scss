@@ -1944,6 +1944,7 @@ a#menu-toggle:after {
 .csc-panel-col-left { 
   top: $banner_height;
   vertical-align: top; background: #e8e7e5; 
+  height: 100%;
 
   @include media(small) {
     display: none;
@@ -1969,6 +1970,7 @@ body.front {
 }
 
 .csc-panel-col-right { 
+  min-height: 100%;
   width: auto;
   position: absolute;
   left: 150px;
@@ -2496,7 +2498,6 @@ body.logged-in {
   }
 
   @include media(small) {
-    float: none;
     padding: 5px 20px;
     width: auto;
     h2 {
@@ -2630,6 +2631,7 @@ body.logged-in {
 }
 
 #content {
+  height: 100%;
   .pane-csc-directors {
     h2 {
       margin-top: 0px;
@@ -3412,7 +3414,7 @@ body.logged-in {
   }
 }
 
-#csc-list-form {
+.filter-wrapper {
   margin: 0.5em 0em 1em 0.1em;
 
   .sort-label {
@@ -3512,7 +3514,55 @@ body.logged-in {
   clear: both;
 }
 
-#audience-filter a { padding-left: 5px; padding-right: 5px; }
-div.academic a:nth-child(1) { background: #0099ff; color: #ffffff; }
-div.non-academic a:nth-child(2) { background: #0099ff; color: #ffffff; }
-div.drop-in a:nth-child(3) { background: #0099ff; color: #ffffff; }
+.list-filter-wrapper {
+  margin: 1em 0em 1.5em 0em;
+  border-top: solid 1px #e0e0e0;
+  position: relative;
+  padding-top: 1.5em;
+
+  .audience-filter {
+    @extend %inline-block;
+
+    a { 
+      padding: 0.2em 0.6em;
+      color: #444;
+      &:hover, &.selected {
+        color: #fff;
+        background-color: #444;
+      }
+      @include media(small smedium) {
+        display: block;
+      }
+    }
+    @include media(small) {
+      margin-bottom: 1em;
+      text-align: center;
+      width: 97%;
+    }
+  }
+  .pipe-separator {
+    @extend %inline-block;
+    margin-right: 0.8em;
+  }
+  form {
+    @extend %inline-block;
+    @include add_to('body.page-list-class') {
+      top: 24px;
+      right: 0px;
+      position: absolute;
+    }
+    @include media(small) {
+      text-align: center;
+      position: static;
+      display: block;
+    }
+  }
+  .sort-label {
+    @extend %inline-block;
+    margin-right: 0.5em;
+  }
+  .chosen-container, select {
+    text-align: left;
+  }
+}
+

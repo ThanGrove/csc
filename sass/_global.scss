@@ -47,6 +47,12 @@ $break_tall   : 1170;
   }
 }
 
+@mixin add_to($parent) {
+  #{$parent} & {
+    @content;
+  }
+}
+
 @mixin tile($size) {
   body.media-#{$size} & {
     @content
@@ -142,6 +148,10 @@ $break_tall   : 1170;
 
 %gray-line {
   background: white url(../images/gray_line_bg.gif) left repeat-y; 
+}
+
+%inline-block {
+ @include inline-block;
 }
 
 @mixin see-all($color: black) {

@@ -24,15 +24,15 @@ function csc_related_organizations_info($subtype, $conf, $contexts) {
 
 /**
  * Build blocks for Related events
- */ 
+ */
 function csc_related_organizations_render($subtype, $conf, $panel_args, $context = NULL) {
   module_load_include('inc', 'csc_related', 'csc_related');
-  
+
   $type = 'organization';
   $nids = csc_related_get_nodes($type);
-  
+
   if($nids){
-    $output = '<div class="see-all"><a href="'. url('organizations/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    $output = '<div class="see-all"><a href="'. url('list/organizations/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
     $class = 'csc-item-num-' . sizeof($nids);
     foreach($nids as $nid){
       $node = node_load($nid);
@@ -44,7 +44,7 @@ function csc_related_organizations_render($subtype, $conf, $panel_args, $context
                                                         'class' => $class,
                                                   ));
     }
-    
+
     switch($node->type){
       case 'initiatives':
       case 'research':
@@ -56,29 +56,29 @@ function csc_related_organizations_render($subtype, $conf, $panel_args, $context
         $title = 'Affiliations';
         break;
     }
-  
+
     $block = new stdClass();
-    $block->title = $title; 
+    $block->title = $title;
     $block->content = $output;
-    
-    return $block;  
+
+    return $block;
   }
 
 }
 
 /**
  * Theme function
- */ 
+ */
 function theme_csc_related_organizations_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
   //$image = ($var['image']) ? theme_image_style(array('style_name' => 'panopoly_image_featured','path' => $var['image'], 'alt' => $var['title'], 'title' => $var['title'], 'width' => '', 'height' => ''  )) : '';
   $image = ($var['image']) ? '<img src="'. image_style_url('panopoly_image_featured', $var['image']) .'" alt = "'. $var['title'] . '" title="' . $var['title'] .'">' : '';
-  
+
   $output ='<div class="csc-organization-item '. $var['class'] .'"><div class="csc-item-container">';
   if ($var['image']) $output .= l($image, 'node/' . $var['nid'], array('html'=>true)) . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= '<p class="csc-item-teaser">' . $var['body'] . "</p>";
   $output.= "</div></div>\n";
-  
+
   return $output;
 }

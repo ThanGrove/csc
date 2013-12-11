@@ -24,15 +24,15 @@ function csc_related_research_info($subtype, $conf, $contexts) {
 
 /**
  * Build blocks for Related Research
- */ 
+ */
 function csc_related_research_render($subtype, $conf, $panel_args, $context = NULL) {
   module_load_include('inc', 'csc_related', 'csc_related');
-  
+
   $res = array();
-  $types = array('research', 'learning', 'engagement');  
+  $types = array('research', 'learning', 'engagement');
   foreach($types as $type){
     $nids = csc_related_get_nodes($type);
-    if($nids) $res[] = array('type' => $type, 'nid' => $nids[0]);  
+    if($nids) $res[] = array('type' => $type, 'nid' => $nids[0]);
   }
 
   if(sizeof($res)){
@@ -50,19 +50,19 @@ function csc_related_research_render($subtype, $conf, $panel_args, $context = NU
                                                           'class' => $class,
                                                   ));
     }
-  
+
     $block = new stdClass();
-    $block->title = 'Research'; 
+    $block->title = 'Research';
     $block->content = $output;
-    
-    return $block;  
-  }  
+
+    return $block;
+  }
 
 }
 
 /**
  * Theme function
- */ 
+ */
 function theme_csc_related_research_item($var){
   $url = l($var['title'], "node/" . $var['nid']);
   $title = ucfirst($var['type']);
@@ -74,9 +74,9 @@ function theme_csc_related_research_item($var){
   if ($var['image']) $output .= l($image, 'node/' . $var['nid'], array('html'=>true)) . "<br>";
   $output.= "<h2>$url</h2>";
   $output.= $var['body'];
-  $output.= '<div class="see-all-research"><a href="'. url($var['type'] . '/' . csc_related_current_nid()) .'">SEE ALL '. strtoupper($var['type']) .'</a></div>';
-  $output.= '</div>';  
+  $output.= '<div class="see-all-research"><a href="'. url('list/' . $var['type'] . '/' . csc_related_current_nid()) .'">SEE ALL '. strtoupper($var['type']) .'</a></div>';
   $output.= '</div>';
-  
+  $output.= '</div>';
+
   return $output;
 }

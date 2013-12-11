@@ -32,7 +32,7 @@ function csc_related_classes_render($subtype, $conf, $panel_args, $context = NUL
   $nids = csc_related_get_nodes($type);
 
   if(sizeof($nids)){
-    $output = '<div class="see-all"><a href="'. url('classes/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    $output = '<div class="see-all"><a href="'. url('list/class/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
     foreach($nids as $nid){
       $node = node_load($nid);
       $lng = $node->language;

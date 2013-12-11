@@ -97,17 +97,20 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     $tables = ', {field_data_field_organization_type} ot';
     $where = "AND n.nid = ot.entity_id AND ot.entity_type = 'node' AND ot.field_organization_type_value='UVA School'";
   }
-  
+
   //*** Related Nodes ***
   if($nid){
     $tables .= ', {field_data_field_related} fr';
     $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
   }
-  
+
   //*** Audience ***
   if(isset($_GET['audience'])){
-    $tables .= ', {field_data_field_audience} fa';
-    $where .= "AND fa.field_audience_value='". htmlspecialchars($_GET['audience']) ."' AND fa.entity_id=n.nid AND n.status = 1 AND fa.bundle='$node_type'";
+    if($type == 'class') {
+      $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
+      $tables .= ', {field_data_field_audience} fa';
+      $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND n.status = 1 AND fa.bundle='$node_type'";
+    }
   }
 
   //*** Sorting and Render Function ***
@@ -313,24 +316,40 @@ function csc_lists_select() {
       $filter = array();
       break;
   }
-  
+
+  $output .= '<div class="list-filter-wrapper">';
+
   //Audience filter
   if($type == 'class'){
+    $class_array = array(
+      'academic' => 'Courses for UVa students',
+      'non-academic' => 'Courses for anyone',
+      'drop-in' => 'Drop-in classes for anyone'
+    );
+
     $base_link = 'list/' . $type;
     $base_link.= ($nid) ? "/$nid" : '';
-    $class = isset($_GET['audience']) ? $_GET['audience'] : '';
-    $output .= '<div id="audience-filter" class="'. $class .'"><a href="'. url($base_link,array('query' => array('audience' => 'academic'))) .'">Courses for UVa students</a>&nbsp;|&nbsp;<a href="'. url($base_link,array('query' => array('audience' => 'non-academic'))) .'">Courses for Anyone</a>&nbsp;|&nbsp;<a href="'. url($base_link,array('query' => array('audience' => 'drop-in'))) .'">Drop-in Classes for Anyone</a></div>';
-  }  
+    $class = isset($_GET['audience']) ? $_GET['audience'] : 'academic';
+    $output .= '<div id="audience-filter" class="audience-filter '. $class .'">';
 
-  $output .= '<form id="csc-list-form">';
-  $output .= '<input type="hidden" name="q" value="list/' . $type;
-  $output .= ($nid) ? "/$nid" : '';
-  $output .= '">';
-  $output .= isset($_GET['audience']) ? '<input type="hidden" name="audience" value="'. htmlspecialchars($_GET['audience']) .'">' : '';
+    foreach($class_array as $k => $v) {
+      $output .= '<a href="#" class="' . ($class == $k ? 'selected' : '') . '" data-value="' . $k . '">' . $v . '</a>';
+    }
+
+    $output .= '</div>';
+  } else {
+    $class = '';
+  }
 
   if(sizeof($sort)){
+    $output .= '<form id="csc-list-form">';
+    $output .= '<input id="audience-input" type="hidden" name="audience" value="' . $class . '"/>';
+    $output .= '<input type="hidden" name="q" value="list/' . $type;
+    $output .= ($nid) ? "/$nid" : '';
+    $output .= '">';
+
     $output .= '<div class="sort-label">Sort by</div>';
-    $output .= '<select data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
+    $output .= '<select style="min-width:122px" data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
     foreach($sort as $k1 => $v1){
       $output .= '<optgroup label="' . $k1 . '">';
       foreach($v1 as $k => $v){
@@ -341,22 +360,22 @@ function csc_lists_select() {
       $output .= '</optgroup>';
     }
     $output .= '</select>';
+
+    //if(sizeof($filter)){
+    //$output .= '<select name="filter">';
+    //$output .= '<option  value="">Filter by</option>';
+    //foreach($filter as $k => $v){
+    //$output .= '<option value="'. $k .'"';
+    //if(isset($_GET['filter']) && $_GET['filter'] == $k) $output .= ' selected';
+    //$output .='>' . $v . '</option>';
+    //}
+    //$output.= "</select>\n";
+    //}
+
+    $output .= "</form>\n";
     $output .= '<script>jQuery("#csc-list-form").find("select").chosen({disable_search: true})</script>';
+    $output .= '</div>';
   }
-
-  if(sizeof($filter)){
-    $output .= '<select name="filter">';
-    $output .= '<option  value="">Filter by</option>';
-    foreach($filter as $k => $v){
-      $output .= '<option value="'. $k .'"';
-      if(isset($_GET['filter']) && $_GET['filter'] == $k) $output .= ' selected';
-      $output .='>' . $v . '</option>';
-    }
-    $output.= "</select>\n";
-  }
-
-  $output .= "</form>\n";
-
   return $output;
 }
 
@@ -496,9 +515,9 @@ function csc_lists_offered_render($qry){
 
 function csc_lists_consolidate_render($qry){
   $r = db_query($qry);
-  
+
   $now = time();
-  $output = $con = $past = ''; 
+  $output = $con = $past = '';
   foreach($r as $row){
     $node = node_load($row->nid);
     $lng = $node->language;
@@ -507,7 +526,7 @@ function csc_lists_consolidate_render($qry){
                                           'teaser' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value'] : '',
                                           'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
                                          ));
-                                         
+
     if($row->start_date > $now)
       $con .= $item;
     elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
@@ -517,13 +536,13 @@ function csc_lists_consolidate_render($qry){
   }
 
   if($con){
-    $output .= "<h2>Future</h2>\n";
+    //$output .= "<h2>Future</h2>\n";
     $output .= $con;
   }
   if($past){
     $output .= "<h2>Past</h2>\n";
     $output .= $past;
-  }  
-  
+  }
+
   return $output;
 }
