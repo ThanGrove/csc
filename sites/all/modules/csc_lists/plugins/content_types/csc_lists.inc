@@ -100,6 +100,11 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   
   //*** Related Nodes ***
   if($nid){
+    $qry = "SELECT title FROM {node} WHERE nid=$nid";
+    $row = db_query($qry)->fetchObject();  
+    $title.= ' for <span class="title-context">' . $row->title . '</span>';
+
+    
     $tables .= ', {field_data_field_related} fr';
     $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
   }
