@@ -269,7 +269,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   $qry = "SELECT n.nid $fields FROM {node} n $tables WHERE n.status = '1' AND n.type = '$node_type' $where ORDER BY $sort_by $order";
 
   //$output = csc_lists_select();
-  $output = '<div class="list-items">' . $render_function($qry) . '</div>';
+  $output = '<div class="list-items ' . $render_function . '">' . $render_function($qry) . '</div>';
   $output .= '<script>jQuery(".list-item").dotdotdot({watch: true, height: 150})</script>';
 
   $block = new stdClass();
@@ -413,11 +413,21 @@ function csc_lists_alpha_render($qry){
     $l = strtoupper(substr($node->title, 0, 1));
     if($letter <> $l){
       $letter = $l;
+      if ($tagopen) {
+        $output .= "</div>";
+        $tagopen = false;
+      }
       $output .= "<div class='clear'></div><h2>$letter</h2>\n";
+      $output .= '<div class="list-group">';
+      $tagopen = true;
       $output .= $item;
     }else{
       $output .= $item;
     }
+  }
+
+  if( $tagopen ) {
+    $output .= "</div>";
   }
 
   return $output;

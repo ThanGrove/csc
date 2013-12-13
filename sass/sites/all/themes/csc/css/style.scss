@@ -3339,6 +3339,8 @@ body.logged-in {
   }
 }
 
+$sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
+
 .csc-lists-container {
   .list-items {
     h2 {
@@ -3346,10 +3348,21 @@ body.logged-in {
       font-size: 2em;
     }
   }
+  a, .list-group a {
+    @each $set in $sets {
+      @include media(nth($set, 1)) {
+        &:nth-child(n + #{nth($set, 2)}) {
+          .list-item {
+            border-top-style: none;
+          }
+        }
+      }
+    }
+  }
   .list-item {
     position: relative;
     width: 45%;
-    margin: 1px;
+    margin-left: -1px;
     border: 1px solid #e8e7e5;
     padding: 0em 1em 0em 0em;
     float: left;
