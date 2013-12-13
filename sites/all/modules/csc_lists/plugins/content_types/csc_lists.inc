@@ -100,6 +100,11 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   //*** Related Nodes ***
   if($nid){
+    $qry = "SELECT title FROM {node} WHERE nid=$nid";
+    $row = db_query($qry)->fetchObject();
+    $title.= ' for <span class="title-context">' . $row->title . '</span>';
+
+
     $tables .= ', {field_data_field_related} fr';
     $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
   }
@@ -144,12 +149,12 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
       case 'name_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
   }
@@ -170,17 +175,17 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $where .= "AND fr2.entity_id=n.nid AND fr2.entity_type='node' AND n2.nid=fr2.field_related_target_id AND n2.nid=ot.entity_id AND ot.field_organization_type_value='UVA School'";
         $sort_by = 'n2.title, n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_school_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_school_render';
         break;
       case 'title_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       case 'title_asc':
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       case 'offered':
         $fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
@@ -190,7 +195,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         }
         $sort_by = 'fd.field_date_value';
         $order = 'DESC';
-        $render_function = 'csc_lists_offered_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_offered_render';
         break;
       //Date offered consolidate
       default:
@@ -219,12 +224,12 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
       case 'title_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
   }
@@ -244,24 +249,24 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $where .= "AND n.nid=fy.entity_id AND entity_type='node'";
         $sort_by = 'fy.field_year_value';
         $order = 'ASC';
-        $render_function = 'csc_lists_year_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_year_render';
         break;
       case 'year_desc':
         $tables .= ", {field_data_field_year} fy";
         $where .= "AND n.nid=fy.entity_id AND entity_type='node'";
         $sort_by = 'fy.field_year_value';
         $order = 'DESC';
-        $render_function = 'csc_lists_year_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_year_render';
         break;
       case 'title_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
   }
@@ -376,6 +381,13 @@ function csc_lists_select() {
     $output .= '<script>jQuery("#csc-list-form").find("select").chosen({disable_search: true})</script>';
     $output .= '</div>';
   }
+
+  $output .= '<div class="group-results"><input type="checkbox" name="group" value="false" onchange="document.getElementById(\'csc-list-form\').submit();"';
+  $output .= ($_GET['group']) ? ' checked': '';
+  $output .=' >Do not group results</div>';
+
+  $output .= "</form>\n";
+
   return $output;
 }
 
