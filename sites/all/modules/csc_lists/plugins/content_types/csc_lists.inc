@@ -102,7 +102,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   if($nid){
     $qry = "SELECT title FROM {node} WHERE nid=$nid";
     $row = db_query($qry)->fetchObject();
-    $title.= ' for <span class="title-context">' . $row->title . '</span>';
+    $title.= ' <span class="title-context">for ' . $row->title . '</span>';
 
 
     $tables .= ', {field_data_field_related} fr';
@@ -130,8 +130,9 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         break;
       default:
-        $sort_by = 'n.title';
-        $order = 'ASC';
+        $sort = 'date_desc';
+        $sort_by = 'n.created';
+        $order = 'DESC';
         break;
     }
   }
@@ -152,6 +153,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
+        $sort = 'name_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
@@ -199,15 +201,20 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         break;
       //Date offered consolidate
       default:
-        $fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
-        if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
-          $tables .= ', {field_data_field_date} fd';
-          $where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
-        }
-        $sort_by = 'fd.field_date_value';
-        $order = 'DESC';
-        $render_function = ($filter) ? 'csc_lists_offered_render' : 'csc_lists_consolidate_render';
+        $sort = 'title_asc';
+        $sort_by = 'n.title';
+        $order = 'ASC';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
+        //$fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
+        //if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
+          //$tables .= ', {field_data_field_date} fd';
+          //$where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
+        //}
+        //$sort_by = 'fd.field_date_value';
+        //$order = 'DESC';
+        //$render_function = ($filter) ? 'csc_lists_offered_render' : 'csc_lists_consolidate_render';
+        //break;
     }
   }
 
@@ -227,6 +234,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
+        $sort = 'title_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
@@ -264,6 +272,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
+        $sort = 'title_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
@@ -279,12 +288,12 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $block = new stdClass();
   $block->title = $title;
-  $block->content = csc_lists_select() . '<div class="csc-lists-container">' . $output . '</div><div class="clear"></div>';
+  $block->content = csc_lists_select($sort) . '<div class="csc-lists-container">' . $output . '</div><div class="clear"></div>';
 
   return $block;
 }
 
-function csc_lists_select() {
+function csc_lists_select($sortArg) {
 
   $type = arg(1);
   $nid = arg(2);
@@ -354,12 +363,12 @@ function csc_lists_select() {
     $output .= '">';
 
     $output .= '<div class="sort-label">Sort by</div>';
-    $output .= '<select style="min-width:122px" data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
+    $output .= '<select style="min-width:125px" data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
     foreach($sort as $k1 => $v1){
       $output .= '<optgroup label="' . $k1 . '">';
       foreach($v1 as $k => $v){
         $output .= '<option value="'. $k .'"';
-        if(isset($_GET['sort']) && $_GET['sort'] == $k) $output .= ' selected';
+        if($sortArg == $k) $output .= ' selected';
         $output .='>' . $v . '</option>';
       }
       $output .= '</optgroup>';
@@ -377,16 +386,15 @@ function csc_lists_select() {
     //$output.= "</select>\n";
     //}
 
+    // grouping
+    //$output .= '<div class="group-results"><input type="checkbox" name="group" value="false" onchange="document.getElementById(\'csc-list-form\').submit();"';
+    //$output .= ($_GET['group']) ? ' checked': '';
+    //$output .=' >Do not group results</div>';
+
     $output .= "</form>\n";
     $output .= '<script>jQuery("#csc-list-form").find("select").chosen({disable_search: true})</script>';
     $output .= '</div>';
   }
-
-  $output .= '<div class="group-results"><input type="checkbox" name="group" value="false" onchange="document.getElementById(\'csc-list-form\').submit();"';
-  $output .= ($_GET['group']) ? ' checked': '';
-  $output .=' >Do not group results</div>';
-
-  $output .= "</form>\n";
 
   return $output;
 }
@@ -511,16 +519,16 @@ function csc_lists_offered_render($qry){
                                           'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
                                          ));
 
-    if($row->start_date > $now)
-      $up .= $item;
-    elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
-      $on .= $item;
-    else
+    if($row->end_date < $now)
       $past .= $item;
+    //elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
+      //$on .= $item;
+    else
+      $up .= $item;
   }
 
   if($up){
-    $output .= "<div class='clear'></div><h2>Upcoming</h2>\n";
+    //$output .= "<div class='clear'></div><h2>Current &amp; Upcoming</h2>\n";
     $output .= $up;
   }
   if($on){
@@ -528,8 +536,8 @@ function csc_lists_offered_render($qry){
     $output .= $on;
   }
   if($past){
-    $output .= "<div class='clear'></div><h2>Past</h2>\n";
-    $output .= $past;
+    $output .= "<div class='clear'></div><h2 class='lower'>Past</h2>\n";
+    $output .= "<div class='list-group'>$past</div>";
   }
 
   return $output;
