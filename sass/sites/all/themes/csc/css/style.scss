@@ -664,6 +664,9 @@ h1#page-title {
   margin-bottom: 5px;
   /*font-size: 1.429em;*/
   line-height: 1.3;
+  &.lower {
+    text-transform: capitalize;
+  }
 }
 
 #content h2 a:link {
@@ -1944,6 +1947,7 @@ a#menu-toggle:after {
 .csc-panel-col-left { 
   top: $banner_height;
   vertical-align: top; background: #e8e7e5; 
+  height: 100%;
 
   @include media(small) {
     display: none;
@@ -1969,10 +1973,15 @@ body.front {
 }
 
 .csc-panel-col-right { 
+  min-height: 100%;
   width: auto;
   position: absolute;
   left: 150px;
   background: #fff;
+  @include add_to('body.page-list') {
+    position: static;
+    width: 100%;
+  }
  }
 
 .front .csc-panel-col-right { background-color: #3b3b3b }
@@ -2496,7 +2505,6 @@ body.logged-in {
   }
 
   @include media(small) {
-    float: none;
     padding: 5px 20px;
     width: auto;
     h2 {
@@ -2630,6 +2638,7 @@ body.logged-in {
 }
 
 #content {
+  height: 100%;
   .pane-csc-directors {
     h2 {
       margin-top: 0px;
@@ -3337,6 +3346,8 @@ body.logged-in {
   }
 }
 
+$sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
+
 .csc-lists-container {
   .list-items {
     h2 {
@@ -3344,10 +3355,21 @@ body.logged-in {
       font-size: 2em;
     }
   }
+  a, .list-group a {
+    @each $set in $sets {
+      @include media(nth($set, 1)) {
+        &:nth-child(n + #{nth($set, 2)}) {
+          .list-item {
+            border-top-style: none;
+          }
+        }
+      }
+    }
+  }
   .list-item {
     position: relative;
     width: 45%;
-    margin: 1px;
+    margin-left: -1px;
     border: 1px solid #e8e7e5;
     padding: 0em 1em 0em 0em;
     float: left;
@@ -3412,7 +3434,7 @@ body.logged-in {
   }
 }
 
-#csc-list-form {
+.filter-wrapper {
   margin: 0.5em 0em 1em 0.1em;
 
   .sort-label {
@@ -3511,3 +3533,59 @@ body.logged-in {
 .clear {
   clear: both;
 }
+
+.list-filter-wrapper {
+  margin: 1em 0em 1.5em 0em;
+  border-top: solid 1px #e0e0e0;
+  position: relative;
+  padding-top: 1.5em;
+
+  .audience-filter {
+    @extend %inline-block;
+
+    a { 
+      padding: 0.2em 0.6em;
+      color: #444;
+      &:hover, &.selected {
+        color: #fff;
+        background-color: #444;
+      }
+      @include media(small smedium) {
+        display: block;
+      }
+    }
+    @include media(small) {
+      margin-bottom: 1em;
+      text-align: center;
+      width: 97%;
+    }
+  }
+  .pipe-separator {
+    @extend %inline-block;
+    margin-right: 0.8em;
+  }
+  form {
+    @extend %inline-block;
+    @include add_to('body.page-list-class') {
+      top: 24px;
+      right: 0px;
+      position: absolute;
+      @include media(small) {
+        position: static;
+      }
+    }
+    @include media(small) {
+      text-align: center;
+      position: static;
+      display: block;
+    }
+  }
+  .sort-label {
+    @extend %inline-block;
+    margin-right: 0.5em;
+  }
+  .chosen-container, select {
+    text-align: left;
+  }
+}
+

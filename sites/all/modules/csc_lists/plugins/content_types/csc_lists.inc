@@ -24,6 +24,7 @@ function csc_lists_info($subtype, $conf, $contexts) {
 function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $type = arg(1);
+  $nid = arg(2);
 
   switch($type){
     case 'class':
@@ -65,14 +66,14 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   }
 
   //*** Initializing ***
-  $sort = isset($_GET['sort']) ? $_GET['sort']: '';
+  $sort = isset($_GET['sort']) ? htmlspecialchars($_GET['sort']): '';
   $sort_by = 'n.title';
   $order = 'ASC';
   $render_function = 'csc_lists_default_render';
   $tables = $where = $fields = '';
 
   //*** Filter ***
-  $filter = isset($_GET['filter']) ? $_GET['filter']: '';
+  $filter = isset($_GET['filter']) ? htmlspecialchars($_GET['filter']): '';
   $filter_by = '';
   if($type == 'class'){
     switch($filter){
@@ -97,6 +98,26 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     $where = "AND n.nid = ot.entity_id AND ot.entity_type = 'node' AND ot.field_organization_type_value='UVA School'";
   }
 
+  //*** Related Nodes ***
+  if($nid){
+    $qry = "SELECT title FROM {node} WHERE nid=$nid";
+    $row = db_query($qry)->fetchObject();
+    $title.= ' <span class="title-context">for ' . $row->title . '</span>';
+
+
+    $tables .= ', {field_data_field_related} fr';
+    $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
+  }
+
+  //*** Audience ***
+  if(isset($_GET['audience'])){
+    if($type == 'class') {
+      $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
+      $tables .= ', {field_data_field_audience} fa';
+      $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND n.status = 1 AND fa.bundle='$node_type'";
+    }
+  }
+
   //*** Sorting and Render Function ***
   if($type == 'news' or $type == 'feature'){
     switch($sort){
@@ -109,10 +130,11 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         break;
       default:
-        $sort_by = 'n.created';
-        $order = 'DESC';
         //$sort_by = 'n.title';
         //$order = 'ASC';
+        $sort = 'date_desc';
+        $sort_by = 'n.created';
+        $order = 'DESC';
         break;
     }
   }
@@ -130,12 +152,13 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
       case 'name_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
+        $sort = 'name_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
   }
@@ -151,25 +174,24 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         break;
       case 'school':
-        $fields = ', fr.field_related_target_id, n2.title as rtitle';
-        $tables .= ", {field_data_field_related fr}, {node} n2, {field_data_field_organization_type} ot";
-        $where .= "AND fr.entity_id=n.nid AND fr.entity_type='node' AND n2.nid=fr.field_related_target_id AND n2.nid=ot.entity_id AND ot.field_organization_type_value='UVA School'";
+        $fields = ', fr2.field_related_target_id, n2.title as rtitle';
+        $tables .= ", {field_data_field_related} fr2, {node} n2, {field_data_field_organization_type} ot";
+        $where .= "AND fr2.entity_id=n.nid AND fr2.entity_type='node' AND n2.nid=fr2.field_related_target_id AND n2.nid=ot.entity_id AND ot.field_organization_type_value='UVA School'";
         $sort_by = 'n2.title, n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_school_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_school_render';
         break;
       case 'title_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       case 'title_asc':
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
-      //Date offered
-      default:
+      case 'offered':
         $fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
         if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
           $tables .= ', {field_data_field_date} fd';
@@ -180,7 +202,24 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         //$sort_by = 'fd.field_date_value';
         //$order = 'DESC';
         //$render_function = 'csc_lists_offered_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_offered_render';
         break;
+      //Date offered consolidate
+      default:
+        $sort = 'title_asc';
+        $sort_by = 'n.title';
+        $order = 'ASC';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
+        break;
+        //$fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
+        //if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
+          //$tables .= ', {field_data_field_date} fd';
+          //$where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
+        //}
+        //$sort_by = 'fd.field_date_value';
+        //$order = 'DESC';
+        //$render_function = ($filter) ? 'csc_lists_offered_render' : 'csc_lists_consolidate_render';
+        //break;
     }
   }
 
@@ -197,12 +236,13 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
       case 'title_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
+        $sort = 'title_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
   }
@@ -222,31 +262,26 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $where .= "AND n.nid=fy.entity_id AND entity_type='node'";
         $sort_by = 'fy.field_year_value';
         $order = 'ASC';
-        $render_function = 'csc_lists_year_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_year_render';
         break;
       case 'year_desc':
         $tables .= ", {field_data_field_year} fy";
         $where .= "AND n.nid=fy.entity_id AND entity_type='node'";
         $sort_by = 'fy.field_year_value';
         $order = 'DESC';
-        $render_function = 'csc_lists_year_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_year_render';
         break;
       case 'title_desc':
         $sort_by = 'n.title';
         $order = 'DESC';
-        $render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       case 'title_asc':
+      default:
+        $sort = 'title_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
-        $render_function = 'csc_lists_alpha_render';
-        break;
-      default:
-        $sort_by = 'n.created';
-        $order = 'DESC';
-        //$sort_by = 'n.title';
-        //$order = 'ASC';
-        //$render_function = 'csc_lists_alpha_render';
+        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
   }
@@ -254,19 +289,20 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   $qry = "SELECT n.nid $fields FROM {node} n $tables WHERE n.status = '1' AND n.type = '$node_type' $where ORDER BY $sort_by $order";
 
   //$output = csc_lists_select();
-  $output = '<div class="list-items">' . $render_function($qry) . '</div>';
+  $output = '<div class="list-items ' . $render_function . '">' . $render_function($qry) . '</div>';
   $output .= '<script>jQuery(".list-item").dotdotdot({watch: true, height: 150})</script>';
 
   $block = new stdClass();
   $block->title = $title;
-  $block->content = csc_lists_select() . '<div class="csc-lists-container">' . $output . '</div><div class="clear"></div>';
+  $block->content = csc_lists_select($sort) . '<div class="csc-lists-container">' . $output . '</div><div class="clear"></div>';
 
   return $block;
 }
 
-function csc_lists_select() {
+function csc_lists_select($sortArg) {
 
   $type = arg(1);
+  $nid = arg(2);
   $output = '';
 
   switch($type){
@@ -307,37 +343,70 @@ function csc_lists_select() {
       break;
   }
 
-  $output .= '<form id="csc-list-form">';
-  $output .= '<input type="hidden" name="q" value="list/' . $type .'">';
+  $output .= '<div class="list-filter-wrapper">';
+
+  //Audience filter
+  if($type == 'class'){
+    $class_array = array(
+      'academic' => 'Courses for UVa students',
+      'non-academic' => 'Courses for anyone',
+      'drop-in' => 'Drop-in classes for anyone'
+    );
+
+    $base_link = 'list/' . $type;
+    $base_link.= ($nid) ? "/$nid" : '';
+    $class = isset($_GET['audience']) ? $_GET['audience'] : 'academic';
+    $output .= '<div id="audience-filter" class="audience-filter '. $class .'">';
+
+    foreach($class_array as $k => $v) {
+      $output .= '<a href="#" class="' . ($class == $k ? 'selected' : '') . '" data-value="' . $k . '">' . $v . '</a>';
+    }
+
+    $output .= '</div>';
+  } else {
+    $class = '';
+  }
 
   if(sizeof($sort)){
+    $output .= '<form id="csc-list-form">';
+    $output .= '<input id="audience-input" type="hidden" name="audience" value="' . $class . '"/>';
+    $output .= '<input type="hidden" name="q" value="list/' . $type;
+    $output .= ($nid) ? "/$nid" : '';
+    $output .= '">';
+
     $output .= '<div class="sort-label">Sort by</div>';
-    $output .= '<select data-placeholder="Sort by..." style="min-width: 122px" name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
+    $output .= '<select style="min-width:125px" data-placeholder="Sort by..." name="sort" onChange="document.getElementById(\'csc-list-form\').submit()">';
     foreach($sort as $k1 => $v1){
       $output .= '<optgroup label="' . $k1 . '">';
       foreach($v1 as $k => $v){
         $output .= '<option value="'. $k .'"';
-        if((isset($_GET['sort']) && $_GET['sort'] == $k) || (!isset($_GET['sort']) && $sort_default == $k)) $output .= ' selected';
+        if($sortArg == $k) $output .= ' selected';
         $output .='>' . $v . '</option>';
       }
       $output .= '</optgroup>';
     }
     $output .= '</select>';
+
+    //if(sizeof($filter)){
+    //$output .= '<select name="filter">';
+    //$output .= '<option  value="">Filter by</option>';
+    //foreach($filter as $k => $v){
+    //$output .= '<option value="'. $k .'"';
+    //if(isset($_GET['filter']) && $_GET['filter'] == $k) $output .= ' selected';
+    //$output .='>' . $v . '</option>';
+    //}
+    //$output.= "</select>\n";
+    //}
+
+    // grouping
+    //$output .= '<div class="group-results"><input type="checkbox" name="group" value="false" onchange="document.getElementById(\'csc-list-form\').submit();"';
+    //$output .= ($_GET['group']) ? ' checked': '';
+    //$output .=' >Do not group results</div>';
+
+    $output .= "</form>\n";
     $output .= '<script>jQuery("#csc-list-form").find("select").chosen({disable_search: true})</script>';
+    $output .= '</div>';
   }
-
-  if(sizeof($filter)){
-    $output .= '<select name="filter">';
-    $output .= '<option  value="">Filter by</option>';
-    foreach($filter as $k => $v){
-      $output .= '<option value="'. $k .'"';
-      if(isset($_GET['filter']) && $_GET['filter'] == $k) $output .= ' selected';
-      $output .='>' . $v . '</option>';
-    }
-    $output.= "</select>\n";
-  }
-
-  $output .= "</form>\n";
 
   return $output;
 }
@@ -376,11 +445,21 @@ function csc_lists_alpha_render($qry){
     $l = strtoupper(substr($node->title, 0, 1));
     if($letter <> $l){
       $letter = $l;
+      if ($tagopen) {
+        $output .= "</div>";
+        $tagopen = false;
+      }
       $output .= "<div class='clear'></div><h2>$letter</h2>\n";
+      $output .= '<div class="list-group">';
+      $tagopen = true;
       $output .= $item;
     }else{
       $output .= $item;
     }
+  }
+
+  if( $tagopen ) {
+    $output .= "</div>";
   }
 
   return $output;
@@ -452,16 +531,16 @@ function csc_lists_offered_render($qry){
                                           'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
                                          ));
 
-    if($row->start_date > $now)
-      $up .= $item;
-    elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
-      $on .= $item;
-    else
+    if($row->end_date < $now)
       $past .= $item;
+    //elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
+      //$on .= $item;
+    else
+      $up .= $item;
   }
 
   if($up){
-    $output .= "<div class='clear'></div><h2>Upcoming</h2>\n";
+    //$output .= "<div class='clear'></div><h2>Current &amp; Upcoming</h2>\n";
     $output .= $up;
   }
   if($on){
@@ -469,7 +548,41 @@ function csc_lists_offered_render($qry){
     $output .= $on;
   }
   if($past){
-    $output .= "<div class='clear'></div><h2>Past</h2>\n";
+    $output .= "<div class='clear'></div><h2 class='lower'>Past</h2>\n";
+    $output .= "<div class='list-group'>$past</div>";
+  }
+
+  return $output;
+}
+
+function csc_lists_consolidate_render($qry){
+  $r = db_query($qry);
+
+  $now = time();
+  $output = $con = $past = '';
+  foreach($r as $row){
+    $node = node_load($row->nid);
+    $lng = $node->language;
+    $item = theme('csc_lists_item', array('title' => $node->title,
+                                          'nid' => $node->nid,
+                                          'teaser' => isset($node->field_small_teaser[$lng][0]['value']) ? $node->field_small_teaser[$lng][0]['value'] : '',
+                                          'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
+                                         ));
+
+    if($row->start_date > $now)
+      $con .= $item;
+    elseif( ($row->start_date < $now and $row->end_date > $now) or ($row->start_date < $now and $row->end_date == $row->start_date) )
+      $con .= $item;
+    else
+      $past .= $item;
+  }
+
+  if($con){
+    //$output .= "<h2>Future</h2>\n";
+    $output .= $con;
+  }
+  if($past){
+    $output .= "<h2>Past</h2>\n";
     $output .= $past;
   }
 
