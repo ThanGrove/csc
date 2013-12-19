@@ -6,8 +6,8 @@ function csc_general_form_alter(&$form, &$form_state, $form_id){
   if(isset($form['#node_edit_form'])){
     $types = node_type_get_types();
     $type = $types[$form['type']['#value']]->name;
-    $form['title']['#prefix'] = "<h3>Node of type $type</h3>";
-    
+    $form['title']['#prefix'] = "<h3>Content &gt; <strong>$type</strong></h3>";
+
     $lng = $form['field_related']['#language'];
     $items = sizeof($form['field_related'][$lng]);
 
