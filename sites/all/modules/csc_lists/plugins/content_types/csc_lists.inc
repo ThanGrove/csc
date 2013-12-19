@@ -200,7 +200,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         }
         //$sort_by = 'n.created';
         $sort_by = 'fd.field_date_value';
-        $order = 'DESC';
+        $order = 'ASC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_offered_render';
         break;
     }
