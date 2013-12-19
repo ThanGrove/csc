@@ -2046,7 +2046,10 @@ body.front {
 
 }
 .csc-3col-col-fixed .csc-3col-inside,
-.csc-panel-col-left .csc-panel-inside { background: #ffffff; }
+.csc-panel-col-left .csc-panel-inside { 
+  max-width: 150px;
+  background: #ffffff; 
+}
 
 .pane-csc-isotope { background: #e8e7e5; }
 .pane-csc-isotope h2 { text-align: center; }
