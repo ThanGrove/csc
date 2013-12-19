@@ -3611,3 +3611,13 @@ $sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
   }
 }
 
+/* jquery ui overrides */
+
+.ui-dialog {
+  .ui-dialog-content {
+    padding: 1em;
+  }
+  input {
+    margin-right: 0.4em;
+  }
+}

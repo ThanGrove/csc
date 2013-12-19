@@ -2,13 +2,15 @@
 
   $(document).ready(function () {
     $('.mce-button').on("click",function(e){
-     var f = $(this).closest("form");
      e.preventDefault();
+
+     var f = $(this).closest("form"),
+        email = f.find('input[name=EMAIL]');
      
      //Check email field
-     if($('#mce-EMAIL').val() == ''){
+     if(email.val() == ''){
       alert('Email field is required');
-      $('#mce-EMAIL').focus();
+      email.focus();
       return;
      }
      

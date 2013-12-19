@@ -49,7 +49,7 @@ function csc_newsletter_big_render($subtype, $conf, $panel_args, $context = NULL
   drupal_add_js($path . '/plugins/content_types/csc_newsletter.js');
 
   $output = '
-    <div id="dialog-modal" class="csc-hide" title="Select Newsletter">
+    <div id="dialog-modal" class="csc-hide" title="Confirm Subscription">
       <p>By clicking "Subscribe" you are signing up to receive our monthly newsletter.</p>
       <p class="subheader">Also sign up for...</p>
       <form id="modal-form">
