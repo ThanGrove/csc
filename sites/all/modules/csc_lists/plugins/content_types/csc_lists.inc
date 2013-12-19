@@ -51,7 +51,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
       $title = 'Feature Articles';
       $node_type = 'feature';
       break;
-    case 'organization':
+    case 'organizations':
       $title = 'Affiliations';
       $node_type = 'organization';
       break;
