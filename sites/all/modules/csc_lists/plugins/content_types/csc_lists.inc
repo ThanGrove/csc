@@ -197,29 +197,28 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
           $tables .= ', {field_data_field_date} fd';
           $where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
         }
-        $sort_by = 'n.created';
+        //$sort_by = 'n.created';
+        $sort_by = 'fd.field_date_value';
         $order = 'DESC';
-        //$sort_by = 'fd.field_date_value';
-        //$order = 'DESC';
-        //$render_function = 'csc_lists_offered_render';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_offered_render';
         break;
       //Date offered consolidate
       default:
-        $sort = 'title_asc';
-        $sort_by = 'n.title';
-        $order = 'ASC';
-        $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
-        break;
-        //$fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
+        //$sort = 'title_asc';
+        //$sort_by = 'n.title';
+        //$order = 'ASC';
+        //$render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
+        //break;
+        $fields = ', UNIX_TIMESTAMP(fd.field_date_value) as start_date, UNIX_TIMESTAMP(fd.field_date_value2) as end_date';
         //if($filter <> 'ongoing' and $filter <> 'past' and $filter <> 'upcoming'){
           //$tables .= ', {field_data_field_date} fd';
           //$where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
         //}
-        //$sort_by = 'fd.field_date_value';
-        //$order = 'DESC';
-        //$render_function = ($filter) ? 'csc_lists_offered_render' : 'csc_lists_consolidate_render';
-        //break;
+        $sort = 'offered';
+        $sort_by = 'fd.field_date_value';
+        $order = 'DESC';
+        $render_function = ($filter) ? 'csc_lists_offered_render' : 'csc_lists_consolidate_render';
+        break;
     }
   }
 
@@ -540,7 +539,7 @@ function csc_lists_offered_render($qry){
   }
 
   if($up){
-    //$output .= "<div class='clear'></div><h2>Current &amp; Upcoming</h2>\n";
+    $output .= "<div class='clear'></div><h2 class='lower'>Ongoing &amp; Upcoming</h2>\n";
     $output .= $up;
   }
   if($on){
