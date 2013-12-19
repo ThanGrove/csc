@@ -864,6 +864,24 @@ ul.links.inline li a {
   border-right: 1px solid #fff4f4;
 }
 
+.column {
+  & > .section {
+    height: 100%;
+    & > .region {
+      height: 100%;
+      .block-system {
+        height: 100%;
+        & > .content {
+          height: 100%;
+          & > .csc-panel-container {
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
 /* ------------------ Sidebar ----------------- */
 .sidebar .section {
   padding-top: 10px;
