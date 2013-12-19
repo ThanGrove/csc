@@ -467,8 +467,8 @@ function csc_lists_year_render($qry){
     $y = $node->field_year[$lng][0]['value'];
     if($year <> $y){
       $year = $y;
-      $output .= "<div class='clear'></div><h2>$year</h2>\n";
-      $output .= $item;
+      $output .= "<div class='clear'></div><h2 class='lower'>$year</h2>\n";
+      $output .= "<div class='list-group'>$item</div>";
     }else{
       $output .= $item;
     }
@@ -493,8 +493,8 @@ function csc_lists_school_render($qry){
     $s = $row->rtitle;
     if($school <> $s){
       $school = $s;
-      $output .= "<div class='clear'></div><h2>$school</h2>\n";
-      $output .= $item;
+      $output .= "<div class='clear'></div><h2 class='lower'>$school</h2>\n";
+      $output .= "<div class='list-group'>$item</div>";
     }else{
       $output .= $item;
     }
