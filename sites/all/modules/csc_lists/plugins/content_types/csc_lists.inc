@@ -368,7 +368,7 @@ function csc_lists_select($sortArg) {
   }
 
   if(sizeof($sort)){
-    $output .= '<form id="csc-list-form">';
+    $output .= '<form method="get" action="' . parse_url($_SERVER["REQUEST_URI"])['path'] . '" id="csc-list-form">';
     $output .= '<input id="audience-input" type="hidden" name="audience" value="' . $class . '"/>';
     $output .= '<input type="hidden" name="q" value="list/' . $type;
     $output .= ($nid) ? "/$nid" : '';
