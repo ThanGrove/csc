@@ -206,7 +206,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     }
   }
 
-  if($type == 'organization' or $type == 'school'){
+  if($type == 'organizations' or $type == 'school'){
     switch($sort){
       case 'date_asc':
         $sort_by = 'n.created';
@@ -221,6 +221,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
+      case 'title_asc':
       default:
         $sort = 'title_asc';
         $sort_by = 'n.title';
@@ -303,7 +304,7 @@ function csc_lists_select($sortArg) {
       $sort_default = 'date_desc';
       //$filter = array('upcoming' => 'Upcoming', 'ongoing' => 'Ongoing', 'past' => 'Past');
       break;
-    case 'organization':
+    case 'organizations':
       $sort = array('Name' => array('title_asc' => 'A-Z', 'title_desc' => 'Z-A'), 'Date Added' => array('date_desc' => 'Newest First', 'date_asc' => 'Oldest First'));
       $sort_default = 'title_asc';
       $filter = array();
