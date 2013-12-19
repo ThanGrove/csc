@@ -260,11 +260,14 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       case 'title_asc':
-      default:
-        $sort = 'title_asc';
         $sort_by = 'n.title';
         $order = 'ASC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
+        break;
+      default:
+        $sort = 'date_desc';
+        $sort_by = 'n.created';
+        $order = 'DESC';
         break;
     }
   }
