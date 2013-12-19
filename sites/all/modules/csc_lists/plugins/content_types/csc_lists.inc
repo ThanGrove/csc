@@ -524,7 +524,7 @@ function csc_lists_offered_render($qry){
 
   if($up){
     $output .= "<div class='clear'></div><h2 class='lower'>Ongoing &amp; Upcoming</h2>\n";
-    $output .= $up;
+    $output .= "<div class='list-group'>$up</div>";
   }
   if($on){
     $output .= "<div class='clear'></div><h2>Ongoing</h2>\n";
