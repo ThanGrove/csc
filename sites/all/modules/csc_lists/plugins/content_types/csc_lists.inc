@@ -24,8 +24,8 @@ function csc_lists_info($subtype, $conf, $contexts) {
 function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $type = arg(1);
-  $nid = arg(2);
-
+  $nid = (int)arg(2);
+drupal_set_message('Type: ' . $type);
   switch($type){
     case 'class':
       $title = 'Instruction';
@@ -58,6 +58,10 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     case 'school':
       $title = 'Schools';
       $node_type = 'organization';
+      break;
+    case 'initiatives':
+      $title = 'Initiatives';
+      $node_type = 'initiatives';
       break;
     default:
       $title = 'News';
@@ -296,7 +300,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 function csc_lists_select($sortArg) {
 
   $type = arg(1);
-  $nid = arg(2);
+  $nid = (int)arg(2);
   $output = '';
 
   switch($type){
