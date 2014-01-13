@@ -25,7 +25,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $type = arg(1);
   $nid = (int)arg(2);
-drupal_set_message('Type: ' . $type);
+
   switch($type){
     case 'class':
       $title = 'Instruction';
