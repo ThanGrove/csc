@@ -25,6 +25,8 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
   $type = arg(1);
   $nid = (int)arg(2);
+  $types = array_keys(node_type_get_types());
+  if(!in_array($type, $types)) return;
 
   switch($type){
     case 'class':
@@ -301,6 +303,9 @@ function csc_lists_select($sortArg) {
 
   $type = arg(1);
   $nid = (int)arg(2);
+  $types = array_keys(node_type_get_types());
+  if(!in_array($type, $types)) return;
+  
   $output = '';
 
   switch($type){
