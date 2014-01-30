@@ -37,5 +37,13 @@ function csc_related_theme() {
           'render element' => 'element',
           'file' => 'plugins/content_types/csc_related_classes.inc',
         ),
+        'csc_related_initiatives_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_initiatives.inc',
+        ),
+        'csc_related_news_item' => array(
+          'render element' => 'element',
+          'file' => 'plugins/content_types/csc_related_news.inc',
+        ),
     );
 }
