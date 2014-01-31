@@ -2194,7 +2194,8 @@ body.logged-in {
     display: none;
     background-color: #252525;
     top: 50px;
-    border-top: 1px #444 solid;
+    width: 167px;
+    /*border-top: 1px #444 solid;*/
     padding: 1px 1px 0px 1px;
     @include border-bottom-left-radius(3px);
 
@@ -2260,7 +2261,7 @@ body.logged-in {
   border-top: 1px solid #ffffff;
   background: #dbdad8;
   padding: 0px;
-  margin-top: 13px;
+  /*margin-top: 13px;*/
 
   h2.pane-title {
     font-size: 0.9em !important;
@@ -3285,6 +3286,9 @@ body.logged-in {
   }
   p {
     margin-bottom: 1em;
+  }
+  @include media(small) {
+    font-size: 1em;
   }
 }
 
