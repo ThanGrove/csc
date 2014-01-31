@@ -1993,7 +1993,7 @@ body.front {
 
 .csc-panel-col-right { 
   min-height: 100%;
-  width: auto;
+  width: 100%;
   position: absolute;
   left: 150px;
   background: #fff;
@@ -2497,7 +2497,7 @@ body.logged-in {
   float: left;
   background: url(../images/line_bg.png) left no-repeat;
 
-  @include media(small medium) {
+  @include media(small smedium medium) {
     float: none;
     width: auto;
     background: none;
@@ -2641,6 +2641,7 @@ body.logged-in {
 .csc-people-wrapper img { float: left; }
 
 .pane-csc-directors {
+  margin-right: 1em;
   clear: both;
   background: #ffffff;
   > h2 { 
@@ -2688,7 +2689,7 @@ body.logged-in {
   @include media(xlarge) {
     width: 33.3333%;
   }
-  @include media(small smedium) {
+  @include media(small smedium medium) {
     width: 100%;
   }
 }
@@ -3332,11 +3333,11 @@ body.logged-in {
 
 /* about us */
 
-.page-node-15 {
+.page-node-264, .page-node-215 {
   .pane-node-body {
     h2 {
       @extend %upper;
-      font-size: 1.4em;
+      font-size: 1em;
     }
   }
 }
