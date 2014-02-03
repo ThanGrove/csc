@@ -2261,7 +2261,6 @@ body.logged-in {
   border-top: 1px solid #ffffff;
   background: #dbdad8;
   padding: 0px;
-  /*margin-top: 13px;*/
 
   h2.pane-title {
     font-size: 0.9em !important;
@@ -2275,7 +2274,9 @@ body.logged-in {
     width: 90%;
     font-size: 10px;
   }
-
+  @include add_to('body.front') {
+    margin-top: 13px;
+  }
   @include media(tall) {
     position: fixed;
   }

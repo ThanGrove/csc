@@ -26,6 +26,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   $type = arg(1);
   $nid = (int)arg(2);
   $types = array_keys(node_type_get_types());
+  array_push($types, 'organizations');
   if(!in_array($type, $types)) return;
 
   switch($type){
@@ -212,7 +213,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     }
   }
 
-  if($type == 'organizations' or $type == 'school'){
+  if($type == 'organizations' or $type = 'organization' or $type == 'school'){
     switch($sort){
       case 'date_asc':
         $sort_by = 'n.created';
@@ -297,8 +298,9 @@ function csc_lists_select($sortArg) {
   $type = arg(1);
   $nid = (int)arg(2);
   $types = array_keys(node_type_get_types());
+  array_push($types, 'organizations');
   if(!in_array($type, $types)) return;
-  
+
   $output = '';
 
   switch($type){
