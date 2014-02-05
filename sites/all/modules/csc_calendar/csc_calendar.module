@@ -1,0 +1,22 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function csc_calendar_menu() {
+  $items = array();
+  $items['csc_calendar'] = array(
+     'page callback'    => 'csc_calendar_page',
+     'access arguments' => array('access content'),
+     'type'             => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+
+/**
+ * page callback
+ */
+function csc_calendar_page(){ 
+  echo  csc_readblock_get('event_calendar-block_3', 'views');
+  exit();
+}
