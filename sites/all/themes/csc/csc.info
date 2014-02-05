@@ -7,6 +7,7 @@ stylesheets[all][] = css/jquery.mCustomScrollbar.css
 stylesheets[all][] = css/layout.css
 stylesheets[all][] = css/style.css
 stylesheets[all][] = css/colors.css
+stylesheets[all][] = css/jquery.fancybox-1.3.4.css
 stylesheets[all][] = js/components/chosen/public/chosen.css
 stylesheets[print][] = css/print.css
 
@@ -15,6 +16,7 @@ scripts[] = js/ui.rollovers.js
 scripts[] = js/jquery.mCustomScrollbar.concat.min.js
 scripts[] = js/csc_common.js
 scripts[] = js/jquery.cookie.js
+scripts[] = js/jquery.fancybox-1.3.4.pack.js
 scripts[] = js/components/chosen/public/chosen.jquery.min.js
 scripts[] = js/components/jquery.dotdotdot/jquery.dotdotdot.min.js
 
