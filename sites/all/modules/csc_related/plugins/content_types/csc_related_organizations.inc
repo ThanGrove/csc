@@ -32,7 +32,7 @@ function csc_related_organizations_render($subtype, $conf, $panel_args, $context
   $nids = csc_related_get_nodes($type);
 
   if($nids){
-    $output = '<div class="see-all"><a href="'. url('list/organizations/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
+    $output = '<div class="see-all"><a href="'. url('list/organization/' . csc_related_current_nid()) .'">SEE ALL</a></div>';
     $class = 'csc-item-num-' . sizeof($nids);
     foreach($nids as $nid){
       $node = node_load($nid);
