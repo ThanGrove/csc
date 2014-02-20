@@ -29,14 +29,14 @@ function theme_csc_lists_item($var){
   if( $image != '' ) {
     $output.= '<div class="list-item-image">';
     $output.= $image;
-    $output.= '  </div>';
+    $output.= '</div>';
   }
-  $output.= '    <h3 class="list-item-title">'. $var['title'] .'</h3>';
+  $output.= '  <h3 class="list-item-title">'. $var['title'] .'</h3>';
   $output.= '  <div class="list-item-body">';
   $output.= '    <div class="list-item-teaser">';
   $output.= $var['teaser'];
   $output.= '    </div>';
-  $output.= ' </div>';
+  $output.= '  </div>';
   $output.= '</div>';
 
   $output = l($output, 'node/' . $var['nid'], array('html' => true));
