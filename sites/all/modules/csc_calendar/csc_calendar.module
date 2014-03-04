@@ -1,0 +1,41 @@
+<?php
+/**
+ * Implements hook_menu().
+ */
+function csc_calendar_menu() {
+  $items = array();
+  $items['csc_calendar'] = array(
+     'page callback'    => 'csc_calendar_page',
+     'access arguments' => array('access content'),
+     'type'             => MENU_NORMAL_ITEM,
+  );
+  return $items;
+}
+
+function csc_calendar_init(){
+  $path = drupal_get_path('module', 'csc_calendar'); 
+  $script = "
+    (function($){
+    $(window).load(function(){
+    $('body').on('click','#csc-popup-calendar ul.pager > li > a',function(e){          
+      $(this).addClass('my_ajax-processed');
+      var url = $(this).attr('href');
+      $('#csc-popup-calendar').empty().html('<img src=\"".$path."/status-active.gif\" style=\"margin-left:50%;\">');        
+      $('#csc-popup-calendar').load(url,'ajax=1',function() {
+                      Drupal.attachBehaviors('#csc-popup-calendar');
+                      });
+      return false;
+    });
+    }); 
+    })(jQuery);
+  ";
+  drupal_add_js($script, 'inline');
+}
+
+/**
+ * page callback
+ */
+function csc_calendar_page(){ 
+  echo  '<div id="csc-popup-calendar">' . csc_readblock_get('event_calendar-block_3', 'views') . '</div>';
+  exit();
+}
