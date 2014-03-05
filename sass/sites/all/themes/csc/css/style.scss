@@ -1936,6 +1936,7 @@ a#menu-toggle:after {
 
 .csc-3col-first .csc-3col-inside { 
   padding: 1.5em 2.4em 1.3em 2.3em; 
+  position: relative;
 
   @include media(small) {
     padding: 0px;
@@ -3625,5 +3626,17 @@ $sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
   }
   input {
     margin-right: 0.4em;
+  }
+}
+
+.pane-csc-ctype {
+  padding: 0.4em 0.8em;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  background-color: #e0e0e0;
+
+  & + div + .pane-node-title {
+    margin-top: 1.3em;
   }
 }
