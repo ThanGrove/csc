@@ -1971,6 +1971,7 @@ a#menu-toggle:after {
 
   @include media(small) {
     display: none;
+    top: 50px;
   }
 }
 
@@ -1989,6 +1990,7 @@ body.front {
     top: 0px;
     height: 100%;
     border-right: 1px solid #d7d6d4;
+    z-index: 1;
   }
 }
 
@@ -3638,5 +3640,10 @@ $sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
 
   & + div + .pane-node-title {
     margin-top: 1.3em;
+  }
+
+  @include media(small) {
+    top: -41px;
+    right: -20px;
   }
 }
