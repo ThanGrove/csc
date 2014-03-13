@@ -27,8 +27,15 @@ function csc_ctype_render($subtype, $conf, $panel_args, $context = NULL) {
     $nid = arg(1);
   else
     return;
+
+  $class_array = array(
+    'academic' => 'Courses for UVa students',
+    'non-academic' => 'Courses for anyone',
+    'drop-in' => 'Drop-in classes for anyone'
+  );
   
-  $qry = "SELECT n.type, nt.name FROM {node} n, {node_type} nt WHERE n.nid=$nid AND nt.type=n.type";
+  //$qry = "SELECT n.type, nt.name FROM {node} n, {node_type} nt WHERE n.nid=$nid AND nt.type=n.type";
+  $qry = "SELECT n.type, nt.name, fa.field_audience_value FROM node n LEFT JOIN field_data_field_audience fa ON n.nid=fa.entity_id, node_type nt WHERE n.nid=$nid AND nt.type=n.type";
   $r = db_query($qry)->fetchObject();
   
   switch ($r->type){
@@ -42,7 +49,7 @@ function csc_ctype_render($subtype, $conf, $panel_args, $context = NULL) {
       $type = 'Featured Story';
       break;
     case 'class':
-      $type = 'Instruction';
+      $type = 'Instruction: ' . $class_array[$r->field_audience_value];
       break;
     case 'research':
     case 'learning':

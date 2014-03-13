@@ -13,7 +13,7 @@ function csc_related_get_nodes($type, $limit = 3){
   $nodeid = csc_related_current_nid();
   
   if($nodeid){
-    $qry = "SELECT fr.entity_id FROM {field_data_field_related} fr, {node} n WHERE fr.field_related_target_id=$nodeid AND fr.entity_id=n.nid AND n.status = 1 AND bundle='$type' ORDER BY field_related_target_id DESC LIMIT $limit";
+    $qry = "SELECT fr.entity_id FROM {field_data_field_related} fr, {node} n WHERE fr.field_related_target_id=$nodeid AND fr.entity_id=n.nid AND n.status = 1 AND bundle='$type' ORDER BY n.created DESC LIMIT $limit";
     $r = db_query($qry);
     $nids = array();
     foreach($r as $row) $nids[] = $row->entity_id;

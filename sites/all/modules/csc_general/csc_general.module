@@ -141,3 +141,20 @@ function csc_general_get_type($nid){
   $r = db_query($qry)->fetchObject();
   return $r->name;
 }
+
+//hook_node_delete
+function csc_general_node_delete($_node){
+  //get which nodes are related to this one
+  $qry = "SELECT * FROM field_data_field_related WHERE field_related_target_id=" . $_node->nid;
+  $r = db_query($qry);
+  
+  foreach($r as $row){
+    //delete related field from each related node
+    $node = node_load($row->entity_id);
+    $lng = $node->language;
+    
+    foreach($node->field_related[$lng] as $k => $v) if($v['target_id'] == $_node->nid) unset($node->field_related[$lng][$k]);
+    
+    field_attach_update('node', $node);
+  }
+}
