@@ -11,5 +11,6 @@
         //$('.csc-directors-wrapper').on('click', function(){
           //$(this).find('a').click();
         //});
+
     });          
 })(jQuery);
