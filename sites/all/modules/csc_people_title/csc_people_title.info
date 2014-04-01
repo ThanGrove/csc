@@ -1,4 +1,0 @@
-name = CSC People Title
-description = Show First Name, Middle Name and Last name as node title
-version = 7.x-1.0
-core = 7.x
