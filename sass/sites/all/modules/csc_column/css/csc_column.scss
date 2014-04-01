@@ -10,9 +10,10 @@
   top: $banner_height;
   z-index: 50;
   height: 100%;
-  width: 340px;
+  width: 339px;
   min-height: 750px;
   opacity: 0.98;
+  border-left: solid 1px #e0e0e0;
   background: #ffffff;
 
   @include media(small) {
@@ -21,12 +22,13 @@
     position: absolute;
     height: 500px;
     width: 168px;
+    font-size: 1em;
     h2 {
       margin-top: 8px;
     }
     #csc-column-content {
-      padding: 8px;
-      width: 186px;
+      padding: 2px 8px;
+      width: 157px;
     }
     #edit-search-block-form--2 {
       width: 7.4em;
@@ -39,6 +41,10 @@
 
   &.in {
     @include translateX(0px);
+  }
+
+  form {
+    padding-right: 0.6em;
   }
 }
 
