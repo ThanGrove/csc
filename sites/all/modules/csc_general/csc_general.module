@@ -23,6 +23,8 @@ function csc_general_form_alter(&$form, &$form_state, $form_id){
         $form['field_related'][$lng][$i]['target_id']['#description'] = "(" . $types[$i] . ")";
       }
     }
+  
+    if($type == 'People') drupal_add_js( drupal_get_path('module', 'csc_general') . '/form_node_people.js' );
   }
 }
 

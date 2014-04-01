@@ -3647,3 +3647,14 @@ $sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
     right: -20px;
   }
 }
+
+.node-type-people #node-edit .form-item-title,
+.page-node-add-people #node-edit .form-item-title {
+  display: none;
+}
+
+.adr {
+  .geo {
+    display: none;
+  }
+}

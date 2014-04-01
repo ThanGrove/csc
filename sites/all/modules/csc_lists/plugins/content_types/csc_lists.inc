@@ -78,7 +78,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   $sort_by = 'n.title';
   $order = 'ASC';
   $render_function = 'csc_lists_default_render';
-  $tables = $where = $fields = '';
+  $tables = $where = $fields = $join = '';
 
   //*** Filter ***
   $filter = isset($_GET['filter']) ? htmlspecialchars($_GET['filter']): '';
@@ -114,7 +114,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
 
 
     $tables .= ', {field_data_field_related} fr';
-    $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND n.status = 1 AND fr.bundle='$node_type'";
+    $where .= "AND fr.field_related_target_id=$nid AND fr.entity_id=n.nid AND fr.bundle='$node_type'";
   }
 
   //*** Audience ***
@@ -122,7 +122,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     if($type == 'class') {
       $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
       $tables .= ', {field_data_field_audience} fa';
-      $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND n.status = 1 AND fa.bundle='$node_type'";
+      $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND fa.bundle='$node_type'";
     }
   }
 
@@ -158,14 +158,19 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
         $order = 'DESC';
         break;
       case 'name_desc':
-        $sort_by = 'n.title';
-        $order = 'DESC';
+        $join = "LEFT JOIN {field_data_field_middle_name} fmn ON n.nid=fmn.entity_id";
+        $tables .= ", {field_data_field_last_name} fln, {field_data_field_first_name} ffn";
+        $where .= "AND n.nid=fln.entity_id AND n.nid=ffn.entity_id";
+        $sort_by = 'fln.field_last_name_value DESC, ffn.field_first_name_value DESC, fmn.field_middle_name_value DESC';
+        $order = '';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
       default:
-        $sort = 'name_asc';
-        $sort_by = 'n.title';
-        $order = 'ASC';
+        $join = "LEFT JOIN {field_data_field_middle_name} fmn ON n.nid=fmn.entity_id";
+        $tables .= ", {field_data_field_last_name} fln, {field_data_field_first_name} ffn";
+        $where .= "AND n.nid=fln.entity_id AND n.nid=ffn.entity_id";
+        $sort_by = 'fln.field_last_name_value ASC, ffn.field_first_name_value ASC, fmn.field_middle_name_value ASC';
+        $order = '';      
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_alpha_render';
         break;
     }
@@ -281,7 +286,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     }
   }
 
-  $qry = "SELECT n.nid $fields FROM {node} n $tables WHERE n.status = '1' AND n.type = '$node_type' $where ORDER BY $sort_by $order";
+  $qry = "SELECT n.nid $fields FROM {node} n $join $tables WHERE n.status = '1' AND n.type = '$node_type' $where ORDER BY $sort_by $order";
 
   //$output = csc_lists_select();
   $output = '<div class="list-items ' . $render_function . '">' . $render_function($qry) . '</div>';
@@ -443,7 +448,7 @@ function csc_lists_alpha_render($qry){
                                           'image' => isset($node->field_featured_image[$lng][0]['uri'])? $node->field_featured_image[$lng][0]['uri'] : '',
                                          ));
 
-    $l = strtoupper(substr($node->title, 0, 1));
+    $l = ($node->type == 'people') ? strtoupper(substr($node->field_last_name[$lng][0]['value'], 0, 1)) : strtoupper(substr($node->title, 0, 1));
     if($letter <> $l){
       $letter = $l;
       if ($tagopen) {
@@ -454,7 +459,7 @@ function csc_lists_alpha_render($qry){
       $output .= '<div class="list-group">';
       $tagopen = true;
       $output .= $item;
-    }else{
+    }else{                                                                                        
       $output .= $item;
     }
   }
