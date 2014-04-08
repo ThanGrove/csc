@@ -1,7 +1,7 @@
 @import 'global';
 
 #csc-right{
-  @include transition-property(translate);
+  @include transition-property(transform);
   @include transition-duration(200ms);
   @include translateX(340px);
 

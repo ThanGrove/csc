@@ -1,10 +1,10 @@
 /* Global variables, mixins, etc. */
 /* line 3, ../../../../../sass/sites/all/modules/csc_column/css/csc_column.scss */
 #csc-right {
-  -webkit-transition-property: translate;
-  -moz-transition-property: translate;
-  -o-transition-property: translate;
-  transition-property: translate;
+  -webkit-transition-property: -webkit-transform;
+  -moz-transition-property: -moz-transform;
+  -o-transition-property: -o-transform;
+  transition-property: transform;
   -webkit-transition-duration: 200ms;
   -moz-transition-duration: 200ms;
   -o-transition-duration: 200ms;
