@@ -34,15 +34,16 @@ function csc_directors_render($subtype, $conf, $panel_args, $context = NULL) {
   foreach($r as $row){
     $node = node_load($row->nid);
     $lng = $node->language;
-    
-    $lastname = $node->title;
-    $firstname = $node->field_first_name[$lng][0]['value'];
-    $middlename = $node->field_middle_name[$lng][0]['value'];
-    
-    $title =  "$firstname ";
-    if($middlename) $title .= "$middlename ";
-    $title .= $lastname;
-    
+
+    $title = $node->title;
+    //$lastname = $node->title;
+    //$firstname = $node->field_first_name[$lng][0]['value'];
+    //$middlename = $node->field_middle_name[$lng][0]['value'];
+
+    //$title =  "$firstname ";
+    //if($middlename) $title .= "$middlename ";
+    //$title .= $lastname;
+
     $output.= theme('csc_directors_item', array('title' => $title,
                                                 'nid' => $node->nid,
                                                 'position' => isset($node->field_position[$lng][0]['value']) ? $node->field_position[$lng][0]['value'] : '',

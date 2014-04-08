@@ -36,15 +36,15 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
     foreach($nids as $nid){
       $node = node_load($nid);
       $lng = $node->language;
-      
-      $lastname = $node->title;
-      $firstname = $node->field_first_name[$lng][0]['value'];
-      $middlename = $node->field_middle_name[$lng][0]['value'];
-      
-      $title =  "$firstname ";
-      if($middlename) $title .= "$middlename ";
-      $title .= $lastname;
-      
+
+      $title = $node->title;
+      //$firstname = $node->field_first_name[$lng][0]['value'];
+      //$middlename = $node->field_middle_name[$lng][0]['value'];
+
+      //$title =  "$firstname ";
+      //if($middlename) $title .= "$middlename ";
+      //$title .= $lastname;
+
       $output .= theme('csc_related_people_item', array('title' => $title,
                                                         'body' => $node->field_small_teaser[$lng][0]['value'],
                                                         'nid' => $node->nid,
