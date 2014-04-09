@@ -93,6 +93,10 @@ $break_tall   : 1170;
   }
 }
 
+%fonts {
+  font-family: Brandon, Georgia;
+}
+
 %active {
   background-color: #444;
   color: white;
@@ -104,7 +108,7 @@ $break_tall   : 1170;
 }
 
 %upper {
-  font-family: brandon;
+  @extend %fonts;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -120,21 +124,21 @@ $break_tall   : 1170;
 }
 
 %h2a {
+  @extend %fonts;
   font-size: 18px; 
   color: #3b3b3b; 
   font-style: italic; 
   font-weight: normal; 
-  font-family: brandon;
   &:hover {
     color: lighten(#3b3b3b, 30%);
   }
 }
 
 %see-all {
+  @extend %fonts;
   position: relative;
   font-size: 11px;
   font-weight: bold;
-  font-family: brandon;
   color: #3c3c3c;
   background: url(../images/rounded_black_arrow.png) right no-repeat;
   padding-right: 22px;

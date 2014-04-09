@@ -46,6 +46,32 @@
   form {
     padding-right: 0.6em;
   }
+
+  &.csc-calendar {
+    width: 930px;
+    overflow: scroll;
+    #csc-column-content {
+      width: 891px;
+      padding-top: 0px;
+    }
+    h3 {
+      margin-top: 0em;
+    }
+    .date-nav-wrapper {
+      background-color: white;
+      .date-prev, .date-next {
+        @extend %fonts;
+        background-color: white;
+        a {
+          font-size: 1.2em;
+          color: #3c3c3c;
+        }
+      }
+    }
+    .item-list .pager a {
+      padding: 8px 15px;
+    }
+  }
 }
 
 #csc-column-top{
