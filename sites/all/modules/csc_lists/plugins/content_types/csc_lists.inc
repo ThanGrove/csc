@@ -78,7 +78,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   $sort_by = 'n.title';
   $order = 'ASC';
   $render_function = 'csc_lists_default_render';
-  $tables = $where = $fields = $join = '';
+  $tables = $where = $fields = $join = $group = '';
 
   //*** Filter ***
   $filter = isset($_GET['filter']) ? htmlspecialchars($_GET['filter']): '';
@@ -118,12 +118,10 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   }
 
   //*** Audience ***
-  if(isset($_GET['audience'])){
-    if($type == 'class') {
-      $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
-      $tables .= ', {field_data_field_audience} fa';
-      $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND fa.bundle='$node_type'";
-    }
+  if($type == 'class') {
+    $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
+    $tables .= ', {field_data_field_audience} fa';
+    $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND fa.bundle='$node_type'";
   }
 
   //*** Sorting and Render Function ***
@@ -212,6 +210,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
           $where .= "AND n.nid = fd.entity_id AND fd.entity_type = 'node'";
         }
         //$sort_by = 'n.created';
+        $group = "GROUP BY n.nid";
         $sort_by = 'fd.field_date_value';
         $order = 'ASC';
         $render_function = isset($_GET['group']) ? 'csc_lists_default_render' : 'csc_lists_offered_render';
@@ -286,7 +285,7 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
     }
   }
 
-  $qry = "SELECT n.nid $fields FROM {node} n $join $tables WHERE n.status = '1' AND n.type = '$node_type' $where ORDER BY $sort_by $order";
+  $qry = "SELECT n.nid $fields FROM {node} n $join $tables WHERE n.status = '1' AND n.type = '$node_type' $where $group ORDER BY $sort_by $order";
 
   //$output = csc_lists_select();
   $output = '<div class="list-items ' . $render_function . '">' . $render_function($qry) . '</div>';
