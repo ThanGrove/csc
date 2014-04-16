@@ -116,12 +116,10 @@ function csc_lists_render($subtype, $conf, $panel_args, $context = NULL) {
   }
 
   //*** Audience ***
-  if(isset($_GET['audience'])){
-    if($type == 'class') {
-      $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
-      $tables .= ', {field_data_field_audience} fa';
-      $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND fa.bundle='$node_type'";
-    }
+  if($type == 'class') {
+    $audience = $_GET['audience'] == '' ? 'academic' : $_GET['audience'];
+    $tables .= ', {field_data_field_audience} fa';
+    $where .= "AND fa.field_audience_value='". htmlspecialchars($audience) ."' AND fa.entity_id=n.nid AND fa.bundle='$node_type'";
   }
 
   //*** Sorting and Render Function ***
