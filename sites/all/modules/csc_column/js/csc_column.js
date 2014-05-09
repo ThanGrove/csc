@@ -14,7 +14,8 @@
 
     //bind actions to top menu buttons
     $('.top-anchor').on("click",function(event){
-      var cls = this.className;
+      var cls = this.className,
+          clsAdd;
 
       if(~cls.indexOf('noxhr'))
         return true;
@@ -23,6 +24,9 @@
 
       if(!~cls.indexOf('active')) {
         this.className += ' active';
+        title = $(this).attr('alt');
+        clsAdd = 'csc-' + title.replace(/ /g, '-').toLowerCase();
+
         if(active_el)
           $(active_el).removeClass('active');
         active_el = this;
@@ -30,7 +34,6 @@
         var rght = getRightOffset(this);
         $wedge.css('right', rght + 'px').show();
 
-        title = $(this).attr('alt');
 
         $('#csc-column-title').html(title);
         var ajax_url = this.href;
@@ -38,7 +41,7 @@
         $.ajax({
           url: ajax_url,
           success: function(res){
-            $('#csc-column-content').addClass('csc-' + title.replace(/ /g, '-').toLowerCase()).html(res);
+            $('#csc-column-content').html(res);
             if(~title.indexOf('Search')) {
               $('#field-key').focus();
             } else if (~title.indexOf('account')) {
@@ -47,13 +50,13 @@
           }
         });
 
-        $('#csc-right').addClass('in');
+        $('#csc-right').attr('class', clsAdd + ' in');
       }
     });
     
     //bind action to close buttons
     $('#csc-column-close').on("click",function(e){
-      $('#csc-right').removeClass('in');
+      $('#csc-right').attr('class', '');
       $(active_el).removeClass('active');
       active_el = null;
       $wedge.hide();
