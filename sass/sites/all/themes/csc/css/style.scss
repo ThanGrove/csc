@@ -2197,7 +2197,7 @@ body.logged-in {
     display: none;
     background-color: #252525;
     top: 50px;
-    width: 167px;
+    width: 168px;
     /*border-top: 1px #444 solid;*/
     padding: 1px 1px 0px 1px;
     @include border-bottom-left-radius(3px);
@@ -2224,6 +2224,7 @@ body.logged-in {
       bottom: 3px;
       font-size: 9px;
       width: 42px;
+      line-height: 9px;
     }
   }
 
@@ -3507,7 +3508,7 @@ $sets: small 2, smedium 2, medium 3, large 4, xlarge 5;
 /*.csc-lists-container h2 { width: 100%; clear: both; font-size: 26px; color: #0099ff; border-bottom: 1px solid #d0d0d0; }*/
 
 .past {
-  @include opacity(0.7);
+  /*@include opacity(0.7);*/
 }
 
 /* calendar styles */
