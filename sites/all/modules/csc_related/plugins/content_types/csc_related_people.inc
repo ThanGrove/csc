@@ -37,15 +37,7 @@ function csc_related_people_render($subtype, $conf, $panel_args, $context = NULL
       $node = node_load($nid);
       $lng = $node->language;
       
-      $lastname = $node->title;
-      $firstname = $node->field_first_name[$lng][0]['value'];
-      $middlename = $node->field_middle_name[$lng][0]['value'];
-      
-      $title =  "$firstname ";
-      if($middlename) $title .= "$middlename ";
-      $title .= $lastname;
-      
-      $output .= theme('csc_related_people_item', array('title' => $title,
+      $output .= theme('csc_related_people_item', array('title' => $node->title,
                                                         'body' => $node->field_small_teaser[$lng][0]['value'],
                                                         'nid' => $node->nid,
                                                         'position' => $node->field_position[$lng][0]['value'],

@@ -88,6 +88,13 @@ function csc_related_events_render($subtype, $conf, $panel_args, $context = NULL
   }
 }
 
+function csc_related_events_mktime($date){
+  list($dt,$t) = explode(' ', $date);
+  list($y,$m,$d) = explode('-', $dt);
+  list($h,$i,$s) = explode(':', $t);
+  return mktime($h,$i,$s,$m,$d,$y);
+}
+
 /**
  * Theme function
  */
@@ -100,15 +107,17 @@ function theme_csc_related_events_item($var){
   if($var['date']){
     $now = new DateTime('now');
     $date = new DateTime($var['date']['value']);
-    if( $date < $now ) {
+    if( $date->format('YmdHis') < $now->format('YmdHis') ) {
       $past = true;
       $class .= ' past ';
     }
+    /*
     list($d,$t) = explode(' ', $var['date']);
     list($year, $month, $day) = explode('-', $d);
     list($h, $min, $sec) = explode(':', $t);
     $tstamp = mktime($h, $min, $sec, $month, $day, $year);
     $when = format_date($tstamp, 'small', '', 'UTC');
+    */
     $stamp1 = strtotime($var['date']['value']);
     $stamp2 = strtotime($var['date']['value2']);
     $date1 = date('Y-m-d', $stamp1);
