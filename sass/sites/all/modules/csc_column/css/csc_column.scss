@@ -3,14 +3,14 @@
 #csc-right{
   @include transition-property(translate);
   @include transition-duration(200ms);
-  @include translateX(340px);
+  @include translateX(591px);
 
   position: fixed;
   right: 0px;
   top: $banner_height;
   z-index: 50;
   height: 100%;
-  width: 339px;
+  width: 590px;
   min-height: 750px;
   opacity: 0.98;
   border-left: solid 1px #e0e0e0;
@@ -86,7 +86,7 @@
 
 #csc-column-content{
   float: left;
-  width: 312px;
+  width: 550px;
   padding: 20px;
 }
 
