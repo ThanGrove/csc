@@ -7,6 +7,11 @@ function search_highlight_init(){
     $key = arg(2);
     $path = drupal_get_path('module', 'search_highlight');
     drupal_add_js($path .'/js/jquery.highlight-4.js');
-    drupal_add_js("(function ($) {  $(window).load(function() { $('.csc-3col-first .view-content').highlight('". $key ."');  }); })(jQuery);", 'inline');  
+    drupal_add_js("(function ($) {  $(window).load(function() { $('.csc-3col-first .view-content').highlight('". $key ."');  }); })(jQuery);", 'inline');
+    
+    if(strpos($key, ' ')){
+      $keys = explode(' ', $key);
+      foreach($keys as $k) drupal_add_js("(function ($) {  $(window).load(function() { $('.csc-3col-first .view-content').highlight('". $k ."');  }); })(jQuery);", 'inline');
+    }  
   }
 } 
