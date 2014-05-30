@@ -5,6 +5,7 @@
 function search_highlight_init(){
   if(arg(0) == 'search' and arg(1)== 'site'){
     $key = arg(2);
+    $key = str_replace('+', ' ', $key);
     $path = drupal_get_path('module', 'search_highlight');
     drupal_add_js($path .'/js/jquery.highlight-4.js');
     drupal_add_js("(function ($) {  $(window).load(function() { $('.csc-3col-first .view-content').highlight('". $key ."');  }); })(jQuery);", 'inline');
