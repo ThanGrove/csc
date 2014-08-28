@@ -27,5 +27,12 @@ function view_modifier_views_pre_execute(&$view) {
     }
     
    }
-
+   
+   if( $view->name == 'event_calendar' && $view->current_display == 'block_3'){
+      //echo "<p><b>GOTCHA!!</b></p>";
+      //Adds event date table
+      $view->build_info['query']->leftjoin('field_data_field_audience', 'faud', 'faud.entity_id=node.nid');
+    
+      $view->build_info['query']->where("node.type = 'event' OR (node.type = 'class' AND faud.field_audience_value = 'drop-in')");
+   }
 }
