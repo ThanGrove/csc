@@ -10,13 +10,17 @@ function view_modifier_views_pre_execute(&$view) {
 
     //Adds event date table
     $view->build_info['query']->join('field_data_field_event_date', 'fed', 'fed.entity_id=node.nid');
+    $view->build_info['count_query']->join('field_data_field_event_date', 'fed', 'fed.entity_id=node.nid');
     
     //adds filter for past and future
     if($show){    
-      if($show == 'past')
+      if($show == 'past'){
         $view->build_info['query']->where('NOW() >= fed.field_event_date_value');
-      else
+        $view->build_info['count_query']->where('NOW() >= fed.field_event_date_value');
+      }else{
         $view->build_info['query']->where('NOW() < fed.field_event_date_value');
+        $view->build_info['count_query']->where('NOW() < fed.field_event_date_value');
+      }
     }
     
     //Adds order condition
