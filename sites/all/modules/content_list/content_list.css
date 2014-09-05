@@ -1,0 +1,16 @@
+#content-list-form .container-inline-date,
+#content-list-form .form-item{
+  clear: none;
+  display: inline;
+  width: auto;
+  float: left;
+}
+
+#content-list-form .form-item { padding: 0; }
+
+#content-list-form .date-padding { padding: 0; }
+
+.form-item-end-date-date label,
+.form-item-start-date-date label { display: none; }
+
+#content-list-form .form-item-funded { padding: 14px; }

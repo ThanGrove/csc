@@ -1,0 +1,192 @@
+<?php
+/**
+ * Implements hook_permission().
+ */
+function content_list_permission() {
+  return array(
+    'configure rotate_banner' => array(
+      'title' => t('Administer Content List'),
+      'restrict access' => TRUE,
+    ),
+  );
+}
+
+function content_list_form() { 
+  $op = array(); $op[''] = 'Any';
+  $t = db_query("SELECT type, name FROM {node_type} ORDER BY name");
+  foreach($t as $type) $op[$type->type] = $type->name;
+
+  $form['#attributes'] = array("method" => 'get');
+  
+  $form['settings_general']['q'] = array(
+    '#type' => 'hidden',
+    '#value' => $_GET['q'],
+  );
+
+  $form['settings_general']['type'] = array(
+    '#type' => 'select',
+    '#title' => 'Type',
+    '#options' => $op,
+    '#default_value' => isset($_GET['type']) ? $_GET['type'] : '' 
+  );
+  
+  $form['settings_general']['start_date'] = array(
+    '#type' => 'date_popup',
+    '#title' => t('Start Date'),
+    '#date_format' => 'm/d/Y',
+    '#value' => array('date' => isset($_GET['start_date']['date']) ? (string)$_GET['start_date']['date'] : '')
+  );
+  
+  $form['settings_general']['end_date'] = array(
+    '#type' => 'date_popup',
+    '#title' => t('End Date'),
+    '#date_format' => 'm/d/Y',
+    '#value' => array('date' => isset($_GET['end_date']['date']) ? (string)$_GET['end_date']['date'] : '')
+  );
+  
+  $form['settings_general']['funded'] = array(
+    '#type' => 'checkbox',
+    '#title' => 'Funded Granted',
+    '#value' => isset($_GET['funded']) ? '1' : '0'
+  );  
+  
+  $form['settings_general']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Apply')
+  );
+
+  return $form;
+}
+
+function content_list_page(){
+  drupal_add_css(drupal_get_path('module', 'content_list') . '/content_list.css');
+
+  $header = array(
+    array('data' => t('Title')),
+    array('data' => t('Type')),
+    array('data' => t('Published')),
+    array('data' => t('Date')),
+    array('data' => ''),
+    array('data' => ''),
+  );
+  
+  $query = db_select('node', 'n')->extend('PagerDefault');
+  $query->join('node_type','nt','n.type=nt.type');
+  $query->fields('n', array('nid', 'title', 'status','created'));
+  $query->fields('nt',array('name'));
+  
+  if(isset($_GET['type']) && $_GET['type']) $query->condition('n.type',$_GET['type'],'=');
+  
+  if(isset($_GET['funded']) && $_GET['funded']){
+    $query->join('field_data_field_grant_funded', 'gf', 'gf.entity_id=n.nid AND gf.field_grant_funded_value=1');
+    $sy = $ey = $cy = '';
+    if(isset($_GET['start_date']['date']) && $_GET['start_date']['date']){
+      list($m,$d,$y) = explode('/', $_GET['start_date']['date']);
+      $sy = "fy.field_year_value >= $y";
+    }
+    if(isset($_GET['end_date']['date']) && $_GET['end_date']['date']){
+      list($m,$d,$y) = explode('/', $_GET['end_date']['date']);
+      $ey = "fy.field_year_value <= $y";
+    }
+    
+    if($ey && $sy) $cy = 'AND';
+    if($ey || $sy) $query->join('field_data_field_year','fy',"fy.entity_id=n.nid AND $sy $cy $ey");
+    
+  }else{
+    if(isset($_GET['start_date']['date']) && $_GET['start_date']['date']){
+      list($m,$d,$y) = explode('/', $_GET['start_date']['date']);
+      $stamp = mktime(0, 0, 0, $m, $d, $y);
+      $query->condition('n.created',$stamp,'>=');
+    }
+    
+    if(isset($_GET['end_date']['date']) && $_GET['end_date']['date']){
+      list($m,$d,$y) = explode('/', $_GET['end_date']['date']);
+      $stamp = mktime(0, 0, 0, $m, $d, $y);
+      $query->condition('n.created',$stamp,'<=');
+    }  
+  }
+
+  $result = $query->limit(20)->orderBy('n.title')->execute();
+//drupal_set_message(dpq($query,true));
+  $rows = array();
+  foreach ($result as $row) {
+    // Normally we would add some nice formatting to our rows
+    // but for our purpose we are simply going to add our row
+    // to the array.
+    $status = ($row->status) ? "Yes" : "No";
+    $r = array($row->title, $row->name, $status,format_date($row->created,'long'),'<a href="/node/' .  $row->nid . '/edit&destination=admin/content_list">edit</a>','<a href="/node/' .  $row->nid . '/delete&destination=admin/content_list">delete</a>');
+    $rows[] = array('data' => (array) $r);
+  }
+
+
+  $build['pager_filters'] = drupal_get_form('content_list_form');
+  
+  $build['pager_table'] = array(
+    '#theme' => 'table',
+    '#header' => $header,
+    '#rows' => $rows,
+    '#empty' => t('No content found'),
+  );
+
+  // Attach the pager theme.
+  $build['pager_pager'] = array('#theme' => 'pager');
+
+  return $build;
+
+}
+
+function content_list_page_org(){
+
+  //get banners info
+  $n = db_query("SELECT n.*, nt.name FROM {node} n, {node_type} nt WHERE n.type=nt.type ORDER BY title");
+
+  $table = '<table class="views-table sticky-enabled sticky-table">'. "\n";
+  $table.= '<thead>';
+  $table.= "<tr>\n";
+  $table.= "<th>Title</th>\n";
+  $table.= "<th>Type</th>\n";
+  $table.= "<th>Published</th>\n";
+  $table.= "<th>Date</th>\n";
+  $table.= "<th></th>\n";
+  $table.= "<th></th>\n";
+  $table.= "</tr>\n";
+  $table.= "<thead>\n";
+  $table.= "<tbody>\n";
+  $default = false; 
+  foreach($n as $node){
+    $status = ($node->status) ? "Yes" : "No";
+    $table.= "<tr>\n";
+    $table.= "<td>" . $node->title . "</td>\n";
+    $table.= "<td>" . $node->name . "</td>\n";
+    $table.= "<td>" . $status . "</td>\n";
+    $table.= "<td>" . $node->created . "</td>\n";
+    $table.= '<td><a href="/node/' .  $node->nid . '/edit&destination=admin/content_list">edit</a></td>' . "\n";
+    $table.= '<td><a href="/node/' .  $node->nid . '/delete&destination=admin/content_list">delete</a></td>' . "\n";
+    $table.= "</tr>\n";
+  }
+  $table.= "</tbody></table>\n";
+
+  $output = '<div><fieldset class="collapsible"><legend>Current Banners</legend><div>';
+  $output.= $table;
+  $output.= "</div></fieldset></div>";
+  
+  $output .= drupal_render(drupal_get_form('content_list_form'));
+  
+  return $output; 
+}
+
+/**
+ * hook_menu
+ */
+function content_list_menu(){
+  $items = array();
+  $items['admin/content/content_list'] = array(
+    'title' => t('Date Filters'),
+    'description' => t('Display site content'),
+    'page callback' => 'content_list_page',
+    'access arguments' => array('Administer Content List'),
+    'type' => MENU_LOCAL_TASK,
+  );
+  
+  return $items;
+}

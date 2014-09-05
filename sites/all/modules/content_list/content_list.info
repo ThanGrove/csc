@@ -1,0 +1,5 @@
+;
+
+name = Content List
+description = Custom module to list site content
+core = 7.x
