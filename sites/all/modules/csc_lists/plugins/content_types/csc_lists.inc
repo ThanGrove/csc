@@ -540,7 +540,7 @@ function csc_lists_offered_render($qry){
   }
 
   if($up){
-    $output .= "<div class='clear'></div><h2 class='lower'>Ongoing &amp; Upcoming</h2>\n";
+    $output .= "<div class='clear'></div><h2 class='lower'>Highlights</h2>\n";
     $output .= "<div class='list-group'>$up</div>";
   }
   if($on){
@@ -548,7 +548,7 @@ function csc_lists_offered_render($qry){
     $output .= $on;
   }
   if($past){
-    $output .= "<div class='clear'></div><h2 class='lower'>Past</h2>\n";
+    $output .= "<div class='clear'></div><h2 class='lower'>All</h2>\n";
     $output .= "<div class='list-group'>$past</div>";
   }
 
